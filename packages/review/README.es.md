@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/review
+# @motif-studio/review
 
 Resúmenes, auditorías y herramientas de previsualización para los paquetes de banda sonora de Motif.
 
@@ -18,10 +18,10 @@ Resúmenes, auditorías y herramientas de previsualización para los paquetes de
 
 ## Estado
 
-Paquete provisional. La lógica de revisión y resumen actualmente se encuentra en `@motif/asset-index` (auditoría de integridad) y en las pantallas de Studio (Vista general). Este paquete se ampliará para incluir informes más detallados, análisis de cobertura de pistas y anotaciones de revisión (Fase 26-27).
+Paquete provisional. La lógica de revisión y resumen actualmente se encuentra en `@motif-studio/asset-index` (auditoría de integridad) y en las pantallas de Studio (Vista general). Este paquete se ampliará para incluir informes más detallados, análisis de cobertura de pistas y anotaciones de revisión (Fase 26-27).
 
 ## Funcionalidades que no incluye
 
-- Indexación de la integridad de los paquetes (ver `@motif/asset-index`).
-- Validación de esquemas (ver `@motif/schema`).
+- Indexación de la integridad de los paquetes (ver `@motif-studio/asset-index`).
+- Validación de esquemas (ver `@motif-studio/schema`).
 - Renderizado de la interfaz de usuario.

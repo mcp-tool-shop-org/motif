@@ -1,5 +1,5 @@
 // ────────────────────────────────────────────
-// @motif/review — review-facing types
+// @motif-studio/review — review-facing types
 // ────────────────────────────────────────────
 
 export interface PackSummary {

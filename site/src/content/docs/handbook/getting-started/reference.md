@@ -5,9 +5,9 @@ sidebar:
   order: 50
 ---
 
-This page documents the public API for each Motif package. All packages are published under the `@motif` scope on npm.
+This page documents the public API for each Motif package. All packages are published under the `@motif-studio` scope on npm.
 
-## @motif/schema
+## @motif-studio/schema
 
 Canonical types, Zod 4 schemas, and validation utilities. Every other package imports types from here.
 
@@ -36,7 +36,7 @@ Canonical types, Zod 4 schemas, and validation utilities. Every other package im
 
 ---
 
-## @motif/clip-engine
+## @motif-studio/clip-engine
 
 Clip sequencing, 30+ composition transforms, and cue scheduling.
 
@@ -105,7 +105,7 @@ All transforms are pure functions that return new clip objects:
 
 ---
 
-## @motif/scene-mapper
+## @motif-studio/scene-mapper
 
 Trigger evaluation and deterministic scene resolution.
 
@@ -116,7 +116,7 @@ Trigger evaluation and deterministic scene resolution.
 
 ---
 
-## @motif/runtime-pack
+## @motif-studio/runtime-pack
 
 Export and import runtime packs for game engines.
 
@@ -129,7 +129,7 @@ Export and import runtime packs for game engines.
 
 ---
 
-## @motif/sample-lab
+## @motif-studio/sample-lab
 
 Audio import, trimming, slicing, kit building, and sample instrument creation.
 
@@ -157,7 +157,7 @@ Audio import, trimming, slicing, kit building, and sample instrument creation.
 
 ---
 
-## @motif/automation
+## @motif-studio/automation
 
 Automation lanes, macros, envelopes, and live capture.
 
@@ -203,7 +203,7 @@ Automation lanes, macros, envelopes, and live capture.
 
 ---
 
-## @motif/library
+## @motif-studio/library
 
 Templates, snapshots, branches, favorites, and entity comparison.
 
@@ -236,7 +236,7 @@ Templates, snapshots, branches, favorites, and entity comparison.
 
 ---
 
-## @motif/score-map
+## @motif-studio/score-map
 
 World scoring: motif families, score profiles, cue families, and derivation.
 
@@ -251,42 +251,42 @@ World scoring: motif families, score profiles, cue families, and derivation.
 
 ---
 
-## @motif/music-theory
+## @motif-studio/music-theory
 
 Scales, chords, motifs, and intensity transforms used by the clip engine.
 
 ---
 
-## @motif/audio-engine
+## @motif-studio/audio-engine
 
 Sample playback and voice management using the Web Audio API. Handles loading audio buffers, managing playback voices, and applying gain/pan per voice.
 
 ---
 
-## @motif/playback-engine
+## @motif-studio/playback-engine
 
 Real-time mixing, effects (EQ, delay, reverb, compressor), stem bus routing, master gain, and WAV rendering via `OfflineAudioContext`.
 
 ---
 
-## @motif/instrument-rack
+## @motif-studio/instrument-rack
 
 Synth and drum voice management with presets. Categories: `drums`, `bass`, `pad`, `lead`, `pulse`.
 
 ---
 
-## @motif/asset-index
+## @motif-studio/asset-index
 
 Pack integrity indexing and auditing. Detects orphaned references, duplicate assets, and missing dependencies.
 
 ---
 
-## @motif/review
+## @motif-studio/review
 
 Summaries and audit helpers for pack inspection.
 
 ---
 
-## @motif/test-kit
+## @motif-studio/test-kit
 
 Fixtures and test utilities for writing tests against Motif packages.

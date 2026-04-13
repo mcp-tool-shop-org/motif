@@ -3,7 +3,7 @@ import type {
   MacroMapping,
   MacroState,
   AutomationParam,
-} from "@motif/schema";
+} from "@motif-studio/schema";
 
 /** Default macro state — everything at midpoint. */
 export function defaultMacroState(): MacroState {

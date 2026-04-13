@@ -13,11 +13,11 @@ import {
   type FxParams,
   type RenderOptions,
   type RenderResult,
-} from "@motif/playback-engine";
-import type { SoundtrackPack, RuntimeMusicState, Cue, PerformanceCaptureEvent, PerformanceCapture, Clip } from "@motif/schema";
-import { InstrumentRack } from "@motif/instrument-rack";
-import { scheduleNotes, clipLengthSeconds } from "@motif/clip-engine";
-import type { Voice } from "@motif/instrument-rack";
+} from "@motif-studio/playback-engine";
+import type { SoundtrackPack, RuntimeMusicState, Cue, PerformanceCaptureEvent, PerformanceCapture, Clip } from "@motif-studio/schema";
+import { InstrumentRack } from "@motif-studio/instrument-rack";
+import { scheduleNotes, clipLengthSeconds } from "@motif-studio/clip-engine";
+import type { Voice } from "@motif-studio/instrument-rack";
 
 // ── Clip preview singleton ──
 

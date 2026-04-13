@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import type { SoundtrackPack, RuntimeMusicState } from "@motif/schema";
-import { FIXTURES, loadFixture } from "@motif/test-kit";
+import type { SoundtrackPack, RuntimeMusicState } from "@motif-studio/schema";
+import { FIXTURES, loadFixture } from "@motif-studio/test-kit";
 import {
   resolveActiveLayers,
   findTransitionRule,

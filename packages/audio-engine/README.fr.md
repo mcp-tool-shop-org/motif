@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/audio-engine
+# @motif-studio/audio-engine
 
 Lecture d'échantillons et gestion des voix pour Motif.
 
@@ -26,7 +26,7 @@ import {
   playSlice,
   playKitSlot,
   playSampleInstrumentNote,
-} from "@motif/audio-engine";
+} from "@motif-studio/audio-engine";
 ```
 
 - `playTrimmedRegion` : lecture d'un tampon audio dans les limites d'une région.
@@ -36,10 +36,10 @@ import {
 
 ## Fonctionnalités non incluses
 
-- Orchestration et mixage des scènes (gérés par `@motif/playback-engine`)
+- Orchestration et mixage des scènes (gérés par `@motif-studio/playback-engine`)
 - Décodage des fichiers audio (géré par l'AudioContext du navigateur)
-- Composition de clips/cues (gérés par `@motif/clip-engine`)
+- Composition de clips/cues (gérés par `@motif-studio/clip-engine`)
 
 ## Dépendances
 
-- `@motif/schema` : types pour les ressources, les séquences, les kits et les instruments.
+- `@motif-studio/schema` : types pour les ressources, les séquences, les kits et les instruments.

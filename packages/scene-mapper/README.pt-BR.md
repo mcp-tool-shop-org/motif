@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/scene-mapper
+# @motif-studio/scene-mapper
 
 Dispara a lógica de mapeamento para a resolução de cenas no Motif.
 
@@ -18,7 +18,7 @@ Dispara a lógica de mapeamento para a resolução de cenas no Motif.
 
 ## Status
 
-Pacote temporário. A lógica de resolução de cenas atualmente reside nos tipos e na loja do `@motif/schema`. Este pacote será expandido quando a superfície de integração em tempo de execução crescer (Fase 20+).
+Pacote temporário. A lógica de resolução de cenas atualmente reside nos tipos e na loja do `@motif-studio/schema`. Este pacote será expandido quando a superfície de integração em tempo de execução crescer (Fase 20+).
 
 ## O que este pacote não gerencia:
 

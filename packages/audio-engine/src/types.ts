@@ -1,4 +1,4 @@
-import type { RuntimeMusicState, TransitionMode } from "@motif/schema";
+import type { RuntimeMusicState, TransitionMode } from "@motif-studio/schema";
 
 // ── Active layer plan ──
 

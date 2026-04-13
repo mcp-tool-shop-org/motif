@@ -1,5 +1,5 @@
 // ────────────────────────────────────────────
-// @motif/music-theory — types
+// @motif-studio/music-theory — types
 // ────────────────────────────────────────────
 
 /** Pitch class (0 = C, 1 = C#, … 11 = B) */

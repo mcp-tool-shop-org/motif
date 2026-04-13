@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/library
+# @motif-studio/library
 
 Modelli, istantanee, rami, preferiti, raccolte e confronto di entità per Motif.
 
@@ -56,4 +56,4 @@ Modelli, istantanee, rami, preferiti, raccolte e confronto di entità per Motif.
 
 ## Dipendenze
 
-- `@motif/schema` — tipi per modelli, istantanee, rami, preferiti, raccolte
+- `@motif-studio/schema` — tipi per modelli, istantanee, rami, preferiti, raccolte

@@ -5,7 +5,7 @@ The runtime pack is the artifact consumed by game engines.
 ## Export Process
 
 1. Studio holds the full `SoundtrackPack` with all authoring metadata
-2. `@motif/runtime-pack` strips authoring-only fields (names, notes, editor state, internal IDs)
+2. `@motif-studio/runtime-pack` strips authoring-only fields (names, notes, editor state, internal IDs)
 3. The result is a `RuntimeSoundtrackPack` — minimal, validated, and deterministically serialized
 4. The pack is re-validated during export to ensure runtime safety
 
@@ -33,7 +33,7 @@ A game engine consuming a `RuntimeSoundtrackPack` needs to:
 3. Play the scene's layers using its own audio system
 4. Apply transition rules when switching between scenes
 
-The deterministic scene resolution logic in `@motif/scene-mapper` serves as the reference implementation.
+The deterministic scene resolution logic in `@motif-studio/scene-mapper` serves as the reference implementation.
 
 ## Round-Trip Verification
 

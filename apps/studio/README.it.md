@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/studio
+# @motif-studio/studio
 
 L'app Studio è l'interfaccia principale per la creazione dei pacchetti Motif. Fornisce un'interfaccia di controllo con tema scuro per creare, modificare e visualizzare tutti gli elementi di un pacchetto.
 
@@ -20,7 +20,7 @@ L'app Studio è l'interfaccia principale per la creazione dei pacchetti Motif. F
 | **Scenes** | Operazioni CRUD per le scene, con modifica dei livelli direttamente nella schermata (aggiunta/rimozione/riordino). |
 | **Bindings** | Operazioni CRUD per le associazioni, con modifica delle condizioni direttamente nella schermata. |
 | **Transitions** | Operazioni CRUD per le transizioni, con avvisi di validazione specifici per la modalità. |
-| **Review** | Avvisi di validazione in tempo reale provenienti da `@motif/review`, raggruppati per gravità. |
+| **Review** | Avvisi di validazione in tempo reale provenienti da `@motif-studio/review`, raggruppati per gravità. |
 | **Preview** | Simulazione dello stato di runtime manuale e sequenziale, con integrazione del motore. |
 
 ## Anteprima
@@ -39,15 +39,15 @@ Questa anteprima è basata sulla simulazione e non esegue la riproduzione effett
 ## Sviluppo
 
 ```bash
-pnpm --filter @motif/studio dev    # Next.js dev server
-pnpm --filter @motif/studio build  # Production build
-pnpm --filter @motif/studio test   # Run tests
+pnpm --filter @motif-studio/studio dev    # Next.js dev server
+pnpm --filter @motif-studio/studio build  # Production build
+pnpm --filter @motif-studio/studio test   # Run tests
 ```
 
 ## Stack tecnologico
 
 - **Framework:** Next.js 15 (App Router)
 - **Gestione dello stato:** Zustand
-- **Validazione:** `@motif/review` (ottenuta tramite l'hook `useReview`)
+- **Validazione:** `@motif-studio/review` (ottenuta tramite l'hook `useReview`)
 - **Testing:** Vitest + Testing Library + jsdom
 - **Styling:** Variabili CSS, tema scuro (nessun CSS-in-JS)

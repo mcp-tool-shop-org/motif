@@ -1,5 +1,5 @@
-import type { SoundtrackPack } from "@motif/schema";
-import { auditPackIntegrity } from "@motif/asset-index";
+import type { SoundtrackPack } from "@motif-studio/schema";
+import { auditPackIntegrity } from "@motif-studio/asset-index";
 import type { PackAudit, AuditFinding } from "./types.js";
 
 /**

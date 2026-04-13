@@ -8,7 +8,7 @@ A clip contains a sequence of notes, each with pitch, timing, velocity, and dura
 
 ## Transforms
 
-The `@motif/clip-engine` provides deterministic transforms on clips:
+The `@motif-studio/clip-engine` provides deterministic transforms on clips:
 
 - **Transpose** — shift all pitches by a semitone interval
 - **Invert** — mirror pitches around a pivot note

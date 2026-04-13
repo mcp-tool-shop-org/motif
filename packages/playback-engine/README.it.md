@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/playback-engine
+# @motif-studio/playback-engine
 
 Sistema di riproduzione, mixaggio, rendering ed effetti in tempo reale per scene e sequenze Motif.
 
@@ -38,7 +38,7 @@ import {
   disposeFxNodes,
   dbToGain,
   encodeWav,
-} from "@motif/playback-engine";
+} from "@motif-studio/playback-engine";
 ```
 
 ### Classi principali
@@ -57,6 +57,6 @@ import {
 
 ## Dipendenze
 
-- `@motif/schema` — tipi per scene, stem e transizioni
-- `@motif/audio-engine` — elementi primitivi per la riproduzione di campioni
-- `@motif/scene-mapper` — valutazione dei trigger per la risoluzione delle scene
+- `@motif-studio/schema` — tipi per scene, stem e transizioni
+- `@motif-studio/audio-engine` — elementi primitivi per la riproduzione di campioni
+- `@motif-studio/scene-mapper` — valutazione dei trigger per la risoluzione delle scene

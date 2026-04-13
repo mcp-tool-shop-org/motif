@@ -2,11 +2,11 @@
 // Scene player — play layered stems + synth clips for a scene
 // ────────────────────────────────────────────
 
-import type { SoundtrackPack } from "@motif/schema";
-import { resolveActiveLayers } from "@motif/audio-engine";
-import { InstrumentRack } from "@motif/instrument-rack";
-import { scheduleNotes, clipLengthSeconds } from "@motif/clip-engine";
-import { resolveClipNotes } from "@motif/clip-engine";
+import type { SoundtrackPack } from "@motif-studio/schema";
+import { resolveActiveLayers } from "@motif-studio/audio-engine";
+import { InstrumentRack } from "@motif-studio/instrument-rack";
+import { scheduleNotes, clipLengthSeconds } from "@motif-studio/clip-engine";
+import { resolveClipNotes } from "@motif-studio/clip-engine";
 import type { StemHandle, PlaybackListener, PlaybackEventType } from "./types.js";
 import type { AssetLoader } from "./loader.js";
 import type { Mixer } from "./mixer.js";

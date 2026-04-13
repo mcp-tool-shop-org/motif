@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useStudioStore } from "../store";
-import type { LibraryEntityKind } from "@motif/schema";
+import type { LibraryEntityKind } from "@motif-studio/schema";
 
 type Tab = "templates" | "snapshots" | "branches" | "favorites" | "collections" | "compare";
 

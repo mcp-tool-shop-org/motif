@@ -1,7 +1,7 @@
 "use client";
 
 import { useStudioStore } from "../store";
-import type { AudioAsset, AudioAssetKind } from "@motif/schema";
+import type { AudioAsset, AudioAssetKind } from "@motif-studio/schema";
 
 const ASSET_KINDS: AudioAssetKind[] = ["loop", "oneshot", "stinger", "ambient"];
 

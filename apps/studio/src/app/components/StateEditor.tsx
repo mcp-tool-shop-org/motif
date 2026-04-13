@@ -1,6 +1,6 @@
 "use client";
 
-import type { RuntimeMusicState } from "@motif/schema";
+import type { RuntimeMusicState } from "@motif-studio/schema";
 
 /** Known fields on RuntimeMusicState (excludes the index signature) */
 type RuntimeMusicStateField = "mode" | "danger" | "inCombat" | "boss" | "safeZone" | "victory" | "region" | "faction" | "encounterType";

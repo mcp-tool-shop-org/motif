@@ -1,2 +1,2 @@
-// @motif/ui — shared components
-export const PACKAGE = "@motif/ui" as const;
+// @motif-studio/ui — shared components
+export const PACKAGE = "@motif-studio/ui" as const;

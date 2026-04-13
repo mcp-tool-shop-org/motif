@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import type { SoundtrackPack } from "@motif/schema";
-import { loadFixture, FIXTURES } from "@motif/test-kit";
+import type { SoundtrackPack } from "@motif-studio/schema";
+import { loadFixture, FIXTURES } from "@motif-studio/test-kit";
 import { dbToGain } from "../src/scene-player.js";
 
 // ── Minimal mock for Web Audio API ──

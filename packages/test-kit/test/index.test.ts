@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { FIXTURES, loadFixture, fixturePath } from "../src/index.js";
 
-describe("@motif/test-kit", () => {
+describe("@motif-studio/test-kit", () => {
   it("exports fixture names", () => {
     expect(FIXTURES.MINIMAL_PACK).toBe("minimal-pack.json");
     expect(FIXTURES.STARTER_PACK).toBe("starter-pack.json");

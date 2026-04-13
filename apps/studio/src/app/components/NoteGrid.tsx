@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import type { Clip, ClipNote } from "@motif/schema";
+import type { Clip, ClipNote } from "@motif-studio/schema";
 import { auditionNote } from "../playback-store";
 
 /** Number of pitch rows to show (MIDI notes) */

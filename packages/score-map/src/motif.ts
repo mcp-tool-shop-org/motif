@@ -1,4 +1,4 @@
-import type { MotifFamily } from "@motif/schema";
+import type { MotifFamily } from "@motif-studio/schema";
 
 /** Create a new motif family from source IDs. */
 export function createMotifFamily(

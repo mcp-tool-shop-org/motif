@@ -1,5 +1,5 @@
 // ────────────────────────────────────────────
-// @motif/clip-engine — types
+// @motif-studio/clip-engine — types
 // ────────────────────────────────────────────
 
 export type ClipPlaybackState = "stopped" | "playing" | "scheduled";

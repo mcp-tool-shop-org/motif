@@ -49,7 +49,7 @@
 - [x] `[all]` Version in manifest matches git tag (2026-03-10)
 - [x] `[all]` Dependency scanning: `pnpm audit` in CI, scheduled security workflow, Dependabot enabled (2026-03-11)
 - [x] `[all]` Automated dependency updates: Dependabot configured for npm and GitHub Actions (2026-03-11)
-- [x] `[npm]` Packages published to npm under @motif scope (2026-03-28)
+- [x] `[npm]` Packages published to npm under @motif-studio scope (2026-03-28)
 - [x] `[npm]` `engines.node` set (2026-03-10) — Node >=22
 - [x] `[npm]` Lockfile committed (2026-03-10) — pnpm-lock.yaml
 - [ ] `[vsix]` SKIP: not a VS Code extension

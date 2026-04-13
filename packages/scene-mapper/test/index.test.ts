@@ -7,8 +7,8 @@ import type {
   Scene,
   Stem,
   AudioAsset,
-} from "@motif/schema";
-import { FIXTURES, loadFixture } from "@motif/test-kit";
+} from "@motif-studio/schema";
+import { FIXTURES, loadFixture } from "@motif-studio/test-kit";
 import {
   evaluateCondition,
   evaluateBinding,

@@ -3,8 +3,8 @@
 import { useRef, useCallback } from "react";
 import { useStudioStore } from "../store";
 import { usePlaybackStore } from "../playback-store";
-import type { Clip, ClipLane } from "@motif/schema";
-import { FACTORY_PRESETS } from "@motif/instrument-rack";
+import type { Clip, ClipLane } from "@motif-studio/schema";
+import { FACTORY_PRESETS } from "@motif-studio/instrument-rack";
 import { NoteGrid } from "../components/NoteGrid";
 import {
   clipKey,
@@ -34,7 +34,7 @@ import {
   chordPalette,
   progressionFromDegrees,
   getDrumPatterns,
-} from "@motif/clip-engine";
+} from "@motif-studio/clip-engine";
 import {
   SCALE_NAMES,
   NOTE_NAMES,
@@ -42,7 +42,7 @@ import {
   type Chord,
   type ChordMarker,
   type IntensityTier,
-} from "@motif/music-theory";
+} from "@motif-studio/music-theory";
 
 const CLIP_LANES: ClipLane[] = ["drums", "bass", "harmony", "motif", "accent"];
 const EMPTY_CLIPS: never[] = [];

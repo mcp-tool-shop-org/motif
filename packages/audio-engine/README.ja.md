@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/audio-engine
+# @motif-studio/audio-engine
 
 Motifのためのサンプル再生とボイス管理機能。
 
@@ -26,7 +26,7 @@ import {
   playSlice,
   playKitSlot,
   playSampleInstrumentNote,
-} from "@motif/audio-engine";
+} from "@motif-studio/audio-engine";
 ```
 
 - `playTrimmedRegion`: トリミング範囲内のオーディオバッファを再生します。
@@ -36,10 +36,10 @@ import {
 
 ## 提供しない機能
 
-- シーンのオーケストレーションとミキシング（`@motif/playback-engine`によって処理されます）
+- シーンのオーケストレーションとミキシング（`@motif-studio/playback-engine`によって処理されます）
 - オーディオファイルのデコード（ブラウザのAudioContextが処理します）
-- クリップ/キューの構成（`@motif/clip-engine`によって処理されます）
+- クリップ/キューの構成（`@motif-studio/clip-engine`によって処理されます）
 
 ## 依存関係
 
-- `@motif/schema`: アセット、スライス、キット、楽器の型定義。
+- `@motif-studio/schema`: アセット、スライス、キット、楽器の型定義。

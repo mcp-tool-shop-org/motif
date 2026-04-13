@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import type { AudioAsset, SampleSlice, SampleKitSlot, SampleInstrument } from "@motif/schema";
+import type { AudioAsset, SampleSlice, SampleKitSlot, SampleInstrument } from "@motif-studio/schema";
 import {
   playTrimmedRegion,
   playSlice,

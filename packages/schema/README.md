@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="400" alt="Motif">
 </p>
 
-# @motif/schema
+# @motif-studio/schema
 
 Canonical types and validation for Motif soundtrack packs.
 
@@ -36,7 +36,7 @@ import {
   parseSoundtrackPack,
   safeParseSoundtrackPack,
   validateSoundtrackPack,
-} from "@motif/schema";
+} from "@motif-studio/schema";
 ```
 
 ### `parseSoundtrackPack(input: unknown): SoundtrackPack`

@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/studio
+# @motif-studio/studio
 
 L'application Studio est la principale interface de création pour les packs Motif. Elle fournit une interface de contrôle à thème sombre pour créer, modifier et examiner chaque élément d'un pack.
 
@@ -20,7 +20,7 @@ L'application Studio est la principale interface de création pour les packs Mot
 | **Scenes** | Opérations CRUD pour les scènes avec édition des calques intégrée (ajout/suppression/réorganisation). |
 | **Bindings** | Opérations CRUD pour les liaisons avec édition des conditions intégrée. |
 | **Transitions** | Opérations CRUD pour les transitions avec avertissements de validation spécifiques au mode. |
-| **Review** | Résultats de validation en direct provenant de `@motif/review`, regroupés par gravité. |
+| **Review** | Résultats de validation en direct provenant de `@motif-studio/review`, regroupés par gravité. |
 | **Preview** | Simulation de l'état d'exécution manuel et séquentiel avec intégration du moteur. |
 
 ## Aperçu
@@ -39,15 +39,15 @@ Cet aperçu est basé sur une simulation et ne reproduit pas la lecture réelle 
 ## Développement
 
 ```bash
-pnpm --filter @motif/studio dev    # Next.js dev server
-pnpm --filter @motif/studio build  # Production build
-pnpm --filter @motif/studio test   # Run tests
+pnpm --filter @motif-studio/studio dev    # Next.js dev server
+pnpm --filter @motif-studio/studio build  # Production build
+pnpm --filter @motif-studio/studio test   # Run tests
 ```
 
 ## Pile technologique
 
 - **Framework :** Next.js 15 (App Router)
 - **Gestion de l'état :** Zustand
-- **Validation :** `@motif/review` (dérivée via le hook `useReview`)
+- **Validation :** `@motif-studio/review` (dérivée via le hook `useReview`)
 - **Tests :** Vitest + Testing Library + jsdom
 - **Style :** Variables CSS, thème sombre (pas de CSS-in-JS)

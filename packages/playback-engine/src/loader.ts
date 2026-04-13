@@ -2,7 +2,7 @@
 // Asset loader — fetch, decode, cache AudioBuffers
 // ────────────────────────────────────────────
 
-import type { SoundtrackPack, AudioAsset } from "@motif/schema";
+import type { SoundtrackPack, AudioAsset } from "@motif-studio/schema";
 import type { LoadState, PlaybackEventType, PlaybackListener } from "./types.js";
 
 export class AssetLoader {

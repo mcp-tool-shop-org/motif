@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/ui
+# @motif-studio/ui
 
 साउंडवीव अनुप्रयोगों के लिए साझा यूआई घटक।
 

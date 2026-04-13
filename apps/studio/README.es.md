@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/studio
+# @motif-studio/studio
 
 La aplicación Studio es la interfaz principal para la creación de paquetes de Motif. Proporciona una interfaz de control con tema oscuro para crear, editar e inspeccionar cada elemento de un paquete.
 
@@ -20,7 +20,7 @@ La aplicación Studio es la interfaz principal para la creación de paquetes de 
 | **Scenes** | Operaciones CRUD para escenas con edición de capas integrada (agregar/eliminar/reordenar). |
 | **Bindings** | Operaciones CRUD para enlaces con edición de condiciones integrada. |
 | **Transitions** | Operaciones CRUD para transiciones con advertencias de validación específicas del modo. |
-| **Review** | Resultados de validación en tiempo real de `@motif/review`, agrupados por gravedad. |
+| **Review** | Resultados de validación en tiempo real de `@motif-studio/review`, agrupados por gravedad. |
 | **Preview** | Simulación del estado de ejecución manual y secuencial con integración del motor. |
 
 ## Vista previa
@@ -39,15 +39,15 @@ Esta vista previa se basa en la simulación y no realiza la reproducción real d
 ## Desarrollo
 
 ```bash
-pnpm --filter @motif/studio dev    # Next.js dev server
-pnpm --filter @motif/studio build  # Production build
-pnpm --filter @motif/studio test   # Run tests
+pnpm --filter @motif-studio/studio dev    # Next.js dev server
+pnpm --filter @motif-studio/studio build  # Production build
+pnpm --filter @motif-studio/studio test   # Run tests
 ```
 
 ## Tecnologías
 
 - **Framework:** Next.js 15 (App Router)
 - **Estado:** Zustand
-- **Validación:** `@motif/review` (obtenido a través del hook `useReview`)
+- **Validación:** `@motif-studio/review` (obtenido a través del hook `useReview`)
 - **Pruebas:** Vitest + Testing Library + jsdom
 - **Estilo:** Variables CSS, tema oscuro (sin CSS-in-JS)

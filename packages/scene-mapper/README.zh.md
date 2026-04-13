@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/scene-mapper
+# @motif-studio/scene-mapper
 
 用于Motif场景解析的映射逻辑触发器。
 
@@ -18,7 +18,7 @@
 
 ## 状态
 
-占位符包。当前的场景解析逻辑位于 `@motif/schema` 类型定义和 Studio 商店中。当运行时集成功能扩展时（20+阶段），此包将进行扩展。
+占位符包。当前的场景解析逻辑位于 `@motif-studio/schema` 类型定义和 Studio 商店中。当运行时集成功能扩展时（20+阶段），此包将进行扩展。
 
 ## 其不负责的内容
 

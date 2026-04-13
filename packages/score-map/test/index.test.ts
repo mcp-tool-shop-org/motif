@@ -38,8 +38,8 @@ import {
   derivationsTo,
   derivationChain,
   derivationGraphIds,
-} from "@motif/score-map";
-import type { Scene, SoundtrackPack } from "@motif/schema";
+} from "@motif-studio/score-map";
+import type { Scene, SoundtrackPack } from "@motif-studio/schema";
 
 // ── Motif Families ──
 

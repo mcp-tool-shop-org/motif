@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/test-kit
+# @motif-studio/test-kit
 
 Motif 软件包的测试用例、示例包和测试工具。
 
@@ -19,7 +19,7 @@ Motif 软件包的测试用例、示例包和测试工具。
 ## 主要导出内容
 
 ```ts
-import { FIXTURES, loadFixture, fixturePath } from "@motif/test-kit";
+import { FIXTURES, loadFixture, fixturePath } from "@motif-studio/test-kit";
 
 const pack = loadFixture(FIXTURES.MINIMAL_PACK);
 ```

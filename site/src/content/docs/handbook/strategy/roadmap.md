@@ -9,7 +9,7 @@ sidebar:
 
 Through 19 phases of development, Motif evolved from a schema-only data format into a real adaptive soundtrack workstation:
 
-- **Composition**: Clips with notes, instruments, scales, chords, motif transforms (30+ transforms in `@motif/clip-engine`), intensity variants, and cue structures with timelines and section roles
+- **Composition**: Clips with notes, instruments, scales, chords, motif transforms (30+ transforms in `@motif-studio/clip-engine`), intensity variants, and cue structures with timelines and section roles
 - **Arrangement**: Scenes with stem layers, gain control, mute/solo, section roles, intensity settings, and clip layer references
 - **Adaptive Logic**: Trigger bindings with condition evaluation (`eq`, `neq`, `gt`, `gte`, `lt`, `lte`, `includes`), deterministic priority-based scene resolution, and five transition modes
 - **Custom Samples**: Import with filename-based source type inference, non-destructive trim, even and onset-based slicing, kit building, and pitched sample instruments
@@ -17,7 +17,7 @@ Through 19 phases of development, Motif evolved from a schema-only data format i
 - **Automation**: Lanes with four interpolation curves, macros (intensity/tension/brightness/space), section envelopes with six shapes, and live performance capture with thinning
 - **Recall and Reuse**: Templates, snapshots, branches with lineage tracking, favorites, collections, and field-by-field entity compare
 - **Studio**: Full authoring UI with 11 screens (Next.js 15 + Zustand 5) and integrated state management on a single in-memory pack
-- **Validation**: Zod 4 schema validation, integrity auditing via `@motif/asset-index`, 663 tests across 16 packages
+- **Validation**: Zod 4 schema validation, integrity auditing via `@motif-studio/asset-index`, 663 tests across 16 packages
 
 ## Current Strengths
 

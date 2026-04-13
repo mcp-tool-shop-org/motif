@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/automation
+# @motif-studio/automation
 
 Automazione avanzata per Motif: tracce, interpolazione, macro, inviluppi e acquisizione in tempo reale.
 
@@ -61,4 +61,4 @@ Automazione avanzata per Motif: tracce, interpolazione, macro, inviluppi e acqui
 
 ## Dipendenze
 
-- `@motif/schema` — tipi per tracce, target, punti, macro, inviluppi, acquisizioni.
+- `@motif-studio/schema` — tipi per tracce, target, punti, macro, inviluppi, acquisizioni.

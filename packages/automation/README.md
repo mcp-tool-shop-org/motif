@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="400" alt="Motif">
 </p>
 
-# @motif/automation
+# @motif-studio/automation
 
 Expressive automation for Motif — lanes, interpolation, macros, envelopes, and live capture.
 
@@ -61,4 +61,4 @@ Expressive automation for Motif — lanes, interpolation, macros, envelopes, and
 
 ## Dependencies
 
-- `@motif/schema` — types for lanes, targets, points, macros, envelopes, captures
+- `@motif-studio/schema` — types for lanes, targets, points, macros, envelopes, captures

@@ -1,4 +1,4 @@
-import type { TriggerCondition, RuntimeMusicState } from "@motif/schema";
+import type { TriggerCondition, RuntimeMusicState } from "@motif-studio/schema";
 import type { ConditionEvaluation } from "./types.js";
 
 /**

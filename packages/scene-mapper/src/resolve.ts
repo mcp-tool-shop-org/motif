@@ -1,4 +1,4 @@
-import type { SoundtrackPack, RuntimeMusicState } from "@motif/schema";
+import type { SoundtrackPack, RuntimeMusicState } from "@motif-studio/schema";
 import type { BindingEvaluation, SceneResolution } from "./types.js";
 import { evaluateBinding } from "./bindings.js";
 

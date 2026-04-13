@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/scene-mapper
+# @motif-studio/scene-mapper
 
 Activa la lógica de mapeo para la resolución de escenas en Motif.
 
@@ -18,7 +18,7 @@ Activa la lógica de mapeo para la resolución de escenas en Motif.
 
 ## Estado
 
-Paquete provisional. La lógica de resolución de escenas actualmente reside en los tipos de `@motif/schema` y en la tienda de Studio. Este paquete se ampliará a medida que aumente la superficie de integración en tiempo de ejecución (Fase 20+).
+Paquete provisional. La lógica de resolución de escenas actualmente reside en los tipos de `@motif-studio/schema` y en la tienda de Studio. Este paquete se ampliará a medida que aumente la superficie de integración en tiempo de ejecución (Fase 20+).
 
 ## Funcionalidades que no posee
 

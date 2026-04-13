@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/sample-lab
+# @motif-studio/sample-lab
 
 Herramientas para recortar, dividir, crear kits e instrumentos, diseñadas para el flujo de trabajo de muestras de Motif.
 
@@ -50,10 +50,10 @@ Herramientas para recortar, dividir, crear kits e instrumentos, diseñadas para 
 
 ## Funcionalidades No Incluidas
 
-- Decodificación o reproducción de archivos de audio (ver `@motif/audio-engine`).
+- Decodificación o reproducción de archivos de audio (ver `@motif-studio/audio-engine`).
 - Persistencia de recursos de audio o entrada/salida de archivos.
 - Componentes de interfaz de usuario.
 
 ## Dependencias
 
-- `@motif/schema`: tipos para recursos, divisiones, kits e instrumentos.
+- `@motif-studio/schema`: tipos para recursos, divisiones, kits e instrumentos.

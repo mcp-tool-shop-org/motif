@@ -6,7 +6,7 @@ import type {
   CueFamilyRole,
   ScoreMapContextType,
   DerivationTransform,
-} from "@motif/schema";
+} from "@motif-studio/schema";
 
 type Tab = "profiles" | "motifs" | "cue-families" | "world-map" | "derive";
 

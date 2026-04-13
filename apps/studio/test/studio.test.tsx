@@ -3,7 +3,7 @@ import { render, screen, fireEvent, cleanup } from "@testing-library/react";
 import Studio from "../src/app/Studio";
 import { useStudioStore } from "../src/app/store";
 import { starterPack } from "../src/app/seed-data";
-import type { SoundtrackPack } from "@motif/schema";
+import type { SoundtrackPack } from "@motif-studio/schema";
 
 // Reset store before each test
 beforeEach(() => {

@@ -1,4 +1,4 @@
-import type { Branch, Snapshot, LibraryEntityKind } from "@motif/schema";
+import type { Branch, Snapshot, LibraryEntityKind } from "@motif-studio/schema";
 
 /** Create a branch from a snapshot. */
 export function createBranch(

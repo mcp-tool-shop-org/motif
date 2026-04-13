@@ -10,12 +10,12 @@ import type {
   CueSectionRole,
   IntensityLevel,
   TransitionMode,
-} from "@motif/schema";
+} from "@motif-studio/schema";
 import {
   resolveCuePlan,
   createCaptureEvent,
   captureToCue,
-} from "@motif/clip-engine";
+} from "@motif-studio/clip-engine";
 
 const SECTION_ROLES: CueSectionRole[] = ["intro", "body", "escalation", "climax", "outro", "transition"];
 const INTENSITY_LEVELS: IntensityLevel[] = ["low", "mid", "high"];

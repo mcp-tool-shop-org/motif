@@ -7,7 +7,7 @@ import type {
   AutomationTargetKind,
   MacroParam,
   SectionEnvelopeShape,
-} from "@motif/schema";
+} from "@motif-studio/schema";
 
 type Tab = "lanes" | "macros" | "envelopes" | "capture" | "mixer";
 

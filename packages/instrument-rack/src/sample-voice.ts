@@ -2,7 +2,7 @@
 // Sample voice — plays pitched audio samples with ADSR envelope
 // ────────────────────────────────────────────
 
-import type { SampleInstrument } from "@motif/schema";
+import type { SampleInstrument } from "@motif-studio/schema";
 import type { InstrumentVoice, Voice } from "./types.js";
 
 /**

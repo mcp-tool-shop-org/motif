@@ -25,8 +25,8 @@ import {
   clipArpeggiate,
   createTransformedVariant,
 } from "../src/clip-transforms";
-import type { Clip, ClipNote } from "@motif/schema";
-import type { Key, ChordMarker } from "@motif/music-theory";
+import type { Clip, ClipNote } from "@motif-studio/schema";
+import type { Key, ChordMarker } from "@motif-studio/music-theory";
 
 const C_MAJOR: Key = { root: 0, scale: "major" };
 

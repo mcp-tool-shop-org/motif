@@ -1,5 +1,5 @@
 // ────────────────────────────────────────────
-// @motif/music-theory — barrel exports
+// @motif-studio/music-theory — barrel exports
 // ────────────────────────────────────────────
 
 // Types

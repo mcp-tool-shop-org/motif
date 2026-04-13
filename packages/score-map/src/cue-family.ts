@@ -1,4 +1,4 @@
-import type { CueFamily, CueFamilyRole } from "@motif/schema";
+import type { CueFamily, CueFamilyRole } from "@motif-studio/schema";
 
 /** Create a new cue family. */
 export function createCueFamily(

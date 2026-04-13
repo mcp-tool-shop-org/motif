@@ -53,4 +53,4 @@ Every pack carries `SoundtrackPackMeta`: `id`, `name`, `version`, `description`,
 
 ## Validation
 
-All entity arrays are validated by Zod schemas in `@motif/schema`. Cross-reference integrity is checked by `@motif/asset-index`. Pack-level completeness is assessed by `@motif/review`.
+All entity arrays are validated by Zod schemas in `@motif-studio/schema`. Cross-reference integrity is checked by `@motif-studio/asset-index`. Pack-level completeness is assessed by `@motif-studio/review`.

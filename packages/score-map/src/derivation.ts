@@ -1,4 +1,4 @@
-import type { DerivationRecord, DerivationTransform, Scene } from "@motif/schema";
+import type { DerivationRecord, DerivationTransform, Scene } from "@motif-studio/schema";
 
 /** Create a derivation record. */
 export function createDerivation(

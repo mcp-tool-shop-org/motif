@@ -1,7 +1,7 @@
 "use client";
 
 import { useReview } from "../hooks";
-import type { AuditFinding } from "@motif/review";
+import type { AuditFinding } from "@motif-studio/review";
 
 function FindingsList({
   findings,

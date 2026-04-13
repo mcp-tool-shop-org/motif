@@ -1,6 +1,6 @@
 "use client";
 
-import type { RuntimeMusicState } from "@motif/schema";
+import type { RuntimeMusicState } from "@motif-studio/schema";
 
 export function StateChips({ state }: { state: RuntimeMusicState }) {
   const chips: string[] = [];

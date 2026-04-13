@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="400" alt="Motif">
 </p>
 
-# @motif/runtime-pack
+# @motif-studio/runtime-pack
 
 Runtime export and import for Motif soundtrack packs.
 
@@ -22,6 +22,6 @@ Placeholder package. Runtime export logic will be expanded in Phase 20 (Publishi
 
 ## What It Does Not Own
 
-- Authoring data model (see `@motif/schema`)
+- Authoring data model (see `@motif-studio/schema`)
 - Audio file packaging
 - Engine-specific playback SDKs

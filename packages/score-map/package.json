@@ -1,5 +1,5 @@
 {
-  "name": "@motif/score-map",
+  "name": "@motif-studio/score-map",
   "version": "1.2.0",
   "description": "Motifs, profiles, cue families, and derivation for Motif",
   "license": "MIT",
@@ -32,7 +32,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@motif/schema": "workspace:*"
+    "@motif-studio/schema": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.8.0",

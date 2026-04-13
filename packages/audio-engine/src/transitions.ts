@@ -1,4 +1,4 @@
-import type { SoundtrackPack, TransitionRule } from "@motif/schema";
+import type { SoundtrackPack, TransitionRule } from "@motif-studio/schema";
 
 /**
  * Find the first exact transition rule between two scenes.

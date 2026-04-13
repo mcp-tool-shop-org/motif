@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/studio
+# @motif-studio/studio
 
 Studio 应用是 Motif 软件包的主要创作平台。它提供一个深色主题的控制界面，用于创建、编辑和检查软件包中的所有元素。
 
@@ -20,7 +20,7 @@ Studio 应用是 Motif 软件包的主要创作平台。它提供一个深色主
 | **Scenes** | 支持对场景进行增删改查操作，并提供内嵌的图层编辑功能（添加、删除、重新排序）。 |
 | **Bindings** | 支持增删改查操作，并提供内联条件编辑功能。 |
 | **Transitions** | 针对状态转换，提供创建、读取、更新和删除（CRUD）功能，并根据不同的模式提供特定验证的警告信息。 |
-| **Review** | 来自 `@motif/review` 的实时验证结果，按严重程度进行分组。 |
+| **Review** | 来自 `@motif-studio/review` 的实时验证结果，按严重程度进行分组。 |
 | **Preview** | 手动和顺序运行时状态模拟，并与引擎集成。 |
 
 ## 预览
@@ -39,15 +39,15 @@ Studio 应用是 Motif 软件包的主要创作平台。它提供一个深色主
 ## 发展
 
 ```bash
-pnpm --filter @motif/studio dev    # Next.js dev server
-pnpm --filter @motif/studio build  # Production build
-pnpm --filter @motif/studio test   # Run tests
+pnpm --filter @motif-studio/studio dev    # Next.js dev server
+pnpm --filter @motif-studio/studio build  # Production build
+pnpm --filter @motif-studio/studio test   # Run tests
 ```
 
 ## 堆栈
 
 - **框架：** Next.js 15 (App Router)
 - **状态管理：** Zustand
-- **验证：** `@motif/review` (通过 `useReview` hook 实现)
+- **验证：** `@motif-studio/review` (通过 `useReview` hook 实现)
 - **测试：** Vitest + Testing Library + jsdom
 - **样式：** CSS 变量，深色主题 (不使用 CSS-in-JS)

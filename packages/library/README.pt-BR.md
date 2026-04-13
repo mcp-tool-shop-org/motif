@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/library
+# @motif-studio/library
 
 Modelos, instantâneos, ramificações, favoritos, coleções e comparação de entidades para Motif.
 
@@ -56,4 +56,4 @@ Modelos, instantâneos, ramificações, favoritos, coleções e comparação de 
 
 ## Dependências:
 
-- `@motif/schema` — Tipos para modelos, instantâneos, ramificações, favoritos e coleções.
+- `@motif-studio/schema` — Tipos para modelos, instantâneos, ramificações, favoritos e coleções.

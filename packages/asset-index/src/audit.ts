@@ -1,4 +1,4 @@
-import type { SoundtrackPack } from "@motif/schema";
+import type { SoundtrackPack } from "@motif-studio/schema";
 import type { IntegrityAudit, IntegrityFinding } from "./types.js";
 import { buildPackIndex } from "./index-pack.js";
 

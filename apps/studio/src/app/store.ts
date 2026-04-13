@@ -39,7 +39,7 @@ import type {
   Branch,
   Favorite,
   Collection,
-} from "@motif/schema";
+} from "@motif-studio/schema";
 
 // ── Section type ──
 

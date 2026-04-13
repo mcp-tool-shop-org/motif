@@ -1,4 +1,4 @@
-import type { SectionEnvelope, SectionEnvelopeShape } from "@motif/schema";
+import type { SectionEnvelope, SectionEnvelopeShape } from "@motif-studio/schema";
 
 /** Create a section envelope. */
 export function createEnvelope(

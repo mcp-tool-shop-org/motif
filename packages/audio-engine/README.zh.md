@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/audio-engine
+# @motif-studio/audio-engine
 
 Motif 的音频引擎，用于音频播放和音源管理。
 
@@ -26,7 +26,7 @@ import {
   playSlice,
   playKitSlot,
   playSampleInstrumentNote,
-} from "@motif/audio-engine";
+} from "@motif-studio/audio-engine";
 ```
 
 - `playTrimmedRegion`：在裁剪区域内播放音频缓冲区。
@@ -36,10 +36,10 @@ import {
 
 ## 不包含的功能
 
-- 场景编排和混音（由 `@motif/playback-engine` 处理）
+- 场景编排和混音（由 `@motif-studio/playback-engine` 处理）
 - 音频文件解码（浏览器 AudioContext 处理此功能）
-- 音频片段/提示的组合（由 `@motif/clip-engine` 处理）
+- 音频片段/提示的组合（由 `@motif-studio/clip-engine` 处理）
 
 ## 依赖项
 
-- `@motif/schema`：用于资产、片段、音色包和乐器的类型定义。
+- `@motif-studio/schema`：用于资产、片段、音色包和乐器的类型定义。

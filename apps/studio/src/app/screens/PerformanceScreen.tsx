@@ -4,9 +4,9 @@ import { useState } from "react";
 import { useStudioStore } from "../store";
 import { usePlaybackStore } from "../playback-store";
 import { TransportStrip } from "../components/TransportStrip";
-import type { IntensityLevel, QuantizeMode } from "@motif/schema";
-import { clipKey } from "@motif/clip-engine";
-import { NOTE_NAMES } from "@motif/music-theory";
+import type { IntensityLevel, QuantizeMode } from "@motif-studio/schema";
+import { clipKey } from "@motif-studio/clip-engine";
+import { NOTE_NAMES } from "@motif-studio/music-theory";
 
 const EMPTY_CLIPS: never[] = [];
 const QUANTIZE_MODES: QuantizeMode[] = ["none", "beat", "bar"];

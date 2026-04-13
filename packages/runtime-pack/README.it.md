@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/runtime-pack
+# @motif-studio/runtime-pack
 
 Esportazione e importazione a runtime per i pacchetti di colonna sonora di Motif.
 
@@ -22,6 +22,6 @@ Pacchetto di esempio. La logica di esportazione a runtime sarà ampliata nella F
 
 ## Cosa non include
 
-- Modello di dati di creazione (vedere `@motif/schema`).
+- Modello di dati di creazione (vedere `@motif-studio/schema`).
 - Impacchettamento di file audio.
 - SDK di riproduzione specifici per ogni motore.

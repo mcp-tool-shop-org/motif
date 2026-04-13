@@ -1,5 +1,5 @@
 // ────────────────────────────────────────────
-// @motif/schema — canonical types v1
+// @motif-studio/schema — canonical types v1
 // ────────────────────────────────────────────
 
 // ── Pack metadata ──

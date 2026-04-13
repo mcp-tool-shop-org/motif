@@ -1,5 +1,5 @@
 // ────────────────────────────────────────────
-// @motif/playback-engine — types
+// @motif-studio/playback-engine — types
 // ────────────────────────────────────────────
 
 /** Load state for the asset cache */

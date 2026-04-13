@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/runtime-pack
+# @motif-studio/runtime-pack
 
 Motif 音频素材包的运行时导出和导入功能。
 
@@ -22,6 +22,6 @@ Motif 音频素材包的运行时导出和导入功能。
 
 ## 不包含的内容
 
-- 创作数据模型（请参考 `@motif/schema`）
+- 创作数据模型（请参考 `@motif-studio/schema`）
 - 音频文件打包
 - 针对特定引擎的播放 SDK

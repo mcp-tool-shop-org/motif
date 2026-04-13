@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/test-kit
+# @motif-studio/test-kit
 
 साउंडवीव पैकेजों के लिए परीक्षण उपकरण, नमूना संग्रह और सहायक उपकरण।
 
@@ -19,7 +19,7 @@
 ## मुख्य विशेषताएं
 
 ```ts
-import { FIXTURES, loadFixture, fixturePath } from "@motif/test-kit";
+import { FIXTURES, loadFixture, fixturePath } from "@motif-studio/test-kit";
 
 const pack = loadFixture(FIXTURES.MINIMAL_PACK);
 ```

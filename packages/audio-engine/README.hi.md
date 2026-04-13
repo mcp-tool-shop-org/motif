@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/audio-engine
+# @motif-studio/audio-engine
 
 साउंडवीव के लिए नमूना प्लेबैक और वॉयस प्रबंधन।
 
@@ -26,7 +26,7 @@ import {
   playSlice,
   playKitSlot,
   playSampleInstrumentNote,
-} from "@motif/audio-engine";
+} from "@motif-studio/audio-engine";
 ```
 
 - `playTrimmedRegion` — ट्रिम सीमाओं के भीतर एक ऑडियो बफर चलाएं।
@@ -36,10 +36,10 @@ import {
 
 ## इसमें क्या शामिल नहीं है
 
-- सीन ऑर्केस्ट्रेशन और मिक्सिंग (इसका प्रबंधन `@motif/playback-engine` द्वारा किया जाता है)।
+- सीन ऑर्केस्ट्रेशन और मिक्सिंग (इसका प्रबंधन `@motif-studio/playback-engine` द्वारा किया जाता है)।
 - ऑडियो फ़ाइल डिकोडिंग (ब्राउज़र ऑडियोकॉन्टेक्स्ट इसका प्रबंधन करता है)।
-- क्लिप/क्यू कंपोज़िशन (इसका प्रबंधन `@motif/clip-engine` द्वारा किया जाता है)।
+- क्लिप/क्यू कंपोज़िशन (इसका प्रबंधन `@motif-studio/clip-engine` द्वारा किया जाता है)।
 
 ## निर्भरताएं
 
-- `@motif/schema` — एसेट्स, स्लाइस, किट्स, इंस्ट्रूमेंट्स के लिए प्रकार।
+- `@motif-studio/schema` — एसेट्स, स्लाइस, किट्स, इंस्ट्रूमेंट्स के लिए प्रकार।

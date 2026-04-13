@@ -1,7 +1,7 @@
 "use client";
 
 import { useStudioStore } from "../store";
-import type { Scene, SceneCategory, SectionRole, IntensityLevel } from "@motif/schema";
+import type { Scene, SceneCategory, SectionRole, IntensityLevel } from "@motif-studio/schema";
 
 const EMPTY_CLIPS: never[] = [];
 

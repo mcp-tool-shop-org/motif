@@ -1,4 +1,4 @@
-import type { ScoreProfile } from "@motif/schema";
+import type { ScoreProfile } from "@motif-studio/schema";
 
 /** Create a score profile with defaults. */
 export function createScoreProfile(id: string, name: string): ScoreProfile {

@@ -4,7 +4,7 @@ import type {
   AutomationPoint,
   AutomationTarget,
   AutomationTargetKind,
-} from "@motif/schema";
+} from "@motif-studio/schema";
 
 /** Create a new automation lane. */
 export function createLane(

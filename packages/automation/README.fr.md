@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/automation
+# @motif-studio/automation
 
 Automatisation avancée pour Motif : pistes, interpolation, macros, enveloppes et enregistrement en direct.
 
@@ -61,4 +61,4 @@ Automatisation avancée pour Motif : pistes, interpolation, macros, enveloppes e
 
 ## Dépendances
 
-- `@motif/schema` : types pour les pistes, les cibles, les points, les macros, les enveloppes et les enregistrements.
+- `@motif-studio/schema` : types pour les pistes, les cibles, les points, les macros, les enveloppes et les enregistrements.

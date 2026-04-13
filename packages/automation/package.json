@@ -1,5 +1,5 @@
 {
-  "name": "@motif/automation",
+  "name": "@motif-studio/automation",
   "version": "1.2.0",
   "description": "Lanes, macros, envelopes, and capture for Motif",
   "license": "MIT",
@@ -32,7 +32,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@motif/schema": "workspace:*"
+    "@motif-studio/schema": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.8.0",

@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/instrument-rack
+# @motif-studio/instrument-rack
 
 Motifの音源と楽器の管理機能：シンセサイザー、ドラム、およびプリセット音色。
 
@@ -30,7 +30,7 @@ import {
   getPresetsByCategory,
   midiToFreq,
   pitchToDrum,
-} from "@motif/instrument-rack";
+} from "@motif-studio/instrument-rack";
 ```
 
 - `InstrumentRack`: 複数の音源を管理し、ルーティングと音の処理を行います。
@@ -41,4 +41,4 @@ import {
 
 ## 依存関係
 
-- `@motif/schema`: 楽器、プリセット、音色のデータ型定義。
+- `@motif-studio/schema`: 楽器、プリセット、音色のデータ型定義。

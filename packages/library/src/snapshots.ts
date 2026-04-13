@@ -1,4 +1,4 @@
-import type { Snapshot, LibraryEntityKind } from "@motif/schema";
+import type { Snapshot, LibraryEntityKind } from "@motif-studio/schema";
 
 /** Take a snapshot of an entity. */
 export function takeSnapshot(

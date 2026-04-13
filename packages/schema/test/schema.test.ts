@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
-import { fixturePath, FIXTURES } from "@motif/test-kit";
+import { fixturePath, FIXTURES } from "@motif-studio/test-kit";
 import {
   parseSoundtrackPack,
   safeParseSoundtrackPack,

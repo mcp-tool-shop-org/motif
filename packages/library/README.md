@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="400" alt="Motif">
 </p>
 
-# @motif/library
+# @motif-studio/library
 
 Templates, snapshots, branches, favorites, collections, and entity comparison for Motif.
 
@@ -56,4 +56,4 @@ Templates, snapshots, branches, favorites, collections, and entity comparison fo
 
 ## Dependencies
 
-- `@motif/schema` — types for templates, snapshots, branches, favorites, collections
+- `@motif-studio/schema` — types for templates, snapshots, branches, favorites, collections

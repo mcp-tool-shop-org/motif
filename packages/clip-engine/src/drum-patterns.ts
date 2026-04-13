@@ -2,7 +2,7 @@
 // Drum Pattern Presets — kickstart composition with classic patterns
 // ────────────────────────────────────────────
 
-import type { ClipNote } from "@motif/schema";
+import type { ClipNote } from "@motif-studio/schema";
 
 /** Standard GM MIDI drum mapping */
 const KICK = 36;

@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/sample-lab
+# @motif-studio/sample-lab
 
 Motifのサンプルワークフローで使用する、トリミング、スライス、キット、および各種アシスタント機能。
 
@@ -51,10 +51,10 @@ Motifのサンプルワークフローで使用する、トリミング、スラ
 
 ## 所有していないもの
 
-- オーディオファイルのデコードまたは再生 (詳細は `@motif/audio-engine` を参照)
+- オーディオファイルのデコードまたは再生 (詳細は `@motif-studio/audio-engine` を参照)
 - オーディオデータの永続化またはファイル入出力
 - ユーザーインターフェースのコンポーネント
 
 ## 依存関係
 
-- `@motif/schema`: アセット、スライス、キット、楽器などのデータ構造を定義する型。
+- `@motif-studio/schema`: アセット、スライス、キット、楽器などのデータ構造を定義する型。

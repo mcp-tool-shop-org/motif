@@ -2,14 +2,14 @@
 // CueRenderer — offline render to AudioBuffer + WAV
 // ────────────────────────────────────────────
 
-import type { SoundtrackPack } from "@motif/schema";
-import { resolveActiveLayers } from "@motif/audio-engine";
-import { InstrumentRack } from "@motif/instrument-rack";
+import type { SoundtrackPack } from "@motif-studio/schema";
+import { resolveActiveLayers } from "@motif-studio/audio-engine";
+import { InstrumentRack } from "@motif-studio/instrument-rack";
 import {
   scheduleNotes,
   clipLengthSeconds,
   resolveClipNotes,
-} from "@motif/clip-engine";
+} from "@motif-studio/clip-engine";
 import type { RenderOptions, RenderResult, BusId, WavBitDepth } from "./mixer-types.js";
 import { Mixer } from "./mixer.js";
 import { AssetLoader } from "./loader.js";

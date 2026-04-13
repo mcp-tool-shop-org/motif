@@ -1,4 +1,4 @@
-// @motif/test-kit — fixtures, sample packs, contract tests
+// @motif-studio/test-kit — fixtures, sample packs, contract tests
 import { fileURLToPath } from "node:url";
 import { dirname, join, resolve } from "node:path";
 import { readFileSync } from "node:fs";

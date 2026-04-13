@@ -7,7 +7,7 @@ import {
   clipNotesToMidi,
 } from "../src/midi";
 import type { MidiFile, MidiTrack } from "../src/midi-types";
-import type { ClipNote } from "@motif/schema";
+import type { ClipNote } from "@motif-studio/schema";
 import { TICKS_PER_BEAT } from "../src/types";
 
 // ── Variable-length quantity tests ──

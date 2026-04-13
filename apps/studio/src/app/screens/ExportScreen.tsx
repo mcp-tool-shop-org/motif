@@ -8,9 +8,9 @@ import {
   exportRuntimePack,
   serializeRuntimePack,
   roundTripRuntimePack,
-} from "@motif/runtime-pack";
-import { encodeWav, type RenderPreset } from "@motif/playback-engine";
-import { resolveCuePlan } from "@motif/clip-engine";
+} from "@motif-studio/runtime-pack";
+import { encodeWav, type RenderPreset } from "@motif-studio/playback-engine";
+import { resolveCuePlan } from "@motif-studio/clip-engine";
 
 type ExportStatus = "ready" | "warnings" | "blocked";
 

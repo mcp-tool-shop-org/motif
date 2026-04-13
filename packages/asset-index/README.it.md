@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/asset-index
+# @motif-studio/asset-index
 
 Indicizzazione e controllo dell'integrità dei pacchetti audio di Motif.
 
@@ -44,7 +44,7 @@ Indicizzazione e controllo dell'integrità dei pacchetti audio di Motif.
 ## Utilizzo
 
 ```ts
-import { auditPackIntegrity, summarizePackIntegrity } from "@motif/asset-index";
+import { auditPackIntegrity, summarizePackIntegrity } from "@motif-studio/asset-index";
 
 const audit = auditPackIntegrity(pack);
 if (audit.errors.length > 0) {

@@ -1,4 +1,4 @@
-import type { AudioAsset, AssetSourceType, AudioAssetKind } from "@motif/schema";
+import type { AudioAsset, AssetSourceType, AudioAssetKind } from "@motif-studio/schema";
 
 const SOURCE_PATTERNS: Record<AssetSourceType, RegExp> = {
   drums: /drum|kick|snare|hat|perc|clap|tom|cymbal/i,

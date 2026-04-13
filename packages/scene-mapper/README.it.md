@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/scene-mapper
+# @motif-studio/scene-mapper
 
 Gestisce la logica di mappatura per la risoluzione delle scene in Motif.
 
@@ -18,7 +18,7 @@ Gestisce la logica di mappatura per la risoluzione delle scene in Motif.
 
 ## Stato
 
-Pacchetto di supporto. La logica di risoluzione delle scene attualmente risiede nei tipi e nello store di `@motif/schema` e in Studio. Questo pacchetto verrà ampliato quando l'interfaccia di integrazione di runtime si espanderà (fase 20+).
+Pacchetto di supporto. La logica di risoluzione delle scene attualmente risiede nei tipi e nello store di `@motif-studio/schema` e in Studio. Questo pacchetto verrà ampliato quando l'interfaccia di integrazione di runtime si espanderà (fase 20+).
 
 ## Funzionalità non incluse
 

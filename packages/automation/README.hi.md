@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/automation
+# @motif-studio/automation
 
 साउंडवीव के लिए अभिव्यंजक ऑटोमेशन — लेन, इंटरपोलेशन, मैक्रो, एनवेलप और लाइव कैप्चर।
 
@@ -61,4 +61,4 @@
 
 ## निर्भरताएँ
 
-- `@motif/schema` — लेन, लक्ष्य, बिंदु, मैक्रो, एनवेलप, कैप्चर के लिए प्रकार
+- `@motif-studio/schema` — लेन, लक्ष्य, बिंदु, मैक्रो, एनवेलप, कैप्चर के लिए प्रकार

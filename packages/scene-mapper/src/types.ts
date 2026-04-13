@@ -1,4 +1,4 @@
-import type { TriggerCondition } from "@motif/schema";
+import type { TriggerCondition } from "@motif-studio/schema";
 
 // ── Condition evaluation ──
 

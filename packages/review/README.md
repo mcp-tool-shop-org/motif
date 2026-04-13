@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="400" alt="Motif">
 </p>
 
-# @motif/review
+# @motif-studio/review
 
 Summaries, audits, and preview helpers for Motif soundtrack packs.
 
@@ -18,10 +18,10 @@ Summaries, audits, and preview helpers for Motif soundtrack packs.
 
 ## Status
 
-Placeholder package. Review and summary logic currently lives in `@motif/asset-index` (integrity auditing) and Studio screens (Overview). This package will grow to include richer reporting, cue coverage analysis, and review annotations (Phase 26–27).
+Placeholder package. Review and summary logic currently lives in `@motif-studio/asset-index` (integrity auditing) and Studio screens (Overview). This package will grow to include richer reporting, cue coverage analysis, and review annotations (Phase 26–27).
 
 ## What It Does Not Own
 
-- Pack integrity indexing (see `@motif/asset-index`)
-- Schema validation (see `@motif/schema`)
+- Pack integrity indexing (see `@motif-studio/asset-index`)
+- Schema validation (see `@motif-studio/schema`)
 - UI rendering

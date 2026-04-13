@@ -11,7 +11,7 @@ Motif produces two kinds of output: audio renders for listening and review, and 
 
 The **authoring pack** (`SoundtrackPack`) is the full source of truth -- all entities, metadata, composition data, library data, and automation. It contains everything: clips with notes, sample lab data, score map metadata, automation lanes, macros, section envelopes, captures, templates, snapshots, branches, favorites, and collections.
 
-The **runtime pack** is what ships to the game. It is produced by `exportRuntimePack(pack)` from `@motif/runtime-pack` and contains only:
+The **runtime pack** is what ships to the game. It is produced by `exportRuntimePack(pack)` from `@motif-studio/runtime-pack` and contains only:
 
 - Scenes with their layer references
 - Trigger bindings with conditions and priorities
@@ -46,7 +46,7 @@ The runtime contract is deliberately simple. Motif does the hard compositional w
 
 ## Validation
 
-Use `validateRuntimePack(data)` from `@motif/runtime-pack` to check a pack against the runtime schema. Use `safeParseRuntimePack(data)` for a parse-or-fail approach that returns structured validation issues. Schema validation and integrity checks run on both authoring and runtime packs. This is tested in CI.
+Use `validateRuntimePack(data)` from `@motif-studio/runtime-pack` to check a pack against the runtime schema. Use `safeParseRuntimePack(data)` for a parse-or-fail approach that returns structured validation issues. Schema validation and integrity checks run on both authoring and runtime packs. This is tested in CI.
 
 ## Audio Rendering
 

@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/search?q=%40motif"><img src="https://img.shields.io/npm/v/@motif/schema?label=npm&color=cb3837" alt="npm"></a>
+  <a href="https://www.npmjs.com/search?q=%40motif-studio"><img src="https://img.shields.io/npm/v/@motif-studio/schema?label=npm&color=cb3837" alt="npm"></a>
   <a href="https://github.com/mcp-tool-shop-org/motif/actions/workflows/ci.yml"><img src="https://github.com/mcp-tool-shop-org/motif/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="https://codecov.io/gh/mcp-tool-shop-org/motif"><img src="https://codecov.io/gh/mcp-tool-shop-org/motif/branch/main/graph/badge.svg" alt="Coverage"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License"></a>
@@ -54,40 +54,40 @@ A DAW. A toy sequencer. An AI music generator. A world-building database with so
 
 | Package | Description |
 |---------|-------------|
-| [`@motif/schema`](packages/schema) | Canonical types, Zod schemas, parse/validate |
-| [`@motif/asset-index`](packages/asset-index) | Pack integrity indexing and auditing |
-| [`@motif/audio-engine`](packages/audio-engine) | Sample playback, voice management, AudioContext scheduling |
-| [`@motif/test-kit`](packages/test-kit) | Fixtures and test utilities |
+| [`@motif-studio/schema`](packages/schema) | Canonical types, Zod schemas, parse/validate |
+| [`@motif-studio/asset-index`](packages/asset-index) | Pack integrity indexing and auditing |
+| [`@motif-studio/audio-engine`](packages/audio-engine) | Sample playback, voice management, AudioContext scheduling |
+| [`@motif-studio/test-kit`](packages/test-kit) | Fixtures and test utilities |
 
 ### Composition and Playback
 
 | Package | Description |
 |---------|-------------|
-| [`@motif/clip-engine`](packages/clip-engine) | Clip sequencing, transforms, cue scheduling |
-| [`@motif/instrument-rack`](packages/instrument-rack) | Multi-oscillator synth, drum voice, sample voice, LFO modulation, 16 presets |
-| [`@motif/music-theory`](packages/music-theory) | Scales, chords, motifs, intensity transforms |
-| [`@motif/playback-engine`](packages/playback-engine) | Real-time playback, mixing, 8 effect types, MIDI I/O, WAV export (24/32-bit) |
-| [`@motif/sample-lab`](packages/sample-lab) | Trim, slice, kit, instrument helpers |
-| [`@motif/score-map`](packages/score-map) | Motifs, profiles, cue families, derivation |
-| [`@motif/automation`](packages/automation) | Lanes, macros, envelopes, capture |
-| [`@motif/library`](packages/library) | Templates, snapshots, branches, favorites, compare |
+| [`@motif-studio/clip-engine`](packages/clip-engine) | Clip sequencing, transforms, cue scheduling |
+| [`@motif-studio/instrument-rack`](packages/instrument-rack) | Multi-oscillator synth, drum voice, sample voice, LFO modulation, 16 presets |
+| [`@motif-studio/music-theory`](packages/music-theory) | Scales, chords, motifs, intensity transforms |
+| [`@motif-studio/playback-engine`](packages/playback-engine) | Real-time playback, mixing, 8 effect types, MIDI I/O, WAV export (24/32-bit) |
+| [`@motif-studio/sample-lab`](packages/sample-lab) | Trim, slice, kit, instrument helpers |
+| [`@motif-studio/score-map`](packages/score-map) | Motifs, profiles, cue families, derivation |
+| [`@motif-studio/automation`](packages/automation) | Lanes, macros, envelopes, capture |
+| [`@motif-studio/library`](packages/library) | Templates, snapshots, branches, favorites, compare |
 
 ### Infrastructure
 
 | Package | Description |
 |---------|-------------|
-| [`@motif/scene-mapper`](packages/scene-mapper) | Trigger mapping and deterministic binding evaluation |
-| [`@motif/runtime-pack`](packages/runtime-pack) | Runtime export/import with deterministic serialization |
-| [`@motif/review`](packages/review) | Summaries and audit helpers |
-| [`@motif/ui`](packages/ui) | Shared UI components |
+| [`@motif-studio/scene-mapper`](packages/scene-mapper) | Trigger mapping and deterministic binding evaluation |
+| [`@motif-studio/runtime-pack`](packages/runtime-pack) | Runtime export/import with deterministic serialization |
+| [`@motif-studio/review`](packages/review) | Summaries and audit helpers |
+| [`@motif-studio/ui`](packages/ui) | Shared UI components |
 
 ## Install
 
 ```bash
-npm install @motif/schema @motif/clip-engine @motif/runtime-pack
+npm install @motif-studio/schema @motif-studio/clip-engine @motif-studio/runtime-pack
 ```
 
-All packages are published to npm under the `@motif` scope.
+All packages are published to npm under the `@motif-studio` scope.
 
 ## Quick Start (monorepo)
 

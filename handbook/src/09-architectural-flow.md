@@ -52,7 +52,7 @@ Dependencies flow strictly downward. No circular references exist.
           └─────────────────────────────────┘
 ```
 
-All packages at the bottom row depend only on `@motif/schema`. The middle tier adds inter-package references (`clip-engine` → `instrument-rack` + `music-theory`; `playback-engine` → `audio-engine` + `scene-mapper`). Studio sits at the top and imports from almost every package.
+All packages at the bottom row depend only on `@motif-studio/schema`. The middle tier adds inter-package references (`clip-engine` → `instrument-rack` + `music-theory`; `playback-engine` → `audio-engine` + `scene-mapper`). Studio sits at the top and imports from almost every package.
 
 ## Data Flow
 
@@ -83,8 +83,8 @@ All packages at the bottom row depend only on `@motif/schema`. The middle tier a
 ```
 
 1. The creator authors entities in Studio (assets, stems, scenes, bindings, transitions, clips, automation, etc.)
-2. All entity data conforms to `@motif/schema` Zod schemas
-3. `@motif/runtime-pack` strips authoring-only metadata (names, notes, editor state) and produces a minimal `RuntimeSoundtrackPack`
+2. All entity data conforms to `@motif-studio/schema` Zod schemas
+3. `@motif-studio/runtime-pack` strips authoring-only metadata (names, notes, editor state) and produces a minimal `RuntimeSoundtrackPack`
 4. The game engine consumes the pack and uses trigger bindings + transition rules for real-time scene resolution
 
 ### Playback Flow (Preview / Render)
@@ -161,7 +161,7 @@ Motif validates at three levels:
 
 ## Key Architectural Invariants
 
-1. **Schema is the source of truth.** Every package imports types from `@motif/schema`. No package defines its own entity types.
+1. **Schema is the source of truth.** Every package imports types from `@motif-studio/schema`. No package defines its own entity types.
 2. **No circular dependencies.** The dependency graph is a strict DAG.
 3. **Deterministic everywhere.** Scene resolution, transition selection, and export serialization produce identical results given identical inputs.
 4. **Separation of model and playback.** `audio-engine` and `scene-mapper` define the abstract model. `playback-engine` connects that model to Web Audio.

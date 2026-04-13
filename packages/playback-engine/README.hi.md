@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/playback-engine
+# @motif-studio/playback-engine
 
 साउंडवीव दृश्यों और अनुक्रमों के लिए वास्तविक समय में प्लेबैक, मिक्सिंग, रेंडरिंग और प्रभाव प्रणाली।
 
@@ -38,7 +38,7 @@ import {
   disposeFxNodes,
   dbToGain,
   encodeWav,
-} from "@motif/playback-engine";
+} from "@motif-studio/playback-engine";
 ```
 
 ### मुख्य कक्षाएं
@@ -57,6 +57,6 @@ import {
 
 ## निर्भरताएँ
 
-- `@motif/schema` — दृश्यों, स्टेम और ट्रांज़िशन के लिए प्रकार
-- `@motif/audio-engine` — सैम्पल प्लेबैक प्रिमिटिव
-- `@motif/scene-mapper` — दृश्य रिज़ॉल्यूशन के लिए ट्रिगर मूल्यांकन
+- `@motif-studio/schema` — दृश्यों, स्टेम और ट्रांज़िशन के लिए प्रकार
+- `@motif-studio/audio-engine` — सैम्पल प्लेबैक प्रिमिटिव
+- `@motif-studio/scene-mapper` — दृश्य रिज़ॉल्यूशन के लिए ट्रिगर मूल्यांकन

@@ -2,7 +2,7 @@
 // Clip Scheduler — converts tick positions to AudioContext time
 // ────────────────────────────────────────────
 
-import type { ClipNote, QuantizeMode } from "@motif/schema";
+import type { ClipNote, QuantizeMode } from "@motif-studio/schema";
 import { TICKS_PER_BEAT } from "./types.js";
 
 /** Resolved note with real-time positions (seconds) */

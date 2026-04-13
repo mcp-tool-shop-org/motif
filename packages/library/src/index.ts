@@ -1,4 +1,4 @@
-// @motif/library — templates, snapshots, branches, favorites, compare
+// @motif-studio/library — templates, snapshots, branches, favorites, compare
 export * from "./templates.js";
 export * from "./snapshots.js";
 export * from "./branches.js";

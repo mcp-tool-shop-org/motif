@@ -1,5 +1,5 @@
 // ────────────────────────────────────────────
-// @motif/runtime-pack — runtime types
+// @motif-studio/runtime-pack — runtime types
 // ────────────────────────────────────────────
 
 // ── Runtime pack metadata ──

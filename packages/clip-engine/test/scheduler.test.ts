@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { scheduleNotes, clipLengthSeconds, quantizedLaunchTime } from "../src/scheduler";
-import type { ClipNote } from "@motif/schema";
+import type { ClipNote } from "@motif-studio/schema";
 
 describe("scheduleNotes", () => {
   const bpm = 120; // 0.5s per beat, 480 ticks per beat

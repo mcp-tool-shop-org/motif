@@ -8,8 +8,8 @@ import type {
   Scene,
   IntensityLevel,
   QuantizeMode,
-} from "@motif/schema";
-import type { InstrumentRack } from "@motif/instrument-rack";
+} from "@motif-studio/schema";
+import type { InstrumentRack } from "@motif-studio/instrument-rack";
 import { ClipPlayer } from "./clip-player.js";
 import { quantizedLaunchTime } from "./scheduler.js";
 

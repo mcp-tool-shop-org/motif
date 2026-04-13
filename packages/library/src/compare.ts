@@ -1,4 +1,4 @@
-import type { LibraryEntityKind } from "@motif/schema";
+import type { LibraryEntityKind } from "@motif-studio/schema";
 
 /** A single field difference between two versions. */
 export interface FieldDiff {

@@ -1,5 +1,5 @@
 {
-  "name": "@motif/scene-mapper",
+  "name": "@motif-studio/scene-mapper",
   "version": "1.2.0",
   "description": "Trigger mapping and scene resolution for Motif",
   "license": "MIT",
@@ -32,10 +32,10 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@motif/schema": "workspace:*"
+    "@motif-studio/schema": "workspace:*"
   },
   "devDependencies": {
-    "@motif/test-kit": "workspace:*",
+    "@motif-studio/test-kit": "workspace:*",
     "typescript": "^5.8.0",
     "vitest": "^3.2.0"
   }

@@ -1,11 +1,11 @@
-// @motif/review — summaries, audits, preview helpers
+// @motif-studio/review — summaries, audits, preview helpers
 export * from "./types.js";
 export { summarizePack } from "./summary.js";
 export { auditPack } from "./audit.js";
 export { renderPackSummaryMarkdown } from "./render-markdown.js";
 export { renderPackSummaryJson } from "./render-json.js";
 
-import type { SoundtrackPack } from "@motif/schema";
+import type { SoundtrackPack } from "@motif-studio/schema";
 import type { PackSummary, PackAudit } from "./types.js";
 import { summarizePack } from "./summary.js";
 import { auditPack } from "./audit.js";

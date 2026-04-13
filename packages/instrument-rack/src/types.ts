@@ -1,8 +1,8 @@
 // ────────────────────────────────────────────
-// @motif/instrument-rack — types
+// @motif-studio/instrument-rack — types
 // ────────────────────────────────────────────
 
-import type { InstrumentCategory } from "@motif/schema";
+import type { InstrumentCategory } from "@motif-studio/schema";
 
 /** Voice instance — a single playing note */
 export interface Voice {

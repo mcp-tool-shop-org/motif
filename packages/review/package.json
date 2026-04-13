@@ -1,5 +1,5 @@
 {
-  "name": "@motif/review",
+  "name": "@motif-studio/review",
   "version": "1.2.0",
   "description": "Summaries and audit helpers for Motif",
   "license": "MIT",
@@ -32,11 +32,11 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@motif/schema": "workspace:*",
-    "@motif/asset-index": "workspace:*"
+    "@motif-studio/schema": "workspace:*",
+    "@motif-studio/asset-index": "workspace:*"
   },
   "devDependencies": {
-    "@motif/test-kit": "workspace:*",
+    "@motif-studio/test-kit": "workspace:*",
     "typescript": "^5.8.0",
     "vitest": "^3.2.0"
   }

@@ -1,4 +1,4 @@
-import type { AutomationLane, AutomationCurve, AutomationPoint } from "@motif/schema";
+import type { AutomationLane, AutomationCurve, AutomationPoint } from "@motif-studio/schema";
 
 /**
  * Evaluate a single automation lane at a given time, returning the interpolated value.

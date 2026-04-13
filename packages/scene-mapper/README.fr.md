@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/scene-mapper
+# @motif-studio/scene-mapper
 
 Déclenche la logique de mappage pour la résolution des scènes dans Motif.
 
@@ -18,7 +18,7 @@ Déclenche la logique de mappage pour la résolution des scènes dans Motif.
 
 ## Statut :
 
-Paquet temporaire. La logique de résolution des scènes se trouve actuellement dans les types `@motif/schema` et dans le magasin Studio. Ce paquet sera étendu lorsque l'interface d'intégration en temps réel sera plus complète (phase 20+).
+Paquet temporaire. La logique de résolution des scènes se trouve actuellement dans les types `@motif-studio/schema` et dans le magasin Studio. Ce paquet sera étendu lorsque l'interface d'intégration en temps réel sera plus complète (phase 20+).
 
 ## Ce que ce module ne gère pas :
 

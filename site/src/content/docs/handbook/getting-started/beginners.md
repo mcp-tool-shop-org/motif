@@ -31,17 +31,17 @@ Motif runs entirely in the browser. There is no server, no cloud sync, and no te
 
 ### Using packages from npm
 
-Install the packages you need from the `@motif` scope:
+Install the packages you need from the `@motif-studio` scope:
 
 ```bash
-npm install @motif/schema @motif/clip-engine @motif/runtime-pack
+npm install @motif-studio/schema @motif-studio/clip-engine @motif-studio/runtime-pack
 ```
 
 All 16 packages are published individually, so you can pick only what your project requires. Common starting combinations:
 
-- **Game runtime integration**: `@motif/schema` + `@motif/scene-mapper` + `@motif/runtime-pack`
-- **Composition tools**: `@motif/schema` + `@motif/clip-engine` + `@motif/music-theory`
-- **Sample workflow**: `@motif/schema` + `@motif/sample-lab`
+- **Game runtime integration**: `@motif-studio/schema` + `@motif-studio/scene-mapper` + `@motif-studio/runtime-pack`
+- **Composition tools**: `@motif-studio/schema` + `@motif-studio/clip-engine` + `@motif-studio/music-theory`
+- **Sample workflow**: `@motif-studio/schema` + `@motif-studio/sample-lab`
 - **Full authoring stack**: All packages
 
 ### Running the monorepo locally
@@ -75,11 +75,11 @@ Motif follows a composition-first pipeline. You compose real music, then connect
 
 ### Step-by-step pipeline
 
-1. **Import assets** -- Bring audio files into the project as AudioAssets. Use `buildImportedAsset(filename, durationMs, src)` from `@motif/sample-lab` to create assets programmatically. The function infers source type from the filename and assigns an appropriate kind.
+1. **Import assets** -- Bring audio files into the project as AudioAssets. Use `buildImportedAsset(filename, durationMs, src)` from `@motif-studio/sample-lab` to create assets programmatically. The function infers source type from the filename and assigns an appropriate kind.
 
 2. **Prepare samples** (optional) -- In the Sample Lab screen, trim audio with `applyTrim(asset, startMs, endMs)`, set loop points with `applyLoopPoints(asset, loopStartMs, loopEndMs)`, slice regions with `sliceEvenly()` or `sliceAtOnsets()`, and build kits or sample instruments.
 
-3. **Compose clips** -- Create clips with notes, instruments, scales, and chords. Use clip transforms (`clipTranspose`, `clipInvert`, `clipOctaveShift`, `clipArpeggiate`, `clipDeriveIntensity`, and many more from `@motif/clip-engine`) to generate variants for adaptive layering.
+3. **Compose clips** -- Create clips with notes, instruments, scales, and chords. Use clip transforms (`clipTranspose`, `clipInvert`, `clipOctaveShift`, `clipArpeggiate`, `clipDeriveIntensity`, and many more from `@motif-studio/clip-engine`) to generate variants for adaptive layering.
 
 4. **Build scenes** -- Arrange stems and clips into scenes. Each scene is a stack of layers with gain, mute/solo, section role, and intensity settings. Scenes represent distinct musical states in your game.
 
@@ -87,7 +87,7 @@ Motif follows a composition-first pipeline. You compose real music, then connect
 
 6. **Define transitions** -- Set how music moves between scenes: crossfade with a duration, bar-sync for musical timing, immediate for instant cuts, or stinger-then-switch for dramatic moments.
 
-7. **Export** -- Use `exportRuntimePack(pack)` from `@motif/runtime-pack` to produce a stripped-down JSON bundle. The runtime pack contains only scenes, bindings, transitions, and asset references -- no authoring data.
+7. **Export** -- Use `exportRuntimePack(pack)` from `@motif-studio/runtime-pack` to produce a stripped-down JSON bundle. The runtime pack contains only scenes, bindings, transitions, and asset references -- no authoring data.
 
 ## 4. Architecture at a Glance
 
@@ -104,20 +104,20 @@ Motif is a TypeScript monorepo with two apps and 14 library packages.
 
 | Package | Responsibility |
 |---------|---------------|
-| `@motif/schema` | Canonical types, Zod 4 schemas, parse/validate |
-| `@motif/clip-engine` | Clip sequencing, 30+ transforms, cue scheduling |
-| `@motif/music-theory` | Scales, chords, motifs, intensity transforms |
-| `@motif/playback-engine` | Real-time playback, mixing, effects, rendering |
-| `@motif/audio-engine` | Sample playback, layers, transitions, voice management |
-| `@motif/scene-mapper` | Trigger evaluation, deterministic scene resolution |
-| `@motif/runtime-pack` | Export/import with deterministic serialization |
-| `@motif/sample-lab` | Trim, slice, kit builder, sample instruments, import |
-| `@motif/automation` | Lanes, macros, envelopes, live capture |
-| `@motif/library` | Templates, snapshots, branches, favorites, compare |
-| `@motif/score-map` | Motif families, score profiles, cue families, derivation |
-| `@motif/instrument-rack` | Synth and drum voice management with presets |
+| `@motif-studio/schema` | Canonical types, Zod 4 schemas, parse/validate |
+| `@motif-studio/clip-engine` | Clip sequencing, 30+ transforms, cue scheduling |
+| `@motif-studio/music-theory` | Scales, chords, motifs, intensity transforms |
+| `@motif-studio/playback-engine` | Real-time playback, mixing, effects, rendering |
+| `@motif-studio/audio-engine` | Sample playback, layers, transitions, voice management |
+| `@motif-studio/scene-mapper` | Trigger evaluation, deterministic scene resolution |
+| `@motif-studio/runtime-pack` | Export/import with deterministic serialization |
+| `@motif-studio/sample-lab` | Trim, slice, kit builder, sample instruments, import |
+| `@motif-studio/automation` | Lanes, macros, envelopes, live capture |
+| `@motif-studio/library` | Templates, snapshots, branches, favorites, compare |
+| `@motif-studio/score-map` | Motif families, score profiles, cue families, derivation |
+| `@motif-studio/instrument-rack` | Synth and drum voice management with presets |
 
-All packages import types from `@motif/schema`. The schema is the single source of truth for the entire data model.
+All packages import types from `@motif-studio/schema`. The schema is the single source of truth for the entire data model.
 
 ### Toolchain
 

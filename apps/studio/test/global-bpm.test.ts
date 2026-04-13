@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { useStudioStore } from "../src/app/store";
-import type { SoundtrackPack } from "@motif/schema";
+import type { SoundtrackPack } from "@motif-studio/schema";
 
 const emptyPack: SoundtrackPack = {
   meta: { id: "test-pack", name: "Test", version: "1.0.0", schemaVersion: "1" },

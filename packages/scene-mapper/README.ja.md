@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/scene-mapper
+# @motif-studio/scene-mapper
 
 Motifのシーン解決のためのマッピングロジックをトリガーします。
 
@@ -18,7 +18,7 @@ Motifのシーン解決のためのマッピングロジックをトリガーし
 
 ## ステータス
 
-プレースホルダーパッケージです。現在のシーン解決ロジックは、`@motif/schema`の型定義とStudioストアに存在します。このパッケージは、ランタイム統合機能が拡張される際に（フェーズ20以降）、拡充される予定です。
+プレースホルダーパッケージです。現在のシーン解決ロジックは、`@motif-studio/schema`の型定義とStudioストアに存在します。このパッケージは、ランタイム統合機能が拡張される際に（フェーズ20以降）、拡充される予定です。
 
 ## このパッケージが担当しない機能
 

@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/review
+# @motif-studio/review
 
 Riepiloghi, controlli e strumenti di anteprima per i pacchetti di colonna sonora di Motif.
 
@@ -18,10 +18,10 @@ Riepiloghi, controlli e strumenti di anteprima per i pacchetti di colonna sonora
 
 ## Stato
 
-Pacchetto di supporto. La logica per le recensioni e i riepiloghi è attualmente presente in `@motif/asset-index` (controllo dell'integrità) e nelle schermate di Studio (Panoramica). Questo pacchetto si evolverà per includere report più dettagliati, analisi della copertura dei punti di riferimento e annotazioni per le recensioni (fase 26-27).
+Pacchetto di supporto. La logica per le recensioni e i riepiloghi è attualmente presente in `@motif-studio/asset-index` (controllo dell'integrità) e nelle schermate di Studio (Panoramica). Questo pacchetto si evolverà per includere report più dettagliati, analisi della copertura dei punti di riferimento e annotazioni per le recensioni (fase 26-27).
 
 ## Funzionalità non incluse
 
-- Indicizzazione dell'integrità dei pacchetti (vedere `@motif/asset-index`)
-- Validazione dello schema (vedere `@motif/schema`)
+- Indicizzazione dell'integrità dei pacchetti (vedere `@motif-studio/asset-index`)
+- Validazione dello schema (vedere `@motif-studio/schema`)
 - Rendering dell'interfaccia utente

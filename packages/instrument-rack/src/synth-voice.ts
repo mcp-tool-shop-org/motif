@@ -3,7 +3,7 @@
 // Covers: bass, pad, lead/pluck, pulse/arp
 // ────────────────────────────────────────────
 
-import type { InstrumentCategory } from "@motif/schema";
+import type { InstrumentCategory } from "@motif-studio/schema";
 import type { InstrumentVoice, Voice, SynthParams } from "./types.js";
 import { midiToFreq } from "./types.js";
 

@@ -1,5 +1,5 @@
 {
-  "name": "@motif/sample-lab",
+  "name": "@motif-studio/sample-lab",
   "version": "1.2.0",
   "description": "Trim, slice, kit, and instrument helpers for Motif",
   "license": "MIT",
@@ -32,7 +32,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@motif/schema": "workspace:*"
+    "@motif-studio/schema": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.8.0",

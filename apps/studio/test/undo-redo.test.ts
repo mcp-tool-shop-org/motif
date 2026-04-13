@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { useStudioStore, UNDO_MAX, _resetUndoDebounce } from "../src/app/store";
 import { starterPack } from "../src/app/seed-data";
-import type { SoundtrackPack, AudioAsset } from "@motif/schema";
+import type { SoundtrackPack, AudioAsset } from "@motif-studio/schema";
 
 function makeAsset(id: string): AudioAsset {
   return {

@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/ui
+# @motif-studio/ui
 
 Componenti dell'interfaccia utente (UI) condivisi per le applicazioni Motif.
 

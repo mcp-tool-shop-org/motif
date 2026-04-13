@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/library
+# @motif-studio/library
 
 टेम्प्लेट, स्नैपशॉट, शाखाएं, पसंदीदा, संग्रह, और साउंडवीव के लिए एंटिटी तुलना।
 
@@ -56,4 +56,4 @@
 
 ## निर्भरताएँ
 
-- `@motif/schema` — टेम्प्लेट, स्नैपशॉट, शाखाओं, पसंदीदा और संग्रह के लिए प्रकार।
+- `@motif-studio/schema` — टेम्प्लेट, स्नैपशॉट, शाखाओं, पसंदीदा और संग्रह के लिए प्रकार।

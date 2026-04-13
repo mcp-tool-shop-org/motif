@@ -4,7 +4,7 @@ import Studio from "../src/app/Studio";
 import { useStudioStore } from "../src/app/store";
 import { usePreviewStore } from "../src/app/preview-store";
 import { starterPack } from "../src/app/seed-data";
-import type { SoundtrackPack } from "@motif/schema";
+import type { SoundtrackPack } from "@motif-studio/schema";
 
 beforeEach(() => {
   useStudioStore.setState({

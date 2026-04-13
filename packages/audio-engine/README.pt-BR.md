@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/audio-engine
+# @motif-studio/audio-engine
 
 Reprodução de amostras e gerenciamento de vozes para Motif.
 
@@ -26,7 +26,7 @@ import {
   playSlice,
   playKitSlot,
   playSampleInstrumentNote,
-} from "@motif/audio-engine";
+} from "@motif-studio/audio-engine";
 ```
 
 - `playTrimmedRegion` — reproduz um buffer de áudio dentro dos limites de recorte.
@@ -36,10 +36,10 @@ import {
 
 ## Funcionalidades Não Incluídas
 
-- Orquestração e mixagem de cenas (gerenciado por `@motif/playback-engine`)
+- Orquestração e mixagem de cenas (gerenciado por `@motif-studio/playback-engine`)
 - Decodificação de arquivos de áudio (o AudioContext do navegador cuida disso)
-- Composição de clipes/pontos de referência (gerenciado por `@motif/clip-engine`)
+- Composição de clipes/pontos de referência (gerenciado por `@motif-studio/clip-engine`)
 
 ## Dependências
 
-- `@motif/schema` — tipos para ativos, fatias, kits, instrumentos.
+- `@motif-studio/schema` — tipos para ativos, fatias, kits, instrumentos.

@@ -1,4 +1,4 @@
-// @motif/playback-engine — public API
+// @motif-studio/playback-engine — public API
 export { Transport } from "./transport.js";
 export { AssetLoader } from "./loader.js";
 export { ScenePlayer, dbToGain } from "./scene-player.js";

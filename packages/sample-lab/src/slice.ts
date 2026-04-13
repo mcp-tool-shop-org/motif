@@ -1,4 +1,4 @@
-import type { SampleSlice } from "@motif/schema";
+import type { SampleSlice } from "@motif-studio/schema";
 
 /** Create evenly spaced slices across a region. */
 export function sliceEvenly(

@@ -36,7 +36,7 @@ import {
   mergeCaptureIntoLane,
   thinCapture,
   captureDuration,
-} from "@motif/automation";
+} from "@motif-studio/automation";
 
 // ── Lanes ──
 

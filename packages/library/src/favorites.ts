@@ -1,4 +1,4 @@
-import type { Favorite, Collection, LibraryEntityKind } from "@motif/schema";
+import type { Favorite, Collection, LibraryEntityKind } from "@motif-studio/schema";
 
 /** Create a favorite reference. */
 export function createFavorite(

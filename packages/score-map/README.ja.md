@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/score-map
+# @motif-studio/score-map
 
 Motifにおけるワールドスコアリングのロジック。モチーフファミリー、スコアプロファイル、キューファミリー、ワールドマップのエントリ、および派生処理を管理します。
 
@@ -54,10 +54,10 @@ Motifにおけるワールドスコアリングのロジック。モチーフフ
 ## 提供しない機能
 
 - オーディオの再生またはレンダリング
-- シーン/ステム/バインディングの管理（`@motif/schema` を参照）
-- オートメーション（`@motif/automation` を参照）
+- シーン/ステム/バインディングの管理（`@motif-studio/schema` を参照）
+- オートメーション（`@motif-studio/automation` を参照）
 - UIコンポーネント
 
 ## 依存関係
 
-- `@motif/schema`：モチーフ、プロファイル、シーン、キューファミリー、派生に関する型定義。
+- `@motif-studio/schema`：モチーフ、プロファイル、シーン、キューファミリー、派生に関する型定義。

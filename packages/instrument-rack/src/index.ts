@@ -1,4 +1,4 @@
-// @motif/instrument-rack — public API
+// @motif-studio/instrument-rack — public API
 export { InstrumentRack } from "./rack.js";
 export { SynthVoice } from "./synth-voice.js";
 export { DrumVoice, pitchToDrum } from "./drum-voice.js";

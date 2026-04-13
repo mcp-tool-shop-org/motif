@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/instrument-rack
+# @motif-studio/instrument-rack
 
 Gestione di voci e strumenti per Motif: sintetizzatori, batterie e preset predefiniti.
 
@@ -30,7 +30,7 @@ import {
   getPresetsByCategory,
   midiToFreq,
   pitchToDrum,
-} from "@motif/instrument-rack";
+} from "@motif-studio/instrument-rack";
 ```
 
 - `InstrumentRack` — gestisce più voci, routing e eliminazione.
@@ -41,4 +41,4 @@ import {
 
 ## Dipendenze
 
-- `@motif/schema` — tipi per strumenti, preset e voci.
+- `@motif-studio/schema` — tipi per strumenti, preset e voci.

@@ -18,29 +18,29 @@ This section covers everything you need to get Motif running and start creating 
 If you want to use Motif packages in your own project, install from npm:
 
 ```bash
-npm install @motif/schema @motif/clip-engine @motif/runtime-pack
+npm install @motif-studio/schema @motif-studio/clip-engine @motif-studio/runtime-pack
 ```
 
-All 16 packages are published individually under the `@motif` scope. Pick only what your project needs:
+All 16 packages are published individually under the `@motif-studio` scope. Pick only what your project needs:
 
 | Package | Use when you need |
 |---------|------------------|
-| `@motif/schema` | Types, Zod validation, parse/validate |
-| `@motif/clip-engine` | Clip composition, transforms, cue scheduling |
-| `@motif/music-theory` | Scales, chords, motifs, intensity |
-| `@motif/sample-lab` | Audio import, trim, slice, kit/instrument building |
-| `@motif/scene-mapper` | Trigger evaluation and scene resolution |
-| `@motif/runtime-pack` | Export/import runtime packs for game engines |
-| `@motif/automation` | Lanes, macros, envelopes, capture |
-| `@motif/library` | Templates, snapshots, branches, favorites, compare |
-| `@motif/audio-engine` | Sample playback and voice management |
-| `@motif/playback-engine` | Mixing, effects, rendering |
-| `@motif/instrument-rack` | Synth and drum voice presets |
-| `@motif/score-map` | World scoring, motifs, profiles, cue families |
-| `@motif/asset-index` | Pack integrity indexing and auditing |
-| `@motif/review` | Summaries and audit helpers |
-| `@motif/ui` | Shared UI components |
-| `@motif/test-kit` | Fixtures and test utilities |
+| `@motif-studio/schema` | Types, Zod validation, parse/validate |
+| `@motif-studio/clip-engine` | Clip composition, transforms, cue scheduling |
+| `@motif-studio/music-theory` | Scales, chords, motifs, intensity |
+| `@motif-studio/sample-lab` | Audio import, trim, slice, kit/instrument building |
+| `@motif-studio/scene-mapper` | Trigger evaluation and scene resolution |
+| `@motif-studio/runtime-pack` | Export/import runtime packs for game engines |
+| `@motif-studio/automation` | Lanes, macros, envelopes, capture |
+| `@motif-studio/library` | Templates, snapshots, branches, favorites, compare |
+| `@motif-studio/audio-engine` | Sample playback and voice management |
+| `@motif-studio/playback-engine` | Mixing, effects, rendering |
+| `@motif-studio/instrument-rack` | Synth and drum voice presets |
+| `@motif-studio/score-map` | World scoring, motifs, profiles, cue families |
+| `@motif-studio/asset-index` | Pack integrity indexing and auditing |
+| `@motif-studio/review` | Summaries and audit helpers |
+| `@motif-studio/ui` | Shared UI components |
+| `@motif-studio/test-kit` | Fixtures and test utilities |
 
 ## Running the Monorepo
 

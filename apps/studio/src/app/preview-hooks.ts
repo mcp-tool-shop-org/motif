@@ -3,18 +3,18 @@
 import { useMemo } from "react";
 import { useStudioStore } from "./store";
 import { usePreviewStore } from "./preview-store";
-import { resolveScene } from "@motif/scene-mapper";
+import { resolveScene } from "@motif-studio/scene-mapper";
 import {
   resolveActiveLayers,
   findTransitionRule,
   simulateStateSequence,
-} from "@motif/audio-engine";
-import type { SceneResolution } from "@motif/scene-mapper";
+} from "@motif-studio/audio-engine";
+import type { SceneResolution } from "@motif-studio/scene-mapper";
 import type {
   ActiveLayerPlan,
   SimulationTrace,
-} from "@motif/audio-engine";
-import type { TransitionRule } from "@motif/schema";
+} from "@motif-studio/audio-engine";
+import type { TransitionRule } from "@motif-studio/schema";
 
 export interface ManualResult {
   resolution: SceneResolution;

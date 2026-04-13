@@ -1,4 +1,4 @@
-import type { SampleInstrument } from "@motif/schema";
+import type { SampleInstrument } from "@motif-studio/schema";
 
 /** Create a sample instrument with sensible ADSR defaults. */
 export function createSampleInstrument(

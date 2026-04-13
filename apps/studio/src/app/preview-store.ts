@@ -1,7 +1,7 @@
 "use client";
 
 import { create } from "zustand";
-import type { RuntimeMusicState } from "@motif/schema";
+import type { RuntimeMusicState } from "@motif-studio/schema";
 
 export type PreviewMode = "manual" | "sequence";
 

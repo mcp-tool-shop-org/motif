@@ -44,4 +44,4 @@ If a change removes or renames a field, or changes its type:
 - The Zod schema always matches the TypeScript interface
 - `parseSoundtrackPack` always validates against the current schema version
 - Test fixtures cover both minimal and full packs for every schema version
-- The `@motif/test-kit` always includes at least one invalid fixture per validation rule
+- The `@motif-studio/test-kit` always includes at least one invalid fixture per validation rule

@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/music-theory
+# @motif-studio/music-theory
 
 Éléments de base et utilitaires de théorie musicale pour Motif : gammes, accords, motifs et transformations d'intensité.
 
@@ -28,7 +28,7 @@ import {
   SCALES, pitchClass, octave, midiNote, noteName,
   scalePitchClasses, isInScale, snapToScale,
   transposeDiatonic,
-} from "@motif/music-theory";
+} from "@motif-studio/music-theory";
 ```
 
 ### Accords
@@ -38,7 +38,7 @@ import {
   chordPitches, diatonicChord, diatonicChords,
   chordPalette, generatePadVoicing, generateBassLine,
   arpeggiateChord, progressionFromDegrees,
-} from "@motif/music-theory";
+} from "@motif-studio/music-theory";
 ```
 
 ### Transformations de motifs
@@ -47,7 +47,7 @@ import {
 import {
   transpose, invert, reverse, octaveShift,
   rhythmScale, duplicateWithVariation, transposeAndSnap,
-} from "@motif/music-theory";
+} from "@motif-studio/music-theory";
 ```
 
 ### Intensité
@@ -56,7 +56,7 @@ import {
 import {
   lowIntensity, midIntensity, highIntensity,
   deriveIntensity, addTension, brighten,
-} from "@motif/music-theory";
+} from "@motif-studio/music-theory";
 ```
 
 ## Dépendances

@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/sample-lab
+# @motif-studio/sample-lab
 
 Strumenti di supporto per il workflow di campioni di Motif, per tagliare, dividere, creare kit e gestire strumenti.
 
@@ -50,10 +50,10 @@ Strumenti di supporto per il workflow di campioni di Motif, per tagliare, divide
 
 ## Cosa non include
 
-- Decodifica o riproduzione di file audio (vedere `@motif/audio-engine`)
+- Decodifica o riproduzione di file audio (vedere `@motif-studio/audio-engine`)
 - Persistenza delle risorse audio o operazioni di I/O su file
 - Componenti dell'interfaccia utente
 
 ## Dipendenze
 
-- `@motif/schema` — tipi per risorse, sezioni, kit, strumenti
+- `@motif-studio/schema` — tipi per risorse, sezioni, kit, strumenti

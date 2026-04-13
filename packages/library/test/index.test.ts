@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import type { LibraryTemplate, Snapshot, Branch, Favorite, Collection } from "@motif/schema";
+import type { LibraryTemplate, Snapshot, Branch, Favorite, Collection } from "@motif-studio/schema";
 import {
   createTemplate,
   instantiateTemplate,

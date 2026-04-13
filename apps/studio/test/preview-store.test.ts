@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { usePreviewStore } from "../src/app/preview-store";
-import type { RuntimeMusicState } from "@motif/schema";
+import type { RuntimeMusicState } from "@motif-studio/schema";
 
 beforeEach(() => {
   usePreviewStore.setState({

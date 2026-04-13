@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/clip-engine
+# @motif-studio/clip-engine
 
 Moteur de séquençage, de composition et de transformation de clips audio pour Motif.
 
@@ -33,7 +33,7 @@ import {
   resolveCuePlan,
   chordPalette,
   diatonicChords,
-} from "@motif/clip-engine";
+} from "@motif-studio/clip-engine";
 ```
 
 ### Lecture
@@ -58,6 +58,6 @@ import {
 
 ## Dépendances
 
-- `@motif/schema` — types pour les clips, les notes, les repères
-- `@motif/instrument-rack` — gestion des voix pour la lecture
-- `@motif/music-theory` — primitives de gamme/accord/motif
+- `@motif-studio/schema` — types pour les clips, les notes, les repères
+- `@motif-studio/instrument-rack` — gestion des voix pour la lecture
+- `@motif-studio/music-theory` — primitives de gamme/accord/motif

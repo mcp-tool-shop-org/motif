@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="400" alt="Motif">
 </p>
 
-# @motif/scene-mapper
+# @motif-studio/scene-mapper
 
 Trigger mapping logic for Motif scene resolution.
 
@@ -18,7 +18,7 @@ Trigger mapping logic for Motif scene resolution.
 
 ## Status
 
-Placeholder package. Scene resolution logic currently lives in `@motif/schema` types and Studio store. This package will be expanded when the runtime integration surface grows (Phase 20+).
+Placeholder package. Scene resolution logic currently lives in `@motif-studio/schema` types and Studio store. This package will be expanded when the runtime integration surface grows (Phase 20+).
 
 ## What It Does Not Own
 

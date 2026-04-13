@@ -1,8 +1,8 @@
 "use client";
 
 import { useStudioStore } from "./store";
-import type { SoundtrackPack } from "@motif/schema";
-import { validateSoundtrackPack } from "@motif/schema";
+import type { SoundtrackPack } from "@motif-studio/schema";
+import { validateSoundtrackPack } from "@motif-studio/schema";
 import type { TimeSignature } from "./store";
 
 // ── Constants ──

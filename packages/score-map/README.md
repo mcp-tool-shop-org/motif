@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="400" alt="Motif">
 </p>
 
-# @motif/score-map
+# @motif-studio/score-map
 
 World scoring logic for Motif — motif families, score profiles, cue families, world map entries, and derivation.
 
@@ -54,10 +54,10 @@ World scoring logic for Motif — motif families, score profiles, cue families, 
 ## What It Does Not Own
 
 - Audio playback or rendering
-- Scene/stem/binding management (see `@motif/schema`)
-- Automation (see `@motif/automation`)
+- Scene/stem/binding management (see `@motif-studio/schema`)
+- Automation (see `@motif-studio/automation`)
 - UI components
 
 ## Dependencies
 
-- `@motif/schema` — types for motifs, profiles, scenes, cue families, derivations
+- `@motif-studio/schema` — types for motifs, profiles, scenes, cue families, derivations

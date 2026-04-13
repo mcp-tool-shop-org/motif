@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/sample-lab
+# @motif-studio/sample-lab
 
 用于 Motif 音频样本工作流程的裁剪、分割、音色包和乐器辅助工具。
 
@@ -50,10 +50,10 @@
 
 ## 不包含的内容
 
-- 音频文件解码或播放（请参见 `@motif/audio-engine`）
+- 音频文件解码或播放（请参见 `@motif-studio/audio-engine`）
 - 音频资源持久化或文件 I/O
 - UI 组件
 
 ## 依赖项
 
-- `@motif/schema` — 资源、分割片段、音色包和乐器的类型定义
+- `@motif-studio/schema` — 资源、分割片段、音色包和乐器的类型定义

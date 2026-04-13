@@ -1,4 +1,4 @@
-import type { AudioAsset, SampleSlice, SampleKitSlot, SampleInstrument } from "@motif/schema";
+import type { AudioAsset, SampleSlice, SampleKitSlot, SampleInstrument } from "@motif-studio/schema";
 import type { SampleVoice } from "./sample-types.js";
 
 // ── Trimmed region playback ──

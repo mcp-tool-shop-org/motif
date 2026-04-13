@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { SampleVoice, SAMPLE_INSTRUMENT_TEMPLATES } from "../src/sample-voice";
 import { InstrumentRack } from "../src/rack";
-import type { SampleInstrument } from "@motif/schema";
+import type { SampleInstrument } from "@motif-studio/schema";
 
 // ── Mock Web Audio API ──
 

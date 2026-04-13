@@ -15,9 +15,9 @@ The main authoring UI. Built with Next.js 15 and Zustand 5.
 ### Key Patterns
 
 - All entity editing is immutable (spread + replace in store)
-- Playback state syncs with a singleton `Transport` from `@motif/playback-engine`
+- Playback state syncs with a singleton `Transport` from `@motif-studio/playback-engine`
 - Preview simulation drives `scene-mapper` with manual or sequenced trigger states
-- Export delegates to `@motif/runtime-pack` for field stripping and validation
+- Export delegates to `@motif-studio/runtime-pack` for field stripping and validation
 
 ## Docs (`apps/docs`)
 

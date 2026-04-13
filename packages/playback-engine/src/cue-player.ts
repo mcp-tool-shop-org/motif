@@ -8,7 +8,7 @@ import type {
   PerformanceCaptureEvent,
   PerformanceCapture,
   IntensityLevel,
-} from "@motif/schema";
+} from "@motif-studio/schema";
 import type {
   PlaybackListener,
   PlaybackEventType,

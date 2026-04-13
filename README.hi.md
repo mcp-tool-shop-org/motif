@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/search?q=%40motif"><img src="https://img.shields.io/npm/v/@motif/schema?label=npm&color=cb3837" alt="npm"></a>
+  <a href="https://www.npmjs.com/search?q=%40motif-studio"><img src="https://img.shields.io/npm/v/@motif-studio/schema?label=npm&color=cb3837" alt="npm"></a>
   <a href="https://github.com/mcp-tool-shop-org/motif/actions/workflows/ci.yml"><img src="https://github.com/mcp-tool-shop-org/motif/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="https://codecov.io/gh/mcp-tool-shop-org/motif"><img src="https://codecov.io/gh/mcp-tool-shop-org/motif/branch/main/graph/badge.svg" alt="Coverage"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License"></a>
@@ -54,40 +54,40 @@
 
 | पैकेज. | विवरण। |
 |---------|-------------|
-| [`@motif/schema`](packages/schema) | मानक प्रकार, ज़ोड स्कीमा, पार्स/सत्यापित करें। |
-| [`@motif/asset-index`](packages/asset-index) | पैकिंग की अखंडता का अनुक्रमण और लेखा-जोखा। |
-| [`@motif/audio-engine`](packages/audio-engine) | नमूना प्लेबैक, वॉयस प्रबंधन, ऑडियो कॉन्टेक्स्ट शेड्यूलिंग। |
-| [`@motif/test-kit`](packages/test-kit) | उपकरण और परीक्षण उपकरण। |
+| [`@motif-studio/schema`](packages/schema) | मानक प्रकार, ज़ोड स्कीमा, पार्स/सत्यापित करें। |
+| [`@motif-studio/asset-index`](packages/asset-index) | पैकिंग की अखंडता का अनुक्रमण और लेखा-जोखा। |
+| [`@motif-studio/audio-engine`](packages/audio-engine) | नमूना प्लेबैक, वॉयस प्रबंधन, ऑडियो कॉन्टेक्स्ट शेड्यूलिंग। |
+| [`@motif-studio/test-kit`](packages/test-kit) | उपकरण और परीक्षण उपकरण। |
 
 ### संगीत रचना और प्लेबैक।
 
 | पैकेज. | विवरण। |
 |---------|-------------|
-| [`@motif/clip-engine`](packages/clip-engine) | क्लिप अनुक्रमण, रूपांतरण, और संकेत निर्धारण। |
-| [`@motif/instrument-rack`](packages/instrument-rack) | मल्टी-ऑसिलेटर सिंथेसाइज़र, ड्रम ध्वनि, सैम्पल ध्वनि, एलएफ़ओ मॉड्यूलेशन, 16 पूर्वनिर्धारित सेटिंग्स। |
-| [`@motif/music-theory`](packages/music-theory) | स्केल, कॉर्ड, मोटिफ, तीव्रता में परिवर्तन। |
-| [`@motif/playback-engine`](packages/playback-engine) | वास्तविक समय में चलाने, मिश्रण करने की क्षमता, 8 प्रकार के प्रभाव, MIDI इनपुट/आउटपुट, WAV फ़ाइल निर्यात (24/32-बिट)। |
-| [`@motif/sample-lab`](packages/sample-lab) | काटना, स्लाइस करना, किट, उपकरण सहायक। |
-| [`@motif/score-map`](packages/score-map) | विषय-वस्तु, रूपरेखा, संकेत समूह, व्युत्पत्ति। |
-| [`@motif/automation`](packages/automation) | लेन, मैक्रो, लिफाफे, कैप्चर (या अभिग्रहण)। |
-| [`@motif/library`](packages/library) | टेम्प्लेट, स्नैपशॉट, शाखाएं, पसंदीदा, तुलना करें। |
+| [`@motif-studio/clip-engine`](packages/clip-engine) | क्लिप अनुक्रमण, रूपांतरण, और संकेत निर्धारण। |
+| [`@motif-studio/instrument-rack`](packages/instrument-rack) | मल्टी-ऑसिलेटर सिंथेसाइज़र, ड्रम ध्वनि, सैम्पल ध्वनि, एलएफ़ओ मॉड्यूलेशन, 16 पूर्वनिर्धारित सेटिंग्स। |
+| [`@motif-studio/music-theory`](packages/music-theory) | स्केल, कॉर्ड, मोटिफ, तीव्रता में परिवर्तन। |
+| [`@motif-studio/playback-engine`](packages/playback-engine) | वास्तविक समय में चलाने, मिश्रण करने की क्षमता, 8 प्रकार के प्रभाव, MIDI इनपुट/आउटपुट, WAV फ़ाइल निर्यात (24/32-बिट)। |
+| [`@motif-studio/sample-lab`](packages/sample-lab) | काटना, स्लाइस करना, किट, उपकरण सहायक। |
+| [`@motif-studio/score-map`](packages/score-map) | विषय-वस्तु, रूपरेखा, संकेत समूह, व्युत्पत्ति। |
+| [`@motif-studio/automation`](packages/automation) | लेन, मैक्रो, लिफाफे, कैप्चर (या अभिग्रहण)। |
+| [`@motif-studio/library`](packages/library) | टेम्प्लेट, स्नैपशॉट, शाखाएं, पसंदीदा, तुलना करें। |
 
 ### बुनियादी ढांचा।
 
 | पैकेज. | विवरण। |
 |---------|-------------|
-| [`@motif/scene-mapper`](packages/scene-mapper) | ट्रिगर मैपिंग और नियतात्मक बंधन मूल्यांकन। |
-| [`@motif/runtime-pack`](packages/runtime-pack) | रनटाइम पर डेटा का निर्यात/आयात, जिसमें निश्चित क्रम में डेटा को व्यवस्थित करने की क्षमता हो। |
-| [`@motif/review`](packages/review) | सारांश और लेखा परीक्षा सहायक उपकरण। |
-| [`@motif/ui`](packages/ui) | साझा यूआई घटक। |
+| [`@motif-studio/scene-mapper`](packages/scene-mapper) | ट्रिगर मैपिंग और नियतात्मक बंधन मूल्यांकन। |
+| [`@motif-studio/runtime-pack`](packages/runtime-pack) | रनटाइम पर डेटा का निर्यात/आयात, जिसमें निश्चित क्रम में डेटा को व्यवस्थित करने की क्षमता हो। |
+| [`@motif-studio/review`](packages/review) | सारांश और लेखा परीक्षा सहायक उपकरण। |
+| [`@motif-studio/ui`](packages/ui) | साझा यूआई घटक। |
 
 ## स्थापित करें।
 
 ```bash
-npm install @motif/schema @motif/clip-engine @motif/runtime-pack
+npm install @motif-studio/schema @motif-studio/clip-engine @motif-studio/runtime-pack
 ```
 
-सभी पैकेज npm पर `@motif` नाम के दायरे में प्रकाशित किए जाते हैं।
+सभी पैकेज npm पर `@motif-studio` नाम के दायरे में प्रकाशित किए जाते हैं।
 
 ## त्वरित शुरुआत (मोनोरेपो)।
 

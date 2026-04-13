@@ -1,5 +1,5 @@
 {
-  "name": "@motif/audio-engine",
+  "name": "@motif-studio/audio-engine",
   "version": "1.2.0",
   "description": "Sample playback and voice management for Motif",
   "license": "MIT",
@@ -32,11 +32,11 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@motif/schema": "workspace:*",
-    "@motif/scene-mapper": "workspace:*"
+    "@motif-studio/schema": "workspace:*",
+    "@motif-studio/scene-mapper": "workspace:*"
   },
   "devDependencies": {
-    "@motif/test-kit": "workspace:*",
+    "@motif-studio/test-kit": "workspace:*",
     "typescript": "^5.8.0",
     "vitest": "^3.2.0"
   }

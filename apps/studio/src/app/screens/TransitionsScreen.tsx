@@ -1,7 +1,7 @@
 "use client";
 
 import { useStudioStore } from "../store";
-import type { TransitionRule, TransitionMode } from "@motif/schema";
+import type { TransitionRule, TransitionMode } from "@motif-studio/schema";
 
 const TRANSITION_MODES: TransitionMode[] = [
   "immediate",

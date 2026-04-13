@@ -3,9 +3,9 @@
 import { useState, useCallback, useEffect } from "react";
 import { useStudioStore } from "../store";
 import { usePlaybackStore } from "../playback-store";
-import { FACTORY_PRESETS } from "@motif/instrument-rack";
+import { FACTORY_PRESETS } from "@motif-studio/instrument-rack";
 import { NoteGrid } from "../components/NoteGrid";
-import type { Clip, ClipNote, ClipLane, Scene, SceneClipRef } from "@motif/schema";
+import type { Clip, ClipNote, ClipLane, Scene, SceneClipRef } from "@motif-studio/schema";
 import {
   clipKey,
   clipDensifyNotes,
@@ -15,12 +15,12 @@ import {
   clipBassLine,
   clipPadVoicing,
   clipArpeggiate,
-} from "@motif/clip-engine";
+} from "@motif-studio/clip-engine";
 import {
   NOTE_NAMES,
   chordPalette,
   progressionFromDegrees,
-} from "@motif/music-theory";
+} from "@motif-studio/music-theory";
 
 const CLIP_LANES: ClipLane[] = ["drums", "bass", "harmony", "motif", "accent"];
 const EMPTY_CLIPS: Clip[] = [];

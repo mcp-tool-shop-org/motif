@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="400" alt="Motif">
 </p>
 
-# @motif/test-kit
+# @motif-studio/test-kit
 
 Fixtures, sample packs, and test utilities for Motif packages.
 
@@ -19,7 +19,7 @@ Fixtures, sample packs, and test utilities for Motif packages.
 ## Key Exports
 
 ```ts
-import { FIXTURES, loadFixture, fixturePath } from "@motif/test-kit";
+import { FIXTURES, loadFixture, fixturePath } from "@motif-studio/test-kit";
 
 const pack = loadFixture(FIXTURES.MINIMAL_PACK);
 ```

@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/playback-engine
+# @motif-studio/playback-engine
 
 Motif场景和序列的实时播放、混合、渲染和效果系统。
 
@@ -38,7 +38,7 @@ import {
   disposeFxNodes,
   dbToGain,
   encodeWav,
-} from "@motif/playback-engine";
+} from "@motif-studio/playback-engine";
 ```
 
 ### 核心类
@@ -57,6 +57,6 @@ import {
 
 ## 依赖项
 
-- `@motif/schema`：场景、音轨和过渡的类型定义
-- `@motif/audio-engine`：音频播放的基本功能
-- `@motif/scene-mapper`：用于场景解析的触发器评估
+- `@motif-studio/schema`：场景、音轨和过渡的类型定义
+- `@motif-studio/audio-engine`：音频播放的基本功能
+- `@motif-studio/scene-mapper`：用于场景解析的触发器评估

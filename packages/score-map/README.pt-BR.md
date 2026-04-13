@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/score-map
+# @motif-studio/score-map
 
 Lógica de pontuação global para Motif — famílias de motivos, perfis de pontuação, famílias de comandos, entradas no mapa global e derivação.
 
@@ -54,10 +54,10 @@ Lógica de pontuação global para Motif — famílias de motivos, perfis de pon
 ## O que ele não gerencia
 
 - Reprodução ou renderização de áudio
-- Gerenciamento de cenas/stem/vinculações (veja `@motif/schema`)
-- Automação (veja `@motif/automation`)
+- Gerenciamento de cenas/stem/vinculações (veja `@motif-studio/schema`)
+- Automação (veja `@motif-studio/automation`)
 - Componentes de interface do usuário
 
 ## Dependências
 
-- `@motif/schema` — tipos para motivos, perfis, cenas, famílias de comandos, derivações
+- `@motif-studio/schema` — tipos para motivos, perfis, cenas, famílias de comandos, derivações

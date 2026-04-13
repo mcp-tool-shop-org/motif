@@ -31,7 +31,7 @@ import {
   filenameToId,
   buildImportedAsset,
 } from "../src/import.js";
-import type { AudioAsset, SampleSlice } from "@motif/schema";
+import type { AudioAsset, SampleSlice } from "@motif-studio/schema";
 
 // ── Fixtures ──
 

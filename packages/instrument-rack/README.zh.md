@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/instrument-rack
+# @motif-studio/instrument-rack
 
 用于 Motif 的声音和乐器管理——包括合成器、鼓和预设。
 
@@ -30,7 +30,7 @@ import {
   getPresetsByCategory,
   midiToFreq,
   pitchToDrum,
-} from "@motif/instrument-rack";
+} from "@motif-studio/instrument-rack";
 ```
 
 - `InstrumentRack`：管理多个声音、路由和销毁。
@@ -41,4 +41,4 @@ import {
 
 ## 依赖项
 
-- `@motif/schema`：用于乐器、预设和声音的类型定义。
+- `@motif-studio/schema`：用于乐器、预设和声音的类型定义。

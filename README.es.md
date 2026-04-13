@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/search?q=%40motif"><img src="https://img.shields.io/npm/v/@motif/schema?label=npm&color=cb3837" alt="npm"></a>
+  <a href="https://www.npmjs.com/search?q=%40motif-studio"><img src="https://img.shields.io/npm/v/@motif-studio/schema?label=npm&color=cb3837" alt="npm"></a>
   <a href="https://github.com/mcp-tool-shop-org/motif/actions/workflows/ci.yml"><img src="https://github.com/mcp-tool-shop-org/motif/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="https://codecov.io/gh/mcp-tool-shop-org/motif"><img src="https://codecov.io/gh/mcp-tool-shop-org/motif/branch/main/graph/badge.svg" alt="Coverage"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License"></a>
@@ -54,40 +54,40 @@ Un DAW (Digital Audio Workstation). Un secuenciador simple. Un generador de mús
 
 | Paquete | Descripción |
 |---------|-------------|
-| [`@motif/schema`](packages/schema) | Tipos canónicos, esquemas Zod, parse/validar. |
-| [`@motif/asset-index`](packages/asset-index) | Indexación y auditoría de la integridad de los paquetes. |
-| [`@motif/audio-engine`](packages/audio-engine) | Reproducción de muestras, gestión de voces, programación de AudioContext. |
-| [`@motif/test-kit`](packages/test-kit) | Herramientas de prueba y utilidades. |
+| [`@motif-studio/schema`](packages/schema) | Tipos canónicos, esquemas Zod, parse/validar. |
+| [`@motif-studio/asset-index`](packages/asset-index) | Indexación y auditoría de la integridad de los paquetes. |
+| [`@motif-studio/audio-engine`](packages/audio-engine) | Reproducción de muestras, gestión de voces, programación de AudioContext. |
+| [`@motif-studio/test-kit`](packages/test-kit) | Herramientas de prueba y utilidades. |
 
 ### Composición y reproducción
 
 | Paquete | Descripción |
 |---------|-------------|
-| [`@motif/clip-engine`](packages/clip-engine) | Secuenciación de clips, transformaciones, programación de indicaciones. |
-| [`@motif/instrument-rack`](packages/instrument-rack) | Sintetizador con múltiples osciladores, voz de batería, voz de muestra, modulación LFO, 16 presets. |
-| [`@motif/music-theory`](packages/music-theory) | Escalas, acordes, motivos, transformaciones de intensidad. |
-| [`@motif/playback-engine`](packages/playback-engine) | Reproducción en tiempo real, mezcla, 8 tipos de efectos, E/S MIDI, exportación WAV (24/32 bits). |
-| [`@motif/sample-lab`](packages/sample-lab) | Recortar, dividir, kit, asistentes de instrumentos. |
-| [`@motif/score-map`](packages/score-map) | Motivos, perfiles, familias de indicaciones, derivación. |
-| [`@motif/automation`](packages/automation) | Pistas, macros, envolventes, captura. |
-| [`@motif/library`](packages/library) | Plantillas, instantáneas, ramas, favoritos, comparar. |
+| [`@motif-studio/clip-engine`](packages/clip-engine) | Secuenciación de clips, transformaciones, programación de indicaciones. |
+| [`@motif-studio/instrument-rack`](packages/instrument-rack) | Sintetizador con múltiples osciladores, voz de batería, voz de muestra, modulación LFO, 16 presets. |
+| [`@motif-studio/music-theory`](packages/music-theory) | Escalas, acordes, motivos, transformaciones de intensidad. |
+| [`@motif-studio/playback-engine`](packages/playback-engine) | Reproducción en tiempo real, mezcla, 8 tipos de efectos, E/S MIDI, exportación WAV (24/32 bits). |
+| [`@motif-studio/sample-lab`](packages/sample-lab) | Recortar, dividir, kit, asistentes de instrumentos. |
+| [`@motif-studio/score-map`](packages/score-map) | Motivos, perfiles, familias de indicaciones, derivación. |
+| [`@motif-studio/automation`](packages/automation) | Pistas, macros, envolventes, captura. |
+| [`@motif-studio/library`](packages/library) | Plantillas, instantáneas, ramas, favoritos, comparar. |
 
 ### Infraestructura
 
 | Paquete | Descripción |
 |---------|-------------|
-| [`@motif/scene-mapper`](packages/scene-mapper) | Mapeo de activadores y evaluación determinista de enlaces. |
-| [`@motif/runtime-pack`](packages/runtime-pack) | Exportación/importación en tiempo de ejecución con serialización determinista. |
-| [`@motif/review`](packages/review) | Resúmenes y asistentes de auditoría. |
-| [`@motif/ui`](packages/ui) | Componentes de interfaz de usuario compartidos. |
+| [`@motif-studio/scene-mapper`](packages/scene-mapper) | Mapeo de activadores y evaluación determinista de enlaces. |
+| [`@motif-studio/runtime-pack`](packages/runtime-pack) | Exportación/importación en tiempo de ejecución con serialización determinista. |
+| [`@motif-studio/review`](packages/review) | Resúmenes y asistentes de auditoría. |
+| [`@motif-studio/ui`](packages/ui) | Componentes de interfaz de usuario compartidos. |
 
 ## Instalación
 
 ```bash
-npm install @motif/schema @motif/clip-engine @motif/runtime-pack
+npm install @motif-studio/schema @motif-studio/clip-engine @motif-studio/runtime-pack
 ```
 
-Todos los paquetes se publican en npm bajo el alcance `@motif`.
+Todos los paquetes se publican en npm bajo el alcance `@motif-studio`.
 
 ## Comienzo rápido (monorepo)
 

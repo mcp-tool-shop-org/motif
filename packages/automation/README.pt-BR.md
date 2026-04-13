@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/automation
+# @motif-studio/automation
 
 Automação expressiva para Motif — trilhas, interpolação, macros, envelopes e captura em tempo real.
 
@@ -61,4 +61,4 @@ Automação expressiva para Motif — trilhas, interpolação, macros, envelopes
 
 ## Dependências
 
-- `@motif/schema` — tipos para trilhas, alvos, pontos, macros, envelopes, capturas.
+- `@motif-studio/schema` — tipos para trilhas, alvos, pontos, macros, envelopes, capturas.

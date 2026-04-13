@@ -1,4 +1,4 @@
-import type { SoundtrackPack, AudioAsset, Stem, Scene } from "@motif/schema";
+import type { SoundtrackPack, AudioAsset, Stem, Scene } from "@motif-studio/schema";
 
 /**
  * Find assets not referenced by any stem or transition stinger.

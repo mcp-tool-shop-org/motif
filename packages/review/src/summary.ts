@@ -1,9 +1,9 @@
-import type { SoundtrackPack } from "@motif/schema";
+import type { SoundtrackPack } from "@motif-studio/schema";
 import {
   findUnusedAssets,
   findUnusedStems,
   findUnreferencedScenes,
-} from "@motif/asset-index";
+} from "@motif-studio/asset-index";
 import type { PackSummary } from "./types.js";
 
 /**

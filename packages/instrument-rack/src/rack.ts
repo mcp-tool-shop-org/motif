@@ -2,7 +2,7 @@
 // Instrument Rack — resolves presets to voice instances
 // ────────────────────────────────────────────
 
-import type { InstrumentPreset, SampleInstrument } from "@motif/schema";
+import type { InstrumentPreset, SampleInstrument } from "@motif-studio/schema";
 import type { InstrumentVoice, SynthParams } from "./types.js";
 import { SynthVoice } from "./synth-voice.js";
 import { DrumVoice } from "./drum-voice.js";

@@ -2,7 +2,7 @@
 
 import { useStudioStore } from "../store";
 import { usePlaybackStore } from "../playback-store";
-import type { BusId, FxType } from "@motif/playback-engine";
+import type { BusId, FxType } from "@motif-studio/playback-engine";
 
 const BUS_OPTIONS: BusId[] = ["drums", "music", "master"];
 const FX_OPTIONS: FxType[] = ["eq", "delay", "reverb", "compressor"];

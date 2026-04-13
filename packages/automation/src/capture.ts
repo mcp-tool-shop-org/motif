@@ -4,7 +4,7 @@ import type {
   AutomationParam,
   MacroParam,
   AutomationLane,
-} from "@motif/schema";
+} from "@motif-studio/schema";
 
 /** Start a new automation capture session. */
 export function createCapture(

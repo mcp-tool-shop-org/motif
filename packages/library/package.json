@@ -1,5 +1,5 @@
 {
-  "name": "@motif/library",
+  "name": "@motif-studio/library",
   "version": "1.2.0",
   "description": "Templates, snapshots, branches, and favorites for Motif",
   "license": "MIT",
@@ -32,7 +32,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@motif/schema": "workspace:*"
+    "@motif-studio/schema": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.8.0",

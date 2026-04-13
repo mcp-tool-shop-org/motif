@@ -1,4 +1,4 @@
-import type { SoundtrackPack } from "@motif/schema";
+import type { SoundtrackPack } from "@motif-studio/schema";
 
 // ── Minimal Pack — smallest valid pack ──
 

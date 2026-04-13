@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/library
+# @motif-studio/library
 
 Modèles, instantés, branches, favoris, collections et comparaison d'entités pour Motif.
 
@@ -56,4 +56,4 @@ Modèles, instantés, branches, favoris, collections et comparaison d'entités p
 
 ## Dépendances
 
-- `@motif/schema` — types pour les modèles, les instantés, les branches, les favoris, les collections
+- `@motif-studio/schema` — types pour les modèles, les instantés, les branches, les favoris, les collections

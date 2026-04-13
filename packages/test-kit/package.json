@@ -1,5 +1,5 @@
 {
-  "name": "@motif/test-kit",
+  "name": "@motif-studio/test-kit",
   "version": "1.2.0",
   "description": "Fixtures and test utilities for Motif packages",
   "license": "MIT",

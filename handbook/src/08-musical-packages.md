@@ -2,7 +2,7 @@
 
 These packages handle composition, playback, and the creative engine of Motif.
 
-## `@motif/music-theory`
+## `@motif-studio/music-theory`
 
 Zero-dependency foundation for musical primitives.
 
@@ -12,7 +12,7 @@ Zero-dependency foundation for musical primitives.
 - **Motifs** — transpose, invert, reverse, octave shift, rhythm scale, snap-to-scale
 - **Intensity** — low/mid/high derivation, tension, brighten
 
-## `@motif/clip-engine`
+## `@motif-studio/clip-engine`
 
 Clip sequencing, composition transforms, and cue scheduling.
 
@@ -25,7 +25,7 @@ Clip sequencing, composition transforms, and cue scheduling.
 
 Dependencies: `schema`, `instrument-rack`, `music-theory`
 
-## `@motif/instrument-rack`
+## `@motif-studio/instrument-rack`
 
 Voice, instrument, and modulation management.
 
@@ -39,7 +39,7 @@ Voice, instrument, and modulation management.
 
 Dependencies: `schema`
 
-## `@motif/audio-engine`
+## `@motif-studio/audio-engine`
 
 Low-level sample playback and voice lifecycle.
 
@@ -50,7 +50,7 @@ Low-level sample playback and voice lifecycle.
 
 Dependencies: `schema`
 
-## `@motif/playback-engine`
+## `@motif-studio/playback-engine`
 
 The real-time audio system.
 
@@ -70,7 +70,7 @@ The real-time audio system.
 
 Dependencies: `schema`, `audio-engine`, `scene-mapper`
 
-## `@motif/sample-lab`
+## `@motif-studio/sample-lab`
 
 Sample workflow helpers for the import-to-instrument pipeline.
 
@@ -82,7 +82,7 @@ Sample workflow helpers for the import-to-instrument pipeline.
 
 Dependencies: `schema`
 
-## `@motif/score-map`
+## `@motif-studio/score-map`
 
 World scoring logic.
 
@@ -94,7 +94,7 @@ World scoring logic.
 
 Dependencies: `schema`
 
-## `@motif/automation`
+## `@motif-studio/automation`
 
 Expressive automation system.
 
@@ -106,7 +106,7 @@ Expressive automation system.
 
 Dependencies: `schema`
 
-## `@motif/library`
+## `@motif-studio/library`
 
 Creative recall and reuse.
 
@@ -119,7 +119,7 @@ Creative recall and reuse.
 
 Dependencies: `schema`
 
-## `@motif/scene-mapper`
+## `@motif-studio/scene-mapper`
 
 Trigger mapping and deterministic scene resolution.
 
@@ -129,7 +129,7 @@ Trigger mapping and deterministic scene resolution.
 
 Dependencies: `schema`
 
-## `@motif/runtime-pack`
+## `@motif-studio/runtime-pack`
 
 Export and import for game engine consumption.
 

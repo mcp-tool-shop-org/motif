@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/playback-engine
+# @motif-studio/playback-engine
 
 Motifのシーンやシーケンス向けの、リアルタイム再生、ミキシング、レンダリング、およびエフェクトシステム。
 
@@ -38,7 +38,7 @@ import {
   disposeFxNodes,
   dbToGain,
   encodeWav,
-} from "@motif/playback-engine";
+} from "@motif-studio/playback-engine";
 ```
 
 ### コアクラス
@@ -57,6 +57,6 @@ import {
 
 ## 依存関係
 
-- `@motif/schema`: シーン、ステム、トランジションの型定義
-- `@motif/audio-engine`: サンプルの再生に関する基本的な機能
-- `@motif/scene-mapper`: シーンの解像度を決定するためのトリガー評価
+- `@motif-studio/schema`: シーン、ステム、トランジションの型定義
+- `@motif-studio/audio-engine`: サンプルの再生に関する基本的な機能
+- `@motif-studio/scene-mapper`: シーンの解像度を決定するためのトリガー評価

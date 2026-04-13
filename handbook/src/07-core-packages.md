@@ -2,7 +2,7 @@
 
 These packages form the foundation of every Motif operation.
 
-## `@motif/schema`
+## `@motif-studio/schema`
 
 The single source of truth for all entity types. Every other package imports from here.
 
@@ -11,7 +11,7 @@ The single source of truth for all entity types. Every other package imports fro
 - `parseSoundtrackPack` (strict) and `safeParseSoundtrackPack` (safe) parse functions
 - `validateSoundtrackPack` returning structured `ValidationIssue[]`
 
-## `@motif/asset-index`
+## `@motif-studio/asset-index`
 
 Pack integrity indexing and cross-reference auditing.
 
@@ -22,7 +22,7 @@ Pack integrity indexing and cross-reference auditing.
 
 17 integrity codes covering duplicates, missing references, self-references, and unused entities.
 
-## `@motif/test-kit`
+## `@motif-studio/test-kit`
 
 Fixtures and test utilities shared across all packages.
 
@@ -30,10 +30,10 @@ Fixtures and test utilities shared across all packages.
 - `loadFixture` and `fixturePath` utilities
 - Named constants for every fixture (`MINIMAL_PACK`, `STARTER_PACK`, `INTEGRITY_VALID`, etc.)
 
-## `@motif/review`
+## `@motif-studio/review`
 
 Pack summaries and audit reports. Currently a placeholder — richer reporting planned for Phase 26–27.
 
-## `@motif/ui`
+## `@motif-studio/ui`
 
 Shared UI primitives. Currently a placeholder — extraction from Studio planned for Phase 22.

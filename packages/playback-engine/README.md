@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="400" alt="Motif">
 </p>
 
-# @motif/playback-engine
+# @motif-studio/playback-engine
 
 Real-time playback, mixing, rendering, and effects system for Motif scenes and sequences.
 
@@ -38,7 +38,7 @@ import {
   disposeFxNodes,
   dbToGain,
   encodeWav,
-} from "@motif/playback-engine";
+} from "@motif-studio/playback-engine";
 ```
 
 ### Core Classes
@@ -57,6 +57,6 @@ import {
 
 ## Dependencies
 
-- `@motif/schema` — types for scenes, stems, transitions
-- `@motif/audio-engine` — sample playback primitives
-- `@motif/scene-mapper` — trigger evaluation for scene resolution
+- `@motif-studio/schema` — types for scenes, stems, transitions
+- `@motif-studio/audio-engine` — sample playback primitives
+- `@motif-studio/scene-mapper` — trigger evaluation for scene resolution

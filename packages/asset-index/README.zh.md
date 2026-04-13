@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/asset-index
+# @motif-studio/asset-index
 
 用于Motif音轨包的完整性索引和审计。
 
@@ -44,7 +44,7 @@
 ## 用法
 
 ```ts
-import { auditPackIntegrity, summarizePackIntegrity } from "@motif/asset-index";
+import { auditPackIntegrity, summarizePackIntegrity } from "@motif-studio/asset-index";
 
 const audit = auditPackIntegrity(pack);
 if (audit.errors.length > 0) {

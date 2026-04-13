@@ -1,4 +1,4 @@
-// @motif/sample-lab — trim, slice, kit, instrument, import helpers
+// @motif-studio/sample-lab — trim, slice, kit, instrument, import helpers
 export * from "./trim.js";
 export * from "./slice.js";
 export * from "./kit.js";

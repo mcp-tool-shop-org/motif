@@ -1,5 +1,5 @@
 {
-  "name": "@motif/instrument-rack",
+  "name": "@motif-studio/instrument-rack",
   "version": "1.2.0",
   "description": "Synth and drum voice management for Motif",
   "license": "MIT",
@@ -32,10 +32,10 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@motif/schema": "workspace:*"
+    "@motif-studio/schema": "workspace:*"
   },
   "devDependencies": {
-    "@motif/test-kit": "workspace:*",
+    "@motif-studio/test-kit": "workspace:*",
     "typescript": "^5.8.0",
     "vitest": "^3.2.0"
   }

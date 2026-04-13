@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/runtime-pack
+# @motif-studio/runtime-pack
 
 साउंडवीव साउंडट्रैक पैकों के लिए रनटाइम एक्सपोर्ट और इम्पोर्ट।
 
@@ -22,6 +22,6 @@
 
 ## इसमें क्या शामिल नहीं है
 
-- ऑथरिंग डेटा मॉडल ( `@motif/schema` देखें)।
+- ऑथरिंग डेटा मॉडल ( `@motif-studio/schema` देखें)।
 - ऑडियो फ़ाइल पैकेजिंग।
 - इंजन-विशिष्ट प्लेबैक SDKs।

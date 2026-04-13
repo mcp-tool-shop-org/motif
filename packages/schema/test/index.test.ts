@@ -7,7 +7,7 @@ import {
   normalizeZodIssues,
 } from "../src/index.js";
 
-describe("@motif/schema exports", () => {
+describe("@motif-studio/schema exports", () => {
   it("exports parseSoundtrackPack", () => {
     expect(typeof parseSoundtrackPack).toBe("function");
   });

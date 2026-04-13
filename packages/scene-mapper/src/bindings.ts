@@ -1,4 +1,4 @@
-import type { TriggerBinding, RuntimeMusicState } from "@motif/schema";
+import type { TriggerBinding, RuntimeMusicState } from "@motif-studio/schema";
 import type { BindingEvaluation } from "./types.js";
 import { evaluateCondition } from "./conditions.js";
 

@@ -1,5 +1,5 @@
 // ────────────────────────────────────────────
-// @motif/clip-engine — MIDI types
+// @motif-studio/clip-engine — MIDI types
 // ────────────────────────────────────────────
 
 /** Parsed MIDI file structure */

@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { ClipPlayer, resolveClipNotes } from "../src/clip-player";
-import type { Clip } from "@motif/schema";
-import type { InstrumentRack } from "@motif/instrument-rack";
-import type { InstrumentVoice, Voice } from "@motif/instrument-rack";
+import type { Clip } from "@motif-studio/schema";
+import type { InstrumentRack } from "@motif-studio/instrument-rack";
+import type { InstrumentVoice, Voice } from "@motif-studio/instrument-rack";
 
 function mockVoice(): InstrumentVoice {
   return {

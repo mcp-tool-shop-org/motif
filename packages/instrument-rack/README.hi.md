@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/instrument-rack
+# @motif-studio/instrument-rack
 
 साउंडवीव के लिए वाइस (आवाज) और इंस्ट्रूमेंट (वाद्य यंत्र) प्रबंधन - सिंथेसाइज़र, ड्रम और डिफ़ॉल्ट सेटिंग्स।
 
@@ -30,7 +30,7 @@ import {
   getPresetsByCategory,
   midiToFreq,
   pitchToDrum,
-} from "@motif/instrument-rack";
+} from "@motif-studio/instrument-rack";
 ```
 
 - `InstrumentRack` — कई वाइस, रूटिंग और हटाने का प्रबंधन करता है।
@@ -41,4 +41,4 @@ import {
 
 ## निर्भरताएँ
 
-- `@motif/schema` — इंस्ट्रूमेंट, सेटिंग्स और वाइस के लिए प्रकार।
+- `@motif-studio/schema` — इंस्ट्रूमेंट, सेटिंग्स और वाइस के लिए प्रकार।

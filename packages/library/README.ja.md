@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/ライブラリ
+# @motif-studio/ライブラリ
 
 Motifのためのテンプレート、スナップショット、ブランチ、お気に入り、コレクション、およびエンティティ比較機能。
 
@@ -56,4 +56,4 @@ Motifのためのテンプレート、スナップショット、ブランチ、
 
 ## 依存関係
 
-- `@motif/schema`：テンプレート、スナップショット、ブランチ、お気に入り、コレクションの型定義。
+- `@motif-studio/schema`：テンプレート、スナップショット、ブランチ、お気に入り、コレクションの型定義。

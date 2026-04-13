@@ -1,4 +1,4 @@
-// @motif/schema — source of truth for all Motif data types
+// @motif-studio/schema — source of truth for all Motif data types
 export * from "./types.js";
 export * from "./schemas.js";
 export * from "./parse.js";

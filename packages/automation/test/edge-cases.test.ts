@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { createEnvelope, evaluateEnvelope } from "../src/envelopes.js";
 import { sampleLane, evaluateLane, interpolate } from "../src/interpolate.js";
-import type { AutomationLane } from "@motif/schema";
+import type { AutomationLane } from "@motif-studio/schema";
 
 describe("evaluateEnvelope — durationMs: 0 (division by zero guard)", () => {
   it("fade-in with durationMs 0 returns depth (completed state)", () => {

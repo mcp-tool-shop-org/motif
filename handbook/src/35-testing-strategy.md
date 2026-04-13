@@ -2,7 +2,7 @@
 
 ## Philosophy
 
-Every package has its own test suite. Tests validate behavior, not implementation details. Fixtures live in `@motif/test-kit` and are shared across packages.
+Every package has its own test suite. Tests validate behavior, not implementation details. Fixtures live in `@motif-studio/test-kit` and are shared across packages.
 
 ## Test Structure
 

@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/clip-engine
+# @motif-studio/clip-engine
 
 Motif 的音频片段编排、合成和转换引擎。
 
@@ -33,7 +33,7 @@ import {
   resolveCuePlan,
   chordPalette,
   diatonicChords,
-} from "@motif/clip-engine";
+} from "@motif-studio/clip-engine";
 ```
 
 ### 播放
@@ -58,6 +58,6 @@ import {
 
 ## 依赖项
 
-- `@motif/schema`：用于音频片段、音符和提示的类型定义。
-- `@motif/instrument-rack`：用于播放时的声音管理。
-- `@motif/music-theory`：用于音阶/和弦/主题的基本功能。
+- `@motif-studio/schema`：用于音频片段、音符和提示的类型定义。
+- `@motif-studio/instrument-rack`：用于播放时的声音管理。
+- `@motif-studio/music-theory`：用于音阶/和弦/主题的基本功能。

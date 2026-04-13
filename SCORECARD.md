@@ -48,6 +48,6 @@
 
 - Landing page not yet deployed (site/ exists but not linked from SHIP_GATE)
 - Polyglot translation pipeline exists but not wired to CI
-- `@motif/ui` and `@motif/review` are placeholder packages awaiting Phase 22/26
+- `@motif-studio/ui` and `@motif-studio/review` are placeholder packages awaiting Phase 22/26
 - Performance profiling for large packs not yet systematized
 - 1,002 tests (up from 663 at v1.0.x)

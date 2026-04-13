@@ -5,7 +5,7 @@ import { useStudioStore } from "../src/app/store";
 import { usePlaybackStore } from "../src/app/playback-store";
 import { starterPack } from "../src/app/seed-data";
 import * as autosave from "../src/app/autosave";
-import type { SoundtrackPack } from "@motif/schema";
+import type { SoundtrackPack } from "@motif-studio/schema";
 
 // Mock the saveProjectToFile function since it uses DOM APIs (createElement, etc.)
 vi.mock("../src/app/autosave", async () => {

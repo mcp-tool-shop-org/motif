@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/runtime-pack
+# @motif-studio/runtime-pack
 
 Exportation et importation en temps réel pour les packs de bandes sonores Motif.
 
@@ -22,6 +22,6 @@ Ce package est un espace réservé. La logique d'exportation en temps réel sera
 
 ## Ce que ce module ne contient pas
 
-- Modèle de données de création (voir `@motif/schema`).
+- Modèle de données de création (voir `@motif-studio/schema`).
 - Emballage des fichiers audio.
 - SDK de lecture spécifiques à chaque moteur.

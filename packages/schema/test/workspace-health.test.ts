@@ -49,9 +49,9 @@ describe("Workspace health", () => {
     expect(workspaces.length).toBeGreaterThanOrEqual(16);
   });
 
-  it("all packages use @motif scope", () => {
+  it("all packages use @motif-studio scope", () => {
     for (const { pkg } of workspaces) {
-      expect(pkg.name).toMatch(/^@motif\//);
+      expect(pkg.name).toMatch(/^@motif-studio\//);
     }
   });
 

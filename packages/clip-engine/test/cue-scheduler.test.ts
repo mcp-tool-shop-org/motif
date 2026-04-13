@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import type { Cue, PerformanceCapture } from "@motif/schema";
+import type { Cue, PerformanceCapture } from "@motif-studio/schema";
 import {
   resolveCuePlan,
   sectionAtTick,

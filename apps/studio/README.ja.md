@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/studio
+# @motif-studio/studio
 
 Studioアプリは、Motifパックの主要な編集環境です。このアプリは、パック内のすべての要素（コンテンツ、設定など）の作成、編集、および確認を行うための、ダークテーマの操作インターフェースを提供します。
 
@@ -20,7 +20,7 @@ Studioアプリは、Motifパックの主要な編集環境です。このアプ
 | **Scenes** | シーンに対するCRUD操作（作成、読み込み、更新、削除）を、レイヤーの編集機能（追加、削除、並べ替え）と組み合わせて実現します。 |
 | **Bindings** | バインディングに対するCRUD操作（作成、読み取り、更新、削除）を、インラインでの条件編集機能付きで実現します。 |
 | **Transitions** | トランジションに対するCRUD操作において、モードごとに異なる検証警告を表示します。 |
-| **Review** | `@motif/review`によって検出された、重要度別に分類されたリアルタイムの検証結果。 |
+| **Review** | `@motif-studio/review`によって検出された、重要度別に分類されたリアルタイムの検証結果。 |
 | **Preview** | エンジン統合による、手動操作とシーケンス実行時の状態シミュレーション。 |
 
 ## プレビュー
@@ -39,15 +39,15 @@ Studioアプリは、Motifパックの主要な編集環境です。このアプ
 ## 開発
 
 ```bash
-pnpm --filter @motif/studio dev    # Next.js dev server
-pnpm --filter @motif/studio build  # Production build
-pnpm --filter @motif/studio test   # Run tests
+pnpm --filter @motif-studio/studio dev    # Next.js dev server
+pnpm --filter @motif-studio/studio build  # Production build
+pnpm --filter @motif-studio/studio test   # Run tests
 ```
 
 ## スタック
 
 - **フレームワーク:** Next.js 15 (App Router)
 - **状態管理:** Zustand
-- **検証:** `@motif/review` ( `useReview` フックを使用)
+- **検証:** `@motif-studio/review` ( `useReview` フックを使用)
 - **テスト:** Vitest + Testing Library + jsdom
 - **スタイル:** CSS変数、ダークテーマ (CSS-in-JSは使用しない)

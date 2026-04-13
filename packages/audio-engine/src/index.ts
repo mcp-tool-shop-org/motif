@@ -1,5 +1,5 @@
-// @motif/audio-engine — scene-layer resolution, transition lookup, simulation, sample playback
-export const PACKAGE = "@motif/audio-engine" as const;
+// @motif-studio/audio-engine — scene-layer resolution, transition lookup, simulation, sample playback
+export const PACKAGE = "@motif-studio/audio-engine" as const;
 
 export * from "./types.js";
 export { resolveActiveLayers } from "./layers.js";

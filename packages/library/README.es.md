@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/library
+# @motif-studio/library
 
 Plantillas, instantáneas, ramas, favoritos, colecciones y comparación de entidades para Motif.
 
@@ -56,4 +56,4 @@ Plantillas, instantáneas, ramas, favoritos, colecciones y comparación de entid
 
 ## Dependencias
 
-- `@motif/schema` — tipos para plantillas, instantáneas, ramas, favoritos y colecciones.
+- `@motif-studio/schema` — tipos para plantillas, instantáneas, ramas, favoritos y colecciones.

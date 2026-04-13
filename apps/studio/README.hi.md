@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/studio
+# @motif-studio/studio
 
 स्टूडियो ऐप, साउंडवीव पैकों के लिए मुख्य रचना उपकरण है। यह एक गहरे रंग के थीम वाला नियंत्रण इंटरफ़ेस प्रदान करता है, जिसका उपयोग करके आप एक पैकेज में मौजूद प्रत्येक तत्व को बना, संपादित और जांच सकते हैं।
 
@@ -20,7 +20,7 @@
 | **Scenes** | सीन के लिए CRUD, जिसमें इनलाइन लेयर संपादन (जोड़ना/हटाना/पुन: व्यवस्थित करना) शामिल है। |
 | **Bindings** | बाइंडिंग के लिए CRUD, जिसमें इनलाइन शर्त संपादन शामिल है। |
 | **Transitions** | ट्रांज़िशन के लिए CRUD, जिसमें मोड-विशिष्ट सत्यापन चेतावनी शामिल है। |
-| **Review** | `@motif/review` से प्राप्त लाइव सत्यापन परिणाम, जिन्हें गंभीरता के आधार पर समूहीकृत किया गया है। |
+| **Review** | `@motif-studio/review` से प्राप्त लाइव सत्यापन परिणाम, जिन्हें गंभीरता के आधार पर समूहीकृत किया गया है। |
 | **Preview** | मैनुअल और अनुक्रम रनटाइम स्थिति सिमुलेशन, इंजन एकीकरण के साथ। |
 
 ## पूर्वावलोकन
@@ -39,15 +39,15 @@
 ## विकास
 
 ```bash
-pnpm --filter @motif/studio dev    # Next.js dev server
-pnpm --filter @motif/studio build  # Production build
-pnpm --filter @motif/studio test   # Run tests
+pnpm --filter @motif-studio/studio dev    # Next.js dev server
+pnpm --filter @motif-studio/studio build  # Production build
+pnpm --filter @motif-studio/studio test   # Run tests
 ```
 
 ## तकनीकी ढांचा
 
 - **फ्रेमवर्क:** Next.js 15 (ऐप राउटर)
 - **स्टेट:** Zustand
-- **सत्यापन:** `@motif/review` ( `useReview` हुक के माध्यम से प्राप्त)
+- **सत्यापन:** `@motif-studio/review` ( `useReview` हुक के माध्यम से प्राप्त)
 - **परीक्षण:** Vitest + टेस्टिंग लाइब्रेरी + jsdom
 - **स्टाइलिंग:** CSS वेरिएबल, डार्क थीम (CSS-in-JS नहीं)

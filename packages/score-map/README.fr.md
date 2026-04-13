@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/score-map
+# @motif-studio/score-map
 
 Logique de scoring globale pour Motif : familles de motifs, profils de scoring, familles de signaux, entrées de la carte du monde et dérivation.
 
@@ -54,10 +54,10 @@ Logique de scoring globale pour Motif : familles de motifs, profils de scoring, 
 ## Ce que cela n'inclut pas
 
 - Lecture ou rendu audio
-- Gestion des scènes/pistes/liaisons (voir `@motif/schema`)
-- Automatisation (voir `@motif/automation`)
+- Gestion des scènes/pistes/liaisons (voir `@motif-studio/schema`)
+- Automatisation (voir `@motif-studio/automation`)
 - Composants d'interface utilisateur
 
 ## Dépendances
 
-- `@motif/schema` — types pour les motifs, les profils, les scènes, les familles de signaux, les dérivations.
+- `@motif-studio/schema` — types pour les motifs, les profils, les scènes, les familles de signaux, les dérivations.

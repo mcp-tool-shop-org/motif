@@ -1,5 +1,5 @@
 {
-  "name": "@motif/music-theory",
+  "name": "@motif-studio/music-theory",
   "version": "1.2.0",
   "description": "Scales, chords, motifs, and intensity helpers for Motif",
   "license": "MIT",
@@ -33,7 +33,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@motif/test-kit": "workspace:*",
+    "@motif-studio/test-kit": "workspace:*",
     "typescript": "^5.8.0",
     "vitest": "^3.2.0"
   }

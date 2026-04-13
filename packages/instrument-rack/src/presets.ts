@@ -2,7 +2,7 @@
 // Factory presets — curated instrument palette for game scoring
 // ────────────────────────────────────────────
 
-import type { InstrumentPreset } from "@motif/schema";
+import type { InstrumentPreset } from "@motif-studio/schema";
 
 /**
  * Built-in instrument presets.

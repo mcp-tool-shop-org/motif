@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="400" alt="Motif">
 </p>
 
-# @motif/studio
+# @motif-studio/studio
 
 The Studio app is the primary authoring surface for Motif packs. It provides a dark-themed control surface for creating, editing, and inspecting every entity in a pack.
 
@@ -20,7 +20,7 @@ The Studio app is the primary authoring surface for Motif packs. It provides a d
 | **Scenes** | CRUD for scenes with inline layer editing (add/remove/reorder) |
 | **Bindings** | CRUD for bindings with inline condition editing |
 | **Transitions** | CRUD for transitions with mode-specific validation warnings |
-| **Review** | Live validation findings from `@motif/review`, grouped by severity |
+| **Review** | Live validation findings from `@motif-studio/review`, grouped by severity |
 | **Preview** | Manual and sequence runtime state simulation with engine integration |
 
 ## Preview
@@ -39,15 +39,15 @@ This preview is simulation-based and does not perform real audio playback.
 ## Development
 
 ```bash
-pnpm --filter @motif/studio dev    # Next.js dev server
-pnpm --filter @motif/studio build  # Production build
-pnpm --filter @motif/studio test   # Run tests
+pnpm --filter @motif-studio/studio dev    # Next.js dev server
+pnpm --filter @motif-studio/studio build  # Production build
+pnpm --filter @motif-studio/studio test   # Run tests
 ```
 
 ## Stack
 
 - **Framework:** Next.js 15 (App Router)
 - **State:** Zustand
-- **Validation:** `@motif/review` (derived via `useReview` hook)
+- **Validation:** `@motif-studio/review` (derived via `useReview` hook)
 - **Testing:** Vitest + Testing Library + jsdom
 - **Styling:** CSS variables, dark theme (no CSS-in-JS)

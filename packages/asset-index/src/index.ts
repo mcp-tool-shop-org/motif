@@ -1,4 +1,4 @@
-// @motif/asset-index — indexing and integrity for soundtrack packs
+// @motif-studio/asset-index — indexing and integrity for soundtrack packs
 export * from "./types.js";
 export { buildPackIndex } from "./index-pack.js";
 export { auditPackIntegrity } from "./audit.js";

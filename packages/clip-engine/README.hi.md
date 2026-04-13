@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/clip-engine
+# @motif-studio/clip-engine
 
 साउंडवीव के लिए ऑडियो क्लिप अनुक्रमण, रचना और रूपांतरण इंजन।
 
@@ -33,7 +33,7 @@ import {
   resolveCuePlan,
   chordPalette,
   diatonicChords,
-} from "@motif/clip-engine";
+} from "@motif-studio/clip-engine";
 ```
 
 ### प्लेबैक
@@ -58,6 +58,6 @@ import {
 
 ## निर्भरताएं
 
-- `@motif/schema` — क्लिप, नोट्स, क्यू के लिए प्रकार।
-- `@motif/instrument-rack` — प्लेबैक के लिए वॉयस प्रबंधन।
-- `@motif/music-theory` — स्केल/कॉर्ड/मोटिफ प्रिमिटिव।
+- `@motif-studio/schema` — क्लिप, नोट्स, क्यू के लिए प्रकार।
+- `@motif-studio/instrument-rack` — प्लेबैक के लिए वॉयस प्रबंधन।
+- `@motif-studio/music-theory` — स्केल/कॉर्ड/मोटिफ प्रिमिटिव।

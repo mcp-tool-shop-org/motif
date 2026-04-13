@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/clip-engine
+# @motif-studio/clip-engine
 
 Motifのための、オーディオクリップのシーケンス、作曲、および変換エンジン。
 
@@ -33,7 +33,7 @@ import {
   resolveCuePlan,
   chordPalette,
   diatonicChords,
-} from "@motif/clip-engine";
+} from "@motif-studio/clip-engine";
 ```
 
 ### 再生
@@ -58,6 +58,6 @@ import {
 
 ## 依存関係
 
-- `@motif/schema`: クリップ、ノート、キューの型定義。
-- `@motif/instrument-rack`: 再生のためのボイス管理。
-- `@motif/music-theory`: スケール/コード/モチーフの基本要素。
+- `@motif-studio/schema`: クリップ、ノート、キューの型定義。
+- `@motif-studio/instrument-rack`: 再生のためのボイス管理。
+- `@motif-studio/music-theory`: スケール/コード/モチーフの基本要素。

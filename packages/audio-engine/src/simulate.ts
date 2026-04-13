@@ -1,5 +1,5 @@
-import type { SoundtrackPack, RuntimeMusicState } from "@motif/schema";
-import { resolveScene } from "@motif/scene-mapper";
+import type { SoundtrackPack, RuntimeMusicState } from "@motif-studio/schema";
+import { resolveScene } from "@motif-studio/scene-mapper";
 import type { SimulationStep, SimulationTrace } from "./types.js";
 import { resolveActiveLayers } from "./layers.js";
 import { findTransitionRule } from "./transitions.js";

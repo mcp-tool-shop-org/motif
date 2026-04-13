@@ -1,5 +1,5 @@
 {
-  "name": "@motif/clip-engine",
+  "name": "@motif-studio/clip-engine",
   "version": "1.2.0",
   "description": "Clip sequencing, transforms, and cue scheduling for Motif",
   "license": "MIT",
@@ -32,12 +32,12 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@motif/schema": "workspace:*",
-    "@motif/instrument-rack": "workspace:*",
-    "@motif/music-theory": "workspace:*"
+    "@motif-studio/schema": "workspace:*",
+    "@motif-studio/instrument-rack": "workspace:*",
+    "@motif-studio/music-theory": "workspace:*"
   },
   "devDependencies": {
-    "@motif/test-kit": "workspace:*",
+    "@motif-studio/test-kit": "workspace:*",
     "typescript": "^5.8.0",
     "vitest": "^3.2.0"
   }

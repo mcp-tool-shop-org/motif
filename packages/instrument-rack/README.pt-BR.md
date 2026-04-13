@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/instrument-rack
+# @motif-studio/instrument-rack
 
 Gerenciamento de vozes e instrumentos para Motif — sintetizadores, baterias e presets padrão.
 
@@ -30,7 +30,7 @@ import {
   getPresetsByCategory,
   midiToFreq,
   pitchToDrum,
-} from "@motif/instrument-rack";
+} from "@motif-studio/instrument-rack";
 ```
 
 - `InstrumentRack` — gerencia múltiplas vozes, roteamento e descarte.
@@ -41,4 +41,4 @@ import {
 
 ## Dependências:
 
-- `@motif/schema` — tipos para instrumentos, presets e vozes.
+- `@motif-studio/schema` — tipos para instrumentos, presets e vozes.

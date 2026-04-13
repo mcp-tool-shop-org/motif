@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/automation
+# @motif-studio/automation
 
 Motifの表現力を高めるための自動化機能：レーン、補間、マクロ、エンベロープ、そしてリアルタイムでのキャプチャ機能。
 
@@ -61,4 +61,4 @@ Motifの表現力を高めるための自動化機能：レーン、補間、マ
 
 ## 依存関係
 
-- `@motif/schema`：レーン、ターゲット、ポイント、マクロ、エンベロープ、キャプチャに関するデータ型。
+- `@motif-studio/schema`：レーン、ターゲット、ポイント、マクロ、エンベロープ、キャプチャに関するデータ型。

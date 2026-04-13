@@ -2,9 +2,9 @@
 // ClipPlayer — plays a single clip through the instrument rack
 // ────────────────────────────────────────────
 
-import type { Clip, ClipNote } from "@motif/schema";
-import type { InstrumentRack } from "@motif/instrument-rack";
-import type { Voice } from "@motif/instrument-rack";
+import type { Clip, ClipNote } from "@motif-studio/schema";
+import type { InstrumentRack } from "@motif-studio/instrument-rack";
+import type { Voice } from "@motif-studio/instrument-rack";
 import { scheduleNotes, clipLengthSeconds } from "./scheduler.js";
 import type { ClipPlaybackState } from "./types.js";
 

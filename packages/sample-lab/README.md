@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="400" alt="Motif">
 </p>
 
-# @motif/sample-lab
+# @motif-studio/sample-lab
 
 Trim, slice, kit, and instrument helpers for the Motif sample workflow.
 
@@ -50,10 +50,10 @@ Trim, slice, kit, and instrument helpers for the Motif sample workflow.
 
 ## What It Does Not Own
 
-- Audio file decoding or playback (see `@motif/audio-engine`)
+- Audio file decoding or playback (see `@motif-studio/audio-engine`)
 - Audio asset persistence or file I/O
 - UI components
 
 ## Dependencies
 
-- `@motif/schema` — types for assets, slices, kits, instruments
+- `@motif-studio/schema` — types for assets, slices, kits, instruments

@@ -1,7 +1,7 @@
 "use client";
 
 import { useStudioStore } from "../store";
-import type { Stem, StemRole } from "@motif/schema";
+import type { Stem, StemRole } from "@motif-studio/schema";
 
 const STEM_ROLES: StemRole[] = [
   "base",

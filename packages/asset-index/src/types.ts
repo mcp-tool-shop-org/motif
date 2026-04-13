@@ -1,4 +1,4 @@
-import type { AudioAsset, Stem, Scene, TriggerBinding, TransitionRule } from "@motif/schema";
+import type { AudioAsset, Stem, Scene, TriggerBinding, TransitionRule } from "@motif-studio/schema";
 
 // ── Pack index ──
 

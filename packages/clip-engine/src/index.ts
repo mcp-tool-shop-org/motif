@@ -1,5 +1,5 @@
 // ────────────────────────────────────────────
-// @motif/clip-engine — barrel exports
+// @motif-studio/clip-engine — barrel exports
 // ────────────────────────────────────────────
 
 export { ClipPlayer, resolveClipNotes } from "./clip-player.js";
@@ -9,7 +9,7 @@ export type { ScheduledNote } from "./scheduler.js";
 export type { ClipPlaybackHandle, ClipPlaybackState } from "./types.js";
 export { TICKS_PER_BEAT, TICKS_PER_16TH, TICKS_PER_8TH } from "./types.js";
 
-// Composition tools (wraps @motif/music-theory for Clip objects)
+// Composition tools (wraps @motif-studio/music-theory for Clip objects)
 export {
   clipKey,
   clipTranspose,

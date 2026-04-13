@@ -11,7 +11,7 @@ import {
   clearAutosaveTimer,
   clearAutosave,
 } from "../src/app/autosave";
-import type { SoundtrackPack } from "@motif/schema";
+import type { SoundtrackPack } from "@motif-studio/schema";
 
 const testPack: SoundtrackPack = {
   meta: { id: "test-pack", name: "Test Pack", version: "1.0.0", schemaVersion: "1" },

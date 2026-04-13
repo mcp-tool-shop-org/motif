@@ -1,4 +1,4 @@
-// @motif/runtime-pack — export/import soundtrack packs
+// @motif-studio/runtime-pack — export/import soundtrack packs
 export * from "./types.js";
 export * from "./schemas.js";
 export { exportRuntimePack } from "./export.js";

@@ -1,7 +1,7 @@
 "use client";
 
 import { useStudioStore } from "../store";
-import type { TriggerBinding, TriggerOp } from "@motif/schema";
+import type { TriggerBinding, TriggerOp } from "@motif-studio/schema";
 
 const TRIGGER_OPS: TriggerOp[] = [
   "eq",

@@ -1,4 +1,4 @@
-import type { SoundtrackPack } from "@motif/schema";
+import type { SoundtrackPack } from "@motif-studio/schema";
 import type { RuntimeSoundtrackPack } from "./types.js";
 import { exportRuntimePack } from "./export.js";
 import { parseRuntimePack } from "./parse.js";

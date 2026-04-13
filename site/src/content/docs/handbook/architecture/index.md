@@ -42,7 +42,7 @@ motif/
 
 ## Why a Monorepo
 
-- **Shared types**: The `@motif/schema` package defines all types. Every other package imports from it.
+- **Shared types**: The `@motif-studio/schema` package defines all types. Every other package imports from it.
 - **Atomic changes**: A schema change, a logic change, and a UI change can ship in one commit.
 - **Consistent tooling**: One ESLint config, one TypeScript base config, one test runner, one CI pipeline.
 - **Fast feedback**: `pnpm build && pnpm lint && pnpm test` validates everything.

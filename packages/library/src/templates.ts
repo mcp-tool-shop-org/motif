@@ -1,4 +1,4 @@
-import type { LibraryTemplate, LibraryEntityKind } from "@motif/schema";
+import type { LibraryTemplate, LibraryEntityKind } from "@motif-studio/schema";
 
 /** Create a library template from entity data. */
 export function createTemplate(

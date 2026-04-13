@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/sample-lab
+# @motif-studio/sample-lab
 
 साउंडवीव सैम्पल वर्कफ़्लो के लिए ट्रिमिंग, स्लाइसिंग, किट और इंस्ट्रूमेंट सहायक उपकरण।
 
@@ -50,10 +50,10 @@
 
 ## इसमें क्या शामिल नहीं है
 
-- ऑडियो फ़ाइल डिकोडिंग या प्लेबैक ( `@motif/audio-engine` देखें)
+- ऑडियो फ़ाइल डिकोडिंग या प्लेबैक ( `@motif-studio/audio-engine` देखें)
 - ऑडियो एसेट का परसिस्टेंस या फ़ाइल I/O
 - यूआई घटक
 
 ## निर्भरताएं
 
-- `@motif/schema` — एसेट, स्लाइस, किट, इंस्ट्रूमेंट के लिए प्रकार
+- `@motif-studio/schema` — एसेट, स्लाइस, किट, इंस्ट्रूमेंट के लिए प्रकार

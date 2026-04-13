@@ -1,4 +1,4 @@
-import type { AudioAsset } from "@motif/schema";
+import type { AudioAsset } from "@motif-studio/schema";
 
 // ── Trim region ──
 

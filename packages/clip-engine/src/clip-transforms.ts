@@ -1,10 +1,10 @@
 // ────────────────────────────────────────────
 // Clip-level composition tools
-// Wraps @motif/music-theory for Clip objects
+// Wraps @motif-studio/music-theory for Clip objects
 // ────────────────────────────────────────────
 
-import type { Clip, ClipNote, ClipVariant } from "@motif/schema";
-import type { Key, PitchClass, NoteEvent, Chord, ChordMarker, IntensityTier } from "@motif/music-theory";
+import type { Clip, ClipNote, ClipVariant } from "@motif-studio/schema";
+import type { Key, PitchClass, NoteEvent, Chord, ChordMarker, IntensityTier } from "@motif-studio/music-theory";
 import {
   transpose,
   transposeInKey,
@@ -32,7 +32,7 @@ import {
   progressionFromDegrees,
   chordPalette,
   diatonicChords,
-} from "@motif/music-theory";
+} from "@motif-studio/music-theory";
 
 // ── Clip ↔ NoteEvent bridge ──
 

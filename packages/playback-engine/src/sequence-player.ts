@@ -2,8 +2,8 @@
 // Sequence player — step through states audibly
 // ────────────────────────────────────────────
 
-import type { SoundtrackPack, RuntimeMusicState } from "@motif/schema";
-import { simulateStateSequence } from "@motif/audio-engine";
+import type { SoundtrackPack, RuntimeMusicState } from "@motif-studio/schema";
+import { simulateStateSequence } from "@motif-studio/audio-engine";
 import type {
   PlaybackListener,
   PlaybackEventType,

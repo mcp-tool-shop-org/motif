@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/sample-lab
+# @motif-studio/sample-lab
 
 Outils pour la manipulation, le découpage, la création de kits et l'instrumentation dans le flux de travail des échantillons Motif.
 
@@ -50,10 +50,10 @@ Outils pour la manipulation, le découpage, la création de kits et l'instrument
 
 ## Ce que cela n'inclut pas
 
-- Décodage ou lecture de fichiers audio (voir `@motif/audio-engine`).
+- Décodage ou lecture de fichiers audio (voir `@motif-studio/audio-engine`).
 - Persistance des ressources audio ou opérations d'entrée/sortie de fichiers.
 - Composants d'interface utilisateur.
 
 ## Dépendances
 
-- `@motif/schema` — Types pour les ressources, les découpages, les kits et les instruments.
+- `@motif-studio/schema` — Types pour les ressources, les découpages, les kits et les instruments.

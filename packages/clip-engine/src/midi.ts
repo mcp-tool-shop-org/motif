@@ -1,9 +1,9 @@
 // ────────────────────────────────────────────
-// @motif/clip-engine — MIDI import/export
+// @motif-studio/clip-engine — MIDI import/export
 // Standard MIDI File (SMF) parser and serializer
 // ────────────────────────────────────────────
 
-import type { ClipNote } from "@motif/schema";
+import type { ClipNote } from "@motif-studio/schema";
 import type { MidiFile, MidiTrack, MidiEvent } from "./midi-types.js";
 import { TICKS_PER_BEAT } from "./types.js";
 

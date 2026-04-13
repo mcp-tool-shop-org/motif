@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="200" alt="Motif">
 </p>
 
-# @motif/score-map
+# @motif-studio/score-map
 
 Logica di punteggio globale per Motif: famiglie di motivi, profili di punteggio, famiglie di segnali, voci della mappa globale e derivazioni.
 
@@ -54,10 +54,10 @@ Logica di punteggio globale per Motif: famiglie di motivi, profili di punteggio,
 ## Cosa non include
 
 - Riproduzione o rendering audio
-- Gestione di scene/tracce/binding (vedere `@motif/schema`)
-- Automazione (vedere `@motif/automation`)
+- Gestione di scene/tracce/binding (vedere `@motif-studio/schema`)
+- Automazione (vedere `@motif-studio/automation`)
 - Componenti dell'interfaccia utente
 
 ## Dipendenze
 
-- `@motif/schema` — tipi per motivi, profili, scene, famiglie di segnali, derivazioni
+- `@motif-studio/schema` — tipi per motivi, profili, scene, famiglie di segnali, derivazioni

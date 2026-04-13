@@ -5,7 +5,7 @@ import type {
   CueFamily,
   MotifFamily,
   SoundtrackPack,
-} from "@motif/schema";
+} from "@motif-studio/schema";
 
 /** Create a new score map entry. */
 export function createScoreMapEntry(

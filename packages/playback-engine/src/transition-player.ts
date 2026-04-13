@@ -4,8 +4,8 @@
 // Supports exponential + linear fade curves and stinger level control
 // ────────────────────────────────────────────
 
-import type { SoundtrackPack, TransitionRule } from "@motif/schema";
-import { findTransitionRule } from "@motif/audio-engine";
+import type { SoundtrackPack, TransitionRule } from "@motif-studio/schema";
+import { findTransitionRule } from "@motif-studio/audio-engine";
 import type { PlaybackListener } from "./types.js";
 import type { ScenePlayer } from "./scene-player.js";
 import type { AssetLoader } from "./loader.js";

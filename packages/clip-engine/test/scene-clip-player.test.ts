@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { filterByIntensity, sortByOrder } from "../src/scene-clip-player";
-import type { SceneClipRef } from "@motif/schema";
+import type { SceneClipRef } from "@motif-studio/schema";
 
 describe("filterByIntensity", () => {
   const layers: SceneClipRef[] = [

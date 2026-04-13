@@ -6,7 +6,7 @@
   <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/motif/readme.png" width="400" alt="Motif">
 </p>
 
-# @motif/audio-engine
+# @motif-studio/audio-engine
 
 Sample playback and voice management for Motif.
 
@@ -26,7 +26,7 @@ import {
   playSlice,
   playKitSlot,
   playSampleInstrumentNote,
-} from "@motif/audio-engine";
+} from "@motif-studio/audio-engine";
 ```
 
 - `playTrimmedRegion` — play an audio buffer within trim boundaries
@@ -36,10 +36,10 @@ import {
 
 ## What It Does Not Own
 
-- Scene orchestration and mixing (handled by `@motif/playback-engine`)
+- Scene orchestration and mixing (handled by `@motif-studio/playback-engine`)
 - Audio file decoding (browser AudioContext handles this)
-- Clip/cue composition (handled by `@motif/clip-engine`)
+- Clip/cue composition (handled by `@motif-studio/clip-engine`)
 
 ## Dependencies
 
-- `@motif/schema` — types for assets, slices, kits, instruments
+- `@motif-studio/schema` — types for assets, slices, kits, instruments

@@ -1,4 +1,4 @@
-import type { SampleKit, SampleKitSlot, SampleSlice } from "@motif/schema";
+import type { SampleKit, SampleKitSlot, SampleSlice } from "@motif-studio/schema";
 
 /** Create a new empty kit. */
 export function createKit(id: string, name: string): SampleKit {

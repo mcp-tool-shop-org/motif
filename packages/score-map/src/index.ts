@@ -1,4 +1,4 @@
-// @motif/score-map — world scoring, motif families, profiles, cue families, derivation
+// @motif-studio/score-map — world scoring, motif families, profiles, cue families, derivation
 export * from "./motif.js";
 export * from "./profile.js";
 export * from "./cue-family.js";

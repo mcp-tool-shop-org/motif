@@ -2,7 +2,7 @@
 // Transport — top-level orchestrator for playback
 // ────────────────────────────────────────────
 
-import type { SoundtrackPack, RuntimeMusicState, Cue, PerformanceCaptureEvent, PerformanceCapture } from "@motif/schema";
+import type { SoundtrackPack, RuntimeMusicState, Cue, PerformanceCaptureEvent, PerformanceCapture } from "@motif-studio/schema";
 import type {
   TransportState,
   PlaybackSnapshot,

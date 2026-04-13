@@ -9,7 +9,7 @@ import type {
   PerformanceCapture,
   IntensityLevel,
   CaptureActionType,
-} from "@motif/schema";
+} from "@motif-studio/schema";
 import { TICKS_PER_BEAT } from "./types.js";
 
 // ── Resolved plan types ──
