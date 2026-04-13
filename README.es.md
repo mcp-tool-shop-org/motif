@@ -18,11 +18,11 @@ Estudio de composición de música adaptativa para crear, organizar, componer y 
 
 ## ¿Qué es?
 
-Motif es una estación de trabajo centrada en la composición y adaptabilidad. Combina la creación musical estructurada (clips, indicaciones, escenas, capas, automatización) con una lógica adaptativa que responde al estado del juego en tiempo real. El resultado: música para videojuegos que suena intencional, no generada aleatoriamente.
+Motif es una estación de trabajo centrada en la composición, que también tiene en cuenta la adaptación. Combina la creación musical estructurada (clips, indicaciones, escenas, capas, automatización) con una lógica adaptativa que responde al estado del juego en tiempo real. El resultado: música para videojuegos que parece intencional, no generada.
 
 ## ¿Qué no es?
 
-Un DAW (Digital Audio Workstation). Un secuenciador básico. Un generador de música con inteligencia artificial. Una base de datos de elementos para la creación de mundos con sonido adjunto. Motif es una herramienta creativa seria para la composición de música adaptativa para videojuegos.
+Un DAW (Digital Audio Workstation). Un secuenciador simple. Un generador de música con inteligencia artificial. Una base de datos de creación de mundos con sonido adjunto. Motif es un instrumento creativo para la composición de música adaptativa para videojuegos.
 
 ## ¿Qué puede hacer?
 
@@ -33,14 +33,14 @@ Un DAW (Digital Audio Workstation). Un secuenciador básico. Un generador de mú
 - **Mezclar y aplicar efectos:** 8 tipos de efectos (ecualizador, delay, reverb, compresor, chorus, distorsión, phaser, limitador); 4 ranuras de efectos insertables por capa.
 - **Crear un mundo:** Familias de motivos, perfiles de composición, familias de indicaciones, entradas de mapa del mundo, derivación.
 - **Automatizar:** Pistas, macros, envolventes, captura en vivo y combinación.
-- **Recordar y reutilizar:** Plantillas, instantáneas, ramas, favoritos, colecciones, comparación.
+- **Recordar y reutilizar:** Plantillas, instantáneas, ramas, favoritos, colecciones, comparar.
 - **MIDI:** Importar/exportar archivos MIDI estándar.
 - **Lógica adaptativa:** Enlaces de activación, transiciones, resolución de escenas determinista.
 - **Reproducir:** Previsualización de clips en tiempo real, prueba con un solo clic, metrónomo con clics programados en AudioContext.
-- **Validar:** Validación de esquema, auditoría de integridad, comprobaciones de referencias cruzadas.
+- **Validar:** Validación de esquema, auditoría de integridad, comprobaciones de referencia cruzada.
 - **Exportar:** WAV de 24/32 bits a 44.1/48/96 kHz; paquetes de tiempo de ejecución para su uso en motores de juego.
 - **Crear:** Deshacer/rehacer (hasta 50 niveles, Ctrl+Z), guardar/cargar proyectos con autoguardado, atajos de teclado (Espacio=reproducir, ?=ayuda), BPM y compás globales.
-- **Fiabilidad:** Manejo de errores con recuperación, programación anticipada de AudioContext para una sincronización precisa.
+- **Fiabilidad:** Límite de errores con recuperación gradual, programación anticipada de AudioContext para una sincronización precisa.
 
 ## Estructura de Monorepo
 
@@ -48,17 +48,16 @@ Un DAW (Digital Audio Workstation). Un secuenciador básico. Un generador de mú
 
 | Aplicación | Descripción |
 |-----|-------------|
-| [`apps/studio`](apps/studio) | Interfaz de usuario principal de creación (Next.js 15, Zustand 5). |
-| [`apps/docs`](apps/docs) | Sitio de documentación (Astro). |
+| [`apps/studio`](apps/studio) | Interfaz de usuario principal de creación (Next.js, Zustand 5). |
 
 ### Paquetes principales
 
 | Paquete | Descripción |
 |---------|-------------|
-| [`@motif/schema`](packages/schema) | Tipos canónicos, esquemas Zod, parse/validate. |
+| [`@motif/schema`](packages/schema) | Tipos canónicos, esquemas Zod, parse/validar. |
 | [`@motif/asset-index`](packages/asset-index) | Indexación y auditoría de la integridad de los paquetes. |
 | [`@motif/audio-engine`](packages/audio-engine) | Reproducción de muestras, gestión de voces, programación de AudioContext. |
-| [`@motif/test-kit`](packages/test-kit) | Herramientas de prueba y configuración. |
+| [`@motif/test-kit`](packages/test-kit) | Herramientas de prueba y utilidades. |
 
 ### Composición y reproducción
 
@@ -68,10 +67,10 @@ Un DAW (Digital Audio Workstation). Un secuenciador básico. Un generador de mú
 | [`@motif/instrument-rack`](packages/instrument-rack) | Sintetizador con múltiples osciladores, voz de batería, voz de muestra, modulación LFO, 16 presets. |
 | [`@motif/music-theory`](packages/music-theory) | Escalas, acordes, motivos, transformaciones de intensidad. |
 | [`@motif/playback-engine`](packages/playback-engine) | Reproducción en tiempo real, mezcla, 8 tipos de efectos, E/S MIDI, exportación WAV (24/32 bits). |
-| [`@motif/sample-lab`](packages/sample-lab) | Recortar, dividir, kit, herramientas de instrumentos. |
+| [`@motif/sample-lab`](packages/sample-lab) | Recortar, dividir, kit, asistentes de instrumentos. |
 | [`@motif/score-map`](packages/score-map) | Motivos, perfiles, familias de indicaciones, derivación. |
 | [`@motif/automation`](packages/automation) | Pistas, macros, envolventes, captura. |
-| [`@motif/library`](packages/library) | Plantillas, instantáneas, ramas, favoritos, comparación. |
+| [`@motif/library`](packages/library) | Plantillas, instantáneas, ramas, favoritos, comparar. |
 
 ### Infraestructura
 
@@ -79,7 +78,7 @@ Un DAW (Digital Audio Workstation). Un secuenciador básico. Un generador de mú
 |---------|-------------|
 | [`@motif/scene-mapper`](packages/scene-mapper) | Mapeo de activadores y evaluación determinista de enlaces. |
 | [`@motif/runtime-pack`](packages/runtime-pack) | Exportación/importación en tiempo de ejecución con serialización determinista. |
-| [`@motif/review`](packages/review) | Resúmenes y herramientas de auditoría. |
+| [`@motif/review`](packages/review) | Resúmenes y asistentes de auditoría. |
 | [`@motif/ui`](packages/ui) | Componentes de interfaz de usuario compartidos. |
 
 ## Instalación
@@ -90,12 +89,12 @@ npm install @motif/schema @motif/clip-engine @motif/runtime-pack
 
 Todos los paquetes se publican en npm bajo el alcance `@motif`.
 
-## Inicio rápido (monorepo)
+## Comienzo rápido (monorepo)
 
 ```bash
 pnpm install
 pnpm build
-pnpm test       # 1,002 tests across all packages
+pnpm test       # 1,116 tests across all packages
 pnpm dev        # Start Studio dev server
 ```
 
@@ -103,7 +102,7 @@ pnpm dev        # Start Studio dev server
 
 ## Pruebas
 
-Los 16 paquetes incluyen pruebas unitarias que cubren la validación del esquema, la auditoría de integridad, operaciones de ejemplo, la asignación de puntuaciones a los elementos del mundo, la automatización, la gestión de bibliotecas, la reproducción, la síntesis, los efectos, el MIDI y la integración con el estudio. Hay 1002 pruebas en total, distribuidas entre todos los paquetes.
+Los 16 paquetes incluyen pruebas unitarias que cubren la validación del esquema, la auditoría de integridad, operaciones de ejemplo, puntuación mundial, automatización, gestión de bibliotecas, reproducción, síntesis, efectos, MIDI e integración con el estudio. Hay 1116 pruebas en total, distribuidas entre todos los paquetes.
 
 Para ejecutar todas las pruebas: `pnpm test`
 
@@ -113,9 +112,9 @@ El [manual de usuario](https://mcp-tool-shop-org.github.io/motif/handbook/produc
 
 - [Producto: ¿Qué es Motif?](https://mcp-tool-shop-org.github.io/motif/handbook/product/)
 - [Arquitectura: Descripción general del repositorio](https://mcp-tool-shop-org.github.io/motif/handbook/architecture/)
-- [Flujo de trabajo: Creación de un elemento desde cero](https://mcp-tool-shop-org.github.io/motif/handbook/workflows/building-a-cue/)
+- [Flujo de trabajo: Creación de una pista desde cero](https://mcp-tool-shop-org.github.io/motif/handbook/workflows/building-a-cue/)
 - [Flujo de trabajo: Trabajo con muestras personalizadas](https://mcp-tool-shop-org.github.io/motif/handbook/workflows/custom-samples/)
-- [Flujo de trabajo: Asignación de puntuaciones a los elementos del mundo](https://mcp-tool-shop-org.github.io/motif/handbook/workflows/world-scoring/)
+- [Flujo de trabajo: Puntuación mundial](https://mcp-tool-shop-org.github.io/motif/handbook/workflows/world-scoring/)
 - [Estrategia: Glosario](https://mcp-tool-shop-org.github.io/motif/handbook/strategy/glossary/)
 - [Paquetes de ejemplo](examples/)
 
