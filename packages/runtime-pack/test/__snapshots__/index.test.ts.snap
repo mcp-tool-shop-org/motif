@@ -130,7 +130,7 @@ exports[`exportRuntimePack > produces expected runtime shape snapshot from start
     },
   ],
   "meta": {
-    "author": "soundweave",
+    "author": "motif",
     "description": "A basic exploration and combat soundtrack pack.",
     "id": "starter-pack",
     "name": "Starter Adventure Pack",
@@ -306,7 +306,7 @@ exports[`serializeRuntimePack > snapshot: serialized starter pack 1`] = `
     "version": "1.0.0",
     "schemaVersion": "1",
     "description": "A basic exploration and combat soundtrack pack.",
-    "author": "soundweave",
+    "author": "motif",
     "tags": [
       "starter",
       "rpg"
