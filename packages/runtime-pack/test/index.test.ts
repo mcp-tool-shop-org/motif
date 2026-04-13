@@ -249,16 +249,63 @@ describe("validateRuntimePack", () => {
 });
 
 // ────────────────────────────────────────────
+// AE-FT003: Audio format metadata
+// ────────────────────────────────────────────
+
+describe("audio format metadata", () => {
+  it("populates codec from .ogg file extension", () => {
+    const pack = loadPack(FIXTURES.STARTER_PACK);
+    const rt = exportRuntimePack(pack);
+    const oggAsset = rt.assets.find((a) => a.src.endsWith(".ogg"));
+    expect(oggAsset).toBeDefined();
+    expect(oggAsset!.codec).toBe("ogg");
+  });
+
+  it("populates codec from .wav file extension", () => {
+    const pack = loadPack(FIXTURES.STARTER_PACK);
+    // Mutate a source asset to have a .wav extension for testing
+    const mutated = JSON.parse(JSON.stringify(pack)) as SoundtrackPack;
+    mutated.assets[0].src = "audio/test-file.wav";
+    const rt = exportRuntimePack(mutated);
+    expect(rt.assets[0].codec).toBe("wav");
+  });
+
+  it("populates codec from .mp3 file extension", () => {
+    const pack = loadPack(FIXTURES.STARTER_PACK);
+    const mutated = JSON.parse(JSON.stringify(pack)) as SoundtrackPack;
+    mutated.assets[0].src = "audio/test-file.mp3";
+    const rt = exportRuntimePack(mutated);
+    expect(rt.assets[0].codec).toBe("mp3");
+  });
+
+  it("populates codec from .flac file extension", () => {
+    const pack = loadPack(FIXTURES.STARTER_PACK);
+    const mutated = JSON.parse(JSON.stringify(pack)) as SoundtrackPack;
+    mutated.assets[0].src = "audio/test-file.flac";
+    const rt = exportRuntimePack(mutated);
+    expect(rt.assets[0].codec).toBe("flac");
+  });
+
+  it("omits codec for unknown file extensions", () => {
+    const pack = loadPack(FIXTURES.STARTER_PACK);
+    const mutated = JSON.parse(JSON.stringify(pack)) as SoundtrackPack;
+    mutated.assets[0].src = "audio/test-file.aac";
+    const rt = exportRuntimePack(mutated);
+    expect(rt.assets[0].codec).toBeUndefined();
+  });
+});
+
+// ────────────────────────────────────────────
 // serializeRuntimePack
 // ────────────────────────────────────────────
 
 describe("serializeRuntimePack", () => {
-  it("produces deterministic output", () => {
+  it("produces deterministic contentHash across runs", () => {
     const pack = loadPack(FIXTURES.STARTER_PACK);
     const rt = exportRuntimePack(pack);
-    const a = serializeRuntimePack(rt);
-    const b = serializeRuntimePack(rt);
-    expect(a).toBe(b);
+    const a = JSON.parse(serializeRuntimePack(rt));
+    const b = JSON.parse(serializeRuntimePack(rt));
+    expect(a.meta.contentHash).toBe(b.meta.contentHash);
   });
 
   it("output is valid JSON that round-trips through JSON.parse", () => {
@@ -284,11 +331,46 @@ describe("serializeRuntimePack", () => {
     expect(json.endsWith("\n")).toBe(true);
   });
 
-  it("snapshot: serialized starter pack", () => {
+  it("snapshot: serialized starter pack (without volatile stamps)", () => {
     const pack = loadPack(FIXTURES.STARTER_PACK);
     const rt = exportRuntimePack(pack);
     const json = serializeRuntimePack(rt);
-    expect(json).toMatchSnapshot();
+    const parsed = JSON.parse(json);
+    // Strip volatile fields so snapshot is deterministic
+    delete parsed.meta.exportedAt;
+    expect(parsed).toMatchSnapshot();
+  });
+
+  it("contentHash is a non-empty hex string", () => {
+    const pack = loadPack(FIXTURES.STARTER_PACK);
+    const rt = exportRuntimePack(pack);
+    const json = serializeRuntimePack(rt);
+    const parsed = JSON.parse(json);
+    expect(parsed.meta.contentHash).toBeDefined();
+    expect(typeof parsed.meta.contentHash).toBe("string");
+    expect(parsed.meta.contentHash.length).toBeGreaterThan(0);
+    expect(parsed.meta.contentHash).toMatch(/^[0-9a-f]+$/);
+  });
+
+  it("exportedAt is a valid ISO timestamp", () => {
+    const pack = loadPack(FIXTURES.STARTER_PACK);
+    const rt = exportRuntimePack(pack);
+    const json = serializeRuntimePack(rt);
+    const parsed = JSON.parse(json);
+    expect(parsed.meta.exportedAt).toBeDefined();
+    expect(typeof parsed.meta.exportedAt).toBe("string");
+    const date = new Date(parsed.meta.exportedAt);
+    expect(date.toISOString()).toBe(parsed.meta.exportedAt);
+  });
+
+  it("contentHash is stable for same content", () => {
+    const pack = loadPack(FIXTURES.STARTER_PACK);
+    const rt = exportRuntimePack(pack);
+    const jsonA = serializeRuntimePack(rt);
+    const jsonB = serializeRuntimePack(rt);
+    const hashA = JSON.parse(jsonA).meta.contentHash;
+    const hashB = JSON.parse(jsonB).meta.contentHash;
+    expect(hashA).toBe(hashB);
   });
 });
 
@@ -297,23 +379,31 @@ describe("serializeRuntimePack", () => {
 // ────────────────────────────────────────────
 
 describe("roundTripRuntimePack", () => {
-  it("export → serialize → parse yields equivalent runtime pack", () => {
+  it("export → serialize → parse preserves all non-stamp fields", () => {
     const pack = loadPack(FIXTURES.STARTER_PACK);
     const { exported, parsed } = roundTripRuntimePack(pack);
-    expect(parsed).toEqual(exported);
+    // parsed includes contentHash + exportedAt stamps from serialization;
+    // strip them for structural comparison against the raw export
+    const { contentHash: _ch, exportedAt: _ea, ...parsedMetaRest } = parsed.meta;
+    const parsedWithoutStamps = { ...parsed, meta: parsedMetaRest };
+    expect(parsedWithoutStamps).toEqual(exported);
   });
 
   it("minimal pack round-trips cleanly", () => {
     const pack = loadPack(FIXTURES.MINIMAL_PACK);
     const { exported, parsed } = roundTripRuntimePack(pack);
-    expect(parsed).toEqual(exported);
+    const { contentHash: _ch, exportedAt: _ea, ...parsedMetaRest } = parsed.meta;
+    const parsedWithoutStamps = { ...parsed, meta: parsedMetaRest };
+    expect(parsedWithoutStamps).toEqual(exported);
   });
 
-  it("multiple runs produce identical serialized JSON", () => {
+  it("multiple runs produce identical contentHash", () => {
     const pack = loadPack(FIXTURES.STARTER_PACK);
     const a = roundTripRuntimePack(pack);
     const b = roundTripRuntimePack(pack);
-    expect(a.serialized).toBe(b.serialized);
+    const hashA = JSON.parse(a.serialized).meta.contentHash;
+    const hashB = JSON.parse(b.serialized).meta.contentHash;
+    expect(hashA).toBe(hashB);
   });
 
   it("parsed pack validates successfully", () => {

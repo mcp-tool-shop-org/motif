@@ -37,7 +37,8 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 
   render() {
     if (this.state.hasError) {
-      const message = this.state.error?.message ?? "An unexpected error occurred.";
+      const rawMessage = this.state.error?.message ?? "An unexpected error occurred.";
+      const message = rawMessage.length > 200 ? rawMessage.slice(0, 200) + "\u2026" : rawMessage;
       return (
         <div
           className="error-boundary-fallback"

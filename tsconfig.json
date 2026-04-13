@@ -9,6 +9,14 @@
     { "path": "packages/review" },
     { "path": "packages/ui" },
     { "path": "packages/test-kit" },
+    { "path": "packages/automation" },
+    { "path": "packages/clip-engine" },
+    { "path": "packages/instrument-rack" },
+    { "path": "packages/library" },
+    { "path": "packages/music-theory" },
+    { "path": "packages/playback-engine" },
+    { "path": "packages/sample-lab" },
+    { "path": "packages/score-map" },
     { "path": "apps/studio" },
     { "path": "apps/docs" }
   ]

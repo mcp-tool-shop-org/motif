@@ -22,6 +22,16 @@ export function AssetsScreen() {
   const addAsset = useStudioStore((s) => s.addAsset);
   const updateAsset = useStudioStore((s) => s.updateAsset);
   const deleteAsset = useStudioStore((s) => s.deleteAsset);
+  const searchQuery = useStudioStore((s) => s.assetSearchQuery);
+  const setAssetSearch = useStudioStore((s) => s.setAssetSearch);
+
+  const filteredAssets = assets
+    .filter((a) => {
+      if (!searchQuery) return true;
+      const q = searchQuery.toLowerCase();
+      return (a.name || a.id).toLowerCase().includes(q);
+    })
+    .sort((a, b) => (a.name || a.id).localeCompare(b.name || b.id));
 
   const selected = assets.find((a) => a.id === selectedId) ?? null;
 
@@ -42,21 +52,40 @@ export function AssetsScreen() {
           {/* List */}
           <div className="entity-list">
             <div className="entity-list-header">
-              <span>Assets ({assets.length})</span>
+              <span>Assets ({filteredAssets.length})</span>
               <button className="btn btn-sm btn-primary" onClick={handleAdd}>
                 + Add
               </button>
             </div>
+            <input
+              type="text"
+              placeholder="Search assets..."
+              value={searchQuery}
+              onChange={(e) => setAssetSearch(e.target.value)}
+              style={{
+                background: "#2a2a2a",
+                border: "1px solid #444",
+                color: "#eee",
+                padding: "6px 10px",
+                borderRadius: 4,
+                width: "100%",
+                marginBottom: 4,
+                boxSizing: "border-box",
+                outline: "none",
+              }}
+            />
             <div className="entity-list-items">
-              {assets.length === 0 && (
+              {filteredAssets.length === 0 && (
                 <div className="empty-state">
-                  <p>No assets yet. Add audio files to build your sound palette.</p>
-                  <button className="btn btn-primary" onClick={handleAdd}>
-                    Add first asset
-                  </button>
+                  <p>{assets.length === 0 ? "No assets yet. Add audio files to build your sound palette." : "No assets match your search."}</p>
+                  {assets.length === 0 && (
+                    <button className="btn btn-primary" onClick={handleAdd}>
+                      Add first asset
+                    </button>
+                  )}
                 </div>
               )}
-              {assets.map((a) => (
+              {filteredAssets.map((a) => (
                 <button
                   key={a.id}
                   className={`entity-list-item ${selectedId === a.id ? "selected" : ""}`}

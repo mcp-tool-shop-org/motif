@@ -317,11 +317,17 @@ export class Mixer {
     }
   }
 
-  /** Get a snapshot of the current mixer state */
+  /**
+   * Get a snapshot of the current mixer state.
+   *
+   * **Important:** Stem-level `gainDb`, `muted`, and `solo` values are defaults
+   * (0, false, false), **not live state**. The mixer does not hold a reference to
+   * the ScenePlayer, so it cannot read the authoritative per-stem gain, mute, or
+   * solo values that live on `ScenePlayer.stemHandles`. Consumers that need live
+   * stem state should read it directly from `ScenePlayer.stemHandles` and merge
+   * it with this snapshot.
+   */
   getSnapshot(): MixerSnapshot {
-    // TODO: gainDb, muted, and solo live on ScenePlayer's StemHandle, not the mixer.
-    // getSnapshot() returns defaults (gainDb: 0, muted: false, solo: false) for all stems.
-    // To provide accurate values, the mixer would need a reference to the scene player's handles.
     const stems: StemMixState[] = [];
     for (const route of this.stemRoutes.values()) {
       stems.push({

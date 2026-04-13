@@ -41,7 +41,7 @@ export const config: SiteConfig = {
       subtitle: 'Author in Studio, export for your game engine.',
       features: [
         { title: 'Adaptive Logic', desc: 'Trigger bindings, transitions, and deterministic scene resolution — music responds to game state predictably.' },
-        { title: '1,002 Tests', desc: 'Schema validation, synthesis, effects, MIDI, sample operations, world scoring, automation, library management — all tested.' },
+        { title: '1,116 Tests', desc: 'Schema validation, synthesis, effects, MIDI, sample operations, world scoring, automation, library management — all tested.' },
         { title: 'Zero Network', desc: 'Runs entirely in the browser. No server, no cloud sync, no telemetry. Your music stays local.' },
       ],
     },

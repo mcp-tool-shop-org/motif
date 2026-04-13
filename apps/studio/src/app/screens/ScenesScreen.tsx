@@ -45,6 +45,16 @@ export function ScenesScreen() {
   const addSceneClipLayer = useStudioStore((s) => s.addSceneClipLayer);
   const updateSceneClipLayer = useStudioStore((s) => s.updateSceneClipLayer);
   const removeSceneClipLayer = useStudioStore((s) => s.removeSceneClipLayer);
+  const searchQuery = useStudioStore((s) => s.sceneSearchQuery);
+  const setSceneSearch = useStudioStore((s) => s.setSceneSearch);
+
+  const filteredScenes = scenes
+    .filter((s) => {
+      if (!searchQuery) return true;
+      const q = searchQuery.toLowerCase();
+      return (s.name || s.id).toLowerCase().includes(q);
+    })
+    .sort((a, b) => (a.name || a.id).localeCompare(b.name || b.id));
 
   const selected = scenes.find((s) => s.id === selectedId) ?? null;
 
@@ -65,21 +75,40 @@ export function ScenesScreen() {
           {/* List */}
           <div className="entity-list">
             <div className="entity-list-header">
-              <span>Scenes ({scenes.length})</span>
+              <span>Scenes ({filteredScenes.length})</span>
               <button className="btn btn-sm btn-primary" onClick={handleAdd}>
                 + Add
               </button>
             </div>
+            <input
+              type="text"
+              placeholder="Search scenes..."
+              value={searchQuery}
+              onChange={(e) => setSceneSearch(e.target.value)}
+              style={{
+                background: "#2a2a2a",
+                border: "1px solid #444",
+                color: "#eee",
+                padding: "6px 10px",
+                borderRadius: 4,
+                width: "100%",
+                marginBottom: 4,
+                boxSizing: "border-box",
+                outline: "none",
+              }}
+            />
             <div className="entity-list-items">
-              {scenes.length === 0 && (
+              {filteredScenes.length === 0 && (
                 <div className="empty-state">
-                  <p>No scenes yet. Add your first scene to start building your soundtrack.</p>
-                  <button className="btn btn-primary" onClick={handleAdd}>
-                    Add first scene
-                  </button>
+                  <p>{scenes.length === 0 ? "No scenes yet. Add your first scene to start building your soundtrack." : "No scenes match your search."}</p>
+                  {scenes.length === 0 && (
+                    <button className="btn btn-primary" onClick={handleAdd}>
+                      Add first scene
+                    </button>
+                  )}
                 </div>
               )}
-              {scenes.map((s) => (
+              {filteredScenes.map((s) => (
                 <button
                   key={s.id}
                   className={`entity-list-item ${selectedId === s.id ? "selected" : ""}`}
@@ -302,15 +331,16 @@ export function ScenesScreen() {
                     </div>
                   )}
                   {[...(selected.clipLayers ?? [])]
-                    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
-                    .map((ref, i) => {
+                    .map((ref, originalIndex) => ({ ref, originalIndex }))
+                    .sort((a, b) => (a.ref.order ?? 0) - (b.ref.order ?? 0))
+                    .map(({ ref, originalIndex }) => {
                     const clipMissing =
                       ref.clipId !== "" &&
                       !clips.some((c) => c.id === ref.clipId);
                     const selectedClip = clips.find((c) => c.id === ref.clipId);
                     const variants = selectedClip?.variants ?? [];
                     return (
-                      <div key={i} className="sub-list-item">
+                      <div key={originalIndex} className="sub-list-item">
                         <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 6 }}>
                           <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
                             <input
@@ -320,7 +350,7 @@ export function ScenesScreen() {
                               title="Order"
                               value={ref.order ?? 0}
                               onChange={(e) =>
-                                updateSceneClipLayer(selected.id, i, {
+                                updateSceneClipLayer(selected.id, originalIndex, {
                                   order: Number(e.target.value) || 0,
                                 })
                               }
@@ -330,7 +360,7 @@ export function ScenesScreen() {
                               style={{ flex: 1 }}
                               value={ref.clipId}
                               onChange={(e) =>
-                                updateSceneClipLayer(selected.id, i, {
+                                updateSceneClipLayer(selected.id, originalIndex, {
                                   clipId: e.target.value,
                                 })
                               }
@@ -345,7 +375,7 @@ export function ScenesScreen() {
                             <button
                               className="btn btn-sm btn-danger"
                               onClick={() =>
-                                removeSceneClipLayer(selected.id, i)
+                                removeSceneClipLayer(selected.id, originalIndex)
                               }
                             >
                               ×
@@ -358,7 +388,7 @@ export function ScenesScreen() {
                               title="Section"
                               value={ref.sectionRole ?? "loop"}
                               onChange={(e) =>
-                                updateSceneClipLayer(selected.id, i, {
+                                updateSceneClipLayer(selected.id, originalIndex, {
                                   sectionRole: e.target.value as SectionRole,
                                 })
                               }
@@ -375,7 +405,7 @@ export function ScenesScreen() {
                               title="Intensity"
                               value={ref.intensity ?? "low"}
                               onChange={(e) =>
-                                updateSceneClipLayer(selected.id, i, {
+                                updateSceneClipLayer(selected.id, originalIndex, {
                                   intensity: e.target.value as IntensityLevel,
                                 })
                               }
@@ -393,7 +423,7 @@ export function ScenesScreen() {
                                 title="Variant"
                                 value={ref.variantId ?? ""}
                                 onChange={(e) =>
-                                  updateSceneClipLayer(selected.id, i, {
+                                  updateSceneClipLayer(selected.id, originalIndex, {
                                     variantId: e.target.value || undefined,
                                   })
                                 }
@@ -411,7 +441,7 @@ export function ScenesScreen() {
                                 type="checkbox"
                                 checked={ref.mutedByDefault ?? false}
                                 onChange={(e) =>
-                                  updateSceneClipLayer(selected.id, i, {
+                                  updateSceneClipLayer(selected.id, originalIndex, {
                                     mutedByDefault: e.target.checked || undefined,
                                   })
                                 }

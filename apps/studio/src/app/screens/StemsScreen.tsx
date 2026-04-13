@@ -32,6 +32,16 @@ export function StemsScreen() {
   const addStem = useStudioStore((s) => s.addStem);
   const updateStem = useStudioStore((s) => s.updateStem);
   const deleteStem = useStudioStore((s) => s.deleteStem);
+  const searchQuery = useStudioStore((s) => s.stemSearchQuery);
+  const setStemSearch = useStudioStore((s) => s.setStemSearch);
+
+  const filteredStems = stems
+    .filter((s) => {
+      if (!searchQuery) return true;
+      const q = searchQuery.toLowerCase();
+      return (s.name || s.id).toLowerCase().includes(q);
+    })
+    .sort((a, b) => (a.name || a.id).localeCompare(b.name || b.id));
 
   const selected = stems.find((s) => s.id === selectedId) ?? null;
   const assetMissing =
@@ -54,21 +64,40 @@ export function StemsScreen() {
           {/* List */}
           <div className="entity-list">
             <div className="entity-list-header">
-              <span>Stems ({stems.length})</span>
+              <span>Stems ({filteredStems.length})</span>
               <button className="btn btn-sm btn-primary" onClick={handleAdd}>
                 + Add
               </button>
             </div>
+            <input
+              type="text"
+              placeholder="Search stems..."
+              value={searchQuery}
+              onChange={(e) => setStemSearch(e.target.value)}
+              style={{
+                background: "#2a2a2a",
+                border: "1px solid #444",
+                color: "#eee",
+                padding: "6px 10px",
+                borderRadius: 4,
+                width: "100%",
+                marginBottom: 4,
+                boxSizing: "border-box",
+                outline: "none",
+              }}
+            />
             <div className="entity-list-items">
-              {stems.length === 0 && (
+              {filteredStems.length === 0 && (
                 <div className="empty-state">
-                  <p>No stems yet. Create stems to layer your audio assets into scenes.</p>
-                  <button className="btn btn-primary" onClick={handleAdd}>
-                    Add first stem
-                  </button>
+                  <p>{stems.length === 0 ? "No stems yet. Create stems to layer your audio assets into scenes." : "No stems match your search."}</p>
+                  {stems.length === 0 && (
+                    <button className="btn btn-primary" onClick={handleAdd}>
+                      Add first stem
+                    </button>
+                  )}
                 </div>
               )}
-              {stems.map((s) => (
+              {filteredStems.map((s) => (
                 <button
                   key={s.id}
                   className={`entity-list-item ${selectedId === s.id ? "selected" : ""}`}

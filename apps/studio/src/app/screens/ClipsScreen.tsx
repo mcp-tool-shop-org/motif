@@ -75,6 +75,8 @@ export function ClipsScreen() {
   const duplicateClipAsVariant = useStudioStore((s) => s.duplicateClipAsVariant);
   const addClipVariant = useStudioStore((s) => s.addClipVariant);
   const globalBpm = useStudioStore((s) => s.globalBpm);
+  const searchQuery = useStudioStore((s) => s.clipSearchQuery);
+  const setClipSearch = useStudioStore((s) => s.setClipSearch);
 
   // Clip preview
   const previewClip = usePlaybackStore((s) => s.previewClip);
@@ -88,6 +90,14 @@ export function ClipsScreen() {
     el.style.borderColor = "#d4a017";
     setTimeout(() => { el.style.borderColor = ""; }, 600);
   }, []);
+
+  const filteredClips = clips
+    .filter((c) => {
+      if (!searchQuery) return true;
+      const q = searchQuery.toLowerCase();
+      return (c.name || c.id).toLowerCase().includes(q);
+    })
+    .sort((a, b) => (a.name || a.id).localeCompare(b.name || b.id));
 
   const selected = clips.find((c) => c.id === selectedId) ?? null;
   const key: Key | null = selected ? clipKey(selected) : null;
@@ -111,21 +121,40 @@ export function ClipsScreen() {
           {/* List */}
           <div className="entity-list">
             <div className="entity-list-header">
-              <span>Clips ({clips.length})</span>
+              <span>Clips ({filteredClips.length})</span>
               <button className="btn btn-sm btn-primary" onClick={handleAdd}>
                 + Add
               </button>
             </div>
+            <input
+              type="text"
+              placeholder="Search clips..."
+              value={searchQuery}
+              onChange={(e) => setClipSearch(e.target.value)}
+              style={{
+                background: "#2a2a2a",
+                border: "1px solid #444",
+                color: "#eee",
+                padding: "6px 10px",
+                borderRadius: 4,
+                width: "100%",
+                marginBottom: 4,
+                boxSizing: "border-box",
+                outline: "none",
+              }}
+            />
             <div className="entity-list-items">
-              {clips.length === 0 && (
+              {filteredClips.length === 0 && (
                 <div className="empty-state">
-                  <p>No clips yet. Create your first clip to start composing.</p>
-                  <button className="btn btn-primary" onClick={handleAdd}>
-                    Add first clip
-                  </button>
+                  <p>{clips.length === 0 ? "No clips yet. Create your first clip to start composing." : "No clips match your search."}</p>
+                  {clips.length === 0 && (
+                    <button className="btn btn-primary" onClick={handleAdd}>
+                      Add first clip
+                    </button>
+                  )}
                 </div>
               )}
-              {clips.map((c) => (
+              {filteredClips.map((c) => (
                 <button
                   key={c.id}
                   className={`entity-list-item ${selectedId === c.id ? "selected" : ""}`}

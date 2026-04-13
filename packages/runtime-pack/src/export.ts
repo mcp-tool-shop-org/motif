@@ -1,7 +1,9 @@
 import type { SoundtrackPack } from "@motif/schema";
+import { auditPackIntegrity } from "@motif/asset-index";
 import type {
   RuntimeSoundtrackPack,
   RuntimeAudioAsset,
+  RuntimeAudioCodec,
   RuntimeStem,
   RuntimeScene,
   RuntimeSceneLayer,
@@ -9,14 +11,41 @@ import type {
   RuntimeTransitionRule,
 } from "./types.js";
 
+const CODEC_MAP: Record<string, RuntimeAudioCodec> = {
+  ".ogg": "ogg",
+  ".wav": "wav",
+  ".mp3": "mp3",
+  ".flac": "flac",
+};
+
+function inferCodec(src: string): RuntimeAudioCodec | undefined {
+  const dot = src.lastIndexOf(".");
+  if (dot === -1) return undefined;
+  const ext = src.slice(dot).toLowerCase();
+  return CODEC_MAP[ext];
+}
+
 /**
  * Export a validated authoring pack into a clean runtime pack.
  * Strips editor-only fields (notes, name on bindings/transitions, etc.)
  * and preserves original array ordering.
+ *
+ * Runs cross-reference validation before emitting — throws if the pack
+ * contains integrity errors (dangling refs, duplicate ids, etc.).
  */
 export function exportRuntimePack(
   pack: SoundtrackPack,
 ): RuntimeSoundtrackPack {
+  const audit = auditPackIntegrity(pack);
+  if (audit.errors.length > 0) {
+    const details = audit.errors
+      .map((e) => `  [${e.code}] ${e.message}`)
+      .join("\n");
+    throw new Error(
+      `Cannot export runtime pack: ${audit.errors.length} integrity error(s) found:\n${details}`,
+    );
+  }
+
   return {
     meta: {
       id: pack.meta.id,
@@ -38,6 +67,7 @@ export function exportRuntimePack(
 }
 
 function exportAsset(a: SoundtrackPack["assets"][number]): RuntimeAudioAsset {
+  const codec = inferCodec(a.src);
   return {
     id: a.id,
     src: a.src,
@@ -48,6 +78,7 @@ function exportAsset(a: SoundtrackPack["assets"][number]): RuntimeAudioAsset {
     ...(a.loopStartMs != null && { loopStartMs: a.loopStartMs }),
     ...(a.loopEndMs != null && { loopEndMs: a.loopEndMs }),
     ...(a.tags != null && { tags: [...a.tags] }),
+    ...(codec != null && { codec }),
     // notes: stripped
   };
 }

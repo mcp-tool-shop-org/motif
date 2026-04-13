@@ -242,6 +242,100 @@ describe("instrument", () => {
   });
 });
 
+// ── Slice edge cases (SP-F009) ──
+
+describe("slice edge cases", () => {
+  it("sliceEvenly with startMs > endMs produces slices with inverted ranges", () => {
+    // When startMs > endMs, span is negative, producing pathological slices
+    const slices = sliceEvenly("a1", 4000, 1000, 3);
+    // The function will generate slices but with inverted start/end
+    // (step will be negative). This tests the observable behavior.
+    expect(slices).toHaveLength(3);
+    // Each slice will have startMs > endMs due to negative step
+    for (const s of slices) {
+      expect(s.endMs).toBeLessThan(s.startMs);
+    }
+  });
+
+  it("sliceEvenly with startMs === endMs produces zero-width slices", () => {
+    const slices = sliceEvenly("a1", 2000, 2000, 2);
+    expect(slices).toHaveLength(2);
+    for (const s of slices) {
+      expect(s.startMs).toBe(2000);
+      expect(s.endMs).toBe(2000);
+    }
+  });
+
+  it("sliceAtOnsets with onsets beyond totalEndMs produces last slice with endMs < startMs implicitly", () => {
+    // onsets at [5000, 6000] but totalEndMs is 4000
+    const slices = sliceAtOnsets("a1", [5000, 6000], 4000);
+    expect(slices).toHaveLength(2);
+    // First slice: startMs=5000, endMs=6000 (next onset)
+    expect(slices[0].startMs).toBe(5000);
+    expect(slices[0].endMs).toBe(6000);
+    // Last slice: startMs=6000, endMs=4000 (totalEndMs < onset)
+    expect(slices[1].startMs).toBe(6000);
+    expect(slices[1].endMs).toBe(4000);
+    // This means the last slice has endMs < startMs
+    expect(slices[1].endMs).toBeLessThan(slices[1].startMs);
+  });
+
+  it("sliceAtOnsets with single onset at totalEndMs", () => {
+    const slices = sliceAtOnsets("a1", [4000], 4000);
+    expect(slices).toHaveLength(1);
+    expect(slices[0].startMs).toBe(4000);
+    expect(slices[0].endMs).toBe(4000);
+    expect(sliceDurationMs(slices[0])).toBe(0);
+  });
+});
+
+// ── Instrument edge cases (SP-F010) ──
+
+describe("instrument edge cases", () => {
+  it("pitchToPlaybackRate with extreme delta (rootNote=0, targetNote=127)", () => {
+    const rate = pitchToPlaybackRate(0, 127);
+    // 2^(127/12) is a very large number (~1625.5)
+    expect(rate).toBeGreaterThan(1000);
+    expect(rate).toBeLessThan(2000);
+    expect(rate).toBeCloseTo(Math.pow(2, 127 / 12), 2);
+  });
+
+  it("pitchToPlaybackRate with extreme negative delta (rootNote=127, targetNote=0)", () => {
+    const rate = pitchToPlaybackRate(127, 0);
+    // 2^(-127/12) is a very small number (~0.000615)
+    expect(rate).toBeGreaterThan(0);
+    expect(rate).toBeLessThan(0.001);
+    expect(rate).toBeCloseTo(Math.pow(2, -127 / 12), 8);
+  });
+
+  it("pitchToPlaybackRate with single semitone up", () => {
+    const rate = pitchToPlaybackRate(60, 61);
+    expect(rate).toBeCloseTo(Math.pow(2, 1 / 12), 8);
+  });
+
+  it("pitchToPlaybackRate with same note returns exactly 1", () => {
+    expect(pitchToPlaybackRate(0, 0)).toBe(1);
+    expect(pitchToPlaybackRate(127, 127)).toBe(1);
+  });
+
+  it("rangeSpan returns 0 for single-note instrument", () => {
+    const inst = createSampleInstrument("i1", "Mono", "a1", 60, 60, 60);
+    expect(rangeSpan(inst)).toBe(0);
+  });
+
+  it("rangeSpan returns 127 for full-range instrument", () => {
+    const inst = createSampleInstrument("i1", "Full", "a1", 60, 0, 127);
+    expect(rangeSpan(inst)).toBe(127);
+  });
+
+  it("isInRange boundary checks with min=max", () => {
+    const inst = createSampleInstrument("i1", "Single", "a1", 60, 60, 60);
+    expect(isInRange(inst, 60)).toBe(true);
+    expect(isInRange(inst, 59)).toBe(false);
+    expect(isInRange(inst, 61)).toBe(false);
+  });
+});
+
 // ── Import ──
 
 describe("import", () => {

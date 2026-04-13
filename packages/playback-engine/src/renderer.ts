@@ -48,7 +48,7 @@ export class CueRenderer {
 
     const plan = resolveActiveLayers(pack, options.sceneId);
     const stemsById = new Map(pack.stems.map((s) => [s.id, s]));
-    const layersByStEm = new Map(
+    const layersByStem = new Map(
       scene.layers.map((l) => [l.stemId, l]) ?? [],
     );
 
@@ -117,7 +117,7 @@ export class CueRenderer {
       }
 
       const gainNode = offlineCtx.createGain();
-      const layerRef = layersByStEm.get(stemId);
+      const layerRef = layersByStem.get(stemId);
       const stemGainDb = layerRef?.gainDb ?? stem.gainDb ?? 0;
       gainNode.gain.value = stem.mutedByDefault ? 0 : dbToGain(stemGainDb);
 
@@ -191,7 +191,7 @@ export class CueRenderer {
           const scheduled = scheduleNotes(notes, clip.bpm, 0);
           for (const n of scheduled) {
             voice.playNote(
-              offlineCtx as unknown as AudioContext,
+              offlineCtx,
               n.pitch,
               n.velocity,
               n.startTime,

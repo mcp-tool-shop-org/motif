@@ -27,6 +27,7 @@ export function ExportScreen() {
   const [renderPreset, setRenderPreset] = useState<RenderPreset>("full-cue");
   const [renderDuration, setRenderDuration] = useState(30);
   const [renderSceneId, setRenderSceneId] = useState<string>("");
+  const [exportError, setExportError] = useState<string | null>(null);
 
   const { renderStatus, lastRenderResult, renderScene, renderError } = usePlaybackStore();
 
@@ -41,13 +42,18 @@ export function ExportScreen() {
   const { serialized, roundTripOk } = useMemo(() => {
     try {
       const result = roundTripRuntimePack(pack);
+      setExportError(null);
       return { serialized: result.serialized, roundTripOk: true };
-    } catch {
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Round-trip verification failed";
       // If export fails, try basic serialize for display
       try {
         const exported = exportRuntimePack(pack);
+        setExportError(msg);
         return { serialized: serializeRuntimePack(exported), roundTripOk: false };
-      } catch {
+      } catch (err2) {
+        const msg2 = err2 instanceof Error ? err2.message : "Export serialization failed";
+        setExportError(msg2);
         return { serialized: "", roundTripOk: false };
       }
     }
@@ -177,6 +183,14 @@ export function ExportScreen() {
           </button>
         </div>
 
+        {/* Export error banner */}
+        {exportError && (
+          <div className="finding-item error" role="alert" style={{ marginTop: 8 }}>
+            <span className="finding-code">Export</span>
+            <span>{exportError}</span>
+          </div>
+        )}
+
         {/* Audio render section */}
         <div className="sub-list" style={{ marginTop: 24 }}>
           <div className="sub-list-header">
@@ -265,7 +279,7 @@ export function ExportScreen() {
                   a.href = url;
                   a.download = `${renderSceneId || "render"}.wav`;
                   a.click();
-                  URL.revokeObjectURL(url);
+                  setTimeout(() => URL.revokeObjectURL(url), 1000);
                 }}
               >
                 Download WAV

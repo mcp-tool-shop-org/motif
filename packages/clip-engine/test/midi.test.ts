@@ -59,6 +59,85 @@ describe("readVLQ", () => {
     expect(value).toBe(127);
     expect(bytes).toBe(1);
   });
+
+  it("throws on truncated data (empty buffer)", () => {
+    const buf = new ArrayBuffer(0);
+    expect(() => readVLQ(new DataView(buf), 0)).toThrow(
+      "Truncated MIDI: unexpected end of VLQ data",
+    );
+  });
+
+  it("throws on truncated data (continuation bit set but no next byte)", () => {
+    const buf = new ArrayBuffer(1);
+    new Uint8Array(buf)[0] = 0x81; // continuation bit set, needs more bytes
+    expect(() => readVLQ(new DataView(buf), 0)).toThrow(
+      "Truncated MIDI: unexpected end of VLQ data",
+    );
+  });
+
+  it("throws on truncated multi-byte VLQ (2 of 3 bytes present)", () => {
+    const buf = new ArrayBuffer(2);
+    const arr = new Uint8Array(buf);
+    arr[0] = 0x81; // continuation
+    arr[1] = 0x82; // continuation, needs one more
+    expect(() => readVLQ(new DataView(buf), 0)).toThrow(
+      "Truncated MIDI: unexpected end of VLQ data",
+    );
+  });
+
+  it("throws when offset is beyond buffer length", () => {
+    const buf = new ArrayBuffer(2);
+    expect(() => readVLQ(new DataView(buf), 5)).toThrow(
+      "Truncated MIDI: unexpected end of VLQ data",
+    );
+  });
+
+  it("throws when all 4 bytes have continuation bits set (exceeded max length)", () => {
+    const buf = new ArrayBuffer(4);
+    const arr = new Uint8Array(buf);
+    arr[0] = 0x80 | 0x01;
+    arr[1] = 0x80 | 0x02;
+    arr[2] = 0x80 | 0x03;
+    arr[3] = 0x80 | 0x04; // 4th byte still has continuation bit
+    expect(() => readVLQ(new DataView(buf), 0)).toThrow(
+      "Invalid VLQ: exceeded maximum length of 4 bytes",
+    );
+  });
+
+  it("throws exceeded max length even with extra bytes available", () => {
+    const buf = new ArrayBuffer(8);
+    const arr = new Uint8Array(buf);
+    // All 8 bytes have continuation bits, but VLQ should stop after 4
+    for (let i = 0; i < 8; i++) arr[i] = 0x80 | i;
+    expect(() => readVLQ(new DataView(buf), 0)).toThrow(
+      "Invalid VLQ: exceeded maximum length of 4 bytes",
+    );
+  });
+
+  it("reads valid 4-byte VLQ (maximum without error)", () => {
+    // 4-byte VLQ: 0x81 0x80 0x80 0x00 = 1 << 21 = 2097152
+    const buf = new ArrayBuffer(4);
+    const arr = new Uint8Array(buf);
+    arr[0] = 0x81;
+    arr[1] = 0x80;
+    arr[2] = 0x80;
+    arr[3] = 0x00; // no continuation bit = valid termination
+    const [value, bytes] = readVLQ(new DataView(buf), 0);
+    expect(value).toBe(2097152);
+    expect(bytes).toBe(4);
+  });
+
+  it("reads 3-byte VLQ correctly", () => {
+    // 3-byte VLQ: 0x81 0x80 0x00 = 1 << 14 = 16384
+    const buf = new ArrayBuffer(3);
+    const arr = new Uint8Array(buf);
+    arr[0] = 0x81;
+    arr[1] = 0x80;
+    arr[2] = 0x00;
+    const [value, bytes] = readVLQ(new DataView(buf), 0);
+    expect(value).toBe(16384);
+    expect(bytes).toBe(3);
+  });
 });
 
 describe("writeVLQ", () => {

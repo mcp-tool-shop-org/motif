@@ -46,7 +46,9 @@ export function ScoreMapScreen() {
               fontWeight: tab === t.key ? "bold" : "normal",
               borderBottom: tab === t.key ? "2px solid currentColor" : "2px solid transparent",
               background: "none",
-              border: "none",
+              borderTop: "none",
+              borderLeft: "none",
+              borderRight: "none",
               cursor: "pointer",
               padding: "0.5rem 1rem",
             }}
@@ -81,7 +83,7 @@ function ProfilesPanel() {
   const profile = profiles.find((p) => p.id === selectedId);
 
   const handleCreate = () => {
-    const id = `profile-${Date.now()}`;
+    const id = `profile-${crypto.randomUUID()}`;
     addProfile({ id, name: "New Score Profile" });
     setSelectedId(id);
   };
@@ -108,13 +110,13 @@ function ProfilesPanel() {
         )}
         {profile && (
           <>
-            <button onClick={() => addSnapshot({ id: `snap-${Date.now()}`, label: `${profile.name} snapshot`, entityId: profile.id, entityKind: "score-profile", data: { ...profile } as unknown as Record<string, unknown>, createdAt: new Date().toISOString() })}>
+            <button onClick={() => addSnapshot({ id: `snap-${crypto.randomUUID()}`, label: `${profile.name} snapshot`, entityId: profile.id, entityKind: "score-profile", data: { ...profile } as unknown as Record<string, unknown>, createdAt: new Date().toISOString() })}>
               Snapshot
             </button>
-            <button onClick={() => addTemplate({ id: `tpl-${Date.now()}`, name: `${profile.name} template`, kind: "score-profile", data: { ...profile } as unknown as Record<string, unknown>, createdAt: new Date().toISOString() })}>
+            <button onClick={() => addTemplate({ id: `tpl-${crypto.randomUUID()}`, name: `${profile.name} template`, kind: "score-profile", data: { ...profile } as unknown as Record<string, unknown>, createdAt: new Date().toISOString() })}>
               Save Template
             </button>
-            <button onClick={() => addFavorite({ id: `fav-${Date.now()}`, entityId: profile.id, entityKind: "score-profile", addedAt: new Date().toISOString() })}>
+            <button onClick={() => addFavorite({ id: `fav-${crypto.randomUUID()}`, entityId: profile.id, entityKind: "score-profile", addedAt: new Date().toISOString() })}>
               Favorite
             </button>
           </>
@@ -172,7 +174,7 @@ function MotifsPanel() {
   const family = families.find((f) => f.id === selectedId);
 
   const handleCreate = () => {
-    const id = `motif-${Date.now()}`;
+    const id = `motif-${crypto.randomUUID()}`;
     addMotif({ id, name: "New Motif Family", sourceIds: [] });
     setSelectedId(id);
   };
@@ -274,7 +276,7 @@ function CueFamiliesPanel() {
   const family = families.find((f) => f.id === selectedId);
 
   const handleCreate = () => {
-    const id = `cuefam-${Date.now()}`;
+    const id = `cuefam-${crypto.randomUUID()}`;
     addFamily({ id, name: "New Cue Family", role: "exploration", sceneIds: [] });
     setSelectedId(id);
   };
@@ -300,9 +302,9 @@ function CueFamiliesPanel() {
           </button>
         )}
         {family && (<>
-          <button onClick={() => addSnapshot({ id: `snap-${Date.now()}`, label: family.name, entityId: family.id, entityKind: "cue-family", data: { ...family } as unknown as Record<string, unknown>, createdAt: new Date().toISOString() })} style={{ fontSize: "0.75rem" }}>Snapshot</button>
-          <button onClick={() => addTemplate({ id: `tmpl-${Date.now()}`, name: `${family.name} Template`, kind: "cue-family", data: { ...family } as unknown as Record<string, unknown>, createdAt: new Date().toISOString() })} style={{ fontSize: "0.75rem" }}>Save Template</button>
-          <button onClick={() => addFavorite({ id: `fav-${Date.now()}`, entityId: family.id, entityKind: "cue-family", addedAt: new Date().toISOString() })} style={{ fontSize: "0.75rem" }}>Favorite</button>
+          <button onClick={() => addSnapshot({ id: `snap-${crypto.randomUUID()}`, label: family.name, entityId: family.id, entityKind: "cue-family", data: { ...family } as unknown as Record<string, unknown>, createdAt: new Date().toISOString() })} style={{ fontSize: "0.75rem" }}>Snapshot</button>
+          <button onClick={() => addTemplate({ id: `tmpl-${crypto.randomUUID()}`, name: `${family.name} Template`, kind: "cue-family", data: { ...family } as unknown as Record<string, unknown>, createdAt: new Date().toISOString() })} style={{ fontSize: "0.75rem" }}>Save Template</button>
+          <button onClick={() => addFavorite({ id: `fav-${crypto.randomUUID()}`, entityId: family.id, entityKind: "cue-family", addedAt: new Date().toISOString() })} style={{ fontSize: "0.75rem" }}>Favorite</button>
         </>)}
       </div>
 
@@ -410,7 +412,7 @@ function WorldMapPanel() {
   const filtered = filterContext ? entries.filter((e) => e.contextType === filterContext) : entries;
 
   const handleCreate = (contextType: ScoreMapContextType) => {
-    const id = `sme-${Date.now()}`;
+    const id = `sme-${crypto.randomUUID()}`;
     addEntry({ id, name: `New ${contextType}`, contextType });
     setSelectedId(id);
   };
@@ -544,9 +546,9 @@ function WorldMapPanel() {
               Delete Entry
             </button>
             <div style={{ display: "flex", gap: "0.5rem", marginTop: "0.5rem" }}>
-              <button onClick={() => addSnapshot({ id: `snap-${Date.now()}`, label: entry.name, entityId: entry.id, entityKind: "score-profile", data: { ...entry } as unknown as Record<string, unknown>, createdAt: new Date().toISOString() })} style={{ fontSize: "0.75rem" }}>Snapshot</button>
-              <button onClick={() => addTemplate({ id: `tmpl-${Date.now()}`, name: `${entry.name} Template`, kind: "score-profile", data: { ...entry } as unknown as Record<string, unknown>, createdAt: new Date().toISOString() })} style={{ fontSize: "0.75rem" }}>Save Template</button>
-              <button onClick={() => addFavorite({ id: `fav-${Date.now()}`, entityId: entry.id, entityKind: "score-profile", addedAt: new Date().toISOString() })} style={{ fontSize: "0.75rem" }}>Favorite</button>
+              <button onClick={() => addSnapshot({ id: `snap-${crypto.randomUUID()}`, label: entry.name, entityId: entry.id, entityKind: "score-profile", data: { ...entry } as unknown as Record<string, unknown>, createdAt: new Date().toISOString() })} style={{ fontSize: "0.75rem" }}>Snapshot</button>
+              <button onClick={() => addTemplate({ id: `tmpl-${crypto.randomUUID()}`, name: `${entry.name} Template`, kind: "score-profile", data: { ...entry } as unknown as Record<string, unknown>, createdAt: new Date().toISOString() })} style={{ fontSize: "0.75rem" }}>Save Template</button>
+              <button onClick={() => addFavorite({ id: `fav-${crypto.randomUUID()}`, entityId: entry.id, entityKind: "score-profile", addedAt: new Date().toISOString() })} style={{ fontSize: "0.75rem" }}>Favorite</button>
             </div>
           </div>
         )}
@@ -578,8 +580,8 @@ function DerivePanel() {
 
   const handleDerive = () => {
     if (!sourceId) return;
-    const id = `deriv-${Date.now()}`;
-    const targetId = `derived-${sourceId}-${transform}-${Date.now()}`;
+    const id = `deriv-${crypto.randomUUID()}`;
+    const targetId = `derived-${sourceId}-${transform}-${crypto.randomUUID()}`;
     addDerivation({ id, sourceId, targetId, transform });
   };
 

@@ -18,13 +18,14 @@ export function readVLQ(view: DataView, offset: number): [number, number] {
   let bytesRead = 0;
 
   for (let i = 0; i < 4; i++) {
+    if (offset + i >= view.byteLength) throw new Error('Truncated MIDI: unexpected end of VLQ data');
     const byte = view.getUint8(offset + i);
     bytesRead++;
     value = (value << 7) | (byte & 0x7f);
-    if ((byte & 0x80) === 0) break;
+    if ((byte & 0x80) === 0) return [value, bytesRead];
   }
 
-  return [value, bytesRead];
+  throw new Error('Invalid VLQ: exceeded maximum length of 4 bytes');
 }
 
 /**

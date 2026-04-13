@@ -346,7 +346,7 @@ export function ArrangementScreen() {
     if (scenes.length > 0 && !scenes.some((s) => s.id === activeSceneId)) {
       setActiveSceneId(scenes[0].id);
     }
-  }, [scenes, activeSceneId]);
+  }, [scenes]);
   const [showAiPanel, setShowAiPanel] = useState(false);
   const [showAddChannel, setShowAddChannel] = useState(false);
   const [newChannelInstrument, setNewChannelInstrument] = useState("lead-pluck");

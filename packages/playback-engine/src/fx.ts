@@ -215,7 +215,7 @@ function createChorus(ctx: BaseAudioContext, params: ChorusParams): FxNodeSet {
     output,
     nodes: [input, output, dry, wet, delay, lfo, lfoGain],
     update(p: FxParams) {
-      if (!("rate" in p && "depth" in p && "mix" in p) || "drive" in p) return;
+      if (!("rate" in p && "depth" in p && "mix" in p) || "curve" in p) return;
       const cp = p as ChorusParams;
       dry.gain.value = 1 - cp.mix;
       wet.gain.value = cp.mix;

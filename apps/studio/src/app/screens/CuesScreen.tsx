@@ -29,9 +29,9 @@ function newCue(n: number, globalBpm?: number): Cue {
     bpm: globalBpm ?? 120,
     beatsPerBar: 4,
     sections: [
-      { id: `sec-1`, name: "Intro", role: "intro", durationBars: 4 },
-      { id: `sec-2`, name: "Body", role: "body", durationBars: 8 },
-      { id: `sec-3`, name: "Outro", role: "outro", durationBars: 4 },
+      { id: crypto.randomUUID(), name: "Intro", role: "intro", durationBars: 4 },
+      { id: crypto.randomUUID(), name: "Body", role: "body", durationBars: 8 },
+      { id: crypto.randomUUID(), name: "Outro", role: "outro", durationBars: 4 },
     ],
   };
 }

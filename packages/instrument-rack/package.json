@@ -1,6 +1,6 @@
 {
   "name": "@motif/instrument-rack",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Synth and drum voice management for Motif",
   "license": "MIT",
   "author": "mcp-tool-shop-org",

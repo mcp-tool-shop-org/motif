@@ -68,8 +68,8 @@ export interface FxSlotState {
   bypassed: boolean;
 }
 
-/** Bus identifier */
-export type BusId = "drums" | "music" | "master";
+/** Bus identifier — includes well-known buses with autocomplete, plus any custom string */
+export type BusId = "drums" | "music" | "master" | (string & {});
 
 /** Per-stem mixer state */
 export interface StemMixState {

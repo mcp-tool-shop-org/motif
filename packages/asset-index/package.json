@@ -1,6 +1,6 @@
 {
   "name": "@motif/asset-index",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Pack integrity indexing and auditing for Motif",
   "license": "MIT",
   "author": "mcp-tool-shop-org",

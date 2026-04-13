@@ -6,6 +6,7 @@ import { usePlaybackStore } from "./playback-store";
 import { SidebarNav } from "./components/SidebarNav";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { KeyboardShortcutsOverlay } from "./components/KeyboardShortcutsOverlay";
+import { ConfirmDialog } from "./components/ConfirmDialog";
 import { initAutosave, loadAutosave, saveProjectToFile } from "./autosave";
 import {
   ArrangementScreen,
@@ -84,6 +85,11 @@ export default function Studio() {
   const loadPack = useStudioStore((s) => s.loadPack);
   const packId = useStudioStore((s) => s.pack.meta.id);
   const [showShortcuts, setShowShortcuts] = useState(false);
+  const [confirmAction, setConfirmAction] = useState<{
+    title: string;
+    message: string;
+    action: () => void;
+  } | null>(null);
   const autosaveInitRef = useRef(false);
 
   // Initialize autosave subscription
@@ -147,7 +153,9 @@ export default function Studio() {
           break;
         }
         case "Escape": {
-          if (showShortcuts) {
+          if (confirmAction) {
+            setConfirmAction(null);
+          } else if (showShortcuts) {
             setShowShortcuts(false);
           } else {
             const pb = usePlaybackStore.getState();
@@ -164,14 +172,34 @@ export default function Studio() {
         case "Backspace": {
           const state = useStudioStore.getState();
           if (state.selectedId) {
-            // Delegate deletion to the current screen's entity type
             const section = state.section;
-            if (section === "clips") state.deleteClip(state.selectedId);
-            else if (section === "assets") state.deleteAsset(state.selectedId);
-            else if (section === "stems") state.deleteStem(state.selectedId);
-            else if (section === "scenes") state.deleteScene(state.selectedId);
-            else if (section === "bindings") state.deleteBinding(state.selectedId);
-            else if (section === "transitions") state.deleteTransition(state.selectedId);
+            const entityLabels: Record<string, string> = {
+              clips: "clip",
+              assets: "asset",
+              stems: "stem",
+              scenes: "scene",
+              bindings: "binding",
+              transitions: "transition",
+              cues: "cue",
+            };
+            const label = entityLabels[section];
+            if (!label) break;
+
+            const id = state.selectedId;
+            setConfirmAction({
+              title: `Delete ${label}`,
+              message: `Are you sure you want to delete this ${label}? This action can be undone with Ctrl+Z.`,
+              action: () => {
+                const s = useStudioStore.getState();
+                if (section === "clips") s.deleteClip(id);
+                else if (section === "assets") s.deleteAsset(id);
+                else if (section === "stems") s.deleteStem(id);
+                else if (section === "scenes") s.deleteScene(id);
+                else if (section === "bindings") s.deleteBinding(id);
+                else if (section === "transitions") s.deleteTransition(id);
+                else if (section === "cues") s.deleteCue(id);
+              },
+            });
           }
           break;
         }
@@ -188,7 +216,7 @@ export default function Studio() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [showShortcuts]);
+  }, [showShortcuts, confirmAction]);
 
   const handleErrorReset = useCallback(() => {
     loadPack({
@@ -212,6 +240,16 @@ export default function Studio() {
       {showShortcuts && (
         <KeyboardShortcutsOverlay onClose={() => setShowShortcuts(false)} />
       )}
+      <ConfirmDialog
+        open={confirmAction !== null}
+        title={confirmAction?.title ?? ""}
+        message={confirmAction?.message ?? ""}
+        onConfirm={() => {
+          confirmAction?.action();
+          setConfirmAction(null);
+        }}
+        onCancel={() => setConfirmAction(null)}
+      />
     </div>
   );
 }

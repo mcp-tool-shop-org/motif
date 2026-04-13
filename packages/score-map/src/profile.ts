@@ -36,10 +36,21 @@ export function mergeProfiles(
   return {
     ...base,
     ...overlay,
+    key: overlay.key ?? base.key,
+    scale: overlay.scale ?? base.scale,
+    tempoMin: overlay.tempoMin ?? base.tempoMin,
+    tempoMax: overlay.tempoMax ?? base.tempoMax,
+    intensityMin: overlay.intensityMin ?? base.intensityMin,
+    intensityMax: overlay.intensityMax ?? base.intensityMax,
     preferredKitIds: overlay.preferredKitIds ?? base.preferredKitIds,
     preferredInstrumentIds: overlay.preferredInstrumentIds ?? base.preferredInstrumentIds,
     motifFamilyIds: overlay.motifFamilyIds ?? base.motifFamilyIds,
     samplePaletteTags: overlay.samplePaletteTags ?? base.samplePaletteTags,
     tags: overlay.tags ?? base.tags,
+    notes: overlay.notes ?? base.notes,
+    defaultIntensity: overlay.defaultIntensity ?? base.defaultIntensity,
+    defaultBrightness: overlay.defaultBrightness ?? base.defaultBrightness,
+    defaultSpace: overlay.defaultSpace ?? base.defaultSpace,
+    defaultTransitionEnergy: overlay.defaultTransitionEnergy ?? base.defaultTransitionEnergy,
   };
 }

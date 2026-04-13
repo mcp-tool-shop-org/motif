@@ -57,7 +57,7 @@ export class AssetLoader {
     const errors: string[] = [];
     let completed = 0;
 
-    const promises = assetsToLoad.map(async (asset) => {
+    const processAsset = async (asset: AudioAsset) => {
       try {
         const buffer = await this.loadAsset(asset);
         this.cache.set(asset.id, buffer);
@@ -71,9 +71,9 @@ export class AssetLoader {
           progress: completed / assetsToLoad.length,
         });
       }
-    });
+    };
 
-    await Promise.all(promises);
+    await runWithConcurrency(assetsToLoad, processAsset, 4);
 
     this.emit("load-progress", {
       state: errors.length > 0 ? ("error" as LoadState) : ("loaded" as LoadState),
@@ -164,10 +164,14 @@ export class AssetLoader {
       }
 
       // Decode with timeout — a stalled decodeAudioData should not hang forever
+      let decodeTimer: ReturnType<typeof setTimeout>;
       const decoded = await Promise.race([
-        this.ctx.decodeAudioData(arrayBuffer),
-        new Promise<never>((_, reject) =>
-          setTimeout(
+        this.ctx.decodeAudioData(arrayBuffer).then((buf) => {
+          clearTimeout(decodeTimer);
+          return buf;
+        }),
+        new Promise<never>((_, reject) => {
+          decodeTimer = setTimeout(
             () =>
               reject(
                 new Error(
@@ -175,8 +179,8 @@ export class AssetLoader {
                 ),
               ),
             AssetLoader.LOAD_TIMEOUT_MS,
-          ),
-        ),
+          );
+        }),
       ]);
 
       return decoded;
@@ -198,4 +202,20 @@ export class AssetLoader {
   private emit(type: string, detail: unknown): void {
     this.listener?.({ type: type as PlaybackEventType, detail });
   }
+}
+
+/** Process an array of items with a maximum number of concurrent tasks. */
+async function runWithConcurrency<T>(
+  items: T[],
+  fn: (item: T) => Promise<void>,
+  maxConcurrency: number,
+): Promise<void> {
+  let index = 0;
+  const workers = Array.from({ length: Math.min(maxConcurrency, items.length) }, async () => {
+    while (index < items.length) {
+      const i = index++;
+      await fn(items[i]);
+    }
+  });
+  await Promise.all(workers);
 }

@@ -43,7 +43,7 @@ export function compareEntities(
       onlyA.push(key);
     } else if (!inA && inB) {
       onlyB.push(key);
-    } else if (JSON.stringify(a[key]) === JSON.stringify(b[key])) {
+    } else if (stableStringify(a[key]) === stableStringify(b[key])) {
       same.push(key);
     } else {
       changed.push({ field: key, a: a[key], b: b[key] });
@@ -90,7 +90,7 @@ export function diffCount(
   for (const key of allKeys) {
     const inA = key in a;
     const inB = key in b;
-    if (inA !== inB || JSON.stringify(a[key]) !== JSON.stringify(b[key])) {
+    if (inA !== inB || stableStringify(a[key]) !== stableStringify(b[key])) {
       count++;
     }
   }

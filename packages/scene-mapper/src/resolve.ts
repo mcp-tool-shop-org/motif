@@ -37,7 +37,6 @@ export function resolveScene(
     if (ev.matched) {
       matched.push({ eval: ev, index: i });
       matchedBindingIds.push(ev.bindingId);
-      if (ev.stopProcessing) break;
     } else {
       rejectedBindingIds.push(ev.bindingId);
     }
@@ -58,6 +57,12 @@ export function resolveScene(
     if (pDiff !== 0) return pDiff;
     return a.index - b.index;
   });
+
+  // Apply stopProcessing post-sort: truncate at the first stop
+  const stopIdx = matched.findIndex((m) => m.eval.stopProcessing);
+  if (stopIdx >= 0) {
+    matched.length = stopIdx + 1;
+  }
 
   const winner = matched[0].eval;
   const scene = pack.scenes.find((s) => s.id === winner.sceneId);

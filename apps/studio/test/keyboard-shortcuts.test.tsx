@@ -116,6 +116,10 @@ describe("Keyboard shortcuts — Delete", () => {
     // Focus somewhere that isn't an input
     const heading = screen.getByText("Assets", { selector: "h2" });
     fireEvent.keyDown(heading, { key: "Delete" });
+    // Confirm the delete dialog (exact match to avoid "Delete Asset" button)
+    const dialogButtons = screen.getAllByRole("button", { name: /Delete/ });
+    const confirmBtn = dialogButtons.find((b) => b.textContent === "Delete");
+    fireEvent.click(confirmBtn!);
     expect(useStudioStore.getState().pack.assets).toHaveLength(7);
   });
 });

@@ -1,6 +1,6 @@
 {
   "name": "@motif/automation",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Lanes, macros, envelopes, and capture for Motif",
   "license": "MIT",
   "author": "mcp-tool-shop-org",

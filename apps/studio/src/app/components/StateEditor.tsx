@@ -2,9 +2,12 @@
 
 import type { RuntimeMusicState } from "@motif/schema";
 
+/** Known fields on RuntimeMusicState (excludes the index signature) */
+type RuntimeMusicStateField = "mode" | "danger" | "inCombat" | "boss" | "safeZone" | "victory" | "region" | "faction" | "encounterType";
+
 interface StateEditorProps {
   state: RuntimeMusicState;
-  onChange: (field: string, value: unknown) => void;
+  onChange: (field: RuntimeMusicStateField, value: string | number | boolean) => void;
   compact?: boolean;
 }
 

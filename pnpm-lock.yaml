@@ -299,6 +299,9 @@ importers:
 
   packages/runtime-pack:
     dependencies:
+      '@motif/asset-index':
+        specifier: workspace:*
+        version: link:../asset-index
       '@motif/schema':
         specifier: workspace:*
         version: link:../schema

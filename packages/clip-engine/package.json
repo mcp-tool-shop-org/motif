@@ -1,6 +1,6 @@
 {
   "name": "@motif/clip-engine",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Clip sequencing, transforms, and cue scheduling for Motif",
   "license": "MIT",
   "author": "mcp-tool-shop-org",

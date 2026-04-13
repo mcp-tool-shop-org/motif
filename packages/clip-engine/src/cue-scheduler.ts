@@ -48,7 +48,7 @@ export interface CuePlaybackPlan {
 
 // ── Helpers ──
 
-function ticksPerBar(bpm: number, beatsPerBar: number): number {
+function ticksPerBar(_bpm: number, beatsPerBar: number): number {
   return beatsPerBar * TICKS_PER_BEAT;
 }
 
@@ -200,7 +200,7 @@ export function captureToCue(capture: PerformanceCapture): Cue {
   sections.push({
     id: `sec-${sectionIndex}`,
     name: `Section ${sectionIndex + 1}`,
-    role: sectionIndex === 0 ? "intro" : "outro",
+    role: sectionIndex === 0 ? "body" : "outro",
     durationBars: finalDuration,
     sceneId: currentSceneId,
     intensity: currentIntensity,

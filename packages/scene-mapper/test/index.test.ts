@@ -4,6 +4,9 @@ import type {
   RuntimeMusicState,
   TriggerCondition,
   TriggerBinding,
+  Scene,
+  Stem,
+  AudioAsset,
 } from "@motif/schema";
 import { FIXTURES, loadFixture } from "@motif/test-kit";
 import {
@@ -351,6 +354,166 @@ describe("resolveScene", () => {
 
       expect(r.sceneId).toBe("sc-faction");
       expect(r.winningBindingId).toBe("b-region");
+    });
+  });
+
+  // ── stopProcessing + priority interaction (SP-F004 fix) ──
+
+  describe("stopProcessing does not block higher-priority winner", () => {
+    function buildPack(bindings: TriggerBinding[], scenes: Scene[]): SoundtrackPack {
+      return {
+        meta: { id: "sp-test", name: "SP Test", version: "1.0.0", schemaVersion: "1" },
+        assets: [{ id: "a1", name: "A", src: "a.ogg", kind: "loop", durationMs: 1000 }],
+        stems: [{ id: "s1", name: "S", assetId: "a1", role: "base", loop: true }],
+        scenes,
+        bindings,
+        transitions: [],
+      } as SoundtrackPack;
+    }
+
+    const scenes: Scene[] = [
+      { id: "sc-low", name: "Low", category: "exploration", layers: [{ stemId: "s1" }] },
+      { id: "sc-high", name: "High", category: "combat", layers: [{ stemId: "s1" }] },
+      { id: "sc-mid", name: "Mid", category: "tension", layers: [{ stemId: "s1" }] },
+    ];
+
+    it("low-priority stopProcessing does NOT prevent higher-priority from winning", () => {
+      const pack = buildPack(
+        [
+          {
+            id: "b-low",
+            name: "Low Stop",
+            sceneId: "sc-low",
+            conditions: [{ field: "active", op: "eq", value: true }],
+            priority: 10,
+            stopProcessing: true,
+          },
+          {
+            id: "b-high",
+            name: "High",
+            sceneId: "sc-high",
+            conditions: [{ field: "active", op: "eq", value: true }],
+            priority: 50,
+          },
+        ],
+        scenes,
+      );
+
+      const r = resolveScene(pack, { active: true } as RuntimeMusicState);
+      // Higher priority wins despite lower priority having stopProcessing
+      expect(r.sceneId).toBe("sc-high");
+      expect(r.winningBindingId).toBe("b-high");
+    });
+
+    it("stopProcessing truncates results after priority sort", () => {
+      const pack = buildPack(
+        [
+          {
+            id: "b-high",
+            name: "High Stop",
+            sceneId: "sc-high",
+            conditions: [{ field: "active", op: "eq", value: true }],
+            priority: 50,
+            stopProcessing: true,
+          },
+          {
+            id: "b-mid",
+            name: "Mid",
+            sceneId: "sc-mid",
+            conditions: [{ field: "active", op: "eq", value: true }],
+            priority: 30,
+          },
+          {
+            id: "b-low",
+            name: "Low",
+            sceneId: "sc-low",
+            conditions: [{ field: "active", op: "eq", value: true }],
+            priority: 10,
+          },
+        ],
+        scenes,
+      );
+
+      const r = resolveScene(pack, { active: true } as RuntimeMusicState);
+      // b-high wins (highest priority) and stopProcessing truncates after it
+      expect(r.sceneId).toBe("sc-high");
+      expect(r.winningBindingId).toBe("b-high");
+      // All three matched before truncation
+      expect(r.matchedBindingIds).toContain("b-high");
+      expect(r.matchedBindingIds).toContain("b-mid");
+      expect(r.matchedBindingIds).toContain("b-low");
+    });
+
+    it("multiple matched bindings with different priorities resolve correctly", () => {
+      const pack = buildPack(
+        [
+          {
+            id: "b-low",
+            name: "Low",
+            sceneId: "sc-low",
+            conditions: [{ field: "active", op: "eq", value: true }],
+            priority: 5,
+          },
+          {
+            id: "b-mid",
+            name: "Mid",
+            sceneId: "sc-mid",
+            conditions: [{ field: "active", op: "eq", value: true }],
+            priority: 25,
+          },
+          {
+            id: "b-high",
+            name: "High",
+            sceneId: "sc-high",
+            conditions: [{ field: "active", op: "eq", value: true }],
+            priority: 100,
+          },
+        ],
+        scenes,
+      );
+
+      const r = resolveScene(pack, { active: true } as RuntimeMusicState);
+      expect(r.sceneId).toBe("sc-high");
+      expect(r.winningBindingId).toBe("b-high");
+      expect(r.matchedBindingIds).toEqual(["b-low", "b-mid", "b-high"]);
+      expect(r.rejectedBindingIds).toEqual([]);
+    });
+
+    it("mid-priority stopProcessing keeps higher-priority winner but drops lower", () => {
+      const pack = buildPack(
+        [
+          {
+            id: "b-high",
+            name: "High",
+            sceneId: "sc-high",
+            conditions: [{ field: "active", op: "eq", value: true }],
+            priority: 50,
+          },
+          {
+            id: "b-mid",
+            name: "Mid Stop",
+            sceneId: "sc-mid",
+            conditions: [{ field: "active", op: "eq", value: true }],
+            priority: 30,
+            stopProcessing: true,
+          },
+          {
+            id: "b-low",
+            name: "Low",
+            sceneId: "sc-low",
+            conditions: [{ field: "active", op: "eq", value: true }],
+            priority: 10,
+          },
+        ],
+        scenes,
+      );
+
+      const r = resolveScene(pack, { active: true } as RuntimeMusicState);
+      // After sort: [b-high(50), b-mid(30,stop), b-low(10)]
+      // stopProcessing at b-mid truncates after it, removing b-low from sorted list
+      // Winner is still b-high
+      expect(r.sceneId).toBe("sc-high");
+      expect(r.winningBindingId).toBe("b-high");
     });
   });
 });

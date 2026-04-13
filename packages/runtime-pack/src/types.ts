@@ -12,9 +12,13 @@ export interface RuntimeSoundtrackPackMeta {
   description?: string;
   author?: string;
   tags?: string[];
+  contentHash?: string;
+  exportedAt?: string;
 }
 
 // ── Runtime audio asset ──
+
+export type RuntimeAudioCodec = 'ogg' | 'wav' | 'mp3' | 'flac';
 
 export interface RuntimeAudioAsset {
   id: string;
@@ -26,6 +30,10 @@ export interface RuntimeAudioAsset {
   loopStartMs?: number;
   loopEndMs?: number;
   tags?: string[];
+  codec?: RuntimeAudioCodec;
+  sampleRateHz?: number;
+  channels?: number;
+  bitDepth?: number;
 }
 
 // ── Runtime stem ──

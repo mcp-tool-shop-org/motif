@@ -258,6 +258,7 @@ export interface SoundtrackPack {
   sampleSlices?: SampleSlice[];
   sampleKits?: SampleKit[];
   sampleInstruments?: SampleInstrument[];
+  performanceCaptures?: PerformanceCapture[];
   motifFamilies?: MotifFamily[];
   scoreProfiles?: ScoreProfile[];
   cueFamilies?: CueFamily[];

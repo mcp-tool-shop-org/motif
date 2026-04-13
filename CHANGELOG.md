@@ -5,6 +5,54 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.2.0] - 2026-04-13
+
+### Added
+- Delete confirmation dialog — destructive operations require confirmation
+- Search and filter on entity lists (Assets, Scenes, Clips, Stems) with alphabetical sorting
+- Bar-sync transition mode — scene changes align to musical bar boundaries
+- Cooldown-fade transition mode — sequential fade-out before scene switch
+- Audio format metadata (codec, sampleRate, channels, bitDepth) in runtime pack exports
+- Content hash (FNV-1a) and exportedAt timestamp on exported runtime packs
+- Transport error event emission for external monitoring
+- Scene resolution warnings surfaced via console.warn
+- Concurrency-limited asset loading (max 4 parallel fetches)
+- Dynamic bus creation with clearMixer() support
+- Background-tab recovery for clip loop scheduling
+- Crossfade timing safety margin (+50ms) to prevent AudioContext/setTimeout drift
+- Export validation gate — broken packs blocked before serialization
+- Autosave quota error surfacing and schema validation on load
+- ConfirmDialog component for destructive actions
+
+### Fixed
+- Schema/type divergence: SceneSchema missing clipLayers, SoundtrackPack missing performanceCaptures
+- MIDI parser bounds checking on VLQ reads (truncated/malformed input)
+- Undo debounce bypassed for destructive operations (force mode)
+- Scene mapper stopProcessing now respects priority sort order
+- Floating-point drift in automation sampleLane
+- Chorus FX type guard uses robust discriminant (curve vs drive)
+- Clip layer sort-index mismatch in ScenesScreen after reorder
+- CSS border override in tab buttons (4 screens)
+- Non-unique entity IDs (Date.now → crypto.randomUUID)
+- Autosave subscriber redundant dirty flag
+- renderer.ts unnecessary AudioContext cast
+- layersByStEm typo in scene-player and renderer
+
+### Changed
+- Undo system uses structuredClone instead of JSON.parse/stringify
+- Runtime pack schema accepts extensible scene categories and stem roles
+- Root tsconfig.json includes all 16 packages
+- Codecov action SHA-pinned
+- Security audit merged into ci.yml (manual dispatch only)
+- Removed stale apps/docs directory
+
+### Tests
+- 1,116 tests (up from 975): +141 new tests
+- New test files: transport, transition-player, fx, loader
+- Schema refinement tests: ClipNote bounds, SampleSlice, ScoreProfile ranges
+- Scene mapper stopProcessing priority tests
+- MIDI VLQ bounds tests, clip-player loop tests
+
 ## [1.1.0] - 2026-03-28
 
 ### Added

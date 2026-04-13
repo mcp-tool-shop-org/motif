@@ -556,6 +556,7 @@ export class Transport {
     const msg = err instanceof Error ? err.message : String(err);
     this.errorMessage = msg;
     this.setState("error");
+    this.emit("error", { message: msg });
   }
 
   private emit(type: string, detail?: unknown): void {

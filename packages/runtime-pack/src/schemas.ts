@@ -2,6 +2,8 @@ import { z } from "zod";
 
 // ── Enums (runtime-specific, decoupled from authoring) ──
 
+export const RuntimeAudioCodecSchema = z.enum(["ogg", "wav", "mp3", "flac"]);
+
 export const RuntimeAudioAssetKindSchema = z.enum([
   "loop",
   "oneshot",
@@ -9,26 +11,32 @@ export const RuntimeAudioAssetKindSchema = z.enum([
   "ambient",
 ]);
 
-export const RuntimeStemRoleSchema = z.enum([
-  "base",
-  "danger",
-  "combat",
-  "boss",
-  "recovery",
-  "mystery",
-  "faction",
-  "accent",
+export const RuntimeStemRoleSchema = z.union([
+  z.enum([
+    "base",
+    "danger",
+    "combat",
+    "boss",
+    "recovery",
+    "mystery",
+    "faction",
+    "accent",
+  ]),
+  z.string(),
 ]);
 
-export const RuntimeSceneCategorySchema = z.enum([
-  "exploration",
-  "tension",
-  "combat",
-  "boss",
-  "victory",
-  "aftermath",
-  "stealth",
-  "safe-zone",
+export const RuntimeSceneCategorySchema = z.union([
+  z.enum([
+    "exploration",
+    "tension",
+    "combat",
+    "boss",
+    "victory",
+    "aftermath",
+    "stealth",
+    "safe-zone",
+  ]),
+  z.string(),
 ]);
 
 export const RuntimeTriggerOpSchema = z.enum([
@@ -61,10 +69,12 @@ export const RuntimeSoundtrackPackMetaSchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
   version: z.string().min(1),
-  schemaVersion: z.literal("1"),
+  schemaVersion: z.enum(["1"]).describe("Supported schema versions: 1"),
   description: z.string().optional(),
   author: z.string().optional(),
   tags: z.array(z.string()).optional(),
+  contentHash: z.string().optional(),
+  exportedAt: z.string().optional(),
 });
 
 // ── Runtime audio asset ──
@@ -80,6 +90,10 @@ export const RuntimeAudioAssetSchema = z
     loopStartMs: z.number().gte(0).optional(),
     loopEndMs: z.number().positive().optional(),
     tags: z.array(z.string()).optional(),
+    codec: RuntimeAudioCodecSchema.optional(),
+    sampleRateHz: z.number().positive().optional(),
+    channels: z.number().int().positive().optional(),
+    bitDepth: z.number().int().positive().optional(),
   })
   .refine(
     (a) => {

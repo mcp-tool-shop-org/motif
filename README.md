@@ -48,8 +48,7 @@ A DAW. A toy sequencer. An AI music generator. A world-building database with so
 
 | App | Description |
 |-----|-------------|
-| [`apps/studio`](apps/studio) | Main authoring UI (Next.js 15, Zustand 5) |
-| [`apps/docs`](apps/docs) | Documentation site (Astro) |
+| [`apps/studio`](apps/studio) | Main authoring UI (Next.js, Zustand 5) |
 
 ### Core Packages
 
@@ -95,7 +94,7 @@ All packages are published to npm under the `@motif` scope.
 ```bash
 pnpm install
 pnpm build
-pnpm test       # 1,002 tests across all packages
+pnpm test       # 1,116 tests across all packages
 pnpm dev        # Start Studio dev server
 ```
 
@@ -103,7 +102,7 @@ pnpm dev        # Start Studio dev server
 
 ## Testing
 
-All 16 packages have unit tests covering schema validation, integrity auditing, sample operations, world scoring, automation, library management, playback, synthesis, effects, MIDI, and studio integration. 1,002 tests across all packages.
+All 16 packages have unit tests covering schema validation, integrity auditing, sample operations, world scoring, automation, library management, playback, synthesis, effects, MIDI, and studio integration. 1,116 tests across all packages.
 
 Run everything: `pnpm test`
 

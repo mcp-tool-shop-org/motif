@@ -133,6 +133,7 @@ export const SceneSchema = z.object({
   name: z.string().min(1),
   category: SceneCategorySchema,
   layers: z.array(SceneLayerRefSchema).min(1, "Scene must have at least one layer"),
+  clipLayers: z.lazy(() => z.array(SceneClipRefSchema)).optional(),
   fallbackSceneId: z.string().optional(),
   tags: z.array(z.string()).optional(),
   notes: z.string().optional(),

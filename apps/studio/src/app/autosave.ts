@@ -2,6 +2,7 @@
 
 import { useStudioStore } from "./store";
 import type { SoundtrackPack } from "@motif/schema";
+import { validateSoundtrackPack } from "@motif/schema";
 import type { TimeSignature } from "./store";
 
 // ── Constants ──
@@ -85,11 +86,22 @@ export function parseProjectFile(text: string): ProjectFile {
       if (!isValidProjectFile(data)) {
         throw new Error("Invalid Motif project file");
       }
-      return data;
+      // Deep-validate the pack against the Zod schema
+      const validation = validateSoundtrackPack(data.pack);
+      if (!validation.ok) {
+        const summary = validation.issues.map((i) => `${i.path}: ${i.message}`).join("; ");
+        throw new Error(`Pack validation failed: ${summary}`);
+      }
+      return { ...data, pack: validation.data! };
     }
     // Try interpreting as a raw pack
     if (typeof obj.meta === "object" && obj.meta !== null && Array.isArray(obj.assets)) {
-      return createProjectFile(obj as unknown as SoundtrackPack, 120, { numerator: 4, denominator: 4 });
+      const validation = validateSoundtrackPack(obj);
+      if (!validation.ok) {
+        const summary = validation.issues.map((i) => `${i.path}: ${i.message}`).join("; ");
+        throw new Error(`Pack validation failed: ${summary}`);
+      }
+      return createProjectFile(validation.data!, 120, { numerator: 4, denominator: 4 });
     }
   }
 
@@ -99,6 +111,9 @@ export function parseProjectFile(text: string): ProjectFile {
 // ── Autosave to localStorage ──
 
 let _autosaveTimer: ReturnType<typeof setTimeout> | null = null;
+
+/** Last autosave error message, or null if the last save succeeded. */
+export let autosaveError: string | null = null;
 
 export function scheduleAutosave(): void {
   if (_autosaveTimer !== null) {
@@ -111,10 +126,12 @@ export function scheduleAutosave(): void {
     try {
       if (typeof localStorage !== "undefined") {
         localStorage.setItem(AUTOSAVE_KEY, JSON.stringify(project));
+        autosaveError = null;
         state._markSaved();
       }
-    } catch {
-      // localStorage full or unavailable — silently skip
+    } catch (err) {
+      autosaveError = err instanceof Error ? err.message : "localStorage quota exceeded";
+      console.error("[Motif] Autosave failed: localStorage quota exceeded. Save your project manually.");
     }
   }, AUTOSAVE_DEBOUNCE_MS);
 }
@@ -132,9 +149,22 @@ export function loadAutosave(): ProjectFile | null {
     const raw = localStorage.getItem(AUTOSAVE_KEY);
     if (!raw) return null;
     const data = JSON.parse(raw);
-    if (isValidProjectFile(data)) return data;
+    if (!isValidProjectFile(data)) return null;
+
+    // Deep-validate the pack against the Zod schema
+    const validation = validateSoundtrackPack(data.pack);
+    if (!validation.ok) {
+      const summary = validation.issues.map((i) => `${i.path}: ${i.message}`).join("; ");
+      console.warn(`[Motif] Autosave pack failed schema validation: ${summary}. Clearing corrupted autosave.`);
+      clearAutosave();
+      return null;
+    }
+
+    return { ...data, pack: validation.data! };
   } catch {
-    // Corrupted autosave — ignore
+    // Corrupted autosave — clear and ignore
+    console.warn("[Motif] Autosave data is corrupted. Clearing autosave.");
+    clearAutosave();
   }
   return null;
 }
@@ -158,7 +188,6 @@ export function initAutosave(): () => void {
   _unsubscribe = useStudioStore.subscribe(
     (state, prevState) => {
       if (state.pack !== prevState.pack) {
-        useStudioStore.getState()._markDirty();
         scheduleAutosave();
       }
     },

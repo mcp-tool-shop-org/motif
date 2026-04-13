@@ -65,8 +65,8 @@ export function sampleLane(
     throw new RangeError("sampleLane: stepMs must be positive");
   }
   const values: number[] = [];
-  for (let t = startMs; t <= endMs; t += stepMs) {
-    values.push(evaluateLane(lane, t));
+  for (let i = 0; startMs + i * stepMs <= endMs; i++) {
+    values.push(evaluateLane(lane, startMs + i * stepMs));
   }
   return values;
 }

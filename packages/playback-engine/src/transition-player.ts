@@ -1,5 +1,6 @@
 // ────────────────────────────────────────────
-// Transition player — crossfade, stinger-then-switch, immediate
+// Transition player — crossfade, stinger-then-switch, immediate,
+// bar-sync, cooldown-fade
 // Supports exponential + linear fade curves and stinger level control
 // ────────────────────────────────────────────
 
@@ -95,8 +96,17 @@ export class TransitionPlayer {
             options?.stingerGainDb ?? 0,
           );
           break;
+        case "bar-sync":
+          await this.barSync(pack, toSceneId, rule, fadeCurve);
+          break;
+        case "cooldown-fade":
+          await this.cooldownFade(pack, toSceneId, rule);
+          break;
         case "immediate":
+          await this.scenePlayer.playScene(pack, toSceneId);
+          break;
         default:
+          console.warn(`[TransitionPlayer] Transition mode '${rule.mode}' is not implemented — falling back to immediate switch.`);
           await this.scenePlayer.playScene(pack, toSceneId);
           break;
       }
@@ -135,8 +145,9 @@ export class TransitionPlayer {
     }
 
     // Wait for the full fade-out before starting the new scene,
-    // so the old scene audio completes its fade naturally
-    await sleep(durationMs);
+    // so the old scene audio completes its fade naturally.
+    // Safety margin (+50ms) prevents premature cutoff from setTimeout drift.
+    await sleep(durationMs + 50);
 
     // Play new scene (this stops old stems and resets master gain)
     await this.scenePlayer.playScene(pack, toSceneId);
@@ -146,20 +157,29 @@ export class TransitionPlayer {
       ? this.mixer.getMasterGain()
       : this.scenePlayer.getMasterGain();
     const fadeInStart = this.ctx.currentTime;
-    newMasterGain.gain.setValueAtTime(0.0001, fadeInStart);
-    if (fadeCurve === "exponential") {
-      newMasterGain.gain.exponentialRampToValueAtTime(
-        originalGain || 1,
-        fadeInStart + durationS / 2,
-      );
+
+    // If originalGain is effectively zero, skip the ramp entirely — both
+    // exponential and linear paths would either mask the mute or ramp to 0.
+    if (originalGain < 0.001) {
+      newMasterGain.gain.setValueAtTime(originalGain, fadeInStart);
     } else {
-      newMasterGain.gain.linearRampToValueAtTime(
-        originalGain,
-        fadeInStart + durationS / 2,
-      );
+      newMasterGain.gain.setValueAtTime(0.0001, fadeInStart);
+      if (fadeCurve === "exponential") {
+        newMasterGain.gain.exponentialRampToValueAtTime(
+          originalGain,
+          fadeInStart + durationS / 2,
+        );
+      } else {
+        newMasterGain.gain.linearRampToValueAtTime(
+          originalGain,
+          fadeInStart + durationS / 2,
+        );
+      }
     }
 
-    await sleep(durationMs / 2);
+    // Safety margin (+50ms) prevents premature scene cutoff when setTimeout
+    // drifts behind the AudioContext clock.
+    await sleep(durationMs / 2 + 50);
   }
 
   private async stingerThenSwitch(
@@ -202,6 +222,94 @@ export class TransitionPlayer {
     stingerGain.disconnect();
 
     await this.scenePlayer.playScene(pack, toSceneId);
+  }
+
+  /**
+   * Bar-sync: wait until the next bar boundary, then crossfade at that moment.
+   * Resolves BPM from the current scene's first stem asset. Falls back to
+   * immediate switch if BPM cannot be determined.
+   */
+  private async barSync(
+    pack: SoundtrackPack,
+    toSceneId: string,
+    rule: TransitionRule,
+    fadeCurve: FadeCurve,
+  ): Promise<void> {
+    // Resolve BPM from the current scene's stems
+    const fromSceneId = this.scenePlayer.sceneId;
+    const scene = pack.scenes.find((s) => s.id === fromSceneId);
+    const stemsById = new Map(pack.stems.map((s) => [s.id, s]));
+    const assetsById = new Map(pack.assets.map((a) => [a.id, a]));
+
+    let bpm: number | undefined;
+    if (scene) {
+      for (const layer of scene.layers) {
+        const stem = stemsById.get(layer.stemId);
+        if (!stem) continue;
+        const asset = assetsById.get(stem.assetId);
+        if (asset?.bpm) {
+          bpm = asset.bpm;
+          break;
+        }
+      }
+    }
+
+    if (!bpm) {
+      console.warn(
+        `[TransitionPlayer] bar-sync: no BPM found for scene '${fromSceneId}' — falling back to immediate switch.`,
+      );
+      await this.scenePlayer.playScene(pack, toSceneId);
+      return;
+    }
+
+    const beatsPerBar = 4; // Default time signature
+    const delayS = this.scenePlayer.getTimeToNextBar(bpm, beatsPerBar);
+    const delayMs = delayS * 1000;
+
+    // Wait until the bar boundary
+    if (delayMs > 10) {
+      await sleep(delayMs);
+    }
+
+    // Crossfade at the bar boundary using the existing crossfade logic
+    await this.crossfade(pack, toSceneId, rule, fadeCurve);
+  }
+
+  /**
+   * Cooldown-fade: fade out the current scene over durationMs, then switch
+   * to the new scene after a brief gap. Sequential — no overlap.
+   */
+  private async cooldownFade(
+    pack: SoundtrackPack,
+    toSceneId: string,
+    rule: TransitionRule,
+  ): Promise<void> {
+    const durationMs = rule.durationMs ?? 1000;
+    const durationS = durationMs / 1000;
+    const now = this.ctx.currentTime;
+
+    // Get the gain node for the fade-out
+    const masterGain = this.mixer
+      ? this.mixer.getMasterGain()
+      : this.scenePlayer.getMasterGain();
+
+    const originalGain = masterGain.gain.value;
+
+    // Linear fade out over the full duration
+    masterGain.gain.setValueAtTime(originalGain, now);
+    masterGain.gain.linearRampToValueAtTime(0, now + durationS);
+
+    // Wait for the fade-out to complete (+ safety margin)
+    await sleep(durationMs + 50);
+
+    // Stop old scene, start new scene (no overlap — sequential)
+    await this.scenePlayer.playScene(pack, toSceneId);
+
+    // Restore gain to original level immediately (no fade-in for cooldown)
+    const newMasterGain = this.mixer
+      ? this.mixer.getMasterGain()
+      : this.scenePlayer.getMasterGain();
+    newMasterGain.gain.setValueAtTime(originalGain, this.ctx.currentTime);
   }
 
   private emit(type: string, detail: unknown): void {

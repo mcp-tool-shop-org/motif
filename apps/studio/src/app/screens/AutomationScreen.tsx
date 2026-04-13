@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useStudioStore } from "../store";
 import type {
   AutomationParam,
@@ -490,11 +490,26 @@ function CapturePanel() {
   const [recordSource, setRecordSource] = useState<MacroParam>("intensity");
   const [capturePoints, setCapturePoints] = useState<{ timeMs: number; value: number }[]>([]);
   const [startTime, setStartTime] = useState(0);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // Clean up interval on unmount
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, []);
 
   const handleStartRecord = () => {
     setRecording(true);
-    setStartTime(Date.now());
+    const now = Date.now();
+    setStartTime(now);
     setCapturePoints([]);
+    // Start automatic capture ticks every 100ms
+    intervalRef.current = setInterval(() => {
+      const timeMs = Date.now() - now;
+      const value = useStudioStore.getState().macroState[recordSource];
+      setCapturePoints((prev) => [...prev, { timeMs, value }]);
+    }, 100);
   };
 
   const handleRecordTick = () => {
@@ -506,6 +521,10 @@ function CapturePanel() {
 
   const handleStopRecord = () => {
     setRecording(false);
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
     if (capturePoints.length > 0) {
       const id = `cap-${crypto.randomUUID()}`;
       addCapture({

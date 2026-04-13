@@ -42,14 +42,25 @@ export class ScenePlayer {
     this.masterGain.connect(ctx.destination);
   }
 
-  /** Attach a mixer for bus routing and pan. Call before playScene. */
-  setMixer(mixer: Mixer): void {
+  /** Attach a mixer for bus routing and pan. Pass null to remove the mixer. */
+  setMixer(mixer: Mixer | null): void {
     this.mixer = mixer;
-    // Rewire masterGain through mixer
-    this.masterGain.disconnect();
-    // The mixer's getMasterGain already connects to ctx.destination,
-    // so we don't need the scene-player's masterGain when mixer is active.
-    // Instead, the mixer handles the final routing.
+    if (mixer) {
+      // Rewire masterGain through mixer
+      this.masterGain.disconnect();
+      // The mixer's getMasterGain already connects to ctx.destination,
+      // so we don't need the scene-player's masterGain when mixer is active.
+      // Instead, the mixer handles the final routing.
+    } else {
+      // Mixer removed — reconnect masterGain directly to destination
+      try { this.masterGain.disconnect(); } catch { /* already disconnected */ }
+      this.masterGain.connect(this.ctx.destination);
+    }
+  }
+
+  /** Remove the mixer and reconnect masterGain to destination. */
+  clearMixer(): void {
+    this.setMixer(null);
   }
 
   setListener(listener: PlaybackListener): void {
@@ -82,12 +93,16 @@ export class ScenePlayer {
     this.currentSceneId = sceneId;
     const plan = resolveActiveLayers(pack, sceneId);
 
+    if (plan.warnings.length > 0) {
+      console.warn('[Motif] Scene resolution warnings:', ...plan.warnings);
+    }
+
     // Load required assets
     await this.loader.loadForStems(pack, plan.stemIds);
 
     const stemsById = new Map(pack.stems.map((s) => [s.id, s]));
     const scene = pack.scenes.find((s) => s.id === sceneId);
-    const layersByStEm = new Map(
+    const layersByStem = new Map(
       scene?.layers.map((l) => [l.stemId, l]) ?? [],
     );
 
@@ -101,7 +116,7 @@ export class ScenePlayer {
       if (!buffer) continue;
 
       const gainNode = this.ctx.createGain();
-      const layerRef = layersByStEm.get(stemId);
+      const layerRef = layersByStem.get(stemId);
       const stemGainDb = layerRef?.gainDb ?? stem.gainDb ?? 0;
 
       gainNode.gain.value = stem.mutedByDefault ? 0 : dbToGain(stemGainDb);
@@ -205,10 +220,22 @@ export class ScenePlayer {
       if (clip.loop && clipDur > 0) {
         const clipId = ref.clipId;
         this.clipNextIteration.set(clipId, 1);
+        let lastTickTime = performance.now();
 
         const timer = setInterval(() => {
+          const now = performance.now();
+          const elapsedMs = now - lastTickTime;
+          lastTickTime = now;
+
           let iter = this.clipNextIteration.get(clipId) ?? 1;
-          const horizon = this.ctx.currentTime + ScenePlayer.LOOKAHEAD_S;
+
+          // Recovery: if the tab was backgrounded and the interval was throttled
+          // (elapsed > 2x the expected interval), extend the lookahead window
+          // to catch up on missed iterations instead of dropping them.
+          const wasThrottled = elapsedMs > ScenePlayer.SCHEDULE_INTERVAL_MS * 2;
+          const horizon = wasThrottled
+            ? this.ctx.currentTime + (elapsedMs / 1000) + ScenePlayer.LOOKAHEAD_S
+            : this.ctx.currentTime + ScenePlayer.LOOKAHEAD_S;
 
           // Pre-schedule all iterations whose start falls within the lookahead window
           while (this.clipStartTime + iter * clipDur <= horizon) {
@@ -304,6 +331,30 @@ export class ScenePlayer {
     h.userGainDb = gainDb;
     this.updateEffectiveGains();
     this.emit("stem-change");
+  }
+
+  /**
+   * Compute seconds until the next bar boundary, relative to the clip scheduler's
+   * start time. Useful for bar-sync transitions that delay switching until a
+   * musically meaningful moment.
+   *
+   * Returns 0 when no clips are playing (clipStartTime === 0).
+   */
+  getTimeToNextBar(bpm: number, beatsPerBar: number): number {
+    if (this.clipStartTime === 0) {
+      // No clip scheduling active — estimate from context start
+      const barDuration = (60 / bpm) * beatsPerBar;
+      const elapsed = this.ctx.currentTime;
+      const positionInBar = elapsed % barDuration;
+      if (positionInBar < 0.001) return barDuration; // already on a boundary
+      return barDuration - positionInBar;
+    }
+
+    const barDuration = (60 / bpm) * beatsPerBar;
+    const elapsed = this.ctx.currentTime - this.clipStartTime;
+    const positionInBar = elapsed % barDuration;
+    if (positionInBar < 0.001) return barDuration; // exactly on boundary, wait for next
+    return barDuration - positionInBar;
   }
 
   /** Set pan for a stem (-1 left to +1 right) */

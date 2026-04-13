@@ -1,6 +1,6 @@
 {
   "name": "@motif/scene-mapper",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Trigger mapping and scene resolution for Motif",
   "license": "MIT",
   "author": "mcp-tool-shop-org",

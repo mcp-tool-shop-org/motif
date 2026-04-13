@@ -1,6 +1,6 @@
 {
   "name": "@motif/schema",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Canonical types and Zod validation for Motif adaptive music",
   "license": "MIT",
   "author": "mcp-tool-shop-org",

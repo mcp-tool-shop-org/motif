@@ -38,7 +38,9 @@ export function LibraryScreen() {
               fontWeight: tab === t.key ? "bold" : "normal",
               borderBottom: tab === t.key ? "2px solid currentColor" : "2px solid transparent",
               background: "none",
-              border: "none",
+              borderTop: "none",
+              borderLeft: "none",
+              borderRight: "none",
               cursor: "pointer",
               padding: "0.5rem 1rem",
             }}
@@ -83,7 +85,7 @@ function TemplatesPanel() {
   const template = templates.find((t) => t.id === selectedId);
 
   const handleCreate = () => {
-    const id = `tpl-${Date.now()}`;
+    const id = `tpl-${crypto.randomUUID()}`;
     addTemplate({
       id,
       name: "New Template",
@@ -214,7 +216,7 @@ function SnapshotsPanel() {
       entityKind === "cue-family" ? cueFamilies.find((f) => f.id === entityId) :
       null;
     if (!entity) return;
-    const id = `snap-${Date.now()}`;
+    const id = `snap-${crypto.randomUUID()}`;
     addSnapshot({
       id,
       label,
@@ -315,8 +317,8 @@ function BranchesPanel() {
     if (!sourceSnapshotId || !branchName) return;
     const snap = snapshots.find((s) => s.id === sourceSnapshotId);
     if (!snap) return;
-    const id = `branch-${Date.now()}`;
-    const newEntityId = `${snap.entityId}-branch-${Date.now()}`;
+    const id = `branch-${crypto.randomUUID()}`;
+    const newEntityId = `${snap.entityId}-branch-${crypto.randomUUID()}`;
     addBranch({
       id,
       name: branchName,
@@ -420,7 +422,7 @@ function FavoritesPanel() {
 
   const handleFavorite = () => {
     if (!entityId || favIdSet.has(entityId)) return;
-    const id = `fav-${Date.now()}`;
+    const id = `fav-${crypto.randomUUID()}`;
     addFavorite({
       id,
       entityId,
@@ -519,7 +521,7 @@ function CollectionsPanel() {
   for (const k of kits) allEntities.set(k.id, k.name);
 
   const handleCreate = () => {
-    const id = `col-${Date.now()}`;
+    const id = `col-${crypto.randomUUID()}`;
     addCollection({
       id,
       name: "New Collection",

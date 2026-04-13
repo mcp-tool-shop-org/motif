@@ -32,7 +32,9 @@ export function SampleLabScreen() {
               fontWeight: tab === t.key ? "bold" : "normal",
               borderBottom: tab === t.key ? "2px solid currentColor" : "2px solid transparent",
               background: "none",
-              border: "none",
+              borderTop: "none",
+              borderLeft: "none",
+              borderRight: "none",
               cursor: "pointer",
               padding: "0.5rem 1rem",
             }}

@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { ClipPlayer, resolveClipNotes } from "../src/clip-player";
 import type { Clip } from "@motif/schema";
 import type { InstrumentRack } from "@motif/instrument-rack";
@@ -167,6 +167,149 @@ describe("ClipPlayer", () => {
 
     player.play(ctx, testClip, rack, output, 0, "nonexistent");
     expect(voice.playNote).toHaveBeenCalledTimes(3); // main notes
+  });
+
+  describe("loop scheduling", () => {
+    beforeEach(() => {
+      vi.useFakeTimers();
+    });
+
+    afterEach(() => {
+      vi.useRealTimers();
+    });
+
+    const loopClip: Clip = {
+      id: "loop-clip",
+      name: "Loop Test",
+      lane: "motif",
+      instrumentId: "lead-pluck",
+      bpm: 120,
+      lengthBeats: 4, // = 2 seconds at 120 BPM
+      notes: [
+        { pitch: 60, startTick: 0, durationTicks: 480, velocity: 100 },
+      ],
+      loop: true,
+    };
+
+    it("schedules loop re-fire that plays correct notes on second iteration", () => {
+      const voice = mockVoice();
+      const rack = mockRack(voice);
+      const ctx = mockAudioContext();
+      const output = ctx.createGain();
+
+      player.play(ctx, loopClip, rack, output, 0);
+
+      // First iteration: 1 note scheduled immediately
+      expect(voice.playNote).toHaveBeenCalledTimes(1);
+
+      // Advance timers past loop duration (2s = 2000ms, timer fires at ~1900ms)
+      vi.advanceTimersByTime(2000);
+
+      // Second iteration should have scheduled another note
+      expect(voice.playNote).toHaveBeenCalledTimes(2);
+
+      // Verify the second call used the correct start time (2.0s for second loop)
+      expect(voice.playNote).toHaveBeenNthCalledWith(
+        2,
+        ctx, 60, 100, 2.0, expect.any(Number), output,
+      );
+    });
+
+    it("stop() during loop cancels the loop timer", () => {
+      const voice = mockVoice();
+      const rack = mockRack(voice);
+      const ctx = mockAudioContext();
+      const output = ctx.createGain();
+
+      player.play(ctx, loopClip, rack, output, 0);
+      expect(voice.playNote).toHaveBeenCalledTimes(1);
+
+      // Stop before loop timer fires
+      player.stop();
+      expect(player.state).toBe("stopped");
+
+      // Advance past when the loop would have fired
+      vi.advanceTimersByTime(5000);
+
+      // No additional notes should have been scheduled
+      expect(voice.playNote).toHaveBeenCalledTimes(1);
+    });
+
+    it("non-looping clip does not re-schedule", () => {
+      const voice = mockVoice();
+      const rack = mockRack(voice);
+      const ctx = mockAudioContext();
+      const output = ctx.createGain();
+
+      // testClip has loop: false
+      player.play(ctx, testClip, rack, output, 0);
+      expect(voice.playNote).toHaveBeenCalledTimes(3);
+
+      // Advance well past clip duration
+      vi.advanceTimersByTime(10000);
+
+      // No additional calls
+      expect(voice.playNote).toHaveBeenCalledTimes(3);
+    });
+
+    it("loop fires multiple iterations when timers advance far enough", () => {
+      const voice = mockVoice();
+      const rack = mockRack(voice);
+      const ctx = mockAudioContext();
+      const output = ctx.createGain();
+
+      player.play(ctx, loopClip, rack, output, 0);
+      expect(voice.playNote).toHaveBeenCalledTimes(1);
+
+      // The loop timer uses (loopStartTime + clipDuration - ctx.currentTime) * 1000 - 100ms lookahead.
+      // With ctx.currentTime stuck at 0 and clipDuration=2s:
+      //   1st timer fires at: (0+2-0)*1000 - 100 = 1900ms
+      //   2nd timer fires at: 1900 + (2+2-0)*1000 - 100 = 1900 + 3900 = 5800ms
+      //   3rd timer fires at: 5800 + (4+2-0)*1000 - 100 = 5800 + 5900 = 11700ms
+      // These grow because ctx.currentTime remains 0 (mock).
+
+      vi.advanceTimersByTime(1900); // iteration 2 fires
+      expect(voice.playNote).toHaveBeenCalledTimes(2);
+
+      vi.advanceTimersByTime(3900); // iteration 3 fires (total 5800ms)
+      expect(voice.playNote).toHaveBeenCalledTimes(3);
+
+      vi.advanceTimersByTime(5900); // iteration 4 fires (total 11700ms)
+      expect(voice.playNote).toHaveBeenCalledTimes(4);
+    });
+
+    it("loop preserves variant selection across iterations", () => {
+      const variantNotes = [
+        { pitch: 72, startTick: 0, durationTicks: 480, velocity: 110 },
+      ];
+      const loopClipWithVariants: Clip = {
+        ...loopClip,
+        variants: [{ id: "var-loop", name: "Loop Var", notes: variantNotes }],
+      };
+
+      const voice = mockVoice();
+      const rack = mockRack(voice);
+      const ctx = mockAudioContext();
+      const output = ctx.createGain();
+
+      player.play(ctx, loopClipWithVariants, rack, output, 0, "var-loop");
+
+      // First iteration plays variant note (pitch 72)
+      expect(voice.playNote).toHaveBeenCalledTimes(1);
+      expect(voice.playNote).toHaveBeenCalledWith(
+        ctx, 72, 110, expect.any(Number), expect.any(Number), output,
+      );
+
+      // Advance to second iteration
+      vi.advanceTimersByTime(2000);
+
+      // Second iteration should also play variant note
+      expect(voice.playNote).toHaveBeenCalledTimes(2);
+      expect(voice.playNote).toHaveBeenNthCalledWith(
+        2,
+        ctx, 72, 110, expect.any(Number), expect.any(Number), output,
+      );
+    });
   });
 });
 

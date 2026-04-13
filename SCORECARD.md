@@ -11,7 +11,7 @@
 | Category | Score | Notes |
 |----------|-------|-------|
 | A. Security | 9/10 | Local-only browser app, zero network egress, no eval/innerHTML, no secrets. Missing: dependency scanning in CI. |
-| B. Error Handling | 10/10 | Zod schemas with structured validation. React error boundary with recovery UI. AudioContext graceful fallback. Division-by-zero guards. Transport error cleanup. Delay feedback safety limiter. |
+| B. Error Handling | 9/10 | Zod schemas with structured validation. React error boundary with recovery UI. AudioContext graceful fallback. Division-by-zero guards. Transport error cleanup. Delay feedback safety limiter. |
 | C. Operator Docs | 8/10 | README is comprehensive. 40-chapter handbook is written. Package READMEs exist for all 16 packages. Missing: architecture map doc. |
 | D. Shipping Hygiene | 9/10 | CI pipeline (lint, typecheck, test, build, coverage). Lockfile committed. `verify` script exists. engines.node set. Missing: dependency scanning, pnpm version bump. |
 | E. Identity (soft) | 7/10 | Logo present, 8-language translations, GitHub metadata set. Landing page and polyglot pipeline pending. |

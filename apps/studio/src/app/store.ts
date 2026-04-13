@@ -132,6 +132,15 @@ export interface StudioState {
   setAssetTagFilter: (t: string | null) => void;
   setAssetSourceFilter: (s: AssetSourceType | null) => void;
 
+  // Entity search
+  sceneSearchQuery: string;
+  clipSearchQuery: string;
+  stemSearchQuery: string;
+  setAssetSearch: (q: string) => void;
+  setSceneSearch: (q: string) => void;
+  setClipSearch: (q: string) => void;
+  setStemSearch: (q: string) => void;
+
   // Stem CRUD
   addStem: (stem: Stem) => void;
   updateStem: (id: string, partial: Partial<Stem>) => void;
@@ -339,9 +348,10 @@ function fixSelection(
 let _undoDebounceTimer: ReturnType<typeof setTimeout> | null = null;
 let _undoPending = false;
 
-/** Push current pack onto undo stack (debounced). Call before any pack mutation. */
-function _pushUndo(set: (fn: (state: StudioState) => Partial<StudioState>) => void) {
-  if (_undoPending) return; // already scheduled for this debounce window
+/** Push current pack onto undo stack (debounced). Call before any pack mutation.
+ *  Pass force=true for destructive ops (deletes) to bypass debounce. */
+function _pushUndo(set: (fn: (state: StudioState) => Partial<StudioState>) => void, force?: boolean) {
+  if (!force && _undoPending) return; // already scheduled for this debounce window
   _undoPending = true;
 
   if (_undoDebounceTimer !== null) {
@@ -349,7 +359,7 @@ function _pushUndo(set: (fn: (state: StudioState) => Partial<StudioState>) => vo
   }
   // Capture immediately — we want the pack BEFORE the mutation
   set((state) => {
-    const newStack = [...state.undoStack, JSON.parse(JSON.stringify(state.pack)) as SoundtrackPack];
+    const newStack = [...state.undoStack, structuredClone(state.pack)];
     if (newStack.length > UNDO_MAX) newStack.shift();
     return {
       undoStack: newStack,
@@ -395,7 +405,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
       if (state.undoStack.length === 0) return state;
       const newUndoStack = [...state.undoStack];
       const prevPack = newUndoStack.pop()!;
-      const newRedoStack = [...state.redoStack, JSON.parse(JSON.stringify(state.pack)) as SoundtrackPack];
+      const newRedoStack = [...state.redoStack, structuredClone(state.pack)];
       return {
         pack: prevPack,
         undoStack: newUndoStack,
@@ -410,7 +420,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
       if (state.redoStack.length === 0) return state;
       const newRedoStack = [...state.redoStack];
       const nextPack = newRedoStack.pop()!;
-      const newUndoStack = [...state.undoStack, JSON.parse(JSON.stringify(state.pack)) as SoundtrackPack];
+      const newUndoStack = [...state.undoStack, structuredClone(state.pack)];
       return {
         pack: nextPack,
         undoStack: newUndoStack,
@@ -442,6 +452,15 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
   setAssetTagFilter: (assetTagFilter) => set({ assetTagFilter }),
   setAssetSourceFilter: (assetSourceFilter) => set({ assetSourceFilter }),
 
+  // Entity search
+  sceneSearchQuery: "",
+  clipSearchQuery: "",
+  stemSearchQuery: "",
+  setAssetSearch: (q) => set({ assetSearchQuery: q }),
+  setSceneSearch: (q) => set({ sceneSearchQuery: q }),
+  setClipSearch: (q) => set({ clipSearchQuery: q }),
+  setStemSearch: (q) => set({ stemSearchQuery: q }),
+
   // Assets
   addAsset: (asset) => {
     _pushUndo(set);
@@ -466,7 +485,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
     });
   },
   deleteAsset: (id) => {
-    _pushUndo(set);
+    _pushUndo(set, true);
     return set((state) => {
       const assets = state.pack.assets.filter((a) => a.id !== id);
       return {
@@ -500,7 +519,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
     });
   },
   deleteStem: (id) => {
-    _pushUndo(set);
+    _pushUndo(set, true);
     return set((state) => {
       const stems = state.pack.stems.filter((s) => s.id !== id);
       return {
@@ -534,7 +553,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
     });
   },
   deleteScene: (id) => {
-    _pushUndo(set);
+    _pushUndo(set, true);
     return set((state) => {
       const scenes = state.pack.scenes.filter((s) => s.id !== id);
       return {
@@ -546,7 +565,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
   addSceneLayer: (sceneId, layer) => {
     _pushUndo(set);
     return set((state) => {
-      if (process.env.NODE_ENV !== "production" && !state.pack.scenes.some((s) => s.id === sceneId)) {
+      if (!state.pack.scenes.some((s) => s.id === sceneId)) {
         console.warn(`[store] addSceneLayer: scene "${sceneId}" not found`);
       }
       return {
@@ -562,7 +581,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
   updateSceneLayer: (sceneId, layerIndex, partial) => {
     _pushUndo(set);
     return set((state) => {
-      if (process.env.NODE_ENV !== "production" && !state.pack.scenes.some((s) => s.id === sceneId)) {
+      if (!state.pack.scenes.some((s) => s.id === sceneId)) {
         console.warn(`[store] updateSceneLayer: scene "${sceneId}" not found`);
       }
       return {
@@ -583,9 +602,9 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
     });
   },
   removeSceneLayer: (sceneId, layerIndex) => {
-    _pushUndo(set);
+    _pushUndo(set, true);
     return set((state) => {
-      if (process.env.NODE_ENV !== "production" && !state.pack.scenes.some((s) => s.id === sceneId)) {
+      if (!state.pack.scenes.some((s) => s.id === sceneId)) {
         console.warn(`[store] removeSceneLayer: scene "${sceneId}" not found`);
       }
       return {
@@ -625,7 +644,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
     });
   },
   deleteBinding: (id) => {
-    _pushUndo(set);
+    _pushUndo(set, true);
     return set((state) => {
       const bindings = state.pack.bindings.filter((b) => b.id !== id);
       return {
@@ -637,7 +656,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
   addBindingCondition: (bindingId, condition) => {
     _pushUndo(set);
     return set((state) => {
-      if (process.env.NODE_ENV !== "production" && !state.pack.bindings.some((b) => b.id === bindingId)) {
+      if (!state.pack.bindings.some((b) => b.id === bindingId)) {
         console.warn(`[store] addBindingCondition: binding "${bindingId}" not found`);
       }
       return {
@@ -655,7 +674,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
   updateBindingCondition: (bindingId, conditionIndex, partial) => {
     _pushUndo(set);
     return set((state) => {
-      if (process.env.NODE_ENV !== "production" && !state.pack.bindings.some((b) => b.id === bindingId)) {
+      if (!state.pack.bindings.some((b) => b.id === bindingId)) {
         console.warn(`[store] updateBindingCondition: binding "${bindingId}" not found`);
       }
       return {
@@ -676,9 +695,9 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
     });
   },
   removeBindingCondition: (bindingId, conditionIndex) => {
-    _pushUndo(set);
+    _pushUndo(set, true);
     return set((state) => {
-      if (process.env.NODE_ENV !== "production" && !state.pack.bindings.some((b) => b.id === bindingId)) {
+      if (!state.pack.bindings.some((b) => b.id === bindingId)) {
         console.warn(`[store] removeBindingCondition: binding "${bindingId}" not found`);
       }
       return {
@@ -726,7 +745,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
     });
   },
   deleteTransition: (id) => {
-    _pushUndo(set);
+    _pushUndo(set, true);
     return set((state) => {
       const transitions = state.pack.transitions.filter((t) => t.id !== id);
       return {
@@ -755,7 +774,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
     });
   },
   deleteClip: (id) => {
-    _pushUndo(set);
+    _pushUndo(set, true);
     return set((state) => {
       const clips = (state.pack.clips ?? []).filter((c) => c.id !== id);
       return { pack: { ...state.pack, clips }, selectedId: fixSelection(clips, id, state.selectedId) };
@@ -774,7 +793,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
     }));
   },
   removeClipNote: (clipId, noteIndex) => {
-    _pushUndo(set);
+    _pushUndo(set, true);
     return set((state) => ({
       pack: { ...state.pack, clips: (state.pack.clips ?? []).map((c) => c.id === clipId ? { ...c, notes: c.notes.filter((_, i) => i !== noteIndex) } : c) },
     }));
@@ -794,7 +813,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
     }));
   },
   removeSceneClipLayer: (sceneId, layerIndex) => {
-    _pushUndo(set);
+    _pushUndo(set, true);
     return set((state) => ({
       pack: { ...state.pack, scenes: state.pack.scenes.map((s) => s.id === sceneId ? { ...s, clipLayers: (s.clipLayers ?? []).filter((_, i) => i !== layerIndex) } : s) },
     }));
@@ -814,7 +833,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
     }));
   },
   removeClipVariant: (clipId, variantId) => {
-    _pushUndo(set);
+    _pushUndo(set, true);
     return set((state) => ({
       pack: { ...state.pack, clips: (state.pack.clips ?? []).map((c) => c.id === clipId ? { ...c, variants: (c.variants ?? []).filter((v) => v.id !== variantId) } : c) },
     }));
@@ -837,7 +856,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
   updateCue: (id, partial) => { _pushUndo(set); return set((state) => ({
     pack: { ...state.pack, cues: (state.pack.cues ?? []).map((c) => c.id === id ? { ...c, ...partial } : c) },
   })); },
-  deleteCue: (id) => { _pushUndo(set); return set((state) => {
+  deleteCue: (id) => { _pushUndo(set, true); return set((state) => {
     const cues = (state.pack.cues ?? []).filter((c) => c.id !== id);
     return { pack: { ...state.pack, cues }, selectedId: fixSelection(cues, id, state.selectedId) };
   }); },
@@ -847,7 +866,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
   updateCueSection: (cueId, sectionId, partial) => { _pushUndo(set); return set((state) => ({
     pack: { ...state.pack, cues: (state.pack.cues ?? []).map((c) => c.id === cueId ? { ...c, sections: c.sections.map((s) => s.id === sectionId ? { ...s, ...partial } : s) } : c) },
   })); },
-  removeCueSection: (cueId, sectionId) => { _pushUndo(set); return set((state) => ({
+  removeCueSection: (cueId, sectionId) => { _pushUndo(set, true); return set((state) => ({
     pack: { ...state.pack, cues: (state.pack.cues ?? []).map((c) => c.id === cueId ? { ...c, sections: c.sections.filter((s) => s.id !== sectionId) } : c) },
   })); },
   reorderCueSections: (cueId, sectionIds) => { _pushUndo(set); return set((state) => ({
@@ -871,7 +890,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
   updateSampleSlice: (id, update) => { _pushUndo(set); return set((state) => ({
     pack: { ...state.pack, sampleSlices: (state.pack.sampleSlices ?? []).map((sl) => sl.id === id ? { ...sl, ...update } : sl) },
   })); },
-  deleteSampleSlice: (id) => { _pushUndo(set); return set((state) => ({
+  deleteSampleSlice: (id) => { _pushUndo(set, true); return set((state) => ({
     pack: { ...state.pack, sampleSlices: (state.pack.sampleSlices ?? []).filter((sl) => sl.id !== id) },
   })); },
 
@@ -882,7 +901,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
   updateSampleKit: (id, update) => { _pushUndo(set); return set((state) => ({
     pack: { ...state.pack, sampleKits: (state.pack.sampleKits ?? []).map((k) => k.id === id ? { ...k, ...update } : k) },
   })); },
-  deleteSampleKit: (id) => { _pushUndo(set); return set((state) => ({
+  deleteSampleKit: (id) => { _pushUndo(set, true); return set((state) => ({
     pack: { ...state.pack, sampleKits: (state.pack.sampleKits ?? []).filter((k) => k.id !== id) },
   })); },
   addSampleKitSlot: (kitId, slot) => { _pushUndo(set); return set((state) => ({
@@ -891,7 +910,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
   updateSampleKitSlot: (kitId, pitch, update) => { _pushUndo(set); return set((state) => ({
     pack: { ...state.pack, sampleKits: (state.pack.sampleKits ?? []).map((k) => k.id === kitId ? { ...k, slots: k.slots.map((sl) => sl.pitch === pitch ? { ...sl, ...update } : sl) } : k) },
   })); },
-  removeSampleKitSlot: (kitId, pitch) => { _pushUndo(set); return set((state) => ({
+  removeSampleKitSlot: (kitId, pitch) => { _pushUndo(set, true); return set((state) => ({
     pack: { ...state.pack, sampleKits: (state.pack.sampleKits ?? []).map((k) => k.id === kitId ? { ...k, slots: k.slots.filter((sl) => sl.pitch !== pitch) } : k) },
   })); },
 
@@ -902,7 +921,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
   updateSampleInstrument: (id, update) => { _pushUndo(set); return set((state) => ({
     pack: { ...state.pack, sampleInstruments: (state.pack.sampleInstruments ?? []).map((i) => i.id === id ? { ...i, ...update } : i) },
   })); },
-  deleteSampleInstrument: (id) => { _pushUndo(set); return set((state) => ({
+  deleteSampleInstrument: (id) => { _pushUndo(set, true); return set((state) => ({
     pack: { ...state.pack, sampleInstruments: (state.pack.sampleInstruments ?? []).filter((i) => i.id !== id) },
   })); },
 
@@ -913,7 +932,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
   updateMotifFamily: (id, update) => { _pushUndo(set); return set((state) => ({
     pack: { ...state.pack, motifFamilies: (state.pack.motifFamilies ?? []).map((f) => f.id === id ? { ...f, ...update } : f) },
   })); },
-  deleteMotifFamily: (id) => { _pushUndo(set); return set((state) => ({
+  deleteMotifFamily: (id) => { _pushUndo(set, true); return set((state) => ({
     pack: { ...state.pack, motifFamilies: (state.pack.motifFamilies ?? []).filter((f) => f.id !== id) },
   })); },
 
@@ -924,7 +943,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
   updateScoreProfile: (id, update) => { _pushUndo(set); return set((state) => ({
     pack: { ...state.pack, scoreProfiles: (state.pack.scoreProfiles ?? []).map((pr) => pr.id === id ? { ...pr, ...update } : pr) },
   })); },
-  deleteScoreProfile: (id) => { _pushUndo(set); return set((state) => ({
+  deleteScoreProfile: (id) => { _pushUndo(set, true); return set((state) => ({
     pack: { ...state.pack, scoreProfiles: (state.pack.scoreProfiles ?? []).filter((pr) => pr.id !== id) },
   })); },
 
@@ -935,7 +954,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
   updateCueFamily: (id, update) => { _pushUndo(set); return set((state) => ({
     pack: { ...state.pack, cueFamilies: (state.pack.cueFamilies ?? []).map((f) => f.id === id ? { ...f, ...update } : f) },
   })); },
-  deleteCueFamily: (id) => { _pushUndo(set); return set((state) => ({
+  deleteCueFamily: (id) => { _pushUndo(set, true); return set((state) => ({
     pack: { ...state.pack, cueFamilies: (state.pack.cueFamilies ?? []).filter((f) => f.id !== id) },
   })); },
 
@@ -946,7 +965,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
   updateScoreMapEntry: (id, update) => { _pushUndo(set); return set((state) => ({
     pack: { ...state.pack, scoreMap: (state.pack.scoreMap ?? []).map((e) => e.id === id ? { ...e, ...update } : e) },
   })); },
-  deleteScoreMapEntry: (id) => { _pushUndo(set); return set((state) => ({
+  deleteScoreMapEntry: (id) => { _pushUndo(set, true); return set((state) => ({
     pack: { ...state.pack, scoreMap: (state.pack.scoreMap ?? []).filter((e) => e.id !== id) },
   })); },
 
@@ -954,7 +973,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
   addDerivation: (record) => { _pushUndo(set); return set((state) => ({
     pack: { ...state.pack, derivations: [...(state.pack.derivations ?? []), record] },
   })); },
-  deleteDerivation: (id) => { _pushUndo(set); return set((state) => ({
+  deleteDerivation: (id) => { _pushUndo(set, true); return set((state) => ({
     pack: { ...state.pack, derivations: (state.pack.derivations ?? []).filter((d) => d.id !== id) },
   })); },
 
@@ -965,7 +984,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
   updateAutomationLane: (id, update) => { _pushUndo(set); return set((state) => ({
     pack: { ...state.pack, automationLanes: (state.pack.automationLanes ?? []).map((l) => l.id === id ? { ...l, ...update } : l) },
   })); },
-  deleteAutomationLane: (id) => { _pushUndo(set); return set((state) => ({
+  deleteAutomationLane: (id) => { _pushUndo(set, true); return set((state) => ({
     pack: { ...state.pack, automationLanes: (state.pack.automationLanes ?? []).filter((l) => l.id !== id) },
   })); },
 
@@ -976,7 +995,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
   updateMacroMapping: (id, update) => { _pushUndo(set); return set((state) => ({
     pack: { ...state.pack, macroMappings: (state.pack.macroMappings ?? []).map((m) => m.id === id ? { ...m, ...update } : m) },
   })); },
-  deleteMacroMapping: (id) => { _pushUndo(set); return set((state) => ({
+  deleteMacroMapping: (id) => { _pushUndo(set, true); return set((state) => ({
     pack: { ...state.pack, macroMappings: (state.pack.macroMappings ?? []).filter((m) => m.id !== id) },
   })); },
 
@@ -992,7 +1011,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
   updateSectionEnvelope: (id, update) => { _pushUndo(set); return set((state) => ({
     pack: { ...state.pack, sectionEnvelopes: (state.pack.sectionEnvelopes ?? []).map((e) => e.id === id ? { ...e, ...update } : e) },
   })); },
-  deleteSectionEnvelope: (id) => { _pushUndo(set); return set((state) => ({
+  deleteSectionEnvelope: (id) => { _pushUndo(set, true); return set((state) => ({
     pack: { ...state.pack, sectionEnvelopes: (state.pack.sectionEnvelopes ?? []).filter((e) => e.id !== id) },
   })); },
 
@@ -1000,7 +1019,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
   addAutomationCapture: (capture) => { _pushUndo(set); return set((state) => ({
     pack: { ...state.pack, automationCaptures: [...(state.pack.automationCaptures ?? []), capture] },
   })); },
-  deleteAutomationCapture: (id) => { _pushUndo(set); return set((state) => ({
+  deleteAutomationCapture: (id) => { _pushUndo(set, true); return set((state) => ({
     pack: { ...state.pack, automationCaptures: (state.pack.automationCaptures ?? []).filter((c) => c.id !== id) },
   })); },
 
@@ -1011,7 +1030,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
   updateTemplate: (id, update) => { _pushUndo(set); return set((state) => ({
     pack: { ...state.pack, templates: (state.pack.templates ?? []).map((t) => t.id === id ? { ...t, ...update } : t) },
   })); },
-  deleteTemplate: (id) => { _pushUndo(set); return set((state) => ({
+  deleteTemplate: (id) => { _pushUndo(set, true); return set((state) => ({
     pack: { ...state.pack, templates: (state.pack.templates ?? []).filter((t) => t.id !== id) },
   })); },
 
@@ -1019,7 +1038,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
   addSnapshot: (snapshot) => { _pushUndo(set); return set((state) => ({
     pack: { ...state.pack, snapshots: [...(state.pack.snapshots ?? []), snapshot] },
   })); },
-  deleteSnapshot: (id) => { _pushUndo(set); return set((state) => ({
+  deleteSnapshot: (id) => { _pushUndo(set, true); return set((state) => ({
     pack: { ...state.pack, snapshots: (state.pack.snapshots ?? []).filter((sn) => sn.id !== id) },
   })); },
 
@@ -1027,7 +1046,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
   addBranch: (branch) => { _pushUndo(set); return set((state) => ({
     pack: { ...state.pack, branches: [...(state.pack.branches ?? []), branch] },
   })); },
-  deleteBranch: (id) => { _pushUndo(set); return set((state) => ({
+  deleteBranch: (id) => { _pushUndo(set, true); return set((state) => ({
     pack: { ...state.pack, branches: (state.pack.branches ?? []).filter((b) => b.id !== id) },
   })); },
 
@@ -1035,7 +1054,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
   addFavorite: (fav) => { _pushUndo(set); return set((state) => ({
     pack: { ...state.pack, favorites: [...(state.pack.favorites ?? []), fav] },
   })); },
-  deleteFavorite: (id) => { _pushUndo(set); return set((state) => ({
+  deleteFavorite: (id) => { _pushUndo(set, true); return set((state) => ({
     pack: { ...state.pack, favorites: (state.pack.favorites ?? []).filter((f) => f.id !== id) },
   })); },
 
@@ -1046,7 +1065,7 @@ export const useStudioStore = create<StudioState>()(devtools((set) => ({
   updateCollection: (id, update) => { _pushUndo(set); return set((state) => ({
     pack: { ...state.pack, collections: (state.pack.collections ?? []).map((c) => c.id === id ? { ...c, ...update } : c) },
   })); },
-  deleteCollection: (id) => { _pushUndo(set); return set((state) => ({
+  deleteCollection: (id) => { _pushUndo(set, true); return set((state) => ({
     pack: { ...state.pack, collections: (state.pack.collections ?? []).filter((c) => c.id !== id) },
   })); },
 }), { name: "motif-studio", enabled: process.env.NODE_ENV !== "production" }));

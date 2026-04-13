@@ -27,13 +27,29 @@ let previewTimeoutId: ReturnType<typeof setTimeout> | null = null;
 const previewRack = new InstrumentRack();
 
 function getPreviewCtx(): AudioContext {
-  if (!previewCtx || previewCtx.state === "closed") {
+  if (!previewCtx) {
+    previewCtx = new AudioContext();
+  } else if (previewCtx.state === "closed") {
+    // Only create a new context if the previous one is truly closed.
+    // Prefer suspending over closing to avoid unlimited context creation.
+    console.warn("[Playback] AudioContext was closed unexpectedly — creating a new one.");
     previewCtx = new AudioContext();
   }
   if (previewCtx.state === "suspended") {
-    previewCtx.resume();
+    previewCtx.resume().catch((err) => {
+      console.warn("[Playback] AudioContext.resume() failed:", err);
+    });
   }
   return previewCtx;
+}
+
+/** Suspend the shared preview AudioContext when not in use (prefer over closing). */
+export function suspendPreviewCtx(): void {
+  if (previewCtx && previewCtx.state === "running") {
+    previewCtx.suspend().catch((err) => {
+      console.warn("[Playback] AudioContext.suspend() failed:", err);
+    });
+  }
 }
 
 function stopPreviewInternal() {
@@ -70,12 +86,16 @@ function previewClipInternal(clip: Clip, onFinish: () => void): boolean {
   return true;
 }
 
+/** Last audition voice handle — stopped before each new audition */
+let lastAuditionVoice: Voice | null = null;
+
 /** Audition a single note briefly (for NoteGrid click-to-audition) */
 export function auditionNote(instrumentId: string, pitch: number, velocity: number = 100, duration: number = 0.2): void {
   const ctx = getPreviewCtx();
   const voice = previewRack.getVoice(instrumentId);
   if (!voice) return;
-  voice.playNote(ctx, pitch, velocity, ctx.currentTime, duration, ctx.destination);
+  if (lastAuditionVoice) lastAuditionVoice.stop();
+  lastAuditionVoice = voice.playNote(ctx, pitch, velocity, ctx.currentTime, duration, ctx.destination);
 }
 
 // ── Singleton transport ──
