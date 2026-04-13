@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "id": "missing-baseline",
+    "name": "Missing Baseline Pack",
+    "version": "0.1.0",
+    "description": "A pack missing most recommended scene categories.",
+    "schemaVersion": "1"
+  },
+  "assets": [
+    {
+      "id": "asset-stealth-base",
+      "name": "Stealth Base",
+      "src": "audio/stealth-base.ogg",
+      "kind": "loop",
+      "durationMs": 12000,
+      "bpm": 80
+    }
+  ],
+  "stems": [
+    {
+      "id": "stem-stealth-base",
+      "name": "Stealth Base",
+      "assetId": "asset-stealth-base",
+      "role": "mystery",
+      "loop": true
+    }
+  ],
+  "scenes": [
+    {
+      "id": "scene-stealth",
+      "name": "Stealth",
+      "category": "stealth",
+      "layers": [
+        { "stemId": "stem-stealth-base", "required": true }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "bind-stealth",
+      "name": "Stealth Mode",
+      "sceneId": "scene-stealth",
+      "conditions": [
+        { "field": "mode", "op": "eq", "value": "stealth" }
+      ],
+      "priority": 0
+    }
+  ],
+  "transitions": []
+}

@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "id": "minimal-pack",
+    "name": "Minimal Pack",
+    "version": "1.0.0",
+    "schemaVersion": "1"
+  },
+  "assets": [
+    {
+      "id": "asset-loop-01",
+      "name": "Base Loop",
+      "src": "audio/base-loop.ogg",
+      "kind": "loop",
+      "durationMs": 8000
+    }
+  ],
+  "stems": [
+    {
+      "id": "stem-base-01",
+      "name": "Base Stem",
+      "assetId": "asset-loop-01",
+      "role": "base",
+      "loop": true
+    }
+  ],
+  "scenes": [
+    {
+      "id": "scene-explore",
+      "name": "Exploration",
+      "category": "exploration",
+      "layers": [
+        { "stemId": "stem-base-01", "required": true }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "bind-explore",
+      "name": "Default Exploration",
+      "sceneId": "scene-explore",
+      "conditions": [
+        { "field": "mode", "op": "eq", "value": "exploration" }
+      ],
+      "priority": 0
+    }
+  ],
+  "transitions": []
+}

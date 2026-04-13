@@ -1,0 +1,64 @@
+---
+import DocsLayout from "../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="Examples">
+  <h1>Examples</h1>
+  <p class="docs-subtitle">
+    Two built-in packs to learn from — loadable via the studio's pack switcher.
+  </p>
+
+  <h2>Minimal Pack</h2>
+  <p>
+    The smallest valid soundtrack pack. One asset, one stem, one scene, one
+    binding, zero transitions. Use it to understand the bare minimum data shape
+    that passes validation and produces a working runtime export.
+  </p>
+  <table>
+    <thead><tr><th>Entity</th><th>Count</th></tr></thead>
+    <tbody>
+      <tr><td>Assets</td><td>1</td></tr>
+      <tr><td>Stems</td><td>1</td></tr>
+      <tr><td>Scenes</td><td>1</td></tr>
+      <tr><td>Bindings</td><td>1</td></tr>
+      <tr><td>Transitions</td><td>0</td></tr>
+    </tbody>
+  </table>
+  <p>
+    <strong>Key lesson:</strong> You don't need transitions to have a valid pack.
+    Without transition rules, scene switches use an immediate hard cut by default.
+  </p>
+
+  <h2>Starter Adventure Pack</h2>
+  <p>
+    A mid-complexity pack with exploration, tension, combat, victory, and safe
+    zone scenes. Demonstrates:
+  </p>
+  <ul>
+    <li>Optional layers with <code>mutedByDefault</code> and <code>gainDb</code> offsets</li>
+    <li>Fallback scene chains (Victory → Exploration, Tension → Exploration)</li>
+    <li>Four transition modes: crossfade, stinger-then-switch, immediate, cooldown-fade</li>
+    <li>Priority-based binding resolution with <code>stopProcessing</code></li>
+  </ul>
+  <table>
+    <thead><tr><th>Entity</th><th>Count</th></tr></thead>
+    <tbody>
+      <tr><td>Assets</td><td>8</td></tr>
+      <tr><td>Stems</td><td>7</td></tr>
+      <tr><td>Scenes</td><td>5</td></tr>
+      <tr><td>Bindings</td><td>5</td></tr>
+      <tr><td>Transitions</td><td>4</td></tr>
+    </tbody>
+  </table>
+  <p>
+    <strong>Key lesson:</strong> Multiple conditions per binding, fallback chains,
+    and transition variety create a rich, believable adaptive soundtrack.
+  </p>
+
+  <h2>Loading examples in the studio</h2>
+  <p>
+    Use the <strong>Example Pack</strong> dropdown at the bottom of the sidebar
+    to switch between packs. Switching reloads the entire pack — any unsaved
+    edits to the current pack are lost.
+  </p>
+</DocsLayout>

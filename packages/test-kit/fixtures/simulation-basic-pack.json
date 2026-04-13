@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "id": "simulation-basic",
+    "name": "Simulation Basic",
+    "version": "1.0.0",
+    "schemaVersion": "1"
+  },
+  "assets": [
+    { "id": "a-explore", "name": "Explore Loop", "src": "audio/explore.ogg", "kind": "loop", "durationMs": 8000 },
+    { "id": "a-combat", "name": "Combat Loop", "src": "audio/combat.ogg", "kind": "loop", "durationMs": 8000 },
+    { "id": "a-victory", "name": "Victory Pad", "src": "audio/victory.ogg", "kind": "oneshot", "durationMs": 6000 },
+    { "id": "a-stinger", "name": "Stinger", "src": "audio/stinger.ogg", "kind": "stinger", "durationMs": 1500 }
+  ],
+  "stems": [
+    { "id": "st-bed", "name": "Explore Bed", "assetId": "a-explore", "role": "base", "loop": true },
+    { "id": "st-combat", "name": "Combat Bed", "assetId": "a-combat", "role": "combat", "loop": true },
+    { "id": "st-victory", "name": "Victory Pad", "assetId": "a-victory", "role": "base", "loop": false }
+  ],
+  "scenes": [
+    {
+      "id": "sc-explore",
+      "name": "Exploration",
+      "category": "exploration",
+      "layers": [{ "stemId": "st-bed", "required": true }]
+    },
+    {
+      "id": "sc-combat",
+      "name": "Combat",
+      "category": "combat",
+      "layers": [{ "stemId": "st-combat", "required": true }]
+    },
+    {
+      "id": "sc-victory",
+      "name": "Victory",
+      "category": "victory",
+      "layers": [{ "stemId": "st-victory" }]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "b-explore",
+      "name": "Exploration default",
+      "sceneId": "sc-explore",
+      "conditions": [{ "field": "mode", "op": "eq", "value": "exploration" }],
+      "priority": 10
+    },
+    {
+      "id": "b-combat",
+      "name": "Combat mode",
+      "sceneId": "sc-combat",
+      "conditions": [{ "field": "inCombat", "op": "eq", "value": true }],
+      "priority": 50
+    },
+    {
+      "id": "b-victory",
+      "name": "Victory",
+      "sceneId": "sc-victory",
+      "conditions": [{ "field": "victory", "op": "eq", "value": true }],
+      "priority": 80
+    }
+  ],
+  "transitions": [
+    {
+      "id": "t-explore-combat",
+      "name": "Explore to Combat",
+      "fromSceneId": "sc-explore",
+      "toSceneId": "sc-combat",
+      "mode": "stinger-then-switch",
+      "stingerAssetId": "a-stinger"
+    },
+    {
+      "id": "t-combat-victory",
+      "name": "Combat to Victory",
+      "fromSceneId": "sc-combat",
+      "toSceneId": "sc-victory",
+      "mode": "cooldown-fade",
+      "durationMs": 3000
+    }
+  ]
+}

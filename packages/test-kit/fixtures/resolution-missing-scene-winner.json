@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "id": "resolution-missing-scene-winner",
+    "name": "Resolution Missing Scene Winner",
+    "version": "1.0.0",
+    "schemaVersion": "1"
+  },
+  "assets": [
+    { "id": "a1", "name": "Loop", "src": "audio/a.ogg", "kind": "loop", "durationMs": 8000 }
+  ],
+  "stems": [
+    { "id": "s1", "name": "Stem", "assetId": "a1", "role": "base", "loop": true }
+  ],
+  "scenes": [
+    {
+      "id": "sc-exists",
+      "name": "Existing Scene",
+      "category": "exploration",
+      "layers": [{ "stemId": "s1" }]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "b-ghost",
+      "name": "Ghost bind",
+      "sceneId": "sc-nonexistent",
+      "conditions": [{ "field": "mode", "op": "eq", "value": "exploration" }],
+      "priority": 10
+    }
+  ],
+  "transitions": []
+}

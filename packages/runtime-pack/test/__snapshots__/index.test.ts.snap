@@ -1,0 +1,598 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`exportRuntimePack > produces expected runtime shape snapshot from starter pack 1`] = `
+{
+  "assets": [
+    {
+      "bpm": 90,
+      "durationMs": 16000,
+      "id": "asset-explore-base",
+      "key": "Am",
+      "kind": "loop",
+      "src": "audio/explore-base.ogg",
+    },
+    {
+      "bpm": 90,
+      "durationMs": 16000,
+      "id": "asset-explore-accent",
+      "kind": "loop",
+      "loopEndMs": 16000,
+      "loopStartMs": 0,
+      "src": "audio/explore-accent.ogg",
+    },
+    {
+      "bpm": 110,
+      "durationMs": 8000,
+      "id": "asset-tension-base",
+      "key": "Dm",
+      "kind": "loop",
+      "src": "audio/tension-base.ogg",
+    },
+    {
+      "bpm": 140,
+      "durationMs": 8000,
+      "id": "asset-combat-base",
+      "key": "Em",
+      "kind": "loop",
+      "src": "audio/combat-base.ogg",
+    },
+    {
+      "bpm": 140,
+      "durationMs": 8000,
+      "id": "asset-combat-danger",
+      "kind": "loop",
+      "src": "audio/combat-danger.ogg",
+    },
+    {
+      "durationMs": 4000,
+      "id": "asset-victory-fanfare",
+      "kind": "oneshot",
+      "src": "audio/victory-fanfare.ogg",
+    },
+    {
+      "durationMs": 1500,
+      "id": "asset-stinger-combat",
+      "kind": "stinger",
+      "src": "audio/stinger-combat.ogg",
+    },
+    {
+      "durationMs": 30000,
+      "id": "asset-safe-ambient",
+      "kind": "ambient",
+      "src": "audio/safe-ambient.ogg",
+      "tags": [
+        "calm",
+        "town",
+      ],
+    },
+  ],
+  "bindings": [
+    {
+      "conditions": [
+        {
+          "field": "mode",
+          "op": "eq",
+          "value": "exploration",
+        },
+      ],
+      "id": "bind-explore",
+      "priority": 0,
+      "sceneId": "scene-exploration",
+    },
+    {
+      "conditions": [
+        {
+          "field": "danger",
+          "op": "gte",
+          "value": 0.5,
+        },
+      ],
+      "id": "bind-tension",
+      "priority": 10,
+      "sceneId": "scene-tension",
+    },
+    {
+      "conditions": [
+        {
+          "field": "inCombat",
+          "op": "eq",
+          "value": true,
+        },
+      ],
+      "id": "bind-combat",
+      "priority": 20,
+      "sceneId": "scene-combat",
+    },
+    {
+      "conditions": [
+        {
+          "field": "victory",
+          "op": "eq",
+          "value": true,
+        },
+      ],
+      "id": "bind-victory",
+      "priority": 30,
+      "sceneId": "scene-victory",
+      "stopProcessing": true,
+    },
+    {
+      "conditions": [
+        {
+          "field": "safeZone",
+          "op": "eq",
+          "value": true,
+        },
+      ],
+      "id": "bind-safe",
+      "priority": 5,
+      "sceneId": "scene-safe-zone",
+    },
+  ],
+  "meta": {
+    "author": "soundweave",
+    "description": "A basic exploration and combat soundtrack pack.",
+    "id": "starter-pack",
+    "name": "Starter Adventure Pack",
+    "schemaVersion": "1",
+    "tags": [
+      "starter",
+      "rpg",
+    ],
+    "version": "1.0.0",
+  },
+  "scenes": [
+    {
+      "category": "exploration",
+      "fallbackSceneId": "scene-safe-zone",
+      "id": "scene-exploration",
+      "layers": [
+        {
+          "required": true,
+          "startMode": "immediate",
+          "stemId": "stem-explore-base",
+        },
+        {
+          "startMode": "next-bar",
+          "stemId": "stem-explore-accent",
+        },
+      ],
+      "name": "Exploration",
+      "tags": [
+        "outdoor",
+        "default",
+      ],
+    },
+    {
+      "category": "tension",
+      "fallbackSceneId": "scene-exploration",
+      "id": "scene-tension",
+      "layers": [
+        {
+          "required": true,
+          "stemId": "stem-tension-base",
+        },
+      ],
+      "name": "Rising Tension",
+    },
+    {
+      "category": "combat",
+      "fallbackSceneId": "scene-tension",
+      "id": "scene-combat",
+      "layers": [
+        {
+          "required": true,
+          "stemId": "stem-combat-base",
+        },
+        {
+          "stemId": "stem-combat-danger",
+        },
+      ],
+      "name": "Combat",
+    },
+    {
+      "category": "victory",
+      "fallbackSceneId": "scene-exploration",
+      "id": "scene-victory",
+      "layers": [
+        {
+          "required": true,
+          "stemId": "stem-victory",
+        },
+      ],
+      "name": "Victory",
+    },
+    {
+      "category": "safe-zone",
+      "id": "scene-safe-zone",
+      "layers": [
+        {
+          "required": true,
+          "stemId": "stem-safe-ambient",
+        },
+      ],
+      "name": "Safe Zone",
+      "tags": [
+        "town",
+        "rest",
+      ],
+    },
+  ],
+  "stems": [
+    {
+      "assetId": "asset-explore-base",
+      "id": "stem-explore-base",
+      "loop": true,
+      "role": "base",
+    },
+    {
+      "assetId": "asset-explore-accent",
+      "gainDb": -3,
+      "id": "stem-explore-accent",
+      "loop": true,
+      "mutedByDefault": true,
+      "role": "accent",
+    },
+    {
+      "assetId": "asset-tension-base",
+      "id": "stem-tension-base",
+      "loop": true,
+      "role": "danger",
+    },
+    {
+      "assetId": "asset-combat-base",
+      "id": "stem-combat-base",
+      "loop": true,
+      "role": "combat",
+    },
+    {
+      "assetId": "asset-combat-danger",
+      "id": "stem-combat-danger",
+      "loop": true,
+      "mutedByDefault": true,
+      "role": "danger",
+    },
+    {
+      "assetId": "asset-victory-fanfare",
+      "id": "stem-victory",
+      "loop": false,
+      "role": "recovery",
+    },
+    {
+      "assetId": "asset-safe-ambient",
+      "id": "stem-safe-ambient",
+      "loop": true,
+      "role": "base",
+    },
+  ],
+  "transitions": [
+    {
+      "durationMs": 2000,
+      "fromSceneId": "scene-exploration",
+      "id": "trans-explore-to-tension",
+      "mode": "crossfade",
+      "toSceneId": "scene-tension",
+    },
+    {
+      "durationMs": 1500,
+      "fromSceneId": "scene-tension",
+      "id": "trans-tension-to-combat",
+      "mode": "stinger-then-switch",
+      "stingerAssetId": "asset-stinger-combat",
+      "toSceneId": "scene-combat",
+    },
+    {
+      "fromSceneId": "scene-combat",
+      "id": "trans-combat-to-victory",
+      "mode": "immediate",
+      "toSceneId": "scene-victory",
+    },
+    {
+      "durationMs": 3000,
+      "fromSceneId": "scene-victory",
+      "id": "trans-victory-to-explore",
+      "mode": "cooldown-fade",
+      "toSceneId": "scene-exploration",
+    },
+  ],
+}
+`;
+
+exports[`serializeRuntimePack > snapshot: serialized starter pack 1`] = `
+"{
+  "meta": {
+    "id": "starter-pack",
+    "name": "Starter Adventure Pack",
+    "version": "1.0.0",
+    "schemaVersion": "1",
+    "description": "A basic exploration and combat soundtrack pack.",
+    "author": "soundweave",
+    "tags": [
+      "starter",
+      "rpg"
+    ]
+  },
+  "assets": [
+    {
+      "id": "asset-explore-base",
+      "src": "audio/explore-base.ogg",
+      "kind": "loop",
+      "durationMs": 16000,
+      "bpm": 90,
+      "key": "Am"
+    },
+    {
+      "id": "asset-explore-accent",
+      "src": "audio/explore-accent.ogg",
+      "kind": "loop",
+      "durationMs": 16000,
+      "bpm": 90,
+      "loopStartMs": 0,
+      "loopEndMs": 16000
+    },
+    {
+      "id": "asset-tension-base",
+      "src": "audio/tension-base.ogg",
+      "kind": "loop",
+      "durationMs": 8000,
+      "bpm": 110,
+      "key": "Dm"
+    },
+    {
+      "id": "asset-combat-base",
+      "src": "audio/combat-base.ogg",
+      "kind": "loop",
+      "durationMs": 8000,
+      "bpm": 140,
+      "key": "Em"
+    },
+    {
+      "id": "asset-combat-danger",
+      "src": "audio/combat-danger.ogg",
+      "kind": "loop",
+      "durationMs": 8000,
+      "bpm": 140
+    },
+    {
+      "id": "asset-victory-fanfare",
+      "src": "audio/victory-fanfare.ogg",
+      "kind": "oneshot",
+      "durationMs": 4000
+    },
+    {
+      "id": "asset-stinger-combat",
+      "src": "audio/stinger-combat.ogg",
+      "kind": "stinger",
+      "durationMs": 1500
+    },
+    {
+      "id": "asset-safe-ambient",
+      "src": "audio/safe-ambient.ogg",
+      "kind": "ambient",
+      "durationMs": 30000,
+      "tags": [
+        "calm",
+        "town"
+      ]
+    }
+  ],
+  "stems": [
+    {
+      "id": "stem-explore-base",
+      "assetId": "asset-explore-base",
+      "role": "base",
+      "loop": true
+    },
+    {
+      "id": "stem-explore-accent",
+      "assetId": "asset-explore-accent",
+      "role": "accent",
+      "gainDb": -3,
+      "mutedByDefault": true,
+      "loop": true
+    },
+    {
+      "id": "stem-tension-base",
+      "assetId": "asset-tension-base",
+      "role": "danger",
+      "loop": true
+    },
+    {
+      "id": "stem-combat-base",
+      "assetId": "asset-combat-base",
+      "role": "combat",
+      "loop": true
+    },
+    {
+      "id": "stem-combat-danger",
+      "assetId": "asset-combat-danger",
+      "role": "danger",
+      "mutedByDefault": true,
+      "loop": true
+    },
+    {
+      "id": "stem-victory",
+      "assetId": "asset-victory-fanfare",
+      "role": "recovery",
+      "loop": false
+    },
+    {
+      "id": "stem-safe-ambient",
+      "assetId": "asset-safe-ambient",
+      "role": "base",
+      "loop": true
+    }
+  ],
+  "scenes": [
+    {
+      "id": "scene-exploration",
+      "name": "Exploration",
+      "category": "exploration",
+      "layers": [
+        {
+          "stemId": "stem-explore-base",
+          "required": true,
+          "startMode": "immediate"
+        },
+        {
+          "stemId": "stem-explore-accent",
+          "startMode": "next-bar"
+        }
+      ],
+      "fallbackSceneId": "scene-safe-zone",
+      "tags": [
+        "outdoor",
+        "default"
+      ]
+    },
+    {
+      "id": "scene-tension",
+      "name": "Rising Tension",
+      "category": "tension",
+      "layers": [
+        {
+          "stemId": "stem-tension-base",
+          "required": true
+        }
+      ],
+      "fallbackSceneId": "scene-exploration"
+    },
+    {
+      "id": "scene-combat",
+      "name": "Combat",
+      "category": "combat",
+      "layers": [
+        {
+          "stemId": "stem-combat-base",
+          "required": true
+        },
+        {
+          "stemId": "stem-combat-danger"
+        }
+      ],
+      "fallbackSceneId": "scene-tension"
+    },
+    {
+      "id": "scene-victory",
+      "name": "Victory",
+      "category": "victory",
+      "layers": [
+        {
+          "stemId": "stem-victory",
+          "required": true
+        }
+      ],
+      "fallbackSceneId": "scene-exploration"
+    },
+    {
+      "id": "scene-safe-zone",
+      "name": "Safe Zone",
+      "category": "safe-zone",
+      "layers": [
+        {
+          "stemId": "stem-safe-ambient",
+          "required": true
+        }
+      ],
+      "tags": [
+        "town",
+        "rest"
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "bind-explore",
+      "sceneId": "scene-exploration",
+      "priority": 0,
+      "conditions": [
+        {
+          "field": "mode",
+          "op": "eq",
+          "value": "exploration"
+        }
+      ]
+    },
+    {
+      "id": "bind-tension",
+      "sceneId": "scene-tension",
+      "priority": 10,
+      "conditions": [
+        {
+          "field": "danger",
+          "op": "gte",
+          "value": 0.5
+        }
+      ]
+    },
+    {
+      "id": "bind-combat",
+      "sceneId": "scene-combat",
+      "priority": 20,
+      "conditions": [
+        {
+          "field": "inCombat",
+          "op": "eq",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "bind-victory",
+      "sceneId": "scene-victory",
+      "priority": 30,
+      "stopProcessing": true,
+      "conditions": [
+        {
+          "field": "victory",
+          "op": "eq",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "bind-safe",
+      "sceneId": "scene-safe-zone",
+      "priority": 5,
+      "conditions": [
+        {
+          "field": "safeZone",
+          "op": "eq",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "id": "trans-explore-to-tension",
+      "fromSceneId": "scene-exploration",
+      "toSceneId": "scene-tension",
+      "mode": "crossfade",
+      "durationMs": 2000
+    },
+    {
+      "id": "trans-tension-to-combat",
+      "fromSceneId": "scene-tension",
+      "toSceneId": "scene-combat",
+      "mode": "stinger-then-switch",
+      "durationMs": 1500,
+      "stingerAssetId": "asset-stinger-combat"
+    },
+    {
+      "id": "trans-combat-to-victory",
+      "fromSceneId": "scene-combat",
+      "toSceneId": "scene-victory",
+      "mode": "immediate"
+    },
+    {
+      "id": "trans-victory-to-explore",
+      "fromSceneId": "scene-victory",
+      "toSceneId": "scene-exploration",
+      "mode": "cooldown-fade",
+      "durationMs": 3000
+    }
+  ]
+}
+"
+`;

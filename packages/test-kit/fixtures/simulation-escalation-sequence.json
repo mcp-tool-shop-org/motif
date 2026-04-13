@@ -1,0 +1,7 @@
+[
+  { "danger": 10, "inCombat": false },
+  { "danger": 50, "inCombat": false },
+  { "danger": 70, "inCombat": true },
+  { "danger": 90, "inCombat": true, "boss": true },
+  { "danger": 0, "inCombat": false, "victory": true }
+]

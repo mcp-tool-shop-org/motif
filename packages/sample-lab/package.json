@@ -1,0 +1,41 @@
+{
+  "name": "@motif/sample-lab",
+  "version": "1.1.0",
+  "description": "Trim, slice, kit, and instrument helpers for Motif",
+  "license": "MIT",
+  "author": "mcp-tool-shop-org",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mcp-tool-shop-org/motif.git",
+    "directory": "packages/sample-lab"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "dev": "tsc --build --watch",
+    "test": "vitest run",
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@motif/schema": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.0",
+    "vitest": "^3.2.0"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "id": "integrity-valid",
+    "name": "Integrity Valid Pack",
+    "version": "1.0.0",
+    "schemaVersion": "1"
+  },
+  "assets": [
+    { "id": "a1", "name": "Loop A", "src": "audio/a.ogg", "kind": "loop", "durationMs": 8000 },
+    { "id": "a2", "name": "Loop B", "src": "audio/b.ogg", "kind": "loop", "durationMs": 8000 },
+    { "id": "a-stinger", "name": "Stinger", "src": "audio/stinger.ogg", "kind": "stinger", "durationMs": 1500 }
+  ],
+  "stems": [
+    { "id": "s1", "name": "Base", "assetId": "a1", "role": "base", "loop": true },
+    { "id": "s2", "name": "Combat", "assetId": "a2", "role": "combat", "loop": true }
+  ],
+  "scenes": [
+    {
+      "id": "sc-explore",
+      "name": "Explore",
+      "category": "exploration",
+      "layers": [{ "stemId": "s1", "required": true }],
+      "fallbackSceneId": "sc-safe"
+    },
+    {
+      "id": "sc-combat",
+      "name": "Combat",
+      "category": "combat",
+      "layers": [{ "stemId": "s2", "required": true }]
+    },
+    {
+      "id": "sc-safe",
+      "name": "Safe",
+      "category": "safe-zone",
+      "layers": [{ "stemId": "s1" }]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "b-explore",
+      "name": "Explore",
+      "sceneId": "sc-explore",
+      "conditions": [{ "field": "mode", "op": "eq", "value": "exploration" }],
+      "priority": 0
+    },
+    {
+      "id": "b-combat",
+      "name": "Combat",
+      "sceneId": "sc-combat",
+      "conditions": [{ "field": "inCombat", "op": "eq", "value": true }],
+      "priority": 10
+    },
+    {
+      "id": "b-safe",
+      "name": "Safe",
+      "sceneId": "sc-safe",
+      "conditions": [{ "field": "safeZone", "op": "eq", "value": true }],
+      "priority": 5
+    }
+  ],
+  "transitions": [
+    {
+      "id": "t-explore-combat",
+      "name": "Explore to Combat",
+      "fromSceneId": "sc-explore",
+      "toSceneId": "sc-combat",
+      "mode": "stinger-then-switch",
+      "stingerAssetId": "a-stinger"
+    }
+  ]
+}

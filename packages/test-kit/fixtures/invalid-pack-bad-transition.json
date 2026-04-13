@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "id": "bad-transition-pack",
+    "name": "Bad Transition Pack",
+    "version": "1.0.0",
+    "schemaVersion": "1"
+  },
+  "assets": [
+    {
+      "id": "asset-loop-01",
+      "name": "Base Loop",
+      "src": "audio/base.ogg",
+      "kind": "loop",
+      "durationMs": 8000
+    }
+  ],
+  "stems": [
+    {
+      "id": "stem-01",
+      "name": "Base Stem",
+      "assetId": "asset-loop-01",
+      "role": "base",
+      "loop": true
+    }
+  ],
+  "scenes": [
+    {
+      "id": "scene-a",
+      "name": "Scene A",
+      "category": "exploration",
+      "layers": [{ "stemId": "stem-01" }]
+    },
+    {
+      "id": "scene-b",
+      "name": "Scene B",
+      "category": "combat",
+      "layers": [{ "stemId": "stem-01" }]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "bind-a",
+      "name": "Bind A",
+      "sceneId": "scene-a",
+      "conditions": [{ "field": "mode", "op": "eq", "value": "exploration" }],
+      "priority": 0
+    }
+  ],
+  "transitions": [
+    {
+      "id": "trans-bad",
+      "name": "Bad Crossfade",
+      "fromSceneId": "scene-a",
+      "toSceneId": "scene-b",
+      "mode": "crossfade"
+    }
+  ]
+}

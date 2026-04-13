@@ -1,0 +1,63 @@
+{
+  "meta": {
+    "id": "duplicate-ids",
+    "name": "Duplicate IDs",
+    "version": "1.0.0",
+    "schemaVersion": "1"
+  },
+  "assets": [
+    { "id": "a1", "name": "Loop A", "src": "audio/a.ogg", "kind": "loop", "durationMs": 8000 },
+    { "id": "a1", "name": "Loop B", "src": "audio/b.ogg", "kind": "oneshot", "durationMs": 3000 }
+  ],
+  "stems": [
+    { "id": "s1", "name": "Stem A", "assetId": "a1", "role": "base", "loop": true },
+    { "id": "s1", "name": "Stem B", "assetId": "a1", "role": "accent", "loop": false }
+  ],
+  "scenes": [
+    {
+      "id": "sc1",
+      "name": "Scene A",
+      "category": "exploration",
+      "layers": [{ "stemId": "s1" }]
+    },
+    {
+      "id": "sc1",
+      "name": "Scene B",
+      "category": "combat",
+      "layers": [{ "stemId": "s1" }]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "b1",
+      "name": "Bind A",
+      "sceneId": "sc1",
+      "conditions": [{ "field": "mode", "op": "eq", "value": "exploration" }],
+      "priority": 0
+    },
+    {
+      "id": "b1",
+      "name": "Bind B",
+      "sceneId": "sc1",
+      "conditions": [{ "field": "mode", "op": "eq", "value": "combat" }],
+      "priority": 1
+    }
+  ],
+  "transitions": [
+    {
+      "id": "t1",
+      "name": "Trans A",
+      "fromSceneId": "sc1",
+      "toSceneId": "sc1",
+      "mode": "immediate"
+    },
+    {
+      "id": "t1",
+      "name": "Trans B",
+      "fromSceneId": "sc1",
+      "toSceneId": "sc1",
+      "mode": "crossfade",
+      "durationMs": 2000
+    }
+  ]
+}

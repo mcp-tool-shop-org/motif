@@ -1,0 +1,132 @@
+{
+  "meta": {
+    "id": "simulation-combat-escalation",
+    "name": "Simulation Combat Escalation",
+    "version": "1.0.0",
+    "schemaVersion": "1"
+  },
+  "assets": [
+    { "id": "a-calm", "name": "Calm Loop", "src": "audio/calm.ogg", "kind": "loop", "durationMs": 8000 },
+    { "id": "a-tension", "name": "Tension Loop", "src": "audio/tension.ogg", "kind": "loop", "durationMs": 8000 },
+    { "id": "a-combat", "name": "Combat Loop", "src": "audio/combat.ogg", "kind": "loop", "durationMs": 8000 },
+    { "id": "a-boss", "name": "Boss Loop", "src": "audio/boss.ogg", "kind": "loop", "durationMs": 8000 },
+    { "id": "a-choir", "name": "Boss Choir", "src": "audio/choir.ogg", "kind": "loop", "durationMs": 8000 },
+    { "id": "a-victory", "name": "Victory", "src": "audio/victory.ogg", "kind": "oneshot", "durationMs": 6000 }
+  ],
+  "stems": [
+    { "id": "st-calm", "name": "Calm Bed", "assetId": "a-calm", "role": "base", "loop": true },
+    { "id": "st-tension", "name": "Tension", "assetId": "a-tension", "role": "danger", "loop": true },
+    { "id": "st-combat", "name": "Combat Bed", "assetId": "a-combat", "role": "combat", "loop": true },
+    { "id": "st-boss", "name": "Boss Bed", "assetId": "a-boss", "role": "boss", "loop": true },
+    { "id": "st-choir", "name": "Boss Choir", "assetId": "a-choir", "role": "accent", "loop": true },
+    { "id": "st-victory", "name": "Victory Pad", "assetId": "a-victory", "role": "base", "loop": false }
+  ],
+  "scenes": [
+    {
+      "id": "sc-calm",
+      "name": "Calm",
+      "category": "exploration",
+      "layers": [{ "stemId": "st-calm", "required": true }]
+    },
+    {
+      "id": "sc-tension",
+      "name": "Tension",
+      "category": "tension",
+      "layers": [
+        { "stemId": "st-calm" },
+        { "stemId": "st-tension", "required": true }
+      ]
+    },
+    {
+      "id": "sc-combat",
+      "name": "Combat",
+      "category": "combat",
+      "layers": [{ "stemId": "st-combat", "required": true }]
+    },
+    {
+      "id": "sc-boss",
+      "name": "Boss Fight",
+      "category": "boss",
+      "layers": [
+        { "stemId": "st-boss", "required": true },
+        { "stemId": "st-choir", "required": true }
+      ]
+    },
+    {
+      "id": "sc-victory",
+      "name": "Victory",
+      "category": "victory",
+      "layers": [{ "stemId": "st-victory" }]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "b-calm",
+      "name": "Calm",
+      "sceneId": "sc-calm",
+      "conditions": [{ "field": "danger", "op": "lt", "value": 30 }],
+      "priority": 0
+    },
+    {
+      "id": "b-tension",
+      "name": "Tension",
+      "sceneId": "sc-tension",
+      "conditions": [{ "field": "danger", "op": "gte", "value": 30 }],
+      "priority": 10
+    },
+    {
+      "id": "b-combat",
+      "name": "Combat",
+      "sceneId": "sc-combat",
+      "conditions": [{ "field": "inCombat", "op": "eq", "value": true }],
+      "priority": 50
+    },
+    {
+      "id": "b-boss",
+      "name": "Boss fight",
+      "sceneId": "sc-boss",
+      "conditions": [{ "field": "boss", "op": "eq", "value": true }],
+      "priority": 100
+    },
+    {
+      "id": "b-victory",
+      "name": "Victory",
+      "sceneId": "sc-victory",
+      "conditions": [{ "field": "victory", "op": "eq", "value": true }],
+      "priority": 120
+    }
+  ],
+  "transitions": [
+    {
+      "id": "t-calm-tension",
+      "name": "Calm to Tension",
+      "fromSceneId": "sc-calm",
+      "toSceneId": "sc-tension",
+      "mode": "crossfade",
+      "durationMs": 2000
+    },
+    {
+      "id": "t-tension-combat",
+      "name": "Tension to Combat",
+      "fromSceneId": "sc-tension",
+      "toSceneId": "sc-combat",
+      "mode": "crossfade",
+      "durationMs": 1500
+    },
+    {
+      "id": "t-combat-boss",
+      "name": "Combat to Boss",
+      "fromSceneId": "sc-combat",
+      "toSceneId": "sc-boss",
+      "mode": "immediate"
+    },
+    {
+      "id": "t-boss-victory",
+      "name": "Boss to Victory",
+      "fromSceneId": "sc-boss",
+      "toSceneId": "sc-victory",
+      "mode": "cooldown-fade",
+      "durationMs": 4000
+    }
+  ]
+}

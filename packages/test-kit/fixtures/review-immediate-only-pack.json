@@ -1,0 +1,166 @@
+{
+  "meta": {
+    "id": "immediate-only",
+    "name": "Immediate Only Pack",
+    "version": "0.2.0",
+    "description": "A pack where all transitions use immediate mode.",
+    "schemaVersion": "1"
+  },
+  "assets": [
+    {
+      "id": "asset-explore",
+      "name": "Exploration Loop",
+      "src": "audio/explore.ogg",
+      "kind": "loop",
+      "durationMs": 16000,
+      "bpm": 90
+    },
+    {
+      "id": "asset-combat",
+      "name": "Combat Loop",
+      "src": "audio/combat.ogg",
+      "kind": "loop",
+      "durationMs": 8000,
+      "bpm": 140
+    },
+    {
+      "id": "asset-victory",
+      "name": "Victory Fanfare",
+      "src": "audio/victory.ogg",
+      "kind": "oneshot",
+      "durationMs": 4000
+    },
+    {
+      "id": "asset-safe",
+      "name": "Safe Zone",
+      "src": "audio/safe.ogg",
+      "kind": "ambient",
+      "durationMs": 30000
+    }
+  ],
+  "stems": [
+    {
+      "id": "stem-explore",
+      "name": "Explore",
+      "assetId": "asset-explore",
+      "role": "base",
+      "loop": true
+    },
+    {
+      "id": "stem-combat",
+      "name": "Combat",
+      "assetId": "asset-combat",
+      "role": "combat",
+      "loop": true
+    },
+    {
+      "id": "stem-victory",
+      "name": "Victory",
+      "assetId": "asset-victory",
+      "role": "recovery",
+      "loop": false
+    },
+    {
+      "id": "stem-safe",
+      "name": "Safe",
+      "assetId": "asset-safe",
+      "role": "base",
+      "loop": true
+    }
+  ],
+  "scenes": [
+    {
+      "id": "scene-exploration",
+      "name": "Exploration",
+      "category": "exploration",
+      "layers": [
+        { "stemId": "stem-explore", "required": true }
+      ]
+    },
+    {
+      "id": "scene-combat",
+      "name": "Combat",
+      "category": "combat",
+      "layers": [
+        { "stemId": "stem-combat", "required": true }
+      ]
+    },
+    {
+      "id": "scene-victory",
+      "name": "Victory",
+      "category": "victory",
+      "layers": [
+        { "stemId": "stem-victory", "required": true }
+      ]
+    },
+    {
+      "id": "scene-safe-zone",
+      "name": "Safe Zone",
+      "category": "safe-zone",
+      "layers": [
+        { "stemId": "stem-safe", "required": true }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "bind-explore",
+      "name": "Explore Mode",
+      "sceneId": "scene-exploration",
+      "conditions": [
+        { "field": "mode", "op": "eq", "value": "exploration" }
+      ],
+      "priority": 0
+    },
+    {
+      "id": "bind-combat",
+      "name": "In Combat",
+      "sceneId": "scene-combat",
+      "conditions": [
+        { "field": "inCombat", "op": "eq", "value": true }
+      ],
+      "priority": 20
+    },
+    {
+      "id": "bind-victory",
+      "name": "Victory Event",
+      "sceneId": "scene-victory",
+      "conditions": [
+        { "field": "victory", "op": "eq", "value": true }
+      ],
+      "priority": 30
+    },
+    {
+      "id": "bind-safe",
+      "name": "Safe Zone",
+      "sceneId": "scene-safe-zone",
+      "conditions": [
+        { "field": "safeZone", "op": "eq", "value": true }
+      ],
+      "priority": 5
+    }
+  ],
+  "transitions": [
+    {
+      "id": "trans-explore-to-combat",
+      "name": "Explore → Combat",
+      "fromSceneId": "scene-exploration",
+      "toSceneId": "scene-combat",
+      "mode": "immediate"
+    },
+    {
+      "id": "trans-combat-to-victory",
+      "name": "Combat → Victory",
+      "fromSceneId": "scene-combat",
+      "toSceneId": "scene-victory",
+      "mode": "immediate"
+    },
+    {
+      "id": "trans-victory-to-explore",
+      "name": "Victory → Explore",
+      "fromSceneId": "scene-victory",
+      "toSceneId": "scene-exploration",
+      "mode": "immediate"
+    }
+  ]
+}

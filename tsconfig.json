@@ -1,0 +1,15 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/schema" },
+    { "path": "packages/asset-index" },
+    { "path": "packages/audio-engine" },
+    { "path": "packages/scene-mapper" },
+    { "path": "packages/runtime-pack" },
+    { "path": "packages/review" },
+    { "path": "packages/ui" },
+    { "path": "packages/test-kit" },
+    { "path": "apps/studio" },
+    { "path": "apps/docs" }
+  ]
+}

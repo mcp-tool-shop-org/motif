@@ -1,0 +1,34 @@
+{
+  "meta": {
+    "id": "empty-layers",
+    "name": "Empty Layers Pack",
+    "version": "1.0.0",
+    "schemaVersion": "1"
+  },
+  "assets": [
+    {
+      "id": "asset-01",
+      "src": "audio/loop.ogg",
+      "kind": "loop",
+      "durationMs": 8000
+    }
+  ],
+  "stems": [
+    {
+      "id": "stem-01",
+      "assetId": "asset-01",
+      "role": "base",
+      "loop": true
+    }
+  ],
+  "scenes": [
+    {
+      "id": "scene-empty",
+      "name": "Empty Scene",
+      "category": "exploration",
+      "layers": []
+    }
+  ],
+  "bindings": [],
+  "transitions": []
+}

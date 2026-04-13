@@ -1,0 +1,115 @@
+---
+import DocsLayout from "../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="Workflow">
+  <h1>Workflow</h1>
+  <p class="docs-subtitle">
+    The authoring loop: from blank canvas to exported runtime pack.
+  </p>
+
+  <h2>1. Start with a pack</h2>
+  <p>
+    Open the studio and choose an example pack from the sidebar, or start with
+    the empty default pack. The <strong>Project</strong> tab lets you set the
+    pack name, version, description, author, and tags.
+  </p>
+
+  <h2>2. Add assets</h2>
+  <p>
+    In the <strong>Assets</strong> tab, define each audio file your pack uses.
+    Give each asset a unique ID, set the <code>src</code> path, choose a
+    <code>kind</code> (loop, oneshot, stinger, ambient), and specify the
+    duration. Optionally add BPM, key, and loop markers.
+  </p>
+
+  <h2>3. Create stems</h2>
+  <p>
+    <strong>Stems</strong> are the playback wrappers around assets. A single
+    asset might be referenced by multiple stems with different roles and gain
+    settings. For example, the same loop might serve as a <code>base</code>
+    stem at full volume and an <code>accent</code> stem at −6 dB.
+  </p>
+
+  <h2>4. Design scenes</h2>
+  <p>
+    Each <strong>Scene</strong> represents a musical state. Pick a category,
+    add layers (each pointing to a stem), mark which layers are required, and
+    set start modes. Define a <code>fallbackSceneId</code> for graceful
+    degradation.
+  </p>
+  <p>
+    A typical pack might have: Exploration, Tension, Combat, Boss, Victory,
+    and Safe Zone scenes.
+  </p>
+
+  <h2>5. Map bindings</h2>
+  <p>
+    <strong>Bindings</strong> connect runtime game state to scenes. Each
+    binding has one or more conditions (field + operator + value) and a
+    priority. When the game sends state updates, the binding engine evaluates
+    all bindings highest-priority-first and activates the first matching scene.
+  </p>
+  <p>
+    Example: <code>inCombat eq true</code> at priority 20 triggers the Combat
+    scene, overriding the default Exploration binding at priority 0.
+  </p>
+
+  <h2>6. Define transitions</h2>
+  <p>
+    <strong>Transitions</strong> control how one scene flows into another. You
+    define the from/to scene pair and choose a mode: immediate, crossfade,
+    bar-sync, stinger-then-switch, or cooldown-fade. Without an explicit
+    transition rule, the engine uses an immediate hard cut.
+  </p>
+
+  <h2>7. Review</h2>
+  <p>
+    The <strong>Review</strong> tab runs automated validation on your pack.
+    It checks for:
+  </p>
+  <ul>
+    <li>Unused assets, stems, or scenes</li>
+    <li>Missing references (binding → non-existent scene, layer → non-existent stem)</li>
+    <li>Duplicate IDs</li>
+    <li>Missing required fields</li>
+  </ul>
+  <p>
+    The review badge in the sidebar shows the total warning/error count at a
+    glance.
+  </p>
+
+  <h2>8. Preview</h2>
+  <p>
+    The <strong>Preview</strong> tab simulates your pack at runtime. Two modes:
+  </p>
+  <ul>
+    <li><strong>Manual</strong> — adjust state fields (mode, danger, inCombat, boss, etc.) with sliders and toggles, and watch the engine resolve bindings and determine scene/transition outcomes in real time.</li>
+    <li><strong>Sequence</strong> — define a sequence of game-state snapshots and step through them. The trace table shows each step's resolved binding, active scene, transition, and active stems.</li>
+  </ul>
+
+  <h2>9. Export</h2>
+  <p>
+    The <strong>Export</strong> tab converts your authoring pack into a
+    <strong>RuntimeSoundtrackPack</strong> — a clean, game-ready JSON format
+    with editor-only fields stripped.
+  </p>
+  <p>
+    The export screen shows:
+  </p>
+  <ul>
+    <li><strong>Readiness status</strong> — Ready, Warnings, or Blocked (if errors exist)</li>
+    <li><strong>Round-trip verification</strong> — export → serialize → parse cycle confirms the output is parseable</li>
+    <li><strong>Runtime summary</strong> — counts and categories at a glance</li>
+    <li><strong>JSON preview</strong> — the full serialized output</li>
+    <li><strong>Copy / Download</strong> — one-click actions to grab the runtime JSON</li>
+  </ul>
+
+  <h2>10. Integrate</h2>
+  <p>
+    Hand the exported <code>.json</code> file to your game engine. The
+    runtime pack format is a plain JSON object with typed arrays — no
+    proprietary binary formats, no vendor lock-in. Parse it with
+    <code>@motif/runtime-pack</code> or with any JSON parser.
+  </p>
+</DocsLayout>

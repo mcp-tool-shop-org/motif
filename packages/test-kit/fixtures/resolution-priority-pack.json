@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "id": "resolution-priority",
+    "name": "Resolution Priority",
+    "version": "1.0.0",
+    "schemaVersion": "1"
+  },
+  "assets": [
+    { "id": "a1", "name": "Loop A", "src": "audio/a.ogg", "kind": "loop", "durationMs": 8000 },
+    { "id": "a2", "name": "Loop B", "src": "audio/b.ogg", "kind": "loop", "durationMs": 8000 },
+    { "id": "a3", "name": "Loop C", "src": "audio/c.ogg", "kind": "loop", "durationMs": 8000 }
+  ],
+  "stems": [
+    { "id": "s1", "name": "Base", "assetId": "a1", "role": "base", "loop": true },
+    { "id": "s2", "name": "Danger", "assetId": "a2", "role": "danger", "loop": true },
+    { "id": "s3", "name": "Boss", "assetId": "a3", "role": "boss", "loop": true }
+  ],
+  "scenes": [
+    {
+      "id": "sc-calm",
+      "name": "Calm",
+      "category": "exploration",
+      "layers": [{ "stemId": "s1" }]
+    },
+    {
+      "id": "sc-danger",
+      "name": "Danger",
+      "category": "tension",
+      "layers": [{ "stemId": "s2" }]
+    },
+    {
+      "id": "sc-boss",
+      "name": "Boss",
+      "category": "boss",
+      "layers": [{ "stemId": "s3" }]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "b-calm",
+      "name": "Calm",
+      "sceneId": "sc-calm",
+      "conditions": [{ "field": "danger", "op": "lt", "value": 30 }],
+      "priority": 0
+    },
+    {
+      "id": "b-danger",
+      "name": "Danger zone",
+      "sceneId": "sc-danger",
+      "conditions": [{ "field": "danger", "op": "gte", "value": 30 }],
+      "priority": 20
+    },
+    {
+      "id": "b-boss",
+      "name": "Boss fight",
+      "sceneId": "sc-boss",
+      "conditions": [{ "field": "boss", "op": "eq", "value": true }],
+      "priority": 100
+    }
+  ],
+  "transitions": []
+}

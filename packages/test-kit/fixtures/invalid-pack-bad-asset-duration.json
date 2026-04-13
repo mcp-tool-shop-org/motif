@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "id": "bad-duration-pack",
+    "name": "Bad Duration Pack",
+    "version": "1.0.0",
+    "schemaVersion": "1"
+  },
+  "assets": [
+    {
+      "id": "asset-bad",
+      "name": "Bad Asset",
+      "src": "audio/bad.ogg",
+      "kind": "loop",
+      "durationMs": -100
+    },
+    {
+      "id": "asset-bad-loops",
+      "name": "Bad Loop Points",
+      "src": "audio/bad-loops.ogg",
+      "kind": "loop",
+      "durationMs": 8000,
+      "loopStartMs": 5000,
+      "loopEndMs": 2000
+    }
+  ],
+  "stems": [
+    {
+      "id": "stem-01",
+      "name": "Base Stem",
+      "assetId": "asset-bad",
+      "role": "base",
+      "loop": true
+    }
+  ],
+  "scenes": [
+    {
+      "id": "scene-01",
+      "name": "Scene",
+      "category": "exploration",
+      "layers": [{ "stemId": "stem-01" }]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "bind-01",
+      "name": "Bind",
+      "sceneId": "scene-01",
+      "conditions": [{ "field": "mode", "op": "eq", "value": "exploration" }],
+      "priority": 0
+    }
+  ],
+  "transitions": []
+}

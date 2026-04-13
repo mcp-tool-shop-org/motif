@@ -1,0 +1,107 @@
+---
+import DocsLayout from "../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="Core Concepts">
+  <h1>Core Concepts</h1>
+  <p class="docs-subtitle">
+    The six building blocks of every soundtrack pack.
+  </p>
+
+  <h2>Soundtrack Pack</h2>
+  <p>
+    A <strong>SoundtrackPack</strong> is the top-level container. It holds
+    metadata and five ordered arrays: assets, stems, scenes, bindings, and
+    transitions. Every pack has a unique <code>id</code>,
+    <code>version</code>, and <code>schemaVersion</code>.
+  </p>
+
+  <h2>Assets</h2>
+  <p>
+    An <strong>AudioAsset</strong> represents a single audio file reference.
+    Assets have a <code>kind</code> that determines playback behavior:
+  </p>
+  <table>
+    <thead><tr><th>Kind</th><th>Behavior</th></tr></thead>
+    <tbody>
+      <tr><td><code>loop</code></td><td>Plays continuously, typically the backbone of a scene.</td></tr>
+      <tr><td><code>oneshot</code></td><td>Plays once — fanfares, impacts, stabs.</td></tr>
+      <tr><td><code>stinger</code></td><td>Short punctuation clip, often used during scene transitions.</td></tr>
+      <tr><td><code>ambient</code></td><td>Environmental texture — wind, rain, crowd murmur.</td></tr>
+    </tbody>
+  </table>
+  <p>
+    Optional fields: <code>bpm</code>, <code>key</code>,
+    <code>loopStartMs</code>/<code>loopEndMs</code> for loop trimming, and
+    <code>tags</code> for organization.
+  </p>
+
+  <h2>Stems</h2>
+  <p>
+    A <strong>Stem</strong> wraps an asset with playback instructions. It links
+    to an asset by <code>assetId</code> and adds:
+  </p>
+  <ul>
+    <li><code>role</code> — semantic purpose: <code>base</code>, <code>danger</code>, <code>combat</code>, <code>boss</code>, <code>recovery</code>, <code>mystery</code>, <code>faction</code>, <code>accent</code></li>
+    <li><code>loop</code> — whether to loop or play once</li>
+    <li><code>gainDb</code> — volume offset in decibels</li>
+    <li><code>mutedByDefault</code> — starts muted, can be unmuted dynamically</li>
+  </ul>
+
+  <h2>Scenes</h2>
+  <p>
+    A <strong>Scene</strong> defines what plays during a particular game state.
+    Each scene has a <code>category</code> (exploration, tension, combat, boss,
+    victory, aftermath, stealth, safe-zone) and a list of <strong>layers</strong>.
+  </p>
+  <p>
+    Each layer references a stem, and optionally marks it as <code>required</code>
+    (must play) or specifies a <code>startMode</code> (immediate, next-bar,
+    after-transition).
+  </p>
+  <p>
+    The <code>fallbackSceneId</code> lets you define graceful degradation: if a
+    scene cannot play (e.g. missing assets), the engine falls back.
+  </p>
+
+  <h2>Bindings</h2>
+  <p>
+    A <strong>TriggerBinding</strong> maps game-state conditions to scenes.
+    Each binding has:
+  </p>
+  <ul>
+    <li><code>conditions</code> — an array of field/op/value rules (all must match)</li>
+    <li><code>priority</code> — higher priority bindings win when multiple match</li>
+    <li><code>stopProcessing</code> — if true, no lower-priority bindings are evaluated after this one matches</li>
+  </ul>
+  <p>
+    Condition operators: <code>eq</code>, <code>neq</code>, <code>gt</code>,
+    <code>gte</code>, <code>lt</code>, <code>lte</code>, <code>includes</code>.
+    Fields are arbitrary strings — your game defines what they mean.
+  </p>
+
+  <h2>Transitions</h2>
+  <p>
+    A <strong>TransitionRule</strong> defines how one scene flows into another.
+    Transitions are keyed by <code>fromSceneId</code> →
+    <code>toSceneId</code> and specify a <code>mode</code>:
+  </p>
+  <table>
+    <thead><tr><th>Mode</th><th>Behavior</th></tr></thead>
+    <tbody>
+      <tr><td><code>immediate</code></td><td>Hard cut — old scene stops, new scene starts instantly.</td></tr>
+      <tr><td><code>crossfade</code></td><td>Both scenes overlap for <code>durationMs</code>.</td></tr>
+      <tr><td><code>bar-sync</code></td><td>Waits until the next musical bar boundary, then switches.</td></tr>
+      <tr><td><code>stinger-then-switch</code></td><td>Plays a stinger asset, then switches to the new scene.</td></tr>
+      <tr><td><code>cooldown-fade</code></td><td>Gradual fade-out of old scene before starting the new one.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Runtime Pack</h2>
+  <p>
+    The <strong>RuntimeSoundtrackPack</strong> is the exported, game-ready
+    version of a pack. It strips editor-only fields (names on bindings,
+    notes on scenes/transitions) and preserves only what a game engine needs.
+    Use the Export screen in the studio to produce this format.
+  </p>
+</DocsLayout>

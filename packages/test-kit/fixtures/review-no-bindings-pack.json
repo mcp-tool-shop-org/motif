@@ -1,0 +1,101 @@
+{
+  "meta": {
+    "id": "no-bindings",
+    "name": "No Bindings Pack",
+    "version": "0.1.0",
+    "description": "A pack with scenes but no trigger bindings.",
+    "schemaVersion": "1"
+  },
+  "assets": [
+    {
+      "id": "asset-explore",
+      "name": "Exploration Loop",
+      "src": "audio/explore.ogg",
+      "kind": "loop",
+      "durationMs": 16000,
+      "bpm": 90
+    },
+    {
+      "id": "asset-combat",
+      "name": "Combat Loop",
+      "src": "audio/combat.ogg",
+      "kind": "loop",
+      "durationMs": 8000,
+      "bpm": 140
+    },
+    {
+      "id": "asset-victory",
+      "name": "Victory Fanfare",
+      "src": "audio/victory.ogg",
+      "kind": "oneshot",
+      "durationMs": 4000
+    }
+  ],
+  "stems": [
+    {
+      "id": "stem-explore",
+      "name": "Explore",
+      "assetId": "asset-explore",
+      "role": "base",
+      "loop": true
+    },
+    {
+      "id": "stem-combat",
+      "name": "Combat",
+      "assetId": "asset-combat",
+      "role": "combat",
+      "loop": true
+    },
+    {
+      "id": "stem-victory",
+      "name": "Victory",
+      "assetId": "asset-victory",
+      "role": "recovery",
+      "loop": false
+    }
+  ],
+  "scenes": [
+    {
+      "id": "scene-exploration",
+      "name": "Exploration",
+      "category": "exploration",
+      "layers": [
+        { "stemId": "stem-explore", "required": true }
+      ]
+    },
+    {
+      "id": "scene-combat",
+      "name": "Combat",
+      "category": "combat",
+      "layers": [
+        { "stemId": "stem-combat", "required": true }
+      ]
+    },
+    {
+      "id": "scene-victory",
+      "name": "Victory",
+      "category": "victory",
+      "layers": [
+        { "stemId": "stem-victory", "required": true }
+      ]
+    }
+  ],
+  "bindings": [],
+  "transitions": [
+    {
+      "id": "trans-explore-to-combat",
+      "name": "Explore → Combat",
+      "fromSceneId": "scene-exploration",
+      "toSceneId": "scene-combat",
+      "mode": "crossfade",
+      "durationMs": 2000
+    },
+    {
+      "id": "trans-combat-to-victory",
+      "name": "Combat → Victory",
+      "fromSceneId": "scene-combat",
+      "toSceneId": "scene-victory",
+      "mode": "immediate"
+    }
+  ]
+}

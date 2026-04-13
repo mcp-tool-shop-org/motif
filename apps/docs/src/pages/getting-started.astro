@@ -1,0 +1,62 @@
+---
+import DocsLayout from "../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="Getting Started">
+  <h1>Getting Started</h1>
+  <p class="docs-subtitle">
+    Install the monorepo, run the studio, and export your first soundtrack pack.
+  </p>
+
+  <h2>Prerequisites</h2>
+  <ul>
+    <li><strong>Node.js</strong> 22+</li>
+    <li><strong>pnpm</strong> 10+ (<code>corepack enable</code> then <code>corepack prepare pnpm@latest --activate</code>)</li>
+  </ul>
+
+  <h2>Install</h2>
+  <pre><code>git clone https://github.com/mcp-tool-shop-org/motif.git
+cd motif
+pnpm install</code></pre>
+
+  <h2>Build everything</h2>
+  <pre><code>pnpm build</code></pre>
+  <p>
+    This runs Turbo across all packages and apps. Every package compiles to
+    <code>dist/</code> and the studio produces a Next.js production build.
+  </p>
+
+  <h2>Run the studio</h2>
+  <pre><code>pnpm dev</code></pre>
+  <p>
+    Open <code>http://localhost:3000</code>. The studio loads the
+    <strong>Starter Adventure Pack</strong> by default. Use the pack switcher in
+    the sidebar to load other example packs.
+  </p>
+
+  <h2>Explore the workflow</h2>
+  <ol>
+    <li>Open the <strong>Project</strong> tab — edit pack metadata (name, version, tags).</li>
+    <li>Browse <strong>Assets</strong>, <strong>Stems</strong>, <strong>Scenes</strong> — inspect and edit entries.</li>
+    <li>Check <strong>Bindings</strong> — see how game-state conditions trigger scene switches.</li>
+    <li>Review <strong>Transitions</strong> — define how one scene flows into the next.</li>
+    <li>Run <strong>Review</strong> — validate pack health, spot unused entities and errors.</li>
+    <li>Open <strong>Preview</strong> — simulate runtime state changes and watch the engine resolve scenes.</li>
+    <li>Go to <strong>Export</strong> — verify readiness, then copy or download the runtime JSON.</li>
+  </ol>
+
+  <h2>Run tests</h2>
+  <pre><code>pnpm test</code></pre>
+  <p>
+    Runs Vitest across all packages and apps. You can also filter:
+  </p>
+  <pre><code>pnpm --filter @motif/studio test
+pnpm --filter @motif/schema test</code></pre>
+
+  <h2>Next steps</h2>
+  <ul>
+    <li>Read <a href="/core-concepts">Core Concepts</a> to understand the data model.</li>
+    <li>Read <a href="/workflow">Workflow</a> to see the full authoring loop.</li>
+    <li>Browse <a href="/examples">Examples</a> for pack design patterns.</li>
+  </ul>
+</DocsLayout>

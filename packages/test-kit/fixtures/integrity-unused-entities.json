@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "id": "unused-entities",
+    "name": "Unused Entities",
+    "version": "1.0.0",
+    "schemaVersion": "1"
+  },
+  "assets": [
+    { "id": "a1", "name": "Used Loop", "src": "audio/a.ogg", "kind": "loop", "durationMs": 8000 },
+    { "id": "a-orphan", "name": "Orphan Asset", "src": "audio/orphan.ogg", "kind": "oneshot", "durationMs": 2000 }
+  ],
+  "stems": [
+    { "id": "s1", "name": "Used Stem", "assetId": "a1", "role": "base", "loop": true },
+    { "id": "s-orphan", "name": "Orphan Stem", "assetId": "a1", "role": "accent", "loop": false }
+  ],
+  "scenes": [
+    {
+      "id": "sc1",
+      "name": "Used Scene",
+      "category": "exploration",
+      "layers": [{ "stemId": "s1" }]
+    },
+    {
+      "id": "sc-orphan",
+      "name": "Orphan Scene",
+      "category": "ambient",
+      "layers": [{ "stemId": "s1" }]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "b1",
+      "name": "Bind",
+      "sceneId": "sc1",
+      "conditions": [{ "field": "mode", "op": "eq", "value": "exploration" }],
+      "priority": 0
+    }
+  ],
+  "transitions": [
+    {
+      "id": "t1",
+      "name": "Trans",
+      "fromSceneId": "sc1",
+      "toSceneId": "sc1",
+      "mode": "immediate"
+    }
+  ]
+}

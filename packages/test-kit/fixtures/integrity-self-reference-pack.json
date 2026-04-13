@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "id": "self-reference",
+    "name": "Self Reference",
+    "version": "1.0.0",
+    "schemaVersion": "1"
+  },
+  "assets": [
+    { "id": "a1", "name": "Loop", "src": "audio/a.ogg", "kind": "loop", "durationMs": 8000 }
+  ],
+  "stems": [
+    { "id": "s1", "name": "Stem", "assetId": "a1", "role": "base", "loop": true }
+  ],
+  "scenes": [
+    {
+      "id": "sc1",
+      "name": "Self Fallback",
+      "category": "exploration",
+      "layers": [{ "stemId": "s1" }],
+      "fallbackSceneId": "sc1"
+    }
+  ],
+  "bindings": [
+    {
+      "id": "b1",
+      "name": "Bind",
+      "sceneId": "sc1",
+      "conditions": [{ "field": "mode", "op": "eq", "value": "exploration" }],
+      "priority": 0
+    }
+  ],
+  "transitions": [
+    {
+      "id": "t1",
+      "name": "Self Trans",
+      "fromSceneId": "sc1",
+      "toSceneId": "sc1",
+      "mode": "crossfade",
+      "durationMs": 1000
+    }
+  ]
+}

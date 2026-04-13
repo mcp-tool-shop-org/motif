@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "id": "missing-asset-ref",
+    "name": "Missing Asset Ref",
+    "version": "1.0.0",
+    "schemaVersion": "1"
+  },
+  "assets": [
+    { "id": "a1", "name": "Existing", "src": "audio/a.ogg", "kind": "loop", "durationMs": 8000 }
+  ],
+  "stems": [
+    { "id": "s1", "name": "Good Stem", "assetId": "a1", "role": "base", "loop": true },
+    { "id": "s2", "name": "Broken Stem", "assetId": "ghost-asset", "role": "combat", "loop": true }
+  ],
+  "scenes": [
+    {
+      "id": "sc1",
+      "name": "Scene",
+      "category": "exploration",
+      "layers": [{ "stemId": "s1" }]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "b1",
+      "name": "Bind",
+      "sceneId": "sc1",
+      "conditions": [{ "field": "mode", "op": "eq", "value": "exploration" }],
+      "priority": 0
+    }
+  ],
+  "transitions": [
+    {
+      "id": "t1",
+      "name": "Stinger Trans",
+      "fromSceneId": "sc1",
+      "toSceneId": "sc1",
+      "mode": "stinger-then-switch",
+      "stingerAssetId": "missing-stinger"
+    }
+  ]
+}

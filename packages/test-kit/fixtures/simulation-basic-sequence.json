@@ -1,0 +1,5 @@
+[
+  { "mode": "exploration", "danger": 0, "inCombat": false },
+  { "mode": "exploration", "danger": 0, "inCombat": true },
+  { "mode": "victory", "danger": 0, "inCombat": false, "victory": true }
+]

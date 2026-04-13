@@ -1,0 +1,43 @@
+{
+  "name": "@motif/runtime-pack",
+  "version": "1.1.0",
+  "description": "Runtime export and import for Motif",
+  "license": "MIT",
+  "author": "mcp-tool-shop-org",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mcp-tool-shop-org/motif.git",
+    "directory": "packages/runtime-pack"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "dev": "tsc --build --watch",
+    "test": "vitest run",
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@motif/schema": "workspace:*",
+    "zod": "^3.25.0 || ^4.0.0"
+  },
+  "devDependencies": {
+    "@motif/test-kit": "workspace:*",
+    "typescript": "^5.8.0",
+    "vitest": "^3.2.0"
+  }
+}

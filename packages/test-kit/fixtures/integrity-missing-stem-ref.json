@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "id": "missing-stem-ref",
+    "name": "Missing Stem Ref",
+    "version": "1.0.0",
+    "schemaVersion": "1"
+  },
+  "assets": [
+    { "id": "a1", "name": "Loop", "src": "audio/a.ogg", "kind": "loop", "durationMs": 8000 }
+  ],
+  "stems": [
+    { "id": "s1", "name": "Stem", "assetId": "a1", "role": "base", "loop": true }
+  ],
+  "scenes": [
+    {
+      "id": "sc1",
+      "name": "Scene",
+      "category": "exploration",
+      "layers": [
+        { "stemId": "s1" },
+        { "stemId": "ghost-stem" }
+      ]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "b1",
+      "name": "Bind",
+      "sceneId": "sc1",
+      "conditions": [{ "field": "mode", "op": "eq", "value": "exploration" }],
+      "priority": 0
+    }
+  ],
+  "transitions": []
+}

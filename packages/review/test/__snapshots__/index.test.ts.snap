@@ -1,0 +1,88 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renderPackSummaryMarkdown > snapshot: missing baseline pack markdown 1`] = `
+"# Pack Review: Missing Baseline Pack
+
+## Metadata
+- ID: missing-baseline
+- Version: 0.1.0
+- Schema Version: 1
+
+## Counts
+- Assets: 1
+- Stems: 1
+- Scenes: 1
+- Bindings: 1
+- Transitions: 0
+
+## Categories Present
+- stealth
+
+## Stem Roles
+- mystery: 1
+
+## Unused
+- Assets: 0
+- Stems: 0
+- Scenes: 0
+
+## Errors
+- None
+
+## Warnings
+- Pack has no combat scene
+- Pack has no exploration scene
+- Pack has no safe-zone or aftermath scene
+- Pack has no victory scene
+
+## Notes
+- Pack has no boss scene
+- Pack has no tension scene
+- Pack has no transitions defined
+"
+`;
+
+exports[`renderPackSummaryMarkdown > snapshot: starter pack markdown 1`] = `
+"# Pack Review: Starter Adventure Pack
+
+## Metadata
+- ID: starter-pack
+- Version: 1.0.0
+- Schema Version: 1
+
+## Counts
+- Assets: 8
+- Stems: 7
+- Scenes: 5
+- Bindings: 5
+- Transitions: 4
+
+## Categories Present
+- combat
+- exploration
+- safe-zone
+- tension
+- victory
+
+## Stem Roles
+- accent: 1
+- base: 2
+- combat: 1
+- danger: 2
+- recovery: 1
+
+## Unused
+- Assets: 0
+- Stems: 0
+- Scenes: 0
+
+## Errors
+- None
+
+## Warnings
+- None
+
+## Notes
+- Pack has no boss scene
+"
+`;

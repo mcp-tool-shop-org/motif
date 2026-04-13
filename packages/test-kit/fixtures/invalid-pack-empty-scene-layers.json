@@ -1,0 +1,44 @@
+{
+  "meta": {
+    "id": "empty-layers-pack",
+    "name": "Empty Layers Pack",
+    "version": "1.0.0",
+    "schemaVersion": "1"
+  },
+  "assets": [
+    {
+      "id": "asset-loop-01",
+      "name": "Base Loop",
+      "src": "audio/base.ogg",
+      "kind": "loop",
+      "durationMs": 8000
+    }
+  ],
+  "stems": [
+    {
+      "id": "stem-01",
+      "name": "Base Stem",
+      "assetId": "asset-loop-01",
+      "role": "base",
+      "loop": true
+    }
+  ],
+  "scenes": [
+    {
+      "id": "scene-empty",
+      "name": "Scene with no layers",
+      "category": "exploration",
+      "layers": []
+    }
+  ],
+  "bindings": [
+    {
+      "id": "bind-empty",
+      "name": "Bind Empty",
+      "sceneId": "scene-empty",
+      "conditions": [{ "field": "mode", "op": "eq", "value": "exploration" }],
+      "priority": 0
+    }
+  ],
+  "transitions": []
+}

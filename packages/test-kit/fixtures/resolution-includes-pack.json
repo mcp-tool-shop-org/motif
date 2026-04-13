@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "id": "resolution-includes",
+    "name": "Resolution Includes",
+    "version": "1.0.0",
+    "schemaVersion": "1"
+  },
+  "assets": [
+    { "id": "a1", "name": "Loop", "src": "audio/a.ogg", "kind": "loop", "durationMs": 8000 }
+  ],
+  "stems": [
+    { "id": "s1", "name": "Stem", "assetId": "a1", "role": "base", "loop": true }
+  ],
+  "scenes": [
+    {
+      "id": "sc-faction",
+      "name": "Faction Zone",
+      "category": "exploration",
+      "layers": [{ "stemId": "s1" }]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "b-faction",
+      "name": "Faction match",
+      "sceneId": "sc-faction",
+      "conditions": [{ "field": "activeFactions", "op": "includes", "value": "rebels" }],
+      "priority": 10
+    },
+    {
+      "id": "b-region",
+      "name": "Region substring",
+      "sceneId": "sc-faction",
+      "conditions": [{ "field": "region", "op": "includes", "value": "forest" }],
+      "priority": 5
+    }
+  ],
+  "transitions": []
+}

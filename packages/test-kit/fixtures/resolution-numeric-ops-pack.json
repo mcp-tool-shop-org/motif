@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "id": "resolution-numeric-ops",
+    "name": "Resolution Numeric Ops",
+    "version": "1.0.0",
+    "schemaVersion": "1"
+  },
+  "assets": [
+    { "id": "a1", "name": "Loop A", "src": "audio/a.ogg", "kind": "loop", "durationMs": 8000 },
+    { "id": "a2", "name": "Loop B", "src": "audio/b.ogg", "kind": "loop", "durationMs": 8000 }
+  ],
+  "stems": [
+    { "id": "s1", "name": "Calm", "assetId": "a1", "role": "base", "loop": true },
+    { "id": "s2", "name": "Tense", "assetId": "a2", "role": "danger", "loop": true }
+  ],
+  "scenes": [
+    {
+      "id": "sc-calm",
+      "name": "Calm",
+      "category": "exploration",
+      "layers": [{ "stemId": "s1" }]
+    },
+    {
+      "id": "sc-tense",
+      "name": "Tense",
+      "category": "tension",
+      "layers": [{ "stemId": "s2" }]
+    }
+  ],
+  "bindings": [
+    {
+      "id": "b-calm",
+      "name": "Low danger",
+      "sceneId": "sc-calm",
+      "conditions": [{ "field": "danger", "op": "lte", "value": 40 }],
+      "priority": 0
+    },
+    {
+      "id": "b-tense",
+      "name": "High danger",
+      "sceneId": "sc-tense",
+      "conditions": [
+        { "field": "danger", "op": "gt", "value": 40 },
+        { "field": "danger", "op": "lt", "value": 80 }
+      ],
+      "priority": 20
+    }
+  ],
+  "transitions": []
+}

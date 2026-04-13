@@ -1,0 +1,42 @@
+{
+  "name": "@motif/studio",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "vitest run",
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@motif/asset-index": "workspace:*",
+    "@motif/audio-engine": "workspace:*",
+    "@motif/clip-engine": "workspace:*",
+    "@motif/instrument-rack": "workspace:*",
+    "@motif/music-theory": "workspace:*",
+    "@motif/playback-engine": "workspace:*",
+    "@motif/review": "workspace:*",
+    "@motif/runtime-pack": "workspace:*",
+    "@motif/scene-mapper": "workspace:*",
+    "@motif/schema": "workspace:*",
+    "@motif/ui": "workspace:*",
+    "next": "^15.5.14",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "zustand": "^5.0.11"
+  },
+  "devDependencies": {
+    "@motif/test-kit": "workspace:*",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@vitejs/plugin-react": "^5.1.4",
+    "jsdom": "^28.1.0",
+    "typescript": "^5.8.0",
+    "vitest": "^3.2.0"
+  }
+}
