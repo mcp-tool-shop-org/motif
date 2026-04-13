@@ -24,6 +24,7 @@ function fnv1aHash(str: string): string {
  */
 export function serializeRuntimePack(pack: RuntimeSoundtrackPack): string {
   // Produce JSON without hash/timestamp first for deterministic hashing
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { contentHash: _ch, exportedAt: _ea, ...metaForHash } = pack.meta;
   const packForHash = { ...pack, meta: metaForHash };
   const bodyJson = JSON.stringify(packForHash, null, 2);
