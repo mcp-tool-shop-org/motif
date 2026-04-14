@@ -106,6 +106,50 @@ export type WavBitDepth = 16 | 24 | 32;
 /** Supported sample rates */
 export type WavSampleRate = 44100 | 48000 | 96000;
 
+/** Export mode: mixed master, individual stems, or both */
+export type ExportMode = "mixed" | "stems" | "both";
+
+/** Role tag for a stem in the mix (for engine-side adaptive mixing) */
+export type StemExportRole =
+  | "melody"
+  | "bass"
+  | "pad"
+  | "percussion"
+  | "fx"
+  | "accent"
+  | "vocal";
+
+/** Metadata for an exported stem file */
+export interface StemExportEntry {
+  stemId: string;
+  stemName: string;
+  /** File path relative to pack root (e.g. "stems/sc-explore_bass-line.wav") */
+  filePath: string;
+  /** Musical role of this stem */
+  role: StemExportRole;
+  /** Default volume in dB (from the stem's gainDb) */
+  defaultGainDb: number;
+  /** Default pan position (-1 to 1) */
+  defaultPan: number;
+  /** Scene this stem belongs to */
+  sceneId: string;
+}
+
+/** Manifest of all exported stems for a scene */
+export interface StemExportManifest {
+  sceneId: string;
+  sceneName: string;
+  mode: ExportMode;
+  /** Mixed master file (only if mode is "mixed" or "both") */
+  mixedFilePath?: string;
+  /** Individual stem files (only if mode is "stems" or "both") */
+  stems: StemExportEntry[];
+  /** Render settings used */
+  sampleRate: WavSampleRate;
+  bitDepth: WavBitDepth;
+  channels: number;
+}
+
 /** Options for cue rendering */
 export interface RenderOptions {
   preset: RenderPreset;
@@ -118,6 +162,8 @@ export interface RenderOptions {
   channels?: number;
   /** WAV bit depth: 16, 24, or 32 (float). Default 24. */
   bitDepth?: WavBitDepth;
+  /** Export mode: mixed (default), stems, or both */
+  exportMode?: ExportMode;
 }
 
 /** Result of a cue render */

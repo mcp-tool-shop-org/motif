@@ -56,3 +56,15 @@ export type {
 } from "./types.js";
 export { CuePlayer } from "./cue-player.js";
 export type { CuePlaybackState } from "./cue-player.js";
+export {
+  stemRoleToExportRole,
+  stemExportPath,
+  buildStemExportManifest,
+  buildAllStemManifests,
+} from "./stem-export.js";
+export type {
+  ExportMode,
+  StemExportRole,
+  StemExportEntry,
+  StemExportManifest,
+} from "./mixer-types.js";
