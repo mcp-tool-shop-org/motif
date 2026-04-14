@@ -299,12 +299,38 @@ export const FACTORY_PRESETS: InstrumentPreset[] = [
   },
 ];
 
-/** Look up a preset by ID */
+/** Look up a preset by ID (searches factory + sci-fi) */
 export function getPreset(id: string): InstrumentPreset | undefined {
-  return FACTORY_PRESETS.find((p) => p.id === id);
+  return ALL_PRESETS.find((p) => p.id === id);
 }
 
-/** Get all presets for a category */
+/** Get all presets for a category (searches factory + sci-fi) */
 export function getPresetsByCategory(category: string): InstrumentPreset[] {
-  return FACTORY_PRESETS.filter((p) => p.category === category);
+  return ALL_PRESETS.filter((p) => p.category === category);
 }
+
+/** Get all presets matching a tag (e.g. "scifi-industrial") */
+export function getPresetsByTag(tag: string): InstrumentPreset[] {
+  return ALL_PRESETS.filter((p) => p.tags?.includes(tag));
+}
+
+/** Get all unique tags across all presets */
+export function getAllPresetTags(): string[] {
+  const tags = new Set<string>();
+  for (const p of ALL_PRESETS) {
+    if (p.tags) {
+      for (const t of p.tags) tags.add(t);
+    }
+  }
+  return [...tags].sort();
+}
+
+// Re-export sci-fi presets for direct access
+export { SCIFI_PRESETS, SCIFI_TAGS, type SciFiTag } from "./scifi-presets.js";
+
+// Combined preset registry
+import { SCIFI_PRESETS } from "./scifi-presets.js";
+export const ALL_PRESETS: InstrumentPreset[] = [
+  ...FACTORY_PRESETS,
+  ...SCIFI_PRESETS,
+];

@@ -228,6 +228,9 @@ export const InstrumentPresetSchema = z.object({
   name: z.string().min(1),
   category: InstrumentCategorySchema,
   params: z.record(z.string(), z.union([z.number(), z.string(), z.boolean()])),
+  tags: z.array(z.string()).optional(),
+  suggestedScale: z.string().optional(),
+  suggestedKeyRoot: z.number().int().gte(0).lte(11).optional(),
 });
 
 // ── Clips ──

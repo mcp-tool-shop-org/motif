@@ -179,6 +179,12 @@ export interface InstrumentPreset {
   category: InstrumentCategory;
   /** Synth engine parameters (oscillator type, envelope, filter, etc.) */
   params: Record<string, number | string | boolean>;
+  /** Aesthetic/genre tags for filtering (e.g. "scifi-industrial", "scifi-alien") */
+  tags?: string[];
+  /** Suggested scale name from music-theory (e.g. "minor", "phrygian") */
+  suggestedScale?: string;
+  /** Suggested key root (0-11 pitch class, 0 = C) */
+  suggestedKeyRoot?: number;
 }
 
 // ── Clips ──
