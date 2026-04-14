@@ -102,8 +102,27 @@ export interface Scene {
   /** Clips activated in this scene */
   clipLayers?: SceneClipRef[];
   fallbackSceneId?: string;
+  /** Seamless loop region with crossfade tail. If omitted, scene loops its full duration. */
+  loopRegion?: LoopRegion;
   tags?: string[];
   notes?: string;
+}
+
+// ── Loop Regions ──
+
+/**
+ * Defines a seamless loop region with optional crossfade tail.
+ * When playback reaches loopEndMs, it crossfades back to loopStartMs.
+ */
+export interface LoopRegion {
+  /** Loop start point in milliseconds from clip/scene start */
+  loopStartMs: number;
+  /** Loop end point in milliseconds from clip/scene start */
+  loopEndMs: number;
+  /** Duration of crossfade between loop end and loop start (default 0 = hard cut) */
+  crossfadeDurationMs?: number;
+  /** Number of times to loop (Infinity = loop forever, default for scenes). Omit or 0 = play once. */
+  count?: number;
 }
 
 // ── Triggers ──
@@ -219,6 +238,8 @@ export interface Clip {
   variants?: ClipVariant[];
   /** Loop this clip */
   loop: boolean;
+  /** Seamless loop region with crossfade tail. If omitted and loop=true, loops full clip. */
+  loopRegion?: LoopRegion;
   gainDb?: number;
   tags?: string[];
 }

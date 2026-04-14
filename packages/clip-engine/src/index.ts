@@ -67,3 +67,12 @@ export type { DrumPattern } from "./drum-patterns.js";
 // MIDI import/export
 export { parseMidi, midiToClipNotes, clipNotesToMidi, readVLQ, writeVLQ } from "./midi.js";
 export type { MidiFile, MidiTrack, MidiEvent, MidiEventType } from "./midi-types.js";
+
+// Loop region utilities
+export {
+  validateLoopRegion,
+  loopDurationMs,
+  totalLoopDurationMs,
+  resolveLoopPosition,
+  crossfadeGain,
+} from "./loop-region.js";

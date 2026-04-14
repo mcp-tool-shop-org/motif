@@ -119,6 +119,34 @@ export const StemSchema = z.object({
   tags: z.array(z.string()).optional(),
 });
 
+// ── Loop Region ──
+
+export const LoopRegionSchema = z
+  .object({
+    loopStartMs: z.number().gte(0, "loopStartMs must be >= 0"),
+    loopEndMs: z.number().positive("loopEndMs must be > 0"),
+    crossfadeDurationMs: z.number().gte(0).optional(),
+    count: z.number().gte(0).optional(),
+  })
+  .refine((lr) => lr.loopEndMs > lr.loopStartMs, {
+    message: "loopEndMs must be greater than loopStartMs",
+    path: ["loopEndMs"],
+  })
+  .refine(
+    (lr) => {
+      if (lr.crossfadeDurationMs != null) {
+        const regionDuration = lr.loopEndMs - lr.loopStartMs;
+        return lr.crossfadeDurationMs <= regionDuration;
+      }
+      return true;
+    },
+    {
+      message:
+        "crossfadeDurationMs must not exceed the loop region duration",
+      path: ["crossfadeDurationMs"],
+    },
+  );
+
 // ── Scene ──
 
 export const SceneLayerRefSchema = z.object({
@@ -135,6 +163,7 @@ export const SceneSchema = z.object({
   layers: z.array(SceneLayerRefSchema).min(1, "Scene must have at least one layer"),
   clipLayers: z.lazy(() => z.array(SceneClipRefSchema)).optional(),
   fallbackSceneId: z.string().optional(),
+  loopRegion: LoopRegionSchema.optional(),
   tags: z.array(z.string()).optional(),
   notes: z.string().optional(),
 });
@@ -236,6 +265,7 @@ export const ClipSchema = z.object({
   notes: z.array(ClipNoteSchema),
   variants: z.array(ClipVariantSchema).optional(),
   loop: z.boolean(),
+  loopRegion: LoopRegionSchema.optional(),
   gainDb: z.number().optional(),
   tags: z.array(z.string()).optional(),
 });
