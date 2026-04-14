@@ -2,7 +2,7 @@
 // Per-stem export — plan and manifest generation
 // ────────────────────────────────────────────
 
-import type { SoundtrackPack, Stem, StemRole } from "@motif-studio/schema";
+import type { SoundtrackPack, StemRole } from "@motif-studio/schema";
 import { resolveActiveLayers } from "@motif-studio/audio-engine";
 import type {
   ExportMode,
