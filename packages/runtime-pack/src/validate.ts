@@ -153,8 +153,10 @@ export function auditRuntimePack(
   }
 
   // ── Stinger refs (if present in extended runtime pack) ──
-  const stingerCount = (pack as Record<string, unknown>).stingers
-    ? ((pack as Record<string, unknown>).stingers as Array<{ id: string; assetId: string }>).length
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const stingerCount = Array.isArray((pack as any).stingers)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ? (pack as any).stingers.length
     : 0;
 
   const errors = issues.filter((i) => i.severity === "error");
