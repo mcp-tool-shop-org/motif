@@ -13,6 +13,7 @@ import type {
 } from "@motif-studio/schema";
 import { GROUNDED_CLIPS } from "./grounded-clips.js";
 import { GROUNDED_CUES } from "./grounded-cues.js";
+import { GROUNDED_MACRO_MAPPINGS, GROUNDED_SECTION_ENVELOPES } from "./grounded-automation.js";
 import {
   GROUNDED_CUE_FAMILIES,
   GROUNDED_MOTIF_FAMILIES,
@@ -602,5 +603,7 @@ export function buildGroundedPack(): SoundtrackPack {
     motifFamilies: GROUNDED_MOTIF_FAMILIES,
     scoreProfiles: GROUNDED_PROFILES,
     scoreMap: GROUNDED_SCORE_MAP,
+    macroMappings: GROUNDED_MACRO_MAPPINGS,
+    sectionEnvelopes: GROUNDED_SECTION_ENVELOPES,
   } as SoundtrackPack;
 }

@@ -328,6 +328,9 @@ importers:
         specifier: workspace:*
         version: link:../score-map
     devDependencies:
+      '@motif-studio/automation':
+        specifier: workspace:*
+        version: link:../automation
       '@motif-studio/clip-engine':
         specifier: workspace:*
         version: link:../clip-engine

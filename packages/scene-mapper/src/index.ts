@@ -37,3 +37,4 @@ export {
 } from "./grounded-pack.js";
 export { GROUNDED_CLIPS } from "./grounded-clips.js";
 export { GROUNDED_CUES } from "./grounded-cues.js";
+export { GROUNDED_MACRO_MAPPINGS, GROUNDED_SECTION_ENVELOPES } from "./grounded-automation.js";

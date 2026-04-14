@@ -36,6 +36,7 @@
     "@motif-studio/score-map": "workspace:*"
   },
   "devDependencies": {
+    "@motif-studio/automation": "workspace:*",
     "@motif-studio/clip-engine": "workspace:*",
     "@motif-studio/instrument-rack": "workspace:*",
     "@motif-studio/test-kit": "workspace:*",
