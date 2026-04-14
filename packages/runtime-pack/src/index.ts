@@ -9,3 +9,8 @@ export {
 } from "./parse.js";
 export type { RuntimeValidationIssue } from "./parse.js";
 export { serializeRuntimePack, roundTripRuntimePack } from "./serialize.js";
+export {
+  auditRuntimePack,
+  type ValidationIssue as RuntimeAuditIssue,
+  type ValidationResult as RuntimeAuditResult,
+} from "./validate.js";
