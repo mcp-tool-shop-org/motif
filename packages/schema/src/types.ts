@@ -164,6 +164,34 @@ export interface TransitionRule {
   notes?: string;
 }
 
+// ── Stingers ──
+
+/**
+ * A one-shot musical stinger that triggers on a game event and plays
+ * on top of the current scene without interrupting it.
+ * Used for investigation reveals, discovery moments, danger cues, etc.
+ */
+export interface Stinger {
+  id: string;
+  name: string;
+  /** Audio asset to play (should be kind "stinger" or "oneshot") */
+  assetId: string;
+  /** Trigger conditions — stinger fires when all conditions match */
+  conditions: TriggerCondition[];
+  /** Higher priority stingers duck lower ones when overlapping (default 0) */
+  priority?: number;
+  /** How much to duck the current scene in dB (e.g. -6 = duck 6dB). Default 0 (no duck). */
+  duckDb?: number;
+  /** Fade-in duration in ms (default 0 = instant) */
+  fadeInMs?: number;
+  /** Fade-out duration in ms (default 0 = instant) */
+  fadeOutMs?: number;
+  /** Cooldown in ms before this stinger can fire again (default 0 = no cooldown) */
+  cooldownMs?: number;
+  /** Freeform tags for organization */
+  tags?: string[];
+}
+
 // ── Instruments ──
 
 export type InstrumentCategory =
@@ -276,6 +304,8 @@ export interface SoundtrackPack {
   scenes: Scene[];
   bindings: TriggerBinding[];
   transitions: TransitionRule[];
+  /** One-shot stingers triggered by game state */
+  stingers?: Stinger[];
   /** Built-in instrument presets */
   instruments?: InstrumentPreset[];
   /** Composed clips */

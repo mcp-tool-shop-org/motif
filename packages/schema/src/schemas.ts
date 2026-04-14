@@ -213,6 +213,23 @@ export const TransitionRuleSchema = z
     },
   );
 
+// ── Stingers ──
+
+export const StingerSchema = z.object({
+  id: z.string().min(1),
+  name: z.string().min(1),
+  assetId: z.string().min(1),
+  conditions: z
+    .array(TriggerConditionSchema)
+    .min(1, "Stinger must have at least one trigger condition"),
+  priority: z.number().int().optional(),
+  duckDb: z.number().lte(0).optional(),
+  fadeInMs: z.number().gte(0).optional(),
+  fadeOutMs: z.number().gte(0).optional(),
+  cooldownMs: z.number().gte(0).optional(),
+  tags: z.array(z.string()).optional(),
+});
+
 // ── Instruments ──
 
 export const InstrumentCategorySchema = z.enum([
@@ -678,6 +695,7 @@ export const SoundtrackPackSchema = z.object({
   scenes: z.array(SceneSchema),
   bindings: z.array(TriggerBindingSchema),
   transitions: z.array(TransitionRuleSchema),
+  stingers: z.array(StingerSchema).optional(),
   instruments: z.array(InstrumentPresetSchema).optional(),
   clips: z.array(ClipSchema).optional(),
   cues: z.array(CueSchema).optional(),

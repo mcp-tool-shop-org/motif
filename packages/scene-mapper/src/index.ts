@@ -12,3 +12,10 @@ export {
   type StateHistoryEntry,
   type ReservedKey,
 } from "./game-state.js";
+export {
+  evaluateStinger,
+  resolveStingers,
+  StingerCooldownTracker,
+  type StingerEvaluation,
+  type StingerResolution,
+} from "./stingers.js";
