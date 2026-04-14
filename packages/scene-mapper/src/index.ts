@@ -19,3 +19,12 @@ export {
   type StingerEvaluation,
   type StingerResolution,
 } from "./stingers.js";
+export {
+  simulateTimeline,
+  validateTimeline,
+  createGroundedPrologueTimeline,
+  type TimelineEvent,
+  type SessionTimeline,
+  type TimelineStepResult,
+  type TimelineSimulationResult,
+} from "./simulation.js";
