@@ -32,9 +32,12 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@motif-studio/schema": "workspace:*"
+    "@motif-studio/schema": "workspace:*",
+    "@motif-studio/score-map": "workspace:*"
   },
   "devDependencies": {
+    "@motif-studio/clip-engine": "workspace:*",
+    "@motif-studio/instrument-rack": "workspace:*",
     "@motif-studio/test-kit": "workspace:*",
     "typescript": "^5.8.0",
     "vitest": "^3.2.0"
