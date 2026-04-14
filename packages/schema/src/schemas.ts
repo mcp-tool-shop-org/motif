@@ -147,6 +147,14 @@ export const LoopRegionSchema = z
     },
   );
 
+// ── Emotion Tags ──
+
+export const EmotionTagSchema = z.object({
+  valence: z.number().gte(-1).lte(1),
+  arousal: z.number().gte(-1).lte(1),
+  label: z.string().min(1),
+});
+
 // ── Scene ──
 
 export const SceneLayerRefSchema = z.object({
@@ -164,6 +172,7 @@ export const SceneSchema = z.object({
   clipLayers: z.lazy(() => z.array(SceneClipRefSchema)).optional(),
   fallbackSceneId: z.string().optional(),
   loopRegion: LoopRegionSchema.optional(),
+  emotion: EmotionTagSchema.optional(),
   tags: z.array(z.string()).optional(),
   notes: z.string().optional(),
 });
@@ -332,6 +341,7 @@ export const CueSchema = z.object({
   keyScale: z.string().optional(),
   beatsPerBar: z.number().int().positive().optional(),
   sections: z.array(CueSectionSchema).min(1),
+  emotion: EmotionTagSchema.optional(),
   tags: z.array(z.string()).optional(),
   notes: z.string().optional(),
 });
@@ -489,6 +499,7 @@ export const CueFamilySchema = z.object({
   sceneIds: z.array(z.string().min(1)),
   motifFamilyIds: z.array(z.string()).optional(),
   scoreProfileId: z.string().optional(),
+  emotion: EmotionTagSchema.optional(),
   tags: z.array(z.string()).optional(),
   notes: z.string().optional(),
 });

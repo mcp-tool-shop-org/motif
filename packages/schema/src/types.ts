@@ -104,6 +104,8 @@ export interface Scene {
   fallbackSceneId?: string;
   /** Seamless loop region with crossfade tail. If omitted, scene loops its full duration. */
   loopRegion?: LoopRegion;
+  /** Emotional metadata for arc visualization */
+  emotion?: EmotionTag;
   tags?: string[];
   notes?: string;
 }
@@ -428,6 +430,8 @@ export interface Cue {
   beatsPerBar?: number;
   /** Ordered sections */
   sections: CueSection[];
+  /** Emotional metadata for arc visualization */
+  emotion?: EmotionTag;
   tags?: string[];
   notes?: string;
 }
@@ -520,6 +524,8 @@ export interface CueFamily {
   sceneIds: string[];
   motifFamilyIds?: string[];
   scoreProfileId?: string;
+  /** Emotional metadata for arc visualization */
+  emotion?: EmotionTag;
   tags?: string[];
   notes?: string;
 }
@@ -752,6 +758,39 @@ export interface Collection {
   notes?: string;
   createdAt: string;
 }
+
+// ── Emotion Tags ──
+
+/**
+ * Emotional metadata for a scene, cue, or cue family.
+ * Based on the valence-arousal model (Russell's circumplex).
+ */
+export interface EmotionTag {
+  /** Emotional valence: -1 (negative/dark) to +1 (positive/bright) */
+  valence: number;
+  /** Emotional arousal: -1 (calm/static) to +1 (intense/active) */
+  arousal: number;
+  /** Human-readable emotion label */
+  label: string;
+}
+
+/**
+ * Suggested emotion labels for game scoring.
+ * Freeform — engines and composers can use any string.
+ */
+export type SuggestedEmotionLabel =
+  | "tension"
+  | "dread"
+  | "wonder"
+  | "hope"
+  | "sorrow"
+  | "triumph"
+  | "mystery"
+  | "danger"
+  | "peace"
+  | "rage"
+  | "awe"
+  | "melancholy";
 
 // ── Runtime state ──
 
