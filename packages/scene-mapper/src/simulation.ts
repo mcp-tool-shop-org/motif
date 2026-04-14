@@ -164,54 +164,99 @@ export function validateTimeline(timeline: SessionTimeline): string[] {
 
 /**
  * Create a Grounded prologue session timeline for testing/preview.
+ *
+ * Full 16-beat arc across 3 acts (9 minutes compressed):
+ * Act 1 — TCS Ardent: ready room → sweep → ambush → court martial
+ * Act 2 — Freeport: arrival → contracts → crew → lane travel
+ * Act 3 — Communion Relay → investigation → patrol → derelict → closing
  */
 export function createGroundedPrologueTimeline(): SessionTimeline {
   return {
     id: "grounded-prologue",
     name: "Star Freight: Grounded — Full Prologue",
     description:
-      "Simulates the full Grounded prologue arc: Ardent flashback -> Freeport -> combat -> investigation -> Communion Relay",
-    durationMs: 180000, // 3 minutes
+      "Full 16-beat prologue arc: Ardent (disgrace) → Freeport (rock bottom) → Communion (wonder) → Investigation (hook)",
+    durationMs: 540000, // 9 minutes (compressed from 2-3 hours)
     events: [
+      // ── Act 1: The Fall ──
       {
         timeMs: 0,
-        state: { location: "ardent", combat_active: false, investigation_active: false },
-        label: "Ardent Flashback begins",
+        state: { location: "ardent", combat_active: false, investigation_active: false, alert_level: 0 },
+        label: "Beat 1: Ardent Ready Room",
       },
       {
         timeMs: 30000,
-        state: { location: "freeport" },
-        label: "Arrive at Freeport",
+        state: { alert_level: 0.4 },
+        label: "Beat 2: Sweep — station investigation",
       },
       {
-        timeMs: 50000,
-        state: { combat_active: true, alert_level: 0.6 },
-        label: "Freeport combat",
-      },
-      {
-        timeMs: 70000,
-        state: { combat_active: false, alert_level: 0 },
-        label: "Combat ends",
+        timeMs: 60000,
+        state: { combat_active: true, alert_level: 0.8 },
+        label: "Beat 4: Ambush — combat tutorial",
       },
       {
         timeMs: 90000,
-        state: { investigation_active: true },
-        label: "Investigation triggered",
+        state: { combat_active: false, casualty: true },
+        label: "Beat 4b: Wingmate death",
       },
       {
-        timeMs: 110000,
-        state: { investigation_active: false },
-        label: "Investigation paused",
+        timeMs: 100000,
+        state: { alert_level: 0, court_martial: "guilty", casualty: false },
+        label: "Beat 5: Court martial verdict",
+      },
+
+      // ── Act 2: Rock Bottom ──
+      {
+        timeMs: 140000,
+        state: { location: "freeport", court_martial: "served" },
+        label: "Beat 6: Freeport arrival (6 months later)",
       },
       {
-        timeMs: 130000,
+        timeMs: 180000,
+        state: { contracts_active: true },
+        label: "Beat 8: Contract board",
+      },
+      {
+        timeMs: 210000,
+        state: { contracts_active: false, crew_recruiting: true },
+        label: "Beat 9: Crew recruitment",
+      },
+      {
+        timeMs: 240000,
+        state: { location: "lane", crew_recruiting: false },
+        label: "Beat 10: Lane travel",
+      },
+
+      // ── Act 3: First Light ──
+      {
+        timeMs: 290000,
         state: { location: "communion_relay", first_contact: true },
-        label: "Arrive at Communion Relay",
+        label: "Beat 11: Communion Relay arrival",
       },
       {
-        timeMs: 160000,
+        timeMs: 340000,
         state: { investigation_active: true },
-        label: "Investigation hook",
+        label: "Beat 13: Investigation — Tessik's fragment",
+      },
+      {
+        timeMs: 380000,
+        state: { location: "lane", investigation_active: false, patrol_intercept: true, first_contact: false },
+        label: "Beat 14: Compact patrol intercept",
+      },
+      {
+        timeMs: 410000,
+        state: { location: "derelict", patrol_intercept: false, combat_active: true },
+        label: "Beat 15: Derelict combat",
+      },
+      {
+        timeMs: 460000,
+        state: { combat_active: false, victory: true },
+        label: "Beat 15b: Combat victory",
+      },
+      {
+        timeMs: 490000,
+        state: { location: "threshold_view", victory: false },
+        label: "Beat 16: Closing — threshold view",
       },
     ],
   };

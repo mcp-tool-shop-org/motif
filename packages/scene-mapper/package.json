@@ -39,6 +39,8 @@
     "@motif-studio/automation": "workspace:*",
     "@motif-studio/clip-engine": "workspace:*",
     "@motif-studio/instrument-rack": "workspace:*",
+    "@motif-studio/review": "workspace:*",
+    "@motif-studio/runtime-pack": "workspace:*",
     "@motif-studio/test-kit": "workspace:*",
     "typescript": "^5.8.0",
     "vitest": "^3.2.0"

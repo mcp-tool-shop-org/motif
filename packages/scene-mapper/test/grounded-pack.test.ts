@@ -406,36 +406,68 @@ describe("16-beat prologue walkthrough", () => {
 // ── Simulation with existing timeline ──
 
 describe("simulateTimeline with Grounded pack", () => {
-  it("resolves scenes for the existing prologue timeline", () => {
+  it("resolves all 15 timeline events", () => {
     const pack = buildGroundedPack();
     const timeline = createGroundedPrologueTimeline();
     const result = simulateTimeline(pack, timeline);
 
-    expect(result.steps).toHaveLength(8);
-    expect(result.scenesVisited.length).toBeGreaterThanOrEqual(3);
-    expect(result.sceneChangeCount).toBeGreaterThanOrEqual(3);
+    expect(result.steps).toHaveLength(15);
+    expect(result.scenesVisited.length).toBeGreaterThanOrEqual(6);
+    expect(result.sceneChangeCount).toBeGreaterThanOrEqual(10);
+  });
 
-    // First event: Ardent
+  it("Act 1: Ardent → Sweep → Ambush → Court Martial", () => {
+    const pack = buildGroundedPack();
+    const timeline = createGroundedPrologueTimeline();
+    const result = simulateTimeline(pack, timeline);
+
+    // Beat 1: Ardent Ready Room
     expect(result.steps[0].sceneResolution.sceneId).toBe("sc-ardent-ready");
+    // Beat 2: Sweep (alert rises)
+    expect(result.steps[1].sceneResolution.sceneId).toBe("sc-ardent-sweep");
+    // Beat 4: Ambush combat
+    expect(result.steps[2].sceneResolution.sceneId).toBe("sc-ambush");
+    // Beat 5: Court martial
+    expect(result.steps[4].sceneResolution.sceneId).toBe("sc-court-martial");
+  });
 
-    // Freeport arrival
-    const fpStep = result.steps.find((s) => s.event.label === "Arrive at Freeport");
+  it("Act 2: Freeport → Contracts → Crew → Lane", () => {
+    const pack = buildGroundedPack();
+    const timeline = createGroundedPrologueTimeline();
+    const result = simulateTimeline(pack, timeline);
+
+    const fpStep = result.steps.find((s) => s.event.label?.includes("Freeport arrival"));
     expect(fpStep?.sceneResolution.sceneId).toBe("sc-freeport");
 
-    // Combat at Freeport — this uses the generic combat binding with no location constraint
-    // The existing timeline sets combat_active=true at freeport, but our ambush binding
-    // requires location=ardent. No binding matches combat at freeport at priority 60,
-    // but investigation/patrol don't apply either, so freeport (priority 20) loses to...
-    // Actually, b-freeport requires combat_active=false, so it won't match.
-    // No binding matches freeport+combat_active=true → no scene.
-    // This is expected — the existing timeline predates the full binding set.
+    const ctStep = result.steps.find((s) => s.event.label?.includes("Contract"));
+    expect(ctStep?.sceneResolution.sceneId).toBe("sc-contracts");
 
-    // Communion arrival
-    const commStep = result.steps.find((s) => s.event.label === "Arrive at Communion Relay");
+    const crStep = result.steps.find((s) => s.event.label?.includes("Crew"));
+    expect(crStep?.sceneResolution.sceneId).toBe("sc-crew");
+
+    const lnStep = result.steps.find((s) => s.event.label?.includes("Lane travel"));
+    expect(lnStep?.sceneResolution.sceneId).toBe("sc-lane");
+  });
+
+  it("Act 3: Communion → Investigation → Patrol → Derelict → Closing", () => {
+    const pack = buildGroundedPack();
+    const timeline = createGroundedPrologueTimeline();
+    const result = simulateTimeline(pack, timeline);
+
+    const commStep = result.steps.find((s) => s.event.label?.includes("Communion"));
     expect(commStep?.sceneResolution.sceneId).toBe("sc-communion");
 
     // Keth stinger fires at Communion
     expect(commStep?.stingerResolution.triggered.length).toBeGreaterThanOrEqual(1);
     expect(commStep?.stingerResolution.triggered[0].stingerId).toBe("st-keth-contact");
+
+    const invStep = result.steps.find((s) => s.event.label?.includes("Investigation"));
+    expect(invStep?.sceneResolution.sceneId).toBe("sc-investigation");
+
+    const ptStep = result.steps.find((s) => s.event.label?.includes("patrol"));
+    expect(ptStep?.sceneResolution.sceneId).toBe("sc-patrol");
+
+    const derStep = result.steps.find((s) => s.event.label?.includes("Derelict"));
+    expect(derStep?.sceneResolution.sceneId).toBe("sc-derelict");
   });
 });

@@ -337,6 +337,12 @@ importers:
       '@motif-studio/instrument-rack':
         specifier: workspace:*
         version: link:../instrument-rack
+      '@motif-studio/review':
+        specifier: workspace:*
+        version: link:../review
+      '@motif-studio/runtime-pack':
+        specifier: workspace:*
+        version: link:../runtime-pack
       '@motif-studio/test-kit':
         specifier: workspace:*
         version: link:../test-kit
