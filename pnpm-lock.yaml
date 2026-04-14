@@ -82,6 +82,9 @@ importers:
       '@motif-studio/schema':
         specifier: workspace:*
         version: link:../../packages/schema
+      '@motif-studio/score-map':
+        specifier: workspace:*
+        version: link:../../packages/score-map
       '@motif-studio/ui':
         specifier: workspace:*
         version: link:../../packages/ui

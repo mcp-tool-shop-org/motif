@@ -1,4 +1,5 @@
 import type { SoundtrackPack } from "@motif-studio/schema";
+import { buildGroundedPack } from "@motif-studio/scene-mapper";
 
 // ── Minimal Pack — smallest valid pack ──
 
@@ -1039,9 +1040,12 @@ export const synthDemoPack: SoundtrackPack = {
 
 // ── Example pack registry ──
 
+const groundedPack = buildGroundedPack();
+
 export const examplePacks = [
   { id: "minimal-pack", name: "Minimal Pack", pack: minimalPack },
   { id: "starter-pack", name: "Starter Adventure Pack", pack: starterPack },
   { id: "combat-escalation-pack", name: "Combat Escalation Pack", pack: combatEscalationPack },
   { id: "synth-demo-pack", name: "Synth Demo — Game Soundtrack", pack: synthDemoPack },
+  { id: "star-freight-grounded", name: "Star Freight: Grounded — Prologue", pack: groundedPack },
 ] as const;
