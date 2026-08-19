@@ -314,6 +314,9 @@ importers:
       '@motif-studio/schema':
         specifier: workspace:*
         version: link:../schema
+      '@motif-studio/score-map':
+        specifier: workspace:*
+        version: link:../score-map
       '@wasm-audio-decoders/flac':
         specifier: ^0.2.10
         version: 0.2.10

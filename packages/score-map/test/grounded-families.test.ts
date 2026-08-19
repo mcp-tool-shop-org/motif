@@ -60,6 +60,13 @@ describe("GROUNDED_CUE_FAMILIES", () => {
       expect(f.generationLock!.timesignature).toBe("4/4");
     }
   });
+
+  it("modal families use ACE-Step major/minor enum strings", () => {
+    const byId = (id: string) => GROUNDED_CUE_FAMILIES.find((f) => f.id === id)!;
+    expect(byId("cf-keth").generationLock!.keyscale).toBe("F minor");
+    expect(byId("cf-investigation").generationLock!.keyscale).toBe("Db minor");
+    expect(byId("cf-crew").generationLock!.keyscale).toBe("D minor");
+  });
 });
 
 // ── Role distribution ──

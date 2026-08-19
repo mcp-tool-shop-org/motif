@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Cue-family generation lock (bpm / keyscale / timesignature) — mismatched attach is a typed error
 - Demucs stem → intensity map (low = no drums, mid = bed, high = all) and generated-cue playback / transition plans using measured file duration
 - Grounded family generation locks + proposed style-tag spec (spend gated)
+- Wave-2 consumption: 60 s production unit, ACE-Step keyscale enum, house-grammar style tags, fold generated beds onto Grounded scenes for studio playback
 
 ### Fixed
 - Music ingest applies one joint peak clamp across mix + stems so a hot stem cannot take a different gain than the mix

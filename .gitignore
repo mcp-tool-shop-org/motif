@@ -12,3 +12,6 @@ site/node_modules/
 
 # Confirmation-run FLACs stay outside git (see wave-7 fixture path).
 packages/sample-lab/test/fixtures/audio/
+
+# Ingested 48 kHz masters (rebuilt from grounded-v2 FLACs).
+apps/studio/public/audio/grounded-v2/

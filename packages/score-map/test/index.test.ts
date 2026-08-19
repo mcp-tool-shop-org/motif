@@ -32,6 +32,9 @@ import {
   stemRolesForIntensity,
   resolveGeneratedStemLayers,
   GROUNDED_FAMILY_LOCKS,
+  GROUNDED_GENERATION_SPEC,
+  GROUNDED_WAVE2_TAKES,
+  foldGeneratedIntoPack,
   // resolve
   createScoreMapEntry,
   resolveProfile,
@@ -385,6 +388,97 @@ describe("generated stem intensity map", () => {
     } as GeneratedCueRecord;
     expect(resolveGeneratedStemLayers(record, "low").map((s) => s.role)).toEqual(["bass", "other"]);
     expect(resolveGeneratedStemLayers(record, "high")).toHaveLength(4);
+  });
+});
+
+describe("wave-2 generation spec", () => {
+  it("is a 60 s unit with house-grammar tags and enum keyscales", () => {
+    expect(GROUNDED_GENERATION_SPEC.every((s) => s.durationSec === 60)).toBe(true);
+    expect(GROUNDED_GENERATION_SPEC.find((s) => s.familyId === "cf-keth")!.lock.keyscale).toBe(
+      "F minor",
+    );
+    expect(GROUNDED_GENERATION_SPEC.find((s) => s.familyId === "cf-military")!.styleTags.startsWith("Military March:")).toBe(
+      true,
+    );
+    expect(GROUNDED_WAVE2_TAKES).toHaveLength(13);
+    expect(GROUNDED_WAVE2_TAKES.filter((t) => t.playbackDefault)).toHaveLength(10);
+  });
+
+  it("folds a playback-default take onto a scene and attaches the family", () => {
+    const lock = GROUNDED_FAMILY_LOCKS["cf-military"]!;
+    let family = lockCueFamily(createCueFamily("cf-military", "Military", "tension"), lock);
+    family = { ...family, sceneIds: ["sc-ardent-ready"] };
+    const record: GeneratedCueRecord = {
+      id: "cue-ardent-ready-s101",
+      name: "cue-ardent-ready",
+      kind: "music",
+      generation: {
+        seed: 101,
+        workflowId: "wf",
+        jobId: "e83f8c6a",
+        bpm: 100,
+        keyscale: "G minor",
+        timesignature: "4/4",
+        lyricsTag: "[inst]",
+        requestedDurationSec: 60,
+      },
+      targetLufs: -14,
+      gainDb: -2,
+      actualGainDb: -2,
+      peakLimited: false,
+      resampler: { name: "kaiser-sinc", quality: "test" },
+      runtimeSampleRateHz: 48000,
+      createdAt: "2026-08-19T00:00:00.000Z",
+    };
+    const pack = foldGeneratedIntoPack(
+      {
+        meta: { id: "p", name: "p", version: "1", schemaVersion: "1" },
+        assets: [],
+        stems: [],
+        scenes: [
+          {
+            id: "sc-ardent-ready",
+            name: "Ready",
+            category: "safe-zone",
+            layers: [{ stemId: "s-placeholder" }],
+          },
+        ],
+        bindings: [],
+        transitions: [],
+        cueFamilies: [family],
+      },
+      [
+        {
+          record,
+          assets: [
+            {
+              id: "a1",
+              name: "bass",
+              src: "/audio/x.wav",
+              kind: "loop",
+              durationMs: 60000,
+            },
+          ],
+          stems: [
+            {
+              id: "stem-bass",
+              name: "bass",
+              assetId: "a1",
+              role: "base",
+              loop: true,
+              tags: ["generation:bass"],
+            },
+          ],
+          familyId: "cf-military",
+          sceneId: "sc-ardent-ready",
+          playbackDefault: true,
+        },
+      ],
+    );
+    expect(pack.scenes[0]!.layers[0]!.stemId).toBe("stem-bass");
+    expect(pack.scenes[0]!.tags).toContain("generated-audio");
+    expect(pack.generatedCues).toHaveLength(1);
+    expect(pack.cueFamilies![0]!.generatedCueIds).toEqual(["cue-ardent-ready-s101"]);
   });
 });
 
