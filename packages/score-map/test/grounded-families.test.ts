@@ -51,6 +51,15 @@ describe("GROUNDED_CUE_FAMILIES", () => {
       expect(f.scoreProfileId).toBeTruthy();
     }
   });
+
+  it("all families carry a generation lock (bpm / keyscale / timesignature)", () => {
+    for (const f of GROUNDED_CUE_FAMILIES) {
+      expect(f.generationLock).toBeDefined();
+      expect(f.generationLock!.bpm).toBeGreaterThan(0);
+      expect(f.generationLock!.keyscale.length).toBeGreaterThan(0);
+      expect(f.generationLock!.timesignature).toBe("4/4");
+    }
+  });
 });
 
 // ── Role distribution ──

@@ -59,6 +59,17 @@ export {
   tickToBeat,
 } from "./cue-scheduler.js";
 export type { ResolvedSection, CuePlaybackPlan } from "./cue-scheduler.js";
+export {
+  planGeneratedCuePlayback,
+  planGeneratedSectionTransitions,
+  planCrossFamilySwitch,
+  barDurationSec,
+} from "./generated-playback.js";
+export type {
+  GeneratedCuePlaybackPlan,
+  GeneratedSectionPlayback,
+  GeneratedTransitionStep,
+} from "./generated-playback.js";
 
 // Drum pattern presets
 export { getDrumPatterns, GM_DRUMS } from "./drum-patterns.js";

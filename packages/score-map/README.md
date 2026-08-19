@@ -39,6 +39,8 @@ World scoring logic for Motif — motif families, score profiles, cue families, 
 - `linkMotifToCueFamily(family, motifFamilyId)`
 - `sharedMotifs(familyA, familyB)` / `sharedScenes(familyA, familyB)`
 - `collectMotifFamilyIds(family)` — all motif family IDs
+- `attachGeneratedCueRecord(family, record, lock)` — attach a cloud-ingested cue; bpm/keyscale/timesignature mismatch is a typed error
+- `stemRolesForIntensity(level)` — Demucs stems for low/mid/high (low = no drums)
 
 ### Resolve (`resolve.ts`)
 - `createScoreMapEntry(id, name, contextType)` — create a world map entry

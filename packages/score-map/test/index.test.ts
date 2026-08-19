@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import type { GeneratedCueRecord } from "@motif-studio/schema";
 import {
   // motif
   createMotifFamily,
@@ -25,6 +26,12 @@ import {
   attachGeneratedCueToFamily,
   detachGeneratedCueFromFamily,
   collectGeneratedCueIds,
+  attachGeneratedCueRecord,
+  lockCueFamily,
+  FamilyAttachError,
+  stemRolesForIntensity,
+  resolveGeneratedStemLayers,
+  GROUNDED_FAMILY_LOCKS,
   // resolve
   createScoreMapEntry,
   resolveProfile,
@@ -294,6 +301,90 @@ describe("attachGeneratedCueToFamily", () => {
     const a = attachGeneratedCueToFamily(createCueFamily("a", "A", "combat"), "g1");
     const b = attachGeneratedCueToFamily(createCueFamily("b", "B", "exploration"), "g1");
     expect(collectGeneratedCueIds([a, b])).toEqual(["g1"]);
+  });
+
+  it("rejects a generated cue that does not share the family lock", () => {
+    const family = lockCueFamily(
+      createCueFamily("cf-military", "Military", "tension"),
+      GROUNDED_FAMILY_LOCKS["cf-military"]!,
+    );
+    const fixture: GeneratedCueRecord = {
+      id: "run3-fixture",
+      name: "run3",
+      kind: "music",
+      generation: {
+        seed: 0,
+        workflowId: "78a76ecd-7ae2-452a-afea-ad55a8d290f8",
+        jobId: "b81c6dbf-76de-463b-97e0-0ba5dcf99a60",
+        bpm: 72,
+        keyscale: "E minor",
+        timesignature: "4/4",
+        lyricsTag: "[inst]",
+      },
+      targetLufs: -14,
+      gainDb: 0,
+      actualGainDb: 0,
+      peakLimited: false,
+      resampler: { name: "kaiser-sinc", quality: "test" },
+      runtimeSampleRateHz: 48000,
+      createdAt: "2026-08-19T00:00:00.000Z",
+    };
+    expect(() => attachGeneratedCueRecord(family, fixture)).toThrow(FamilyAttachError);
+    try {
+      attachGeneratedCueRecord(family, fixture);
+    } catch (err) {
+      expect(err).toMatchObject({ code: "FAMILY_LOCK_MISMATCH" });
+    }
+  });
+
+  it("attaches when bpm / keyscale / timesignature match the lock", () => {
+    const lock = GROUNDED_FAMILY_LOCKS["cf-military"]!;
+    const family = lockCueFamily(createCueFamily("cf-military", "Military", "tension"), lock);
+    const record: GeneratedCueRecord = {
+      id: "mil-1",
+      name: "The Last Good Day",
+      kind: "music",
+      generation: {
+        seed: 1,
+        workflowId: "wf",
+        jobId: "job",
+        bpm: lock.bpm,
+        keyscale: lock.keyscale,
+        timesignature: lock.timesignature,
+        lyricsTag: "[inst]",
+      },
+      targetLufs: -14,
+      gainDb: 0,
+      actualGainDb: 0,
+      peakLimited: false,
+      resampler: { name: "kaiser-sinc", quality: "test" },
+      runtimeSampleRateHz: 48000,
+      createdAt: "2026-08-19T00:00:00.000Z",
+    };
+    const next = attachGeneratedCueRecord(family, record);
+    expect(next.generatedCueIds).toEqual(["mil-1"]);
+    expect(next.generationLock).toEqual(lock);
+  });
+});
+
+describe("generated stem intensity map", () => {
+  it("drops drums at low and includes vocals only at high", () => {
+    expect(stemRolesForIntensity("low")).toEqual(["bass", "other"]);
+    expect(stemRolesForIntensity("mid")).toEqual(["bass", "drums", "other"]);
+    expect(stemRolesForIntensity("high")).toEqual(["bass", "drums", "other", "vocals"]);
+  });
+
+  it("filters a record's stem layers by intensity", () => {
+    const record = {
+      stems: [
+        { role: "bass" as const, assetId: "b", facts: {} as never, resampledSampleCount: 1, nearSilent: false, masterSrc: "b.wav" },
+        { role: "drums" as const, assetId: "d", facts: {} as never, resampledSampleCount: 1, nearSilent: false, masterSrc: "d.wav" },
+        { role: "other" as const, assetId: "o", facts: {} as never, resampledSampleCount: 1, nearSilent: false, masterSrc: "o.wav" },
+        { role: "vocals" as const, assetId: "v", facts: {} as never, resampledSampleCount: 1, nearSilent: true, masterSrc: "v.wav" },
+      ],
+    } as GeneratedCueRecord;
+    expect(resolveGeneratedStemLayers(record, "low").map((s) => s.role)).toEqual(["bass", "other"]);
+    expect(resolveGeneratedStemLayers(record, "high")).toHaveLength(4);
   });
 });
 
