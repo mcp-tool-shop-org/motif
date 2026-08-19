@@ -43,3 +43,29 @@ export function sharedScenes(a: CueFamily, b: CueFamily): string[] {
 export function collectMotifFamilyIds(families: CueFamily[]): string[] {
   return [...new Set(families.flatMap((f) => f.motifFamilyIds ?? []))];
 }
+
+/** Attach a generated-cue record (cloud ingest) to a cue family. */
+export function attachGeneratedCueToFamily(
+  family: CueFamily,
+  generatedCueId: string,
+): CueFamily {
+  const existing = family.generatedCueIds ?? [];
+  if (existing.includes(generatedCueId)) return family;
+  return { ...family, generatedCueIds: [...existing, generatedCueId] };
+}
+
+/** Detach a generated-cue record from a cue family. */
+export function detachGeneratedCueFromFamily(
+  family: CueFamily,
+  generatedCueId: string,
+): CueFamily {
+  return {
+    ...family,
+    generatedCueIds: (family.generatedCueIds ?? []).filter((id) => id !== generatedCueId),
+  };
+}
+
+/** Collect generated-cue ids across a set of cue families. */
+export function collectGeneratedCueIds(families: CueFamily[]): string[] {
+  return [...new Set(families.flatMap((f) => f.generatedCueIds ?? []))];
+}

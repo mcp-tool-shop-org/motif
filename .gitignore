@@ -9,3 +9,6 @@ site/.astro/
 site/dist/
 site/node_modules/
 .polyglot-cache.json
+
+# Confirmation-run FLACs stay outside git (see wave-7 fixture path).
+packages/sample-lab/test/fixtures/audio/

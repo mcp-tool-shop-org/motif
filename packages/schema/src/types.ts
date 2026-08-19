@@ -332,6 +332,8 @@ export interface SoundtrackPack {
   branches?: Branch[];
   favorites?: Favorite[];
   collections?: Collection[];
+  /** Cloud-generation ingest records (music units + SFX). */
+  generatedCues?: GeneratedCueRecord[];
 }
 
 // ── Sample slicing ──
@@ -524,6 +526,8 @@ export interface CueFamily {
   sceneIds: string[];
   motifFamilyIds?: string[];
   scoreProfileId?: string;
+  /** Generated-cue records attached to this family (cloud ingest). */
+  generatedCueIds?: string[];
   /** Emotional metadata for arc visualization */
   emotion?: EmotionTag;
   tags?: string[];
@@ -778,6 +782,93 @@ export interface EmotionTag {
  * Suggested emotion labels for game scoring.
  * Freeform — engines and composers can use any string.
  */
+// ── Cloud generation ingest ──
+
+/** Motif runtime sample-rate standard. Stems and SFX are resampled to this at ingest. */
+export const MOTIF_RUNTIME_SAMPLE_RATE_HZ = 48000 as const;
+
+export type GenerationKind = "music" | "sfx";
+
+/** Demucs vertical layers of one music cue (not Motif StemRole). */
+export type GenerationStemRole = "bass" | "drums" | "other" | "vocals";
+
+/**
+ * Authored generation knobs plus cloud identity.
+ * Combined with measured facts, this is enough to regenerate the cue bit-exactly
+ * on a pinned seed (the cloud memoizes whole graphs).
+ */
+export interface GenerationParams {
+  bpm?: number;
+  /** Authored key+scale string from ACE-Step (e.g. "E minor"). */
+  keyscale?: string;
+  /** Authored time signature (e.g. "4/4" or "4"). */
+  timesignature?: string;
+  /** Lyrics / vocal tag (instrumental tracks use "[inst]"). */
+  lyricsTag?: string;
+  seed: number;
+  workflowId: string;
+  jobId: string;
+  prompt?: string;
+  /** Requested duration from the graph — never used as the measured duration. */
+  requestedDurationSec?: number;
+}
+
+/** Facts read from the file and LUFS manifest, never from the request. */
+export interface MeasuredAudioFacts {
+  durationSec: number;
+  durationSamples: number;
+  sampleRateHz: number;
+  channels: number;
+  bitDepth: number;
+  integratedLufs?: number;
+  sha256: string;
+  sourceFilename: string;
+}
+
+export interface GenerationStemLayer {
+  role: GenerationStemRole;
+  assetId: string;
+  facts: MeasuredAudioFacts;
+  resampledSampleCount: number;
+  /** True on [inst] vocals when RMS is near-silent (vocal-bleed check). */
+  nearSilent: boolean;
+  masterSrc: string;
+}
+
+export interface GeneratedCueMix {
+  assetId: string;
+  facts: MeasuredAudioFacts;
+  masterSrc: string;
+}
+
+export interface ResamplerIdentity {
+  name: string;
+  quality: string;
+}
+
+/**
+ * Per-cue identity record for a cloud generation unit.
+ * Music: mix + 4 stems. SFX: one-shot. VO is out of scope.
+ */
+export interface GeneratedCueRecord {
+  id: string;
+  name: string;
+  kind: GenerationKind;
+  generation: GenerationParams;
+  mix?: GeneratedCueMix;
+  sfx?: GeneratedCueMix;
+  stems?: GenerationStemLayer[];
+  cueId?: string;
+  sceneId?: string;
+  targetLufs: number;
+  gainDb: number;
+  actualGainDb: number;
+  peakLimited: boolean;
+  resampler: ResamplerIdentity;
+  runtimeSampleRateHz: typeof MOTIF_RUNTIME_SAMPLE_RATE_HZ;
+  createdAt: string;
+}
+
 export type SuggestedEmotionLabel =
   | "tension"
   | "dread"

@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Added
+- Generation ingest lane: cloud-run artifacts (ACE-Step mix + Demucs stems + SA3 SFX + LUFS manifests) become 48 kHz normalized masters and `GeneratedCueRecord`s that `score-map` / `clip-engine` can consume
+- `@motif-studio/schema` types for generation identity (params + measured duration/rate/LUFS/hashes) and optional `generatedCues` on the pack
+- Kaiser-windowed sinc resampler (44.1 kHz → 48 kHz), LUFS manifest parse, stem sample-count alignment, near-silent vocals bleed check
+- Thin Comfy Cloud client: `POST /api/prompt` (API-format only), job poll, `/api/view` download — UI-format graphs and `workflow_id` run are andon, not guessed
+
+### Fixed
+- Music ingest applies one joint peak clamp across mix + stems so a hot stem cannot take a different gain than the mix
+- `options.targetLufs` now drives `ingestGainDb` (the record no longer claims a target the gain path ignored)
+
 ## [1.2.0] - 2026-04-13
 
 ### Added

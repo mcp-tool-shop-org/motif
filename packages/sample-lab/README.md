@@ -48,11 +48,19 @@ Trim, slice, kit, and instrument helpers for the Motif sample workflow.
 - `filenameToId(filename)` — clean ID from filename
 - `buildImportedAsset(filename, durationMs, src)` — create asset from file
 
+### Generation ingest (`generation/`)
+- `ingestRunArtifact(dir, options)` — consume a cloud run folder (mix + 4 stems + SFX FLACs + LUFS txt), resample to 48 kHz, normalize from the LUFS manifest, emit masters + a `GeneratedCueRecord`
+- `registerGeneratedCue(pack, ingested)` — fold the record into a pack for score-map / clip-engine
+- `parseIntegratedLufs`, `parseFlacStreamInfo` — duration is always samples/rate, never the requested figure
+- Resampler: Kaiser-windowed sinc (β=10, 64 zero-crossings; upsample-only). Default music-bed target **−14 LUFS** (SFX is capped, not boosted). Mix + stems share one peak clamp so layering still sums. `targetLufs` is the gain target written into the cue record.
+- Thin cloud client: `submitPrompt` / `pollJob` / `landRunArtifact` (`X-API-Key` → `POST /api/prompt` → poll → `/api/view`). UI-format graphs are rejected (andon — no client-side conversion)
+
 ## What It Does Not Own
 
-- Audio file decoding or playback (see `@motif-studio/audio-engine`)
-- Audio asset persistence or file I/O
+- Real-time playback (see `@motif-studio/audio-engine`)
 - UI components
+- Running a saved cloud graph by `workflow_id` over REST (not in the public API; MCP `run_saved_workflow` is the measured path)
+- Per-job `gpu_seconds` lookup (billing activity feed, not the job envelope)
 
 ## Dependencies
 

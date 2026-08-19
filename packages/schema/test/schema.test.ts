@@ -16,6 +16,7 @@ import {
   SampleInstrumentSchema,
   ScoreProfileSchema,
   PerformanceCaptureSchema,
+  GeneratedCueRecordSchema,
 } from "../src/index.js";
 
 function loadJSON(name: string): unknown {
@@ -446,6 +447,52 @@ describe("PerformanceCaptureSchema basic validation", () => {
   it("rejects negative tick in event", () => {
     const bad = { ...validCapture, events: [{ tick: -1, bar: 0, beat: 0, action: "stop" }] };
     expect(PerformanceCaptureSchema.safeParse(bad).success).toBe(false);
+  });
+});
+
+describe("GeneratedCueRecordSchema", () => {
+  const music = {
+    id: "gen-1",
+    name: "Bed",
+    kind: "music",
+    generation: {
+      seed: 0,
+      workflowId: "78a76ecd-7ae2-452a-afea-ad55a8d290f8",
+      jobId: "b81c6dbf-76de-463b-97e0-0ba5dcf99a60",
+      bpm: 72,
+      keyscale: "E minor",
+      lyricsTag: "[inst]",
+    },
+    mix: {
+      assetId: "gen-1-mix",
+      facts: {
+        durationSec: 120,
+        durationSamples: 5_760_000,
+        sampleRateHz: 48_000,
+        channels: 2,
+        bitDepth: 16,
+        integratedLufs: -12.32,
+        sha256: "abc",
+        sourceFilename: "track_mix.flac",
+      },
+      masterSrc: "masters/gen-1-mix.wav",
+    },
+    targetLufs: -14,
+    gainDb: -1.68,
+    actualGainDb: -1.68,
+    peakLimited: false,
+    resampler: { name: "kaiser-sinc", quality: "test" },
+    runtimeSampleRateHz: 48000,
+    createdAt: "2026-08-19T00:00:00.000Z",
+  };
+
+  it("accepts a music record with mix", () => {
+    expect(GeneratedCueRecordSchema.safeParse(music).success).toBe(true);
+  });
+
+  it("rejects music without mix", () => {
+    const { mix: _mix, ...rest } = music;
+    expect(GeneratedCueRecordSchema.safeParse(rest).success).toBe(false);
   });
 });
 
