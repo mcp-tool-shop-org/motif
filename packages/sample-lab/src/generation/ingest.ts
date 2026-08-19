@@ -24,10 +24,15 @@ import { durationMsFromStreamInfo, parseFlacStreamInfo } from "./flac-header.js"
 import { sha256Hex } from "./hash.js";
 import { durationBarsFromSeconds, parseBeatsPerBar, parseKeyscale } from "./keyscale.js";
 import { parseIntegratedLufs } from "./lufs.js";
-import { applyGain, ingestGainDb } from "./normalize.js";
+import { applyGain, ingestGainDb, resolveSharedGain, scalePlanar } from "./normalize.js";
 import { resamplePlanar, resampledSampleCount } from "./resample.js";
 import { scanRunArtifact } from "./scan.js";
-import { assertStemSampleCountsEqual, isNearSilent, rmsOf } from "./stems.js";
+import {
+  assertStemDurationsMatchMix,
+  assertStemSampleCountsEqual,
+  isNearSilent,
+  rmsOf,
+} from "./stems.js";
 import { encodeWav24 } from "./wav.js";
 
 export interface IngestOptions {
@@ -35,6 +40,10 @@ export interface IngestOptions {
   name?: string;
   destDir: string;
   generation: GenerationParams;
+  /**
+   * Ingest loudness target written into the cue record and used for gain.
+   * Music: bed target (default −14). SFX: ceiling, never boost (default −14).
+   */
   targetLufs?: number;
   decodeFlac?: FlacDecoderFn;
   now?: () => string;
@@ -168,7 +177,14 @@ export async function ingestRunArtifact(
   const targetLufs =
     options.targetLufs ??
     (scanned.kind === "music" ? MUSIC_BED_TARGET_LUFS : SFX_CEILING_LUFS);
-  const gainDb = ingestGainDb(scanned.kind, lufs, MUSIC_BED_TARGET_LUFS, SFX_CEILING_LUFS);
+  const gainDb = ingestGainDb(scanned.kind, lufs, targetLufs, targetLufs);
+
+  if (scanned.kind === "music" && !(generation.bpm != null && generation.bpm > 0)) {
+    throw new GenerationError(
+      "GENERATION_BPM",
+      "music ingest requires authored bpm (generation identity, not a 120 fallback)",
+    );
+  }
 
   if (scanned.kind === "sfx" && scanned.sfx) {
     const bytes = new Uint8Array(readFileSync(scanned.sfx));
@@ -236,11 +252,40 @@ export async function ingestRunArtifact(
   assertStemSampleCountsEqual(
     stemEntries.map((s) => ({ role: s.role, samples: s.facts.durationSamples })),
   );
+  assertStemDurationsMatchMix(
+    mixFacts.durationSec,
+    stemEntries.map((s) => ({ role: s.role, durationSec: s.facts.durationSec })),
+  );
 
   const mixPcm = await toRuntimePcm(mixBytes, mixFacts.sampleRateHz, decode);
-  const mixGained = applyGain(mixPcm, gainDb);
-  const mixMaster = writeMaster(options.destDir, `${options.id}-mix.wav`, mixGained.channels);
-  const mixRms = rmsOf(mixGained.channels);
+  const preparedStems: Array<{
+    stem: (typeof stemEntries)[number];
+    pcm: Float32Array[];
+    resampled: number;
+  }> = [];
+  for (const stem of stemEntries) {
+    const pcm = await toRuntimePcm(stem.bytes, stem.facts.sampleRateHz, decode);
+    const resampled = resampledSampleCount(
+      stem.facts.durationSamples,
+      stem.facts.sampleRateHz,
+      RUNTIME_SAMPLE_RATE_HZ,
+    );
+    if (pcm[0]!.length !== resampled) {
+      throw new GenerationError(
+        "RESAMPLE_COUNT",
+        `${stem.role} resampled to ${pcm[0]!.length}, expected ${resampled}`,
+      );
+    }
+    preparedStems.push({ stem, pcm, resampled });
+  }
+
+  const shared = resolveSharedGain(
+    [mixPcm, ...preparedStems.map((s) => s.pcm)],
+    gainDb,
+  );
+  const mixGained = scalePlanar(mixPcm, shared.actualLinear);
+  const mixMaster = writeMaster(options.destDir, `${options.id}-mix.wav`, mixGained);
+  const mixRms = rmsOf(mixGained);
 
   const layers: GenerationStemLayer[] = [];
   const assets: AudioAsset[] = [];
@@ -266,24 +311,12 @@ export async function ingestRunArtifact(
   );
   assets.push(mixAsset);
 
-  for (const stem of stemEntries) {
-    const pcm = await toRuntimePcm(stem.bytes, stem.facts.sampleRateHz, decode);
-    const gained = applyGain(pcm, gainDb);
-    const resampled = resampledSampleCount(
-      stem.facts.durationSamples,
-      stem.facts.sampleRateHz,
-      RUNTIME_SAMPLE_RATE_HZ,
-    );
-    if (gained.channels[0]!.length !== resampled) {
-      throw new GenerationError(
-        "RESAMPLE_COUNT",
-        `${stem.role} resampled to ${gained.channels[0]!.length}, expected ${resampled}`,
-      );
-    }
+  for (const { stem, pcm, resampled } of preparedStems) {
+    const gained = scalePlanar(pcm, shared.actualLinear);
     const masterSrc = writeMaster(
       options.destDir,
       `${options.id}-${stem.role}.wav`,
-      gained.channels,
+      gained,
     );
     const durationMs = durationMsFromStreamInfo({
       sampleRateHz: stem.facts.sampleRateHz,
@@ -295,8 +328,8 @@ export async function ingestRunArtifact(
     const assetId = `${options.id}-${stem.role}`;
     const nearSilent =
       stem.role === "vocals"
-        ? isNearSilent(gained.channels, mixRms)
-        : isNearSilent(gained.channels);
+        ? isNearSilent(gained, mixRms)
+        : isNearSilent(gained);
     assets.push(
       makeAsset(
         assetId,
@@ -348,11 +381,11 @@ export async function ingestRunArtifact(
 
   const beatsPerBar = parseBeatsPerBar(generation.timesignature);
   const parsedKey = generation.keyscale ? parseKeyscale(generation.keyscale) : undefined;
-  const bpm = generation.bpm ?? 120;
+  const bpm = generation.bpm!;
   const cue: Cue = {
     id: cueId,
     name,
-    bpm: generation.bpm,
+    bpm,
     keyRoot: parsedKey?.keyRoot,
     keyScale: parsedKey?.keyScale,
     beatsPerBar,
@@ -379,8 +412,8 @@ export async function ingestRunArtifact(
     sceneId,
     targetLufs,
     gainDb,
-    actualGainDb: mixGained.actualGainDb,
-    peakLimited: mixGained.peakLimited,
+    actualGainDb: shared.actualGainDb,
+    peakLimited: shared.peakLimited,
     resampler: { name: RESAMPLER_NAME, quality: RESAMPLER_QUALITY },
     runtimeSampleRateHz: RUNTIME_SAMPLE_RATE_HZ,
     createdAt,

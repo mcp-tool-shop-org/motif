@@ -1,4 +1,5 @@
 import { RUNTIME_SAMPLE_RATE_HZ } from "./constants.js";
+import { GenerationError } from "./errors.js";
 
 const KAISER_BETA = 10;
 const ZERO_CROSSINGS = 64;
@@ -68,6 +69,12 @@ export function resampleChannel(
   toRate: number,
 ): Float32Array {
   if (fromRate === toRate) return new Float32Array(input);
+  if (fromRate > toRate) {
+    throw new GenerationError(
+      "RESAMPLE_DOWNSAMPLE",
+      `Kaiser-sinc ingest resampler is upsample-only (got ${fromRate} → ${toRate}); no anti-alias cutoff`,
+    );
+  }
   const outLen = resampledSampleCount(input.length, fromRate, toRate);
   const output = new Float32Array(outLen);
   const ratio = fromRate / toRate;

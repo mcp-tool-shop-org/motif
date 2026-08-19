@@ -1,6 +1,9 @@
 import { MOTIF_RUNTIME_SAMPLE_RATE_HZ } from "@motif-studio/schema";
 
-/** Proposed music-bed target. Director-approved default for ingest gain. */
+/**
+ * Ingest reference level (Director-ratified 2026-08-19).
+ * A consistent cue-family reference — not a claim about final game loudness.
+ */
 export const MUSIC_BED_TARGET_LUFS = -14;
 
 /**

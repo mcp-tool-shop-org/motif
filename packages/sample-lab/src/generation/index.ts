@@ -14,8 +14,20 @@ export type { FlacStreamInfo } from "./flac-header.js";
 export { sha256Hex } from "./hash.js";
 export { resampledSampleCount, resampleChannel, resamplePlanar } from "./resample.js";
 export { encodeWav24 } from "./wav.js";
-export { ingestGainDb, applyGain, dbToLinear, peakOf } from "./normalize.js";
-export { rmsOf, isNearSilent, assertStemSampleCountsEqual } from "./stems.js";
+export {
+  ingestGainDb,
+  applyGain,
+  resolveSharedGain,
+  scalePlanar,
+  dbToLinear,
+  peakOf,
+} from "./normalize.js";
+export {
+  rmsOf,
+  isNearSilent,
+  assertStemSampleCountsEqual,
+  assertStemDurationsMatchMix,
+} from "./stems.js";
 export { parseKeyscale, parseBeatsPerBar, durationBarsFromSeconds } from "./keyscale.js";
 export { scanRunArtifact } from "./scan.js";
 export type { RunArtifactFiles } from "./scan.js";

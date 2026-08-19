@@ -11,9 +11,12 @@ import {
   resampleChannel,
   ingestGainDb,
   applyGain,
+  resolveSharedGain,
+  dbToLinear,
   isNearSilent,
   rmsOf,
   assertStemSampleCountsEqual,
+  assertStemDurationsMatchMix,
   parseKeyscale,
   parseBeatsPerBar,
   scanRunArtifact,
@@ -132,6 +135,12 @@ describe("resampledSampleCount", () => {
     const out = resampleChannel(input, 44100, 48000);
     expect(out.length).toBe(resampledSampleCount(147, 44100, 48000));
   });
+
+  it("refuses downsample (no anti-alias cutoff on this kernel)", () => {
+    expect(() => resampleChannel(new Float32Array(16), 48000, 44100)).toThrow(
+      GenerationError,
+    );
+  });
 });
 
 describe("loudness gain", () => {
@@ -150,6 +159,26 @@ describe("loudness gain", () => {
     const result = applyGain(ch, 6);
     expect(result.peakLimited).toBe(false);
     expect(result.channels[0]![0]).toBeGreaterThan(0.5);
+  });
+
+  it("honors an explicit music target (not a dead option)", () => {
+    expect(ingestGainDb("music", -12.32, -16, -16)).toBeCloseTo(-16 - -12.32, 5);
+  });
+
+  it("clamps mix+stems jointly so a hot drum stem cannot take a different gain", () => {
+    const mix = [new Float32Array([0.1])];
+    const drums = [new Float32Array([0.99])];
+    const bass = [new Float32Array([0.2])];
+    const shared = resolveSharedGain([mix, bass, drums], 6);
+    const mixSolo = applyGain(mix, 6);
+    const drumsSolo = applyGain(drums, 6);
+    expect(mixSolo.peakLimited).toBe(false);
+    expect(drumsSolo.peakLimited).toBe(true);
+    expect(shared.peakLimited).toBe(true);
+    expect(shared.actualLinear).toBeCloseTo(0.999 / 0.99, 6);
+    expect(shared.actualLinear).toBeLessThan(dbToLinear(6));
+    expect(shared.actualLinear).toBeCloseTo(drumsSolo.peak / 0.99, 6);
+    expect(shared.actualLinear).not.toBeCloseTo(mixSolo.channels[0]![0]! / 0.1, 5);
   });
 });
 
@@ -189,6 +218,15 @@ describe("stem sample-count alignment", () => {
         { role: "drums", samples: 5_292_001 },
         { role: "other", samples: 5_292_000 },
         { role: "vocals", samples: 5_292_000 },
+      ]),
+    ).toThrow(GenerationError);
+  });
+
+  it("rejects stems whose wall-clock duration drifts from the mix", () => {
+    expect(() =>
+      assertStemDurationsMatchMix(120, [
+        { role: "bass", durationSec: 120 },
+        { role: "drums", durationSec: 119.5 },
       ]),
     ).toThrow(GenerationError);
   });
@@ -352,6 +390,109 @@ describe("music ingest (synthetic stems)", () => {
     const pack = registerGeneratedCue(empty, ingested);
     expect(pack.cues).toHaveLength(1);
     expect(pack.generatedCues?.[0]?.id).toBe("bed-1");
+  });
+
+  it("writes the same targetLufs it used for gain (no provenance lie)", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "motif-target-"));
+    writeFileSync(join(dir, "track_mix.flac"), packStreamInfo(48000, 2, 16, 480));
+    for (const role of ["bass", "drums", "other"] as const) {
+      writeFileSync(join(dir, `stem_${role}.flac`), packStreamInfo(44100, 2, 16, 441));
+    }
+    const vocals = packStreamInfo(44100, 2, 16, 441);
+    vocals[26] = 9;
+    writeFileSync(join(dir, "stem_vocals.flac"), vocals);
+    writeFileSync(join(dir, "track_lufs.txt"), "Integrated Loudness: -12.32 LUFS\n");
+    const dest = mkdtempSync(join(tmpdir(), "motif-target-dest-"));
+    const ingested = await ingestRunArtifact(dir, {
+      id: "target-16",
+      destDir: dest,
+      targetLufs: -16,
+      decodeFlac: async (bytes) => {
+        const pcm = await fakeDecode(bytes);
+        if (bytes[26] === 9) {
+          return { ...pcm, channelData: pcm.channelData.map((ch) => new Float32Array(ch.length)) };
+        }
+        return pcm;
+      },
+      generation: {
+        seed: 0,
+        workflowId: "wf",
+        jobId: "job",
+        bpm: 72,
+        lyricsTag: "[inst]",
+      },
+    });
+    expect(ingested.record.targetLufs).toBe(-16);
+    expect(ingested.record.gainDb).toBeCloseTo(-16 - -12.32, 5);
+    expect(ingested.record.gainDb).not.toBeCloseTo(MUSIC_BED_TARGET_LUFS - -12.32, 5);
+  });
+
+  it("requires authored bpm for music", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "motif-nobpm-"));
+    writeFileSync(join(dir, "track_mix.flac"), packStreamInfo(48000, 2, 16, 480));
+    for (const role of ["bass", "drums", "other", "vocals"] as const) {
+      writeFileSync(join(dir, `stem_${role}.flac`), packStreamInfo(44100, 2, 16, 441));
+    }
+    writeFileSync(join(dir, "track_lufs.txt"), "Integrated Loudness: -12.32 LUFS\n");
+    await expect(
+      ingestRunArtifact(dir, {
+        id: "nobpm",
+        destDir: mkdtempSync(join(tmpdir(), "motif-nobpm-dest-")),
+        decodeFlac: fakeDecode,
+        generation: { seed: 0, workflowId: "wf", jobId: "job" },
+      }),
+    ).rejects.toMatchObject({ code: "GENERATION_BPM" });
+  });
+
+  it("applies one joint clamp when a hot stem would otherwise limit alone", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "motif-hot-"));
+    writeFileSync(join(dir, "track_mix.flac"), packStreamInfo(48000, 2, 16, 480));
+    writeFileSync(join(dir, "stem_bass.flac"), packStreamInfo(48000, 2, 16, 480));
+    const drums = packStreamInfo(48000, 2, 16, 480);
+    drums[26] = 2;
+    writeFileSync(join(dir, "stem_drums.flac"), drums);
+    writeFileSync(join(dir, "stem_other.flac"), packStreamInfo(48000, 2, 16, 480));
+    const vocals = packStreamInfo(48000, 2, 16, 480);
+    vocals[26] = 9;
+    writeFileSync(join(dir, "stem_vocals.flac"), vocals);
+    writeFileSync(join(dir, "track_lufs.txt"), "Integrated Loudness: -20.00 LUFS\n");
+
+    const decode: typeof fakeDecode = async (bytes) => {
+      const info = parseFlacStreamInfo(bytes);
+      const peak = bytes[26] === 2 ? 0.99 : bytes[26] === 9 ? 0 : 0.1;
+      const channelData = Array.from({ length: info.channels }, () => {
+        const ch = new Float32Array(info.totalSamples);
+        ch.fill(peak);
+        return ch;
+      });
+      return {
+        sampleRate: info.sampleRateHz,
+        channels: info.channels,
+        samples: info.totalSamples,
+        channelData,
+      };
+    };
+
+    const dest = mkdtempSync(join(tmpdir(), "motif-hot-dest-"));
+    const ingested = await ingestRunArtifact(dir, {
+      id: "hot-drums",
+      destDir: dest,
+      decodeFlac: decode,
+      generation: {
+        seed: 0,
+        workflowId: "wf",
+        jobId: "job",
+        bpm: 72,
+        lyricsTag: "[inst]",
+      },
+    });
+
+    const requested = MUSIC_BED_TARGET_LUFS - -20;
+    expect(ingested.record.gainDb).toBeCloseTo(requested, 5);
+    expect(ingested.record.peakLimited).toBe(true);
+    expect(ingested.record.actualGainDb).toBeLessThan(ingested.record.gainDb);
+    const expectedLinear = 0.999 / 0.99;
+    expect(dbToLinear(ingested.record.actualGainDb)).toBeCloseTo(expectedLinear, 6);
   });
 });
 

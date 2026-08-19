@@ -52,7 +52,7 @@ Trim, slice, kit, and instrument helpers for the Motif sample workflow.
 - `ingestRunArtifact(dir, options)` — consume a cloud run folder (mix + 4 stems + SFX FLACs + LUFS txt), resample to 48 kHz, normalize from the LUFS manifest, emit masters + a `GeneratedCueRecord`
 - `registerGeneratedCue(pack, ingested)` — fold the record into a pack for score-map / clip-engine
 - `parseIntegratedLufs`, `parseFlacStreamInfo` — duration is always samples/rate, never the requested figure
-- Resampler: Kaiser-windowed sinc (β=10, 64 zero-crossings). Default music-bed target **−14 LUFS** (SFX is capped, not boosted)
+- Resampler: Kaiser-windowed sinc (β=10, 64 zero-crossings; upsample-only). Default music-bed target **−14 LUFS** (SFX is capped, not boosted). Mix + stems share one peak clamp so layering still sums. `targetLufs` is the gain target written into the cue record.
 - Thin cloud client: `submitPrompt` / `pollJob` / `landRunArtifact` (`X-API-Key` → `POST /api/prompt` → poll → `/api/view`). UI-format graphs are rejected (andon — no client-side conversion)
 
 ## What It Does Not Own

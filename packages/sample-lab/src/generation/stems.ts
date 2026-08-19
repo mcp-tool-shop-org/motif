@@ -42,3 +42,21 @@ export function assertStemSampleCountsEqual(
     );
   }
 }
+
+/** Stems and mix must share wall-clock duration across the 44.1/48 rate split. */
+export const STEM_MIX_DURATION_EPSILON_SEC = 0.001;
+
+export function assertStemDurationsMatchMix(
+  mixDurationSec: number,
+  stems: Array<{ role: GenerationStemRole; durationSec: number }>,
+  epsilonSec: number = STEM_MIX_DURATION_EPSILON_SEC,
+): void {
+  for (const stem of stems) {
+    if (Math.abs(stem.durationSec - mixDurationSec) > epsilonSec) {
+      throw new GenerationError(
+        "STEM_DURATION",
+        `${stem.role} duration ${stem.durationSec.toFixed(6)}s != mix ${mixDurationSec.toFixed(6)}s`,
+      );
+    }
+  }
+}
