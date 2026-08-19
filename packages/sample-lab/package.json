@@ -32,7 +32,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@motif-studio/schema": "workspace:*"
+    "@motif-studio/schema": "workspace:*",
+    "@wasm-audio-decoders/flac": "^0.2.10"
   },
   "devDependencies": {
     "typescript": "^5.8.0",

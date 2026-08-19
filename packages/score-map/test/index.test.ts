@@ -22,6 +22,9 @@ import {
   sharedMotifs,
   sharedScenes,
   collectMotifFamilyIds,
+  attachGeneratedCueToFamily,
+  detachGeneratedCueFromFamily,
+  collectGeneratedCueIds,
   // resolve
   createScoreMapEntry,
   resolveProfile,
@@ -269,6 +272,28 @@ describe("collectMotifFamilyIds", () => {
     a = linkMotifToCueFamily(a, "m2");
     const b = linkMotifToCueFamily(createCueFamily("b", "B", "exploration"), "m2");
     expect(collectMotifFamilyIds([a, b]).sort()).toEqual(["m1", "m2"]);
+  });
+});
+
+describe("attachGeneratedCueToFamily", () => {
+  it("attaches a generated cue id", () => {
+    let cf = createCueFamily("cf1", "Battle", "combat");
+    cf = attachGeneratedCueToFamily(cf, "gen-1");
+    expect(cf.generatedCueIds).toEqual(["gen-1"]);
+  });
+
+  it("no-ops for duplicate and detaches", () => {
+    let cf = attachGeneratedCueToFamily(createCueFamily("cf1", "Battle", "combat"), "gen-1");
+    cf = attachGeneratedCueToFamily(cf, "gen-1");
+    expect(cf.generatedCueIds).toEqual(["gen-1"]);
+    cf = detachGeneratedCueFromFamily(cf, "gen-1");
+    expect(cf.generatedCueIds).toEqual([]);
+  });
+
+  it("collects generated cue ids", () => {
+    const a = attachGeneratedCueToFamily(createCueFamily("a", "A", "combat"), "g1");
+    const b = attachGeneratedCueToFamily(createCueFamily("b", "B", "exploration"), "g1");
+    expect(collectGeneratedCueIds([a, b])).toEqual(["g1"]);
   });
 });
 

@@ -499,6 +499,7 @@ export const CueFamilySchema = z.object({
   sceneIds: z.array(z.string().min(1)),
   motifFamilyIds: z.array(z.string()).optional(),
   scoreProfileId: z.string().optional(),
+  generatedCueIds: z.array(z.string()).optional(),
   emotion: EmotionTagSchema.optional(),
   tags: z.array(z.string()).optional(),
   notes: z.string().optional(),
@@ -699,6 +700,82 @@ export const CollectionSchema = z.object({
   createdAt: z.string().min(1),
 });
 
+// ── Cloud generation ingest ──
+
+export const GenerationKindSchema = z.enum(["music", "sfx"]);
+
+export const GenerationStemRoleSchema = z.enum(["bass", "drums", "other", "vocals"]);
+
+export const GenerationParamsSchema = z.object({
+  bpm: z.number().positive().optional(),
+  keyscale: z.string().optional(),
+  timesignature: z.string().optional(),
+  lyricsTag: z.string().optional(),
+  seed: z.number().int(),
+  workflowId: z.string().min(1),
+  jobId: z.string().min(1),
+  prompt: z.string().optional(),
+  requestedDurationSec: z.number().positive().optional(),
+});
+
+export const MeasuredAudioFactsSchema = z.object({
+  durationSec: z.number().positive(),
+  durationSamples: z.number().int().positive(),
+  sampleRateHz: z.number().positive(),
+  channels: z.number().int().positive(),
+  bitDepth: z.number().int().positive(),
+  integratedLufs: z.number().optional(),
+  sha256: z.string().min(1),
+  sourceFilename: z.string().min(1),
+});
+
+export const GenerationStemLayerSchema = z.object({
+  role: GenerationStemRoleSchema,
+  assetId: z.string().min(1),
+  facts: MeasuredAudioFactsSchema,
+  resampledSampleCount: z.number().int().positive(),
+  nearSilent: z.boolean(),
+  masterSrc: z.string().min(1),
+});
+
+export const GeneratedCueMixSchema = z.object({
+  assetId: z.string().min(1),
+  facts: MeasuredAudioFactsSchema,
+  masterSrc: z.string().min(1),
+});
+
+export const ResamplerIdentitySchema = z.object({
+  name: z.string().min(1),
+  quality: z.string().min(1),
+});
+
+export const GeneratedCueRecordSchema = z
+  .object({
+    id: z.string().min(1),
+    name: z.string().min(1),
+    kind: GenerationKindSchema,
+    generation: GenerationParamsSchema,
+    mix: GeneratedCueMixSchema.optional(),
+    sfx: GeneratedCueMixSchema.optional(),
+    stems: z.array(GenerationStemLayerSchema).optional(),
+    cueId: z.string().optional(),
+    sceneId: z.string().optional(),
+    targetLufs: z.number(),
+    gainDb: z.number(),
+    actualGainDb: z.number(),
+    peakLimited: z.boolean(),
+    resampler: ResamplerIdentitySchema,
+    runtimeSampleRateHz: z.literal(48000),
+    createdAt: z.string().min(1),
+  })
+  .refine(
+    (r) => (r.kind === "music" ? r.mix != null : r.sfx != null),
+    {
+      message: "music records require mix; sfx records require sfx",
+      path: ["kind"],
+    },
+  );
+
 export const SoundtrackPackSchema = z.object({
   meta: SoundtrackPackMetaSchema,
   assets: z.array(AudioAssetSchema),
@@ -728,6 +805,7 @@ export const SoundtrackPackSchema = z.object({
   branches: z.array(BranchSchema).optional(),
   favorites: z.array(FavoriteSchema).optional(),
   collections: z.array(CollectionSchema).optional(),
+  generatedCues: z.array(GeneratedCueRecordSchema).optional(),
 });
 
 // ── Runtime state ──

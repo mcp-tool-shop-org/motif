@@ -27,6 +27,7 @@ Canonical types and validation for Motif soundtrack packs.
 - `TriggerCondition` / `TriggerBinding` — runtime state → scene mapping
 - `TransitionRule` — how music moves between scenes
 - `SoundtrackPack` — the full pack document
+- `GeneratedCueRecord` — cloud-generation identity (params + measured duration/rate/LUFS/hashes)
 - `RuntimeMusicState` — game state shape for trigger evaluation
 
 ## Main exports
