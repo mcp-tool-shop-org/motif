@@ -28,11 +28,13 @@
     "build": "tsc --build",
     "dev": "tsc --build --watch",
     "test": "vitest run",
+    "ingest:grounded-v2": "node dist/generation/run-ingest-wave2.js",
     "lint": "eslint src/",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@motif-studio/schema": "workspace:*",
+    "@motif-studio/score-map": "workspace:*",
     "@wasm-audio-decoders/flac": "^0.2.10"
   },
   "devDependencies": {

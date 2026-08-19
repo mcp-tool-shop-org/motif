@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { ACE_STEP_KEYSCALE_VALUES } from "./types.js";
 
 // ── Enums ──
 
@@ -492,9 +493,11 @@ export const CueFamilyRoleSchema = z.enum([
   "mystery",
 ]);
 
+export const AceStepKeyscaleSchema = z.enum(ACE_STEP_KEYSCALE_VALUES);
+
 export const CueFamilyGenerationLockSchema = z.object({
   bpm: z.number().positive(),
-  keyscale: z.string().min(1),
+  keyscale: AceStepKeyscaleSchema,
   timesignature: z.string().min(1),
 });
 
@@ -715,7 +718,7 @@ export const GenerationStemRoleSchema = z.enum(["bass", "drums", "other", "vocal
 
 export const GenerationParamsSchema = z.object({
   bpm: z.number().positive().optional(),
-  keyscale: z.string().optional(),
+  keyscale: AceStepKeyscaleSchema.optional(),
   timesignature: z.string().optional(),
   lyricsTag: z.string().optional(),
   seed: z.number().int(),

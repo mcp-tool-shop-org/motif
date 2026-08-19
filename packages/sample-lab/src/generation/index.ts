@@ -33,6 +33,12 @@ export { scanRunArtifact } from "./scan.js";
 export type { RunArtifactFiles } from "./scan.js";
 export { ingestRunArtifact } from "./ingest.js";
 export type { IngestOptions, IngestResult } from "./ingest.js";
+export {
+  ingestGroundedWave2Take,
+  ingestAllGroundedWave2,
+  generationParamsForTake,
+  DEFAULT_WAVE2_PUBLIC_DIR,
+} from "./ingest-grounded-wave2.js";
 export { registerGeneratedCue } from "./register.js";
 export { decodeFlacPcm } from "./decode.js";
 export type { FlacPcm, FlacDecoderFn } from "./decode.js";

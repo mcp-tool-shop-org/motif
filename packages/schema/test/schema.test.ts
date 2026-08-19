@@ -17,6 +17,7 @@ import {
   ScoreProfileSchema,
   PerformanceCaptureSchema,
   GeneratedCueRecordSchema,
+  AceStepKeyscaleSchema,
 } from "../src/index.js";
 
 function loadJSON(name: string): unknown {
@@ -447,6 +448,20 @@ describe("PerformanceCaptureSchema basic validation", () => {
   it("rejects negative tick in event", () => {
     const bad = { ...validCapture, events: [{ tick: -1, bar: 0, beat: 0, action: "stop" }] };
     expect(PerformanceCaptureSchema.safeParse(bad).success).toBe(false);
+  });
+});
+
+describe("AceStepKeyscaleSchema", () => {
+  it("accepts G minor and F minor", () => {
+    expect(AceStepKeyscaleSchema.safeParse("G minor").success).toBe(true);
+    expect(AceStepKeyscaleSchema.safeParse("F minor").success).toBe(true);
+    expect(AceStepKeyscaleSchema.safeParse("Db minor").success).toBe(true);
+  });
+
+  it("rejects modes that ACE-Step rejects server-side", () => {
+    expect(AceStepKeyscaleSchema.safeParse("F phrygian").success).toBe(false);
+    expect(AceStepKeyscaleSchema.safeParse("Db chromatic").success).toBe(false);
+    expect(AceStepKeyscaleSchema.safeParse("D dorian").success).toBe(false);
   });
 });
 

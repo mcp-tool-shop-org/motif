@@ -1,0 +1,3189 @@
+{
+  "items": [
+    {
+      "record": {
+        "id": "cue-ardent-ready-s101",
+        "name": "cue-ardent-ready",
+        "kind": "music",
+        "generation": {
+          "bpm": 100,
+          "keyscale": "G minor",
+          "timesignature": "4/4",
+          "lyricsTag": "[inst]",
+          "seed": 101,
+          "workflowId": "78a76ecd-7ae2-452a-afea-ad55a8d290f8",
+          "jobId": "e83f8c6a",
+          "prompt": "Military March: A tense, disciplined orchestral march. Low brass ostinato and military snare drive a relentless pulse, staccato strings and taiko hits build pressure. Dark, cinematic, restrained power that never fully releases.",
+          "requestedDurationSec": 60
+        },
+        "mix": {
+          "assetId": "cue-ardent-ready-s101-mix",
+          "facts": {
+            "durationSec": 60,
+            "durationSamples": 2880000,
+            "sampleRateHz": 48000,
+            "channels": 2,
+            "bitDepth": 16,
+            "integratedLufs": -11.39,
+            "sha256": "448892db58c4368d504cd0a0adc1129961de1f569eead1b276d35809f8568871",
+            "sourceFilename": "ardent-ready-s101-track_mix.flac"
+          },
+          "masterSrc": "/audio/grounded-v2/cue-ardent-ready-s101/masters/cue-ardent-ready-s101-mix.wav"
+        },
+        "stems": [
+          {
+            "role": "bass",
+            "assetId": "cue-ardent-ready-s101-bass",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "e5c1763d25b52e511b47803d298b2abd01288842fbc5bac23b804e2401f940fe",
+              "sourceFilename": "ardent-ready-s101-stem_bass.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-ardent-ready-s101/masters/cue-ardent-ready-s101-bass.wav"
+          },
+          {
+            "role": "drums",
+            "assetId": "cue-ardent-ready-s101-drums",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "99dc2e999f1f0982e81df46234c0217f238e9d7c20df7f6bcb67dbb7798f33f8",
+              "sourceFilename": "ardent-ready-s101-stem_drums.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-ardent-ready-s101/masters/cue-ardent-ready-s101-drums.wav"
+          },
+          {
+            "role": "other",
+            "assetId": "cue-ardent-ready-s101-other",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "9ef3fe7f20b05081c11be1c0ee04724a4ded6494888b31c96d9c9430584043c6",
+              "sourceFilename": "ardent-ready-s101-stem_other.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-ardent-ready-s101/masters/cue-ardent-ready-s101-other.wav"
+          },
+          {
+            "role": "vocals",
+            "assetId": "cue-ardent-ready-s101-vocals",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "63480d3912a805165a6eb55e89b34a38c3aaa9d5ef158b9d8ae26ea706cd5843",
+              "sourceFilename": "ardent-ready-s101-stem_vocals.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-ardent-ready-s101/masters/cue-ardent-ready-s101-vocals.wav"
+          }
+        ],
+        "cueId": "cue-ardent-ready-s101-cue",
+        "sceneId": "cue-ardent-ready-s101-scene",
+        "targetLufs": -14,
+        "gainDb": -2.6099999999999994,
+        "actualGainDb": -2.609999999999999,
+        "peakLimited": false,
+        "resampler": {
+          "name": "kaiser-sinc",
+          "quality": "kaiser-windowed sinc, beta=10, 64 zero-crossings; 44.1 kHz to 48 kHz uses 147:160 polyphase"
+        },
+        "runtimeSampleRateHz": 48000,
+        "createdAt": "2026-08-19T09:00:51.148Z"
+      },
+      "assets": [
+        {
+          "id": "cue-ardent-ready-s101-mix",
+          "name": "cue-ardent-ready mix",
+          "src": "/audio/grounded-v2/cue-ardent-ready-s101/masters/cue-ardent-ready-s101-mix.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-ardent-ready-s101-mix.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:mix"
+          ]
+        },
+        {
+          "id": "cue-ardent-ready-s101-bass",
+          "name": "cue-ardent-ready bass",
+          "src": "/audio/grounded-v2/cue-ardent-ready-s101/masters/cue-ardent-ready-s101-bass.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-ardent-ready-s101-bass.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:bass"
+          ]
+        },
+        {
+          "id": "cue-ardent-ready-s101-drums",
+          "name": "cue-ardent-ready drums",
+          "src": "/audio/grounded-v2/cue-ardent-ready-s101/masters/cue-ardent-ready-s101-drums.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-ardent-ready-s101-drums.wav",
+          "sourceType": "drums",
+          "tags": [
+            "generation",
+            "generation:drums"
+          ]
+        },
+        {
+          "id": "cue-ardent-ready-s101-other",
+          "name": "cue-ardent-ready other",
+          "src": "/audio/grounded-v2/cue-ardent-ready-s101/masters/cue-ardent-ready-s101-other.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-ardent-ready-s101-other.wav",
+          "sourceType": "texture",
+          "tags": [
+            "generation",
+            "generation:other"
+          ]
+        },
+        {
+          "id": "cue-ardent-ready-s101-vocals",
+          "name": "cue-ardent-ready vocals",
+          "src": "/audio/grounded-v2/cue-ardent-ready-s101/masters/cue-ardent-ready-s101-vocals.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-ardent-ready-s101-vocals.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:vocals"
+          ]
+        }
+      ],
+      "stems": [
+        {
+          "id": "cue-ardent-ready-s101-stem-bass",
+          "name": "cue-ardent-ready bass",
+          "assetId": "cue-ardent-ready-s101-bass",
+          "role": "base",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:bass"
+          ]
+        },
+        {
+          "id": "cue-ardent-ready-s101-stem-drums",
+          "name": "cue-ardent-ready drums",
+          "assetId": "cue-ardent-ready-s101-drums",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:drums"
+          ]
+        },
+        {
+          "id": "cue-ardent-ready-s101-stem-other",
+          "name": "cue-ardent-ready other",
+          "assetId": "cue-ardent-ready-s101-other",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:other"
+          ]
+        },
+        {
+          "id": "cue-ardent-ready-s101-stem-vocals",
+          "name": "cue-ardent-ready vocals",
+          "assetId": "cue-ardent-ready-s101-vocals",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": true,
+          "tags": [
+            "generation",
+            "generation:vocals"
+          ]
+        }
+      ],
+      "familyId": "cf-military",
+      "sceneId": "sc-ardent-ready",
+      "playbackDefault": true
+    },
+    {
+      "record": {
+        "id": "cue-ardent-ready-s102",
+        "name": "cue-ardent-ready",
+        "kind": "music",
+        "generation": {
+          "bpm": 100,
+          "keyscale": "G minor",
+          "timesignature": "4/4",
+          "lyricsTag": "[inst]",
+          "seed": 102,
+          "workflowId": "78a76ecd-7ae2-452a-afea-ad55a8d290f8",
+          "jobId": "05cc6407",
+          "prompt": "Military March: A tense, disciplined orchestral march. Low brass ostinato and military snare drive a relentless pulse, staccato strings and taiko hits build pressure. Dark, cinematic, restrained power that never fully releases.",
+          "requestedDurationSec": 60
+        },
+        "mix": {
+          "assetId": "cue-ardent-ready-s102-mix",
+          "facts": {
+            "durationSec": 60,
+            "durationSamples": 2880000,
+            "sampleRateHz": 48000,
+            "channels": 2,
+            "bitDepth": 16,
+            "integratedLufs": -12,
+            "sha256": "9cf759c599b8a9dca1e651d8fd0612b2cf24f90bcb76798da10607c499d2a974",
+            "sourceFilename": "ardent-ready-s102-track_mix.flac"
+          },
+          "masterSrc": "/audio/grounded-v2/cue-ardent-ready-s102/masters/cue-ardent-ready-s102-mix.wav"
+        },
+        "stems": [
+          {
+            "role": "bass",
+            "assetId": "cue-ardent-ready-s102-bass",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "a073bd9b0ddbfac1fe6f4acceffe8f365cd5533506b20af7ac6c4c2b1341e95c",
+              "sourceFilename": "ardent-ready-s102-stem_bass.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-ardent-ready-s102/masters/cue-ardent-ready-s102-bass.wav"
+          },
+          {
+            "role": "drums",
+            "assetId": "cue-ardent-ready-s102-drums",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "d8d41522836ce75a895242984fcbe17d47b27b44525a11a611ffebfdeb813ccb",
+              "sourceFilename": "ardent-ready-s102-stem_drums.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-ardent-ready-s102/masters/cue-ardent-ready-s102-drums.wav"
+          },
+          {
+            "role": "other",
+            "assetId": "cue-ardent-ready-s102-other",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "62091c95ccc18a961658f77d1409e1d8558fcc55dc3dca796e72a1317be8c468",
+              "sourceFilename": "ardent-ready-s102-stem_other.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-ardent-ready-s102/masters/cue-ardent-ready-s102-other.wav"
+          },
+          {
+            "role": "vocals",
+            "assetId": "cue-ardent-ready-s102-vocals",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "eaca2a2d528a8570be5098e51855af70f80cdd0bb9de14076db8cc9182332b07",
+              "sourceFilename": "ardent-ready-s102-stem_vocals.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": true,
+            "masterSrc": "/audio/grounded-v2/cue-ardent-ready-s102/masters/cue-ardent-ready-s102-vocals.wav"
+          }
+        ],
+        "cueId": "cue-ardent-ready-s102-cue",
+        "sceneId": "cue-ardent-ready-s102-scene",
+        "targetLufs": -14,
+        "gainDb": -2,
+        "actualGainDb": -2,
+        "peakLimited": false,
+        "resampler": {
+          "name": "kaiser-sinc",
+          "quality": "kaiser-windowed sinc, beta=10, 64 zero-crossings; 44.1 kHz to 48 kHz uses 147:160 polyphase"
+        },
+        "runtimeSampleRateHz": 48000,
+        "createdAt": "2026-08-19T09:01:31.174Z"
+      },
+      "assets": [
+        {
+          "id": "cue-ardent-ready-s102-mix",
+          "name": "cue-ardent-ready mix",
+          "src": "/audio/grounded-v2/cue-ardent-ready-s102/masters/cue-ardent-ready-s102-mix.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-ardent-ready-s102-mix.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:mix"
+          ]
+        },
+        {
+          "id": "cue-ardent-ready-s102-bass",
+          "name": "cue-ardent-ready bass",
+          "src": "/audio/grounded-v2/cue-ardent-ready-s102/masters/cue-ardent-ready-s102-bass.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-ardent-ready-s102-bass.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:bass"
+          ]
+        },
+        {
+          "id": "cue-ardent-ready-s102-drums",
+          "name": "cue-ardent-ready drums",
+          "src": "/audio/grounded-v2/cue-ardent-ready-s102/masters/cue-ardent-ready-s102-drums.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-ardent-ready-s102-drums.wav",
+          "sourceType": "drums",
+          "tags": [
+            "generation",
+            "generation:drums"
+          ]
+        },
+        {
+          "id": "cue-ardent-ready-s102-other",
+          "name": "cue-ardent-ready other",
+          "src": "/audio/grounded-v2/cue-ardent-ready-s102/masters/cue-ardent-ready-s102-other.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-ardent-ready-s102-other.wav",
+          "sourceType": "texture",
+          "tags": [
+            "generation",
+            "generation:other"
+          ]
+        },
+        {
+          "id": "cue-ardent-ready-s102-vocals",
+          "name": "cue-ardent-ready vocals",
+          "src": "/audio/grounded-v2/cue-ardent-ready-s102/masters/cue-ardent-ready-s102-vocals.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-ardent-ready-s102-vocals.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:vocals"
+          ]
+        }
+      ],
+      "stems": [
+        {
+          "id": "cue-ardent-ready-s102-stem-bass",
+          "name": "cue-ardent-ready bass",
+          "assetId": "cue-ardent-ready-s102-bass",
+          "role": "base",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:bass"
+          ]
+        },
+        {
+          "id": "cue-ardent-ready-s102-stem-drums",
+          "name": "cue-ardent-ready drums",
+          "assetId": "cue-ardent-ready-s102-drums",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:drums"
+          ]
+        },
+        {
+          "id": "cue-ardent-ready-s102-stem-other",
+          "name": "cue-ardent-ready other",
+          "assetId": "cue-ardent-ready-s102-other",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:other"
+          ]
+        },
+        {
+          "id": "cue-ardent-ready-s102-stem-vocals",
+          "name": "cue-ardent-ready vocals",
+          "assetId": "cue-ardent-ready-s102-vocals",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": true,
+          "tags": [
+            "generation",
+            "generation:vocals"
+          ]
+        }
+      ],
+      "familyId": "cf-military",
+      "sceneId": "sc-ardent-ready",
+      "playbackDefault": false
+    },
+    {
+      "record": {
+        "id": "cue-ardent-sweep-s103",
+        "name": "cue-ardent-sweep",
+        "kind": "music",
+        "generation": {
+          "bpm": 100,
+          "keyscale": "G minor",
+          "timesignature": "4/4",
+          "lyricsTag": "[inst]",
+          "seed": 103,
+          "workflowId": "78a76ecd-7ae2-452a-afea-ad55a8d290f8",
+          "jobId": "d18db88e",
+          "prompt": "Military March: A tense, disciplined orchestral march. Low brass ostinato and military snare drive a relentless pulse, staccato strings and taiko hits build pressure. Dark, cinematic, restrained power that never fully releases.",
+          "requestedDurationSec": 60
+        },
+        "mix": {
+          "assetId": "cue-ardent-sweep-s103-mix",
+          "facts": {
+            "durationSec": 60,
+            "durationSamples": 2880000,
+            "sampleRateHz": 48000,
+            "channels": 2,
+            "bitDepth": 16,
+            "integratedLufs": -14.01,
+            "sha256": "d6e3856a38b72c6a77f2bdc50b31746a45ef7da4f8c32fcab6f98a9698801b55",
+            "sourceFilename": "ardent-sweep-s103-track_mix.flac"
+          },
+          "masterSrc": "/audio/grounded-v2/cue-ardent-sweep-s103/masters/cue-ardent-sweep-s103-mix.wav"
+        },
+        "stems": [
+          {
+            "role": "bass",
+            "assetId": "cue-ardent-sweep-s103-bass",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "b9a843d3eda34d847e7f0ba740a9e53b3bbe989d3ef850da962849e3a10e6863",
+              "sourceFilename": "ardent-sweep-s103-stem_bass.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-ardent-sweep-s103/masters/cue-ardent-sweep-s103-bass.wav"
+          },
+          {
+            "role": "drums",
+            "assetId": "cue-ardent-sweep-s103-drums",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "cd19f73049aba14186639462e1443b463a8905377d77669156bf42e1b7f12afd",
+              "sourceFilename": "ardent-sweep-s103-stem_drums.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-ardent-sweep-s103/masters/cue-ardent-sweep-s103-drums.wav"
+          },
+          {
+            "role": "other",
+            "assetId": "cue-ardent-sweep-s103-other",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "254e90269e305c5c0ac0cc3125c9b9720a6b5f0544c95a08fb9e516723847f99",
+              "sourceFilename": "ardent-sweep-s103-stem_other.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-ardent-sweep-s103/masters/cue-ardent-sweep-s103-other.wav"
+          },
+          {
+            "role": "vocals",
+            "assetId": "cue-ardent-sweep-s103-vocals",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "596dd09d9326231e9752182fe69063856d4a3b4f791922f1f98c656a6c5c407f",
+              "sourceFilename": "ardent-sweep-s103-stem_vocals.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-ardent-sweep-s103/masters/cue-ardent-sweep-s103-vocals.wav"
+          }
+        ],
+        "cueId": "cue-ardent-sweep-s103-cue",
+        "sceneId": "cue-ardent-sweep-s103-scene",
+        "targetLufs": -14,
+        "gainDb": 0.009999999999999787,
+        "actualGainDb": -0.05775956041436796,
+        "peakLimited": true,
+        "resampler": {
+          "name": "kaiser-sinc",
+          "quality": "kaiser-windowed sinc, beta=10, 64 zero-crossings; 44.1 kHz to 48 kHz uses 147:160 polyphase"
+        },
+        "runtimeSampleRateHz": 48000,
+        "createdAt": "2026-08-19T09:02:19.033Z"
+      },
+      "assets": [
+        {
+          "id": "cue-ardent-sweep-s103-mix",
+          "name": "cue-ardent-sweep mix",
+          "src": "/audio/grounded-v2/cue-ardent-sweep-s103/masters/cue-ardent-sweep-s103-mix.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-ardent-sweep-s103-mix.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:mix"
+          ]
+        },
+        {
+          "id": "cue-ardent-sweep-s103-bass",
+          "name": "cue-ardent-sweep bass",
+          "src": "/audio/grounded-v2/cue-ardent-sweep-s103/masters/cue-ardent-sweep-s103-bass.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-ardent-sweep-s103-bass.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:bass"
+          ]
+        },
+        {
+          "id": "cue-ardent-sweep-s103-drums",
+          "name": "cue-ardent-sweep drums",
+          "src": "/audio/grounded-v2/cue-ardent-sweep-s103/masters/cue-ardent-sweep-s103-drums.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-ardent-sweep-s103-drums.wav",
+          "sourceType": "drums",
+          "tags": [
+            "generation",
+            "generation:drums"
+          ]
+        },
+        {
+          "id": "cue-ardent-sweep-s103-other",
+          "name": "cue-ardent-sweep other",
+          "src": "/audio/grounded-v2/cue-ardent-sweep-s103/masters/cue-ardent-sweep-s103-other.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-ardent-sweep-s103-other.wav",
+          "sourceType": "texture",
+          "tags": [
+            "generation",
+            "generation:other"
+          ]
+        },
+        {
+          "id": "cue-ardent-sweep-s103-vocals",
+          "name": "cue-ardent-sweep vocals",
+          "src": "/audio/grounded-v2/cue-ardent-sweep-s103/masters/cue-ardent-sweep-s103-vocals.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-ardent-sweep-s103-vocals.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:vocals"
+          ]
+        }
+      ],
+      "stems": [
+        {
+          "id": "cue-ardent-sweep-s103-stem-bass",
+          "name": "cue-ardent-sweep bass",
+          "assetId": "cue-ardent-sweep-s103-bass",
+          "role": "base",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:bass"
+          ]
+        },
+        {
+          "id": "cue-ardent-sweep-s103-stem-drums",
+          "name": "cue-ardent-sweep drums",
+          "assetId": "cue-ardent-sweep-s103-drums",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:drums"
+          ]
+        },
+        {
+          "id": "cue-ardent-sweep-s103-stem-other",
+          "name": "cue-ardent-sweep other",
+          "assetId": "cue-ardent-sweep-s103-other",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:other"
+          ]
+        },
+        {
+          "id": "cue-ardent-sweep-s103-stem-vocals",
+          "name": "cue-ardent-sweep vocals",
+          "assetId": "cue-ardent-sweep-s103-vocals",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": true,
+          "tags": [
+            "generation",
+            "generation:vocals"
+          ]
+        }
+      ],
+      "familyId": "cf-military",
+      "sceneId": "sc-ardent-sweep",
+      "playbackDefault": true
+    },
+    {
+      "record": {
+        "id": "cue-ardent-sweep-s104",
+        "name": "cue-ardent-sweep",
+        "kind": "music",
+        "generation": {
+          "bpm": 100,
+          "keyscale": "G minor",
+          "timesignature": "4/4",
+          "lyricsTag": "[inst]",
+          "seed": 104,
+          "workflowId": "78a76ecd-7ae2-452a-afea-ad55a8d290f8",
+          "jobId": "3f8f3b19",
+          "prompt": "Military March: A tense, disciplined orchestral march. Low brass ostinato and military snare drive a relentless pulse, staccato strings and taiko hits build pressure. Dark, cinematic, restrained power that never fully releases.",
+          "requestedDurationSec": 60
+        },
+        "mix": {
+          "assetId": "cue-ardent-sweep-s104-mix",
+          "facts": {
+            "durationSec": 60,
+            "durationSamples": 2880000,
+            "sampleRateHz": 48000,
+            "channels": 2,
+            "bitDepth": 16,
+            "integratedLufs": -14.42,
+            "sha256": "889bfb163e2b924992fe38c279aaccb1749ef83dd4230a06058801271f04a187",
+            "sourceFilename": "ardent-sweep-s104-track_mix.flac"
+          },
+          "masterSrc": "/audio/grounded-v2/cue-ardent-sweep-s104/masters/cue-ardent-sweep-s104-mix.wav"
+        },
+        "stems": [
+          {
+            "role": "bass",
+            "assetId": "cue-ardent-sweep-s104-bass",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "6b625cbf71f18e4b0581d271cb0358879979ae098ae4a20bf14faf92abb80913",
+              "sourceFilename": "ardent-sweep-s104-stem_bass.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-ardent-sweep-s104/masters/cue-ardent-sweep-s104-bass.wav"
+          },
+          {
+            "role": "drums",
+            "assetId": "cue-ardent-sweep-s104-drums",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "5938e8d52a517ea6f3209191560b6ab49dc6a2e05cfc7655f6024aac20e89379",
+              "sourceFilename": "ardent-sweep-s104-stem_drums.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-ardent-sweep-s104/masters/cue-ardent-sweep-s104-drums.wav"
+          },
+          {
+            "role": "other",
+            "assetId": "cue-ardent-sweep-s104-other",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "de88199da38b6b6a34ca14aeb6de4ea7fa67f8857de3f86e0446869ca35d3cdb",
+              "sourceFilename": "ardent-sweep-s104-stem_other.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-ardent-sweep-s104/masters/cue-ardent-sweep-s104-other.wav"
+          },
+          {
+            "role": "vocals",
+            "assetId": "cue-ardent-sweep-s104-vocals",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "d926df076636d017413dc9caf79bd96df35a3373c975755c4037206dbc17e4bc",
+              "sourceFilename": "ardent-sweep-s104-stem_vocals.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-ardent-sweep-s104/masters/cue-ardent-sweep-s104-vocals.wav"
+          }
+        ],
+        "cueId": "cue-ardent-sweep-s104-cue",
+        "sceneId": "cue-ardent-sweep-s104-scene",
+        "targetLufs": -14,
+        "gainDb": 0.41999999999999993,
+        "actualGainDb": -0.5349493580179555,
+        "peakLimited": true,
+        "resampler": {
+          "name": "kaiser-sinc",
+          "quality": "kaiser-windowed sinc, beta=10, 64 zero-crossings; 44.1 kHz to 48 kHz uses 147:160 polyphase"
+        },
+        "runtimeSampleRateHz": 48000,
+        "createdAt": "2026-08-19T09:03:09.150Z"
+      },
+      "assets": [
+        {
+          "id": "cue-ardent-sweep-s104-mix",
+          "name": "cue-ardent-sweep mix",
+          "src": "/audio/grounded-v2/cue-ardent-sweep-s104/masters/cue-ardent-sweep-s104-mix.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-ardent-sweep-s104-mix.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:mix"
+          ]
+        },
+        {
+          "id": "cue-ardent-sweep-s104-bass",
+          "name": "cue-ardent-sweep bass",
+          "src": "/audio/grounded-v2/cue-ardent-sweep-s104/masters/cue-ardent-sweep-s104-bass.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-ardent-sweep-s104-bass.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:bass"
+          ]
+        },
+        {
+          "id": "cue-ardent-sweep-s104-drums",
+          "name": "cue-ardent-sweep drums",
+          "src": "/audio/grounded-v2/cue-ardent-sweep-s104/masters/cue-ardent-sweep-s104-drums.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-ardent-sweep-s104-drums.wav",
+          "sourceType": "drums",
+          "tags": [
+            "generation",
+            "generation:drums"
+          ]
+        },
+        {
+          "id": "cue-ardent-sweep-s104-other",
+          "name": "cue-ardent-sweep other",
+          "src": "/audio/grounded-v2/cue-ardent-sweep-s104/masters/cue-ardent-sweep-s104-other.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-ardent-sweep-s104-other.wav",
+          "sourceType": "texture",
+          "tags": [
+            "generation",
+            "generation:other"
+          ]
+        },
+        {
+          "id": "cue-ardent-sweep-s104-vocals",
+          "name": "cue-ardent-sweep vocals",
+          "src": "/audio/grounded-v2/cue-ardent-sweep-s104/masters/cue-ardent-sweep-s104-vocals.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-ardent-sweep-s104-vocals.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:vocals"
+          ]
+        }
+      ],
+      "stems": [
+        {
+          "id": "cue-ardent-sweep-s104-stem-bass",
+          "name": "cue-ardent-sweep bass",
+          "assetId": "cue-ardent-sweep-s104-bass",
+          "role": "base",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:bass"
+          ]
+        },
+        {
+          "id": "cue-ardent-sweep-s104-stem-drums",
+          "name": "cue-ardent-sweep drums",
+          "assetId": "cue-ardent-sweep-s104-drums",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:drums"
+          ]
+        },
+        {
+          "id": "cue-ardent-sweep-s104-stem-other",
+          "name": "cue-ardent-sweep other",
+          "assetId": "cue-ardent-sweep-s104-other",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:other"
+          ]
+        },
+        {
+          "id": "cue-ardent-sweep-s104-stem-vocals",
+          "name": "cue-ardent-sweep vocals",
+          "assetId": "cue-ardent-sweep-s104-vocals",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": true,
+          "tags": [
+            "generation",
+            "generation:vocals"
+          ]
+        }
+      ],
+      "familyId": "cf-military",
+      "sceneId": "sc-ardent-sweep",
+      "playbackDefault": false
+    },
+    {
+      "record": {
+        "id": "cue-court-martial-s105",
+        "name": "cue-court-martial",
+        "kind": "music",
+        "generation": {
+          "bpm": 100,
+          "keyscale": "G minor",
+          "timesignature": "4/4",
+          "lyricsTag": "[inst]",
+          "seed": 105,
+          "workflowId": "78a76ecd-7ae2-452a-afea-ad55a8d290f8",
+          "jobId": "96ef5e80",
+          "prompt": "Military March: A tense, disciplined orchestral march. Low brass ostinato and military snare drive a relentless pulse, staccato strings and taiko hits build pressure. Dark, cinematic, restrained power that never fully releases.",
+          "requestedDurationSec": 60
+        },
+        "mix": {
+          "assetId": "cue-court-martial-s105-mix",
+          "facts": {
+            "durationSec": 60,
+            "durationSamples": 2880000,
+            "sampleRateHz": 48000,
+            "channels": 2,
+            "bitDepth": 16,
+            "integratedLufs": -11.78,
+            "sha256": "6ea6e5b76b58dcca7fb79bd24bc475d3a6c7c8dc55e2dc9e5dc29299f50dd608",
+            "sourceFilename": "court-martial-s105-track_mix.flac"
+          },
+          "masterSrc": "/audio/grounded-v2/cue-court-martial-s105/masters/cue-court-martial-s105-mix.wav"
+        },
+        "stems": [
+          {
+            "role": "bass",
+            "assetId": "cue-court-martial-s105-bass",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "6c099c0c577b6d0e6082d893d64ee652af2313617dc1e310468f1bbbef46aeef",
+              "sourceFilename": "court-martial-s105-stem_bass.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-court-martial-s105/masters/cue-court-martial-s105-bass.wav"
+          },
+          {
+            "role": "drums",
+            "assetId": "cue-court-martial-s105-drums",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "2fc6c53736473d21466b8ee6794132d2fdb72390986961b59d5be49d8bd82ef3",
+              "sourceFilename": "court-martial-s105-stem_drums.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-court-martial-s105/masters/cue-court-martial-s105-drums.wav"
+          },
+          {
+            "role": "other",
+            "assetId": "cue-court-martial-s105-other",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "7268306512d08bf92fc066ea3888186b784190ab0fdd2972dfecc6edf3419e07",
+              "sourceFilename": "court-martial-s105-stem_other.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-court-martial-s105/masters/cue-court-martial-s105-other.wav"
+          },
+          {
+            "role": "vocals",
+            "assetId": "cue-court-martial-s105-vocals",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "b1d25ca435d90a83054a5ffbeb264468bc551aff1526b462dbc63efe7a23778a",
+              "sourceFilename": "court-martial-s105-stem_vocals.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": true,
+            "masterSrc": "/audio/grounded-v2/cue-court-martial-s105/masters/cue-court-martial-s105-vocals.wav"
+          }
+        ],
+        "cueId": "cue-court-martial-s105-cue",
+        "sceneId": "cue-court-martial-s105-scene",
+        "targetLufs": -14,
+        "gainDb": -2.2200000000000006,
+        "actualGainDb": -2.2200000000000006,
+        "peakLimited": false,
+        "resampler": {
+          "name": "kaiser-sinc",
+          "quality": "kaiser-windowed sinc, beta=10, 64 zero-crossings; 44.1 kHz to 48 kHz uses 147:160 polyphase"
+        },
+        "runtimeSampleRateHz": 48000,
+        "createdAt": "2026-08-19T09:03:52.918Z"
+      },
+      "assets": [
+        {
+          "id": "cue-court-martial-s105-mix",
+          "name": "cue-court-martial mix",
+          "src": "/audio/grounded-v2/cue-court-martial-s105/masters/cue-court-martial-s105-mix.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-court-martial-s105-mix.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:mix"
+          ]
+        },
+        {
+          "id": "cue-court-martial-s105-bass",
+          "name": "cue-court-martial bass",
+          "src": "/audio/grounded-v2/cue-court-martial-s105/masters/cue-court-martial-s105-bass.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-court-martial-s105-bass.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:bass"
+          ]
+        },
+        {
+          "id": "cue-court-martial-s105-drums",
+          "name": "cue-court-martial drums",
+          "src": "/audio/grounded-v2/cue-court-martial-s105/masters/cue-court-martial-s105-drums.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-court-martial-s105-drums.wav",
+          "sourceType": "drums",
+          "tags": [
+            "generation",
+            "generation:drums"
+          ]
+        },
+        {
+          "id": "cue-court-martial-s105-other",
+          "name": "cue-court-martial other",
+          "src": "/audio/grounded-v2/cue-court-martial-s105/masters/cue-court-martial-s105-other.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-court-martial-s105-other.wav",
+          "sourceType": "texture",
+          "tags": [
+            "generation",
+            "generation:other"
+          ]
+        },
+        {
+          "id": "cue-court-martial-s105-vocals",
+          "name": "cue-court-martial vocals",
+          "src": "/audio/grounded-v2/cue-court-martial-s105/masters/cue-court-martial-s105-vocals.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-court-martial-s105-vocals.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:vocals"
+          ]
+        }
+      ],
+      "stems": [
+        {
+          "id": "cue-court-martial-s105-stem-bass",
+          "name": "cue-court-martial bass",
+          "assetId": "cue-court-martial-s105-bass",
+          "role": "base",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:bass"
+          ]
+        },
+        {
+          "id": "cue-court-martial-s105-stem-drums",
+          "name": "cue-court-martial drums",
+          "assetId": "cue-court-martial-s105-drums",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:drums"
+          ]
+        },
+        {
+          "id": "cue-court-martial-s105-stem-other",
+          "name": "cue-court-martial other",
+          "assetId": "cue-court-martial-s105-other",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:other"
+          ]
+        },
+        {
+          "id": "cue-court-martial-s105-stem-vocals",
+          "name": "cue-court-martial vocals",
+          "assetId": "cue-court-martial-s105-vocals",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": true,
+          "tags": [
+            "generation",
+            "generation:vocals"
+          ]
+        }
+      ],
+      "familyId": "cf-military",
+      "sceneId": "sc-court-martial",
+      "playbackDefault": true
+    },
+    {
+      "record": {
+        "id": "cue-court-martial-s106",
+        "name": "cue-court-martial",
+        "kind": "music",
+        "generation": {
+          "bpm": 100,
+          "keyscale": "G minor",
+          "timesignature": "4/4",
+          "lyricsTag": "[inst]",
+          "seed": 106,
+          "workflowId": "78a76ecd-7ae2-452a-afea-ad55a8d290f8",
+          "jobId": "49302474",
+          "prompt": "Military March: A tense, disciplined orchestral march. Low brass ostinato and military snare drive a relentless pulse, staccato strings and taiko hits build pressure. Dark, cinematic, restrained power that never fully releases.",
+          "requestedDurationSec": 60
+        },
+        "mix": {
+          "assetId": "cue-court-martial-s106-mix",
+          "facts": {
+            "durationSec": 60,
+            "durationSamples": 2880000,
+            "sampleRateHz": 48000,
+            "channels": 2,
+            "bitDepth": 16,
+            "integratedLufs": -14.24,
+            "sha256": "cf2c5749cfd0c48a4730545334c2fda9f20b151becfeddcd8d55533bd3f0c32b",
+            "sourceFilename": "court-martial-s106-track_mix.flac"
+          },
+          "masterSrc": "/audio/grounded-v2/cue-court-martial-s106/masters/cue-court-martial-s106-mix.wav"
+        },
+        "stems": [
+          {
+            "role": "bass",
+            "assetId": "cue-court-martial-s106-bass",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "7d7304d130e062ab870ebc09eac0f96cd17e0074c668edd7179bd21250f4a511",
+              "sourceFilename": "court-martial-s106-stem_bass.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-court-martial-s106/masters/cue-court-martial-s106-bass.wav"
+          },
+          {
+            "role": "drums",
+            "assetId": "cue-court-martial-s106-drums",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "b01dea94b21a2be09777b7cc89a82958b4ba2f26713ce7c924d7037122de7343",
+              "sourceFilename": "court-martial-s106-stem_drums.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-court-martial-s106/masters/cue-court-martial-s106-drums.wav"
+          },
+          {
+            "role": "other",
+            "assetId": "cue-court-martial-s106-other",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "d4b37026694673c8109876bdf826074efc4257d5f51f361e4dbbffa07e16d95c",
+              "sourceFilename": "court-martial-s106-stem_other.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-court-martial-s106/masters/cue-court-martial-s106-other.wav"
+          },
+          {
+            "role": "vocals",
+            "assetId": "cue-court-martial-s106-vocals",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "a3c1336599dfc09629e2b884dee04507fd0f3ef9ee8893baf62d78d82bac4289",
+              "sourceFilename": "court-martial-s106-stem_vocals.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-court-martial-s106/masters/cue-court-martial-s106-vocals.wav"
+          }
+        ],
+        "cueId": "cue-court-martial-s106-cue",
+        "sceneId": "cue-court-martial-s106-scene",
+        "targetLufs": -14,
+        "gainDb": 0.2400000000000002,
+        "actualGainDb": 0.24000000000000032,
+        "peakLimited": false,
+        "resampler": {
+          "name": "kaiser-sinc",
+          "quality": "kaiser-windowed sinc, beta=10, 64 zero-crossings; 44.1 kHz to 48 kHz uses 147:160 polyphase"
+        },
+        "runtimeSampleRateHz": 48000,
+        "createdAt": "2026-08-19T09:04:33.674Z"
+      },
+      "assets": [
+        {
+          "id": "cue-court-martial-s106-mix",
+          "name": "cue-court-martial mix",
+          "src": "/audio/grounded-v2/cue-court-martial-s106/masters/cue-court-martial-s106-mix.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-court-martial-s106-mix.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:mix"
+          ]
+        },
+        {
+          "id": "cue-court-martial-s106-bass",
+          "name": "cue-court-martial bass",
+          "src": "/audio/grounded-v2/cue-court-martial-s106/masters/cue-court-martial-s106-bass.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-court-martial-s106-bass.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:bass"
+          ]
+        },
+        {
+          "id": "cue-court-martial-s106-drums",
+          "name": "cue-court-martial drums",
+          "src": "/audio/grounded-v2/cue-court-martial-s106/masters/cue-court-martial-s106-drums.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-court-martial-s106-drums.wav",
+          "sourceType": "drums",
+          "tags": [
+            "generation",
+            "generation:drums"
+          ]
+        },
+        {
+          "id": "cue-court-martial-s106-other",
+          "name": "cue-court-martial other",
+          "src": "/audio/grounded-v2/cue-court-martial-s106/masters/cue-court-martial-s106-other.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-court-martial-s106-other.wav",
+          "sourceType": "texture",
+          "tags": [
+            "generation",
+            "generation:other"
+          ]
+        },
+        {
+          "id": "cue-court-martial-s106-vocals",
+          "name": "cue-court-martial vocals",
+          "src": "/audio/grounded-v2/cue-court-martial-s106/masters/cue-court-martial-s106-vocals.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 100,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-court-martial-s106-vocals.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:vocals"
+          ]
+        }
+      ],
+      "stems": [
+        {
+          "id": "cue-court-martial-s106-stem-bass",
+          "name": "cue-court-martial bass",
+          "assetId": "cue-court-martial-s106-bass",
+          "role": "base",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:bass"
+          ]
+        },
+        {
+          "id": "cue-court-martial-s106-stem-drums",
+          "name": "cue-court-martial drums",
+          "assetId": "cue-court-martial-s106-drums",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:drums"
+          ]
+        },
+        {
+          "id": "cue-court-martial-s106-stem-other",
+          "name": "cue-court-martial other",
+          "assetId": "cue-court-martial-s106-other",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:other"
+          ]
+        },
+        {
+          "id": "cue-court-martial-s106-stem-vocals",
+          "name": "cue-court-martial vocals",
+          "assetId": "cue-court-martial-s106-vocals",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": true,
+          "tags": [
+            "generation",
+            "generation:vocals"
+          ]
+        }
+      ],
+      "familyId": "cf-military",
+      "sceneId": "sc-court-martial",
+      "playbackDefault": false
+    },
+    {
+      "record": {
+        "id": "cue-ambush-s201",
+        "name": "cue-ambush",
+        "kind": "music",
+        "generation": {
+          "bpm": 130,
+          "keyscale": "G minor",
+          "timesignature": "4/4",
+          "lyricsTag": "[inst]",
+          "seed": 201,
+          "workflowId": "78a76ecd-7ae2-452a-afea-ad55a8d290f8",
+          "jobId": "4f819e4a",
+          "prompt": "Orchestral Combat: A fast, driving orchestral action piece. Four-on-the-floor percussion and urgent low brass riffs, syncopated string stabs and taiko accents push forward relentlessly. Aggressive, precise, cinematic controlled fury.",
+          "requestedDurationSec": 60
+        },
+        "mix": {
+          "assetId": "cue-ambush-s201-mix",
+          "facts": {
+            "durationSec": 60,
+            "durationSamples": 2880000,
+            "sampleRateHz": 48000,
+            "channels": 2,
+            "bitDepth": 16,
+            "integratedLufs": -11.62,
+            "sha256": "a18822d7b31f5de08badcddb88c56534b54d4ea5f582cbc79d8dca270ee78cc8",
+            "sourceFilename": "ambush-s201-track_mix.flac"
+          },
+          "masterSrc": "/audio/grounded-v2/cue-ambush-s201/masters/cue-ambush-s201-mix.wav"
+        },
+        "stems": [
+          {
+            "role": "bass",
+            "assetId": "cue-ambush-s201-bass",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "694857d37cfcab8054edf597fbdd4b8be2b1b8b5fb52d4372f5c2e5b323c3f33",
+              "sourceFilename": "ambush-s201-stem_bass.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-ambush-s201/masters/cue-ambush-s201-bass.wav"
+          },
+          {
+            "role": "drums",
+            "assetId": "cue-ambush-s201-drums",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "700cb2bac8a1b20de79e4040d8f53dcae0331015577b71e993bb04ae70022f32",
+              "sourceFilename": "ambush-s201-stem_drums.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-ambush-s201/masters/cue-ambush-s201-drums.wav"
+          },
+          {
+            "role": "other",
+            "assetId": "cue-ambush-s201-other",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "62e4bc354abf872faeb51b76aabef0bfe2ff7c120d74bc6147f0b92293020840",
+              "sourceFilename": "ambush-s201-stem_other.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-ambush-s201/masters/cue-ambush-s201-other.wav"
+          },
+          {
+            "role": "vocals",
+            "assetId": "cue-ambush-s201-vocals",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "5bd287b5a4fe8d097fec7cfae89a5b960d72cc31a3319dd5e89ee152ea442198",
+              "sourceFilename": "ambush-s201-stem_vocals.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-ambush-s201/masters/cue-ambush-s201-vocals.wav"
+          }
+        ],
+        "cueId": "cue-ambush-s201-cue",
+        "sceneId": "cue-ambush-s201-scene",
+        "targetLufs": -14,
+        "gainDb": -2.380000000000001,
+        "actualGainDb": -2.3800000000000012,
+        "peakLimited": false,
+        "resampler": {
+          "name": "kaiser-sinc",
+          "quality": "kaiser-windowed sinc, beta=10, 64 zero-crossings; 44.1 kHz to 48 kHz uses 147:160 polyphase"
+        },
+        "runtimeSampleRateHz": 48000,
+        "createdAt": "2026-08-19T09:05:13.557Z"
+      },
+      "assets": [
+        {
+          "id": "cue-ambush-s201-mix",
+          "name": "cue-ambush mix",
+          "src": "/audio/grounded-v2/cue-ambush-s201/masters/cue-ambush-s201-mix.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 130,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-ambush-s201-mix.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:mix"
+          ]
+        },
+        {
+          "id": "cue-ambush-s201-bass",
+          "name": "cue-ambush bass",
+          "src": "/audio/grounded-v2/cue-ambush-s201/masters/cue-ambush-s201-bass.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 130,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-ambush-s201-bass.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:bass"
+          ]
+        },
+        {
+          "id": "cue-ambush-s201-drums",
+          "name": "cue-ambush drums",
+          "src": "/audio/grounded-v2/cue-ambush-s201/masters/cue-ambush-s201-drums.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 130,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-ambush-s201-drums.wav",
+          "sourceType": "drums",
+          "tags": [
+            "generation",
+            "generation:drums"
+          ]
+        },
+        {
+          "id": "cue-ambush-s201-other",
+          "name": "cue-ambush other",
+          "src": "/audio/grounded-v2/cue-ambush-s201/masters/cue-ambush-s201-other.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 130,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-ambush-s201-other.wav",
+          "sourceType": "texture",
+          "tags": [
+            "generation",
+            "generation:other"
+          ]
+        },
+        {
+          "id": "cue-ambush-s201-vocals",
+          "name": "cue-ambush vocals",
+          "src": "/audio/grounded-v2/cue-ambush-s201/masters/cue-ambush-s201-vocals.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 130,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-ambush-s201-vocals.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:vocals"
+          ]
+        }
+      ],
+      "stems": [
+        {
+          "id": "cue-ambush-s201-stem-bass",
+          "name": "cue-ambush bass",
+          "assetId": "cue-ambush-s201-bass",
+          "role": "base",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:bass"
+          ]
+        },
+        {
+          "id": "cue-ambush-s201-stem-drums",
+          "name": "cue-ambush drums",
+          "assetId": "cue-ambush-s201-drums",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:drums"
+          ]
+        },
+        {
+          "id": "cue-ambush-s201-stem-other",
+          "name": "cue-ambush other",
+          "assetId": "cue-ambush-s201-other",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:other"
+          ]
+        },
+        {
+          "id": "cue-ambush-s201-stem-vocals",
+          "name": "cue-ambush vocals",
+          "assetId": "cue-ambush-s201-vocals",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": true,
+          "tags": [
+            "generation",
+            "generation:vocals"
+          ]
+        }
+      ],
+      "familyId": "cf-combat",
+      "sceneId": "sc-ambush",
+      "playbackDefault": true
+    },
+    {
+      "record": {
+        "id": "cue-derelict-s202",
+        "name": "cue-derelict",
+        "kind": "music",
+        "generation": {
+          "bpm": 130,
+          "keyscale": "G minor",
+          "timesignature": "4/4",
+          "lyricsTag": "[inst]",
+          "seed": 202,
+          "workflowId": "78a76ecd-7ae2-452a-afea-ad55a8d290f8",
+          "jobId": "a1c7124a",
+          "prompt": "Orchestral Combat: A fast, driving orchestral action piece. Four-on-the-floor percussion and urgent low brass riffs, syncopated string stabs and taiko accents push forward relentlessly. Aggressive, precise, cinematic controlled fury.",
+          "requestedDurationSec": 60
+        },
+        "mix": {
+          "assetId": "cue-derelict-s202-mix",
+          "facts": {
+            "durationSec": 60,
+            "durationSamples": 2880000,
+            "sampleRateHz": 48000,
+            "channels": 2,
+            "bitDepth": 16,
+            "integratedLufs": -11.68,
+            "sha256": "ea427b48bbd031adcd2b0a0de1be5d583f829e3ce4f4bd85ba1a72fd2016b2da",
+            "sourceFilename": "derelict-s202-track_mix.flac"
+          },
+          "masterSrc": "/audio/grounded-v2/cue-derelict-s202/masters/cue-derelict-s202-mix.wav"
+        },
+        "stems": [
+          {
+            "role": "bass",
+            "assetId": "cue-derelict-s202-bass",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "b2e670a39cd75cbdb3a7829390cb216e2ccb19ec090dbcee3941a35edfffd2aa",
+              "sourceFilename": "derelict-s202-stem_bass.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-derelict-s202/masters/cue-derelict-s202-bass.wav"
+          },
+          {
+            "role": "drums",
+            "assetId": "cue-derelict-s202-drums",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "b65abafc3a0caefddd7fea59b49b247baceedb12bc2ce80d9e034af6b7b61885",
+              "sourceFilename": "derelict-s202-stem_drums.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-derelict-s202/masters/cue-derelict-s202-drums.wav"
+          },
+          {
+            "role": "other",
+            "assetId": "cue-derelict-s202-other",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "af9779c70e096236c8c28fd4706f64a51e87c319fd4a6733013a865a0eb7bbec",
+              "sourceFilename": "derelict-s202-stem_other.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-derelict-s202/masters/cue-derelict-s202-other.wav"
+          },
+          {
+            "role": "vocals",
+            "assetId": "cue-derelict-s202-vocals",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "0cc4d0961bcb18785333282275bb8577fb149a13684ad2e5f5b0e4c55f9cd8d2",
+              "sourceFilename": "derelict-s202-stem_vocals.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-derelict-s202/masters/cue-derelict-s202-vocals.wav"
+          }
+        ],
+        "cueId": "cue-derelict-s202-cue",
+        "sceneId": "cue-derelict-s202-scene",
+        "targetLufs": -14,
+        "gainDb": -2.3200000000000003,
+        "actualGainDb": -2.3200000000000003,
+        "peakLimited": false,
+        "resampler": {
+          "name": "kaiser-sinc",
+          "quality": "kaiser-windowed sinc, beta=10, 64 zero-crossings; 44.1 kHz to 48 kHz uses 147:160 polyphase"
+        },
+        "runtimeSampleRateHz": 48000,
+        "createdAt": "2026-08-19T09:05:54.617Z"
+      },
+      "assets": [
+        {
+          "id": "cue-derelict-s202-mix",
+          "name": "cue-derelict mix",
+          "src": "/audio/grounded-v2/cue-derelict-s202/masters/cue-derelict-s202-mix.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 130,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-derelict-s202-mix.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:mix"
+          ]
+        },
+        {
+          "id": "cue-derelict-s202-bass",
+          "name": "cue-derelict bass",
+          "src": "/audio/grounded-v2/cue-derelict-s202/masters/cue-derelict-s202-bass.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 130,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-derelict-s202-bass.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:bass"
+          ]
+        },
+        {
+          "id": "cue-derelict-s202-drums",
+          "name": "cue-derelict drums",
+          "src": "/audio/grounded-v2/cue-derelict-s202/masters/cue-derelict-s202-drums.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 130,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-derelict-s202-drums.wav",
+          "sourceType": "drums",
+          "tags": [
+            "generation",
+            "generation:drums"
+          ]
+        },
+        {
+          "id": "cue-derelict-s202-other",
+          "name": "cue-derelict other",
+          "src": "/audio/grounded-v2/cue-derelict-s202/masters/cue-derelict-s202-other.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 130,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-derelict-s202-other.wav",
+          "sourceType": "texture",
+          "tags": [
+            "generation",
+            "generation:other"
+          ]
+        },
+        {
+          "id": "cue-derelict-s202-vocals",
+          "name": "cue-derelict vocals",
+          "src": "/audio/grounded-v2/cue-derelict-s202/masters/cue-derelict-s202-vocals.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 130,
+          "key": "G minor",
+          "imported": true,
+          "originalFilename": "cue-derelict-s202-vocals.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:vocals"
+          ]
+        }
+      ],
+      "stems": [
+        {
+          "id": "cue-derelict-s202-stem-bass",
+          "name": "cue-derelict bass",
+          "assetId": "cue-derelict-s202-bass",
+          "role": "base",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:bass"
+          ]
+        },
+        {
+          "id": "cue-derelict-s202-stem-drums",
+          "name": "cue-derelict drums",
+          "assetId": "cue-derelict-s202-drums",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:drums"
+          ]
+        },
+        {
+          "id": "cue-derelict-s202-stem-other",
+          "name": "cue-derelict other",
+          "assetId": "cue-derelict-s202-other",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:other"
+          ]
+        },
+        {
+          "id": "cue-derelict-s202-stem-vocals",
+          "name": "cue-derelict vocals",
+          "assetId": "cue-derelict-s202-vocals",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": true,
+          "tags": [
+            "generation",
+            "generation:vocals"
+          ]
+        }
+      ],
+      "familyId": "cf-combat",
+      "sceneId": "sc-derelict",
+      "playbackDefault": true
+    },
+    {
+      "record": {
+        "id": "cue-freeport-s301",
+        "name": "cue-freeport",
+        "kind": "music",
+        "generation": {
+          "bpm": 95,
+          "keyscale": "D minor",
+          "timesignature": "4/4",
+          "lyricsTag": "[inst]",
+          "seed": 301,
+          "workflowId": "78a76ecd-7ae2-452a-afea-ad55a8d290f8",
+          "jobId": "e0a02201",
+          "prompt": "Ambient Industrial: A sparse, atmospheric piece built on a low pulsing synth drone. Lonely clean electric guitar phrases and thin sustained strings drift over soft metallic percussion and tape hiss. Desolate, weary, slow-breathing.",
+          "requestedDurationSec": 60
+        },
+        "mix": {
+          "assetId": "cue-freeport-s301-mix",
+          "facts": {
+            "durationSec": 60,
+            "durationSamples": 2880000,
+            "sampleRateHz": 48000,
+            "channels": 2,
+            "bitDepth": 16,
+            "integratedLufs": -17.9,
+            "sha256": "bc1a299aa02574d04659aa09cd47f4f5498bc2eba2968099ba94f0d2b5fd703f",
+            "sourceFilename": "freeport-s301-track_mix.flac"
+          },
+          "masterSrc": "/audio/grounded-v2/cue-freeport-s301/masters/cue-freeport-s301-mix.wav"
+        },
+        "stems": [
+          {
+            "role": "bass",
+            "assetId": "cue-freeport-s301-bass",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "c518f0114924f0bf619fd133a67653f424d8f18c085b18f9096c71d3a92ef388",
+              "sourceFilename": "freeport-s301-stem_bass.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-freeport-s301/masters/cue-freeport-s301-bass.wav"
+          },
+          {
+            "role": "drums",
+            "assetId": "cue-freeport-s301-drums",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "c2a80adeb55477f43ae810adf729e7a08cf8e797ea5b7de4984bdbd61f8c556b",
+              "sourceFilename": "freeport-s301-stem_drums.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-freeport-s301/masters/cue-freeport-s301-drums.wav"
+          },
+          {
+            "role": "other",
+            "assetId": "cue-freeport-s301-other",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "85be71a02df7e2b7914296f376ac1fe3857487d1c182b8033b194dac477be036",
+              "sourceFilename": "freeport-s301-stem_other.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-freeport-s301/masters/cue-freeport-s301-other.wav"
+          },
+          {
+            "role": "vocals",
+            "assetId": "cue-freeport-s301-vocals",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "7170206cc9d75920797073f325fc32779126369d0120ff90de49fb22b56d1593",
+              "sourceFilename": "freeport-s301-stem_vocals.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-freeport-s301/masters/cue-freeport-s301-vocals.wav"
+          }
+        ],
+        "cueId": "cue-freeport-s301-cue",
+        "sceneId": "cue-freeport-s301-scene",
+        "targetLufs": -14,
+        "gainDb": 3.8999999999999986,
+        "actualGainDb": 0.679221101009015,
+        "peakLimited": true,
+        "resampler": {
+          "name": "kaiser-sinc",
+          "quality": "kaiser-windowed sinc, beta=10, 64 zero-crossings; 44.1 kHz to 48 kHz uses 147:160 polyphase"
+        },
+        "runtimeSampleRateHz": 48000,
+        "createdAt": "2026-08-19T09:06:35.514Z"
+      },
+      "assets": [
+        {
+          "id": "cue-freeport-s301-mix",
+          "name": "cue-freeport mix",
+          "src": "/audio/grounded-v2/cue-freeport-s301/masters/cue-freeport-s301-mix.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 95,
+          "key": "D minor",
+          "imported": true,
+          "originalFilename": "cue-freeport-s301-mix.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:mix"
+          ]
+        },
+        {
+          "id": "cue-freeport-s301-bass",
+          "name": "cue-freeport bass",
+          "src": "/audio/grounded-v2/cue-freeport-s301/masters/cue-freeport-s301-bass.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 95,
+          "key": "D minor",
+          "imported": true,
+          "originalFilename": "cue-freeport-s301-bass.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:bass"
+          ]
+        },
+        {
+          "id": "cue-freeport-s301-drums",
+          "name": "cue-freeport drums",
+          "src": "/audio/grounded-v2/cue-freeport-s301/masters/cue-freeport-s301-drums.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 95,
+          "key": "D minor",
+          "imported": true,
+          "originalFilename": "cue-freeport-s301-drums.wav",
+          "sourceType": "drums",
+          "tags": [
+            "generation",
+            "generation:drums"
+          ]
+        },
+        {
+          "id": "cue-freeport-s301-other",
+          "name": "cue-freeport other",
+          "src": "/audio/grounded-v2/cue-freeport-s301/masters/cue-freeport-s301-other.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 95,
+          "key": "D minor",
+          "imported": true,
+          "originalFilename": "cue-freeport-s301-other.wav",
+          "sourceType": "texture",
+          "tags": [
+            "generation",
+            "generation:other"
+          ]
+        },
+        {
+          "id": "cue-freeport-s301-vocals",
+          "name": "cue-freeport vocals",
+          "src": "/audio/grounded-v2/cue-freeport-s301/masters/cue-freeport-s301-vocals.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 95,
+          "key": "D minor",
+          "imported": true,
+          "originalFilename": "cue-freeport-s301-vocals.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:vocals"
+          ]
+        }
+      ],
+      "stems": [
+        {
+          "id": "cue-freeport-s301-stem-bass",
+          "name": "cue-freeport bass",
+          "assetId": "cue-freeport-s301-bass",
+          "role": "base",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:bass"
+          ]
+        },
+        {
+          "id": "cue-freeport-s301-stem-drums",
+          "name": "cue-freeport drums",
+          "assetId": "cue-freeport-s301-drums",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:drums"
+          ]
+        },
+        {
+          "id": "cue-freeport-s301-stem-other",
+          "name": "cue-freeport other",
+          "assetId": "cue-freeport-s301-other",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:other"
+          ]
+        },
+        {
+          "id": "cue-freeport-s301-stem-vocals",
+          "name": "cue-freeport vocals",
+          "assetId": "cue-freeport-s301-vocals",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": true,
+          "tags": [
+            "generation",
+            "generation:vocals"
+          ]
+        }
+      ],
+      "familyId": "cf-frontier",
+      "sceneId": "sc-freeport",
+      "playbackDefault": true
+    },
+    {
+      "record": {
+        "id": "cue-contracts-s302",
+        "name": "cue-contracts",
+        "kind": "music",
+        "generation": {
+          "bpm": 95,
+          "keyscale": "D minor",
+          "timesignature": "4/4",
+          "lyricsTag": "[inst]",
+          "seed": 302,
+          "workflowId": "78a76ecd-7ae2-452a-afea-ad55a8d290f8",
+          "jobId": "d10d018f",
+          "prompt": "Ambient Industrial: A sparse, atmospheric piece built on a low pulsing synth drone. Lonely clean electric guitar phrases and thin sustained strings drift over soft metallic percussion and tape hiss. Desolate, weary, slow-breathing.",
+          "requestedDurationSec": 60
+        },
+        "mix": {
+          "assetId": "cue-contracts-s302-mix",
+          "facts": {
+            "durationSec": 60,
+            "durationSamples": 2880000,
+            "sampleRateHz": 48000,
+            "channels": 2,
+            "bitDepth": 16,
+            "integratedLufs": -27.19,
+            "sha256": "4fce84799dc1d912875ad67cf90235ed45de337098ddd1a5555ea8038b26b219",
+            "sourceFilename": "contracts-s302-track_mix.flac"
+          },
+          "masterSrc": "/audio/grounded-v2/cue-contracts-s302/masters/cue-contracts-s302-mix.wav"
+        },
+        "stems": [
+          {
+            "role": "bass",
+            "assetId": "cue-contracts-s302-bass",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "4b3ab1d450bbacad4cad27b900fa3a1c071bee29488be9af2acd6ca2514c6dad",
+              "sourceFilename": "contracts-s302-stem_bass.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-contracts-s302/masters/cue-contracts-s302-bass.wav"
+          },
+          {
+            "role": "drums",
+            "assetId": "cue-contracts-s302-drums",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "c69bab6894aa888abdc856bf54e540f5576a0003316a69d3f715461092f8c204",
+              "sourceFilename": "contracts-s302-stem_drums.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-contracts-s302/masters/cue-contracts-s302-drums.wav"
+          },
+          {
+            "role": "other",
+            "assetId": "cue-contracts-s302-other",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "261529f0b9b48815d39145b4463be0a4f1c8d388395a331e5d0f2fa9cae312d8",
+              "sourceFilename": "contracts-s302-stem_other.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-contracts-s302/masters/cue-contracts-s302-other.wav"
+          },
+          {
+            "role": "vocals",
+            "assetId": "cue-contracts-s302-vocals",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "d5703968c522a61cf3e20f69c89048821e83916e1696cab9b6b267b82eb627d6",
+              "sourceFilename": "contracts-s302-stem_vocals.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-contracts-s302/masters/cue-contracts-s302-vocals.wav"
+          }
+        ],
+        "cueId": "cue-contracts-s302-cue",
+        "sceneId": "cue-contracts-s302-scene",
+        "targetLufs": -14,
+        "gainDb": 13.190000000000001,
+        "actualGainDb": 13.190000000000001,
+        "peakLimited": false,
+        "resampler": {
+          "name": "kaiser-sinc",
+          "quality": "kaiser-windowed sinc, beta=10, 64 zero-crossings; 44.1 kHz to 48 kHz uses 147:160 polyphase"
+        },
+        "runtimeSampleRateHz": 48000,
+        "createdAt": "2026-08-19T09:07:18.699Z"
+      },
+      "assets": [
+        {
+          "id": "cue-contracts-s302-mix",
+          "name": "cue-contracts mix",
+          "src": "/audio/grounded-v2/cue-contracts-s302/masters/cue-contracts-s302-mix.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 95,
+          "key": "D minor",
+          "imported": true,
+          "originalFilename": "cue-contracts-s302-mix.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:mix"
+          ]
+        },
+        {
+          "id": "cue-contracts-s302-bass",
+          "name": "cue-contracts bass",
+          "src": "/audio/grounded-v2/cue-contracts-s302/masters/cue-contracts-s302-bass.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 95,
+          "key": "D minor",
+          "imported": true,
+          "originalFilename": "cue-contracts-s302-bass.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:bass"
+          ]
+        },
+        {
+          "id": "cue-contracts-s302-drums",
+          "name": "cue-contracts drums",
+          "src": "/audio/grounded-v2/cue-contracts-s302/masters/cue-contracts-s302-drums.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 95,
+          "key": "D minor",
+          "imported": true,
+          "originalFilename": "cue-contracts-s302-drums.wav",
+          "sourceType": "drums",
+          "tags": [
+            "generation",
+            "generation:drums"
+          ]
+        },
+        {
+          "id": "cue-contracts-s302-other",
+          "name": "cue-contracts other",
+          "src": "/audio/grounded-v2/cue-contracts-s302/masters/cue-contracts-s302-other.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 95,
+          "key": "D minor",
+          "imported": true,
+          "originalFilename": "cue-contracts-s302-other.wav",
+          "sourceType": "texture",
+          "tags": [
+            "generation",
+            "generation:other"
+          ]
+        },
+        {
+          "id": "cue-contracts-s302-vocals",
+          "name": "cue-contracts vocals",
+          "src": "/audio/grounded-v2/cue-contracts-s302/masters/cue-contracts-s302-vocals.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 95,
+          "key": "D minor",
+          "imported": true,
+          "originalFilename": "cue-contracts-s302-vocals.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:vocals"
+          ]
+        }
+      ],
+      "stems": [
+        {
+          "id": "cue-contracts-s302-stem-bass",
+          "name": "cue-contracts bass",
+          "assetId": "cue-contracts-s302-bass",
+          "role": "base",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:bass"
+          ]
+        },
+        {
+          "id": "cue-contracts-s302-stem-drums",
+          "name": "cue-contracts drums",
+          "assetId": "cue-contracts-s302-drums",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:drums"
+          ]
+        },
+        {
+          "id": "cue-contracts-s302-stem-other",
+          "name": "cue-contracts other",
+          "assetId": "cue-contracts-s302-other",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:other"
+          ]
+        },
+        {
+          "id": "cue-contracts-s302-stem-vocals",
+          "name": "cue-contracts vocals",
+          "assetId": "cue-contracts-s302-vocals",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": true,
+          "tags": [
+            "generation",
+            "generation:vocals"
+          ]
+        }
+      ],
+      "familyId": "cf-frontier",
+      "sceneId": "sc-contracts",
+      "playbackDefault": true
+    },
+    {
+      "record": {
+        "id": "cue-communion-s401",
+        "name": "cue-communion",
+        "kind": "music",
+        "generation": {
+          "bpm": 80,
+          "keyscale": "F minor",
+          "timesignature": "4/4",
+          "lyricsTag": "[inst]",
+          "seed": 401,
+          "workflowId": "78a76ecd-7ae2-452a-afea-ad55a8d290f8",
+          "jobId": "f46f9e57",
+          "prompt": "Ambient Orchestral: A slow, wondrous piece led by glassy bells and bowed metallic tones. Layered choir-like pads swell beneath a floating 3+3+2 percussion pattern, harp arpeggios shimmer at the edges. Mysterious, organic, luminous awe.",
+          "requestedDurationSec": 60
+        },
+        "mix": {
+          "assetId": "cue-communion-s401-mix",
+          "facts": {
+            "durationSec": 60,
+            "durationSamples": 2880000,
+            "sampleRateHz": 48000,
+            "channels": 2,
+            "bitDepth": 16,
+            "integratedLufs": -11.64,
+            "sha256": "0b319b0a3fd6357bb04804c8155bc6958007318a23df85bfe6ac3aba0cbbe290",
+            "sourceFilename": "communion-s401-track_mix.flac"
+          },
+          "masterSrc": "/audio/grounded-v2/cue-communion-s401/masters/cue-communion-s401-mix.wav"
+        },
+        "stems": [
+          {
+            "role": "bass",
+            "assetId": "cue-communion-s401-bass",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "611b0529f12adea3c56e4f6b38765c8da3aa523937315d41a91b1fc22b21a561",
+              "sourceFilename": "communion-s401-stem_bass.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-communion-s401/masters/cue-communion-s401-bass.wav"
+          },
+          {
+            "role": "drums",
+            "assetId": "cue-communion-s401-drums",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "fd642a63aca56360c4c039a23293f30d6b4e022c0b127b33a1c5bd903a7d66e1",
+              "sourceFilename": "communion-s401-stem_drums.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-communion-s401/masters/cue-communion-s401-drums.wav"
+          },
+          {
+            "role": "other",
+            "assetId": "cue-communion-s401-other",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "756c90a369ed16ed8380b59e08538861b238d69cbeb5707e0aeda1c5765d369d",
+              "sourceFilename": "communion-s401-stem_other.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-communion-s401/masters/cue-communion-s401-other.wav"
+          },
+          {
+            "role": "vocals",
+            "assetId": "cue-communion-s401-vocals",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "a23c5af54b8cb60967f90e00b3c288941ad2006e943a3f09b0aea539aab9e98e",
+              "sourceFilename": "communion-s401-stem_vocals.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": true,
+            "masterSrc": "/audio/grounded-v2/cue-communion-s401/masters/cue-communion-s401-vocals.wav"
+          }
+        ],
+        "cueId": "cue-communion-s401-cue",
+        "sceneId": "cue-communion-s401-scene",
+        "targetLufs": -14,
+        "gainDb": -2.3599999999999994,
+        "actualGainDb": -2.359999999999999,
+        "peakLimited": false,
+        "resampler": {
+          "name": "kaiser-sinc",
+          "quality": "kaiser-windowed sinc, beta=10, 64 zero-crossings; 44.1 kHz to 48 kHz uses 147:160 polyphase"
+        },
+        "runtimeSampleRateHz": 48000,
+        "createdAt": "2026-08-19T09:08:01.451Z"
+      },
+      "assets": [
+        {
+          "id": "cue-communion-s401-mix",
+          "name": "cue-communion mix",
+          "src": "/audio/grounded-v2/cue-communion-s401/masters/cue-communion-s401-mix.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 80,
+          "key": "F minor",
+          "imported": true,
+          "originalFilename": "cue-communion-s401-mix.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:mix"
+          ]
+        },
+        {
+          "id": "cue-communion-s401-bass",
+          "name": "cue-communion bass",
+          "src": "/audio/grounded-v2/cue-communion-s401/masters/cue-communion-s401-bass.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 80,
+          "key": "F minor",
+          "imported": true,
+          "originalFilename": "cue-communion-s401-bass.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:bass"
+          ]
+        },
+        {
+          "id": "cue-communion-s401-drums",
+          "name": "cue-communion drums",
+          "src": "/audio/grounded-v2/cue-communion-s401/masters/cue-communion-s401-drums.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 80,
+          "key": "F minor",
+          "imported": true,
+          "originalFilename": "cue-communion-s401-drums.wav",
+          "sourceType": "drums",
+          "tags": [
+            "generation",
+            "generation:drums"
+          ]
+        },
+        {
+          "id": "cue-communion-s401-other",
+          "name": "cue-communion other",
+          "src": "/audio/grounded-v2/cue-communion-s401/masters/cue-communion-s401-other.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 80,
+          "key": "F minor",
+          "imported": true,
+          "originalFilename": "cue-communion-s401-other.wav",
+          "sourceType": "texture",
+          "tags": [
+            "generation",
+            "generation:other"
+          ]
+        },
+        {
+          "id": "cue-communion-s401-vocals",
+          "name": "cue-communion vocals",
+          "src": "/audio/grounded-v2/cue-communion-s401/masters/cue-communion-s401-vocals.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 80,
+          "key": "F minor",
+          "imported": true,
+          "originalFilename": "cue-communion-s401-vocals.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:vocals"
+          ]
+        }
+      ],
+      "stems": [
+        {
+          "id": "cue-communion-s401-stem-bass",
+          "name": "cue-communion bass",
+          "assetId": "cue-communion-s401-bass",
+          "role": "base",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:bass"
+          ]
+        },
+        {
+          "id": "cue-communion-s401-stem-drums",
+          "name": "cue-communion drums",
+          "assetId": "cue-communion-s401-drums",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:drums"
+          ]
+        },
+        {
+          "id": "cue-communion-s401-stem-other",
+          "name": "cue-communion other",
+          "assetId": "cue-communion-s401-other",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:other"
+          ]
+        },
+        {
+          "id": "cue-communion-s401-stem-vocals",
+          "name": "cue-communion vocals",
+          "assetId": "cue-communion-s401-vocals",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": true,
+          "tags": [
+            "generation",
+            "generation:vocals"
+          ]
+        }
+      ],
+      "familyId": "cf-keth",
+      "sceneId": "sc-communion",
+      "playbackDefault": true
+    },
+    {
+      "record": {
+        "id": "cue-investigation-s501",
+        "name": "cue-investigation",
+        "kind": "music",
+        "generation": {
+          "bpm": 88,
+          "keyscale": "Db minor",
+          "timesignature": "4/4",
+          "lyricsTag": "[inst]",
+          "seed": 501,
+          "workflowId": "78a76ecd-7ae2-452a-afea-ad55a8d290f8",
+          "jobId": "5cf1e2fe",
+          "prompt": "Electronic Noir: A tense minimal underscore. Isolated plucked synth notes and muted piano fragments over a slow pulse, wide reverberant space, chromatic passing tones and low sustained strings. Cold, uneasy, deliberate.",
+          "requestedDurationSec": 60
+        },
+        "mix": {
+          "assetId": "cue-investigation-s501-mix",
+          "facts": {
+            "durationSec": 60,
+            "durationSamples": 2880000,
+            "sampleRateHz": 48000,
+            "channels": 2,
+            "bitDepth": 16,
+            "integratedLufs": -12.13,
+            "sha256": "c68975a4dc4aac6eb7db1066ca7ce1c9cf41db5546aa5005c1dcd2468fc17234",
+            "sourceFilename": "investigation-s501-track_mix.flac"
+          },
+          "masterSrc": "/audio/grounded-v2/cue-investigation-s501/masters/cue-investigation-s501-mix.wav"
+        },
+        "stems": [
+          {
+            "role": "bass",
+            "assetId": "cue-investigation-s501-bass",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "6a1ad8ac1cd79970f9877544e1c85deabac4b0182a9954bfce3bfa0860ba5375",
+              "sourceFilename": "investigation-s501-stem_bass.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-investigation-s501/masters/cue-investigation-s501-bass.wav"
+          },
+          {
+            "role": "drums",
+            "assetId": "cue-investigation-s501-drums",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "c9f3c2bbbadcc3d7df64e55a58264eaf94933bd5f8983fbccc01d0826dc869dd",
+              "sourceFilename": "investigation-s501-stem_drums.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-investigation-s501/masters/cue-investigation-s501-drums.wav"
+          },
+          {
+            "role": "other",
+            "assetId": "cue-investigation-s501-other",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "d8f366f063101c81c448f37395da9aafb8f28d0bf7b1f104ec9078685a152fa5",
+              "sourceFilename": "investigation-s501-stem_other.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-investigation-s501/masters/cue-investigation-s501-other.wav"
+          },
+          {
+            "role": "vocals",
+            "assetId": "cue-investigation-s501-vocals",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "c4632705bd0743c59ed1f97cdb432ae3f19226fdb94fc1e2b3eef679088abaee",
+              "sourceFilename": "investigation-s501-stem_vocals.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": true,
+            "masterSrc": "/audio/grounded-v2/cue-investigation-s501/masters/cue-investigation-s501-vocals.wav"
+          }
+        ],
+        "cueId": "cue-investigation-s501-cue",
+        "sceneId": "cue-investigation-s501-scene",
+        "targetLufs": -14,
+        "gainDb": -1.8699999999999992,
+        "actualGainDb": -1.8699999999999994,
+        "peakLimited": false,
+        "resampler": {
+          "name": "kaiser-sinc",
+          "quality": "kaiser-windowed sinc, beta=10, 64 zero-crossings; 44.1 kHz to 48 kHz uses 147:160 polyphase"
+        },
+        "runtimeSampleRateHz": 48000,
+        "createdAt": "2026-08-19T09:08:43.135Z"
+      },
+      "assets": [
+        {
+          "id": "cue-investigation-s501-mix",
+          "name": "cue-investigation mix",
+          "src": "/audio/grounded-v2/cue-investigation-s501/masters/cue-investigation-s501-mix.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 88,
+          "key": "Db minor",
+          "imported": true,
+          "originalFilename": "cue-investigation-s501-mix.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:mix"
+          ]
+        },
+        {
+          "id": "cue-investigation-s501-bass",
+          "name": "cue-investigation bass",
+          "src": "/audio/grounded-v2/cue-investigation-s501/masters/cue-investigation-s501-bass.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 88,
+          "key": "Db minor",
+          "imported": true,
+          "originalFilename": "cue-investigation-s501-bass.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:bass"
+          ]
+        },
+        {
+          "id": "cue-investigation-s501-drums",
+          "name": "cue-investigation drums",
+          "src": "/audio/grounded-v2/cue-investigation-s501/masters/cue-investigation-s501-drums.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 88,
+          "key": "Db minor",
+          "imported": true,
+          "originalFilename": "cue-investigation-s501-drums.wav",
+          "sourceType": "drums",
+          "tags": [
+            "generation",
+            "generation:drums"
+          ]
+        },
+        {
+          "id": "cue-investigation-s501-other",
+          "name": "cue-investigation other",
+          "src": "/audio/grounded-v2/cue-investigation-s501/masters/cue-investigation-s501-other.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 88,
+          "key": "Db minor",
+          "imported": true,
+          "originalFilename": "cue-investigation-s501-other.wav",
+          "sourceType": "texture",
+          "tags": [
+            "generation",
+            "generation:other"
+          ]
+        },
+        {
+          "id": "cue-investigation-s501-vocals",
+          "name": "cue-investigation vocals",
+          "src": "/audio/grounded-v2/cue-investigation-s501/masters/cue-investigation-s501-vocals.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 88,
+          "key": "Db minor",
+          "imported": true,
+          "originalFilename": "cue-investigation-s501-vocals.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:vocals"
+          ]
+        }
+      ],
+      "stems": [
+        {
+          "id": "cue-investigation-s501-stem-bass",
+          "name": "cue-investigation bass",
+          "assetId": "cue-investigation-s501-bass",
+          "role": "base",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:bass"
+          ]
+        },
+        {
+          "id": "cue-investigation-s501-stem-drums",
+          "name": "cue-investigation drums",
+          "assetId": "cue-investigation-s501-drums",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:drums"
+          ]
+        },
+        {
+          "id": "cue-investigation-s501-stem-other",
+          "name": "cue-investigation other",
+          "assetId": "cue-investigation-s501-other",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:other"
+          ]
+        },
+        {
+          "id": "cue-investigation-s501-stem-vocals",
+          "name": "cue-investigation vocals",
+          "assetId": "cue-investigation-s501-vocals",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": true,
+          "tags": [
+            "generation",
+            "generation:vocals"
+          ]
+        }
+      ],
+      "familyId": "cf-investigation",
+      "sceneId": "sc-investigation",
+      "playbackDefault": true
+    },
+    {
+      "record": {
+        "id": "cue-crew-s601",
+        "name": "cue-crew",
+        "kind": "music",
+        "generation": {
+          "bpm": 95,
+          "keyscale": "D minor",
+          "timesignature": "4/4",
+          "lyricsTag": "[inst]",
+          "seed": 601,
+          "workflowId": "78a76ecd-7ae2-452a-afea-ad55a8d290f8",
+          "jobId": "d1d14809",
+          "prompt": "Warm Cinematic Folk: A gentle, hopeful piece. Soft fingerpicked acoustic guitar and warm upright bass in an easy pocket, brushed drums, a modest string line that rises late. Intimate, human, quietly optimistic.",
+          "requestedDurationSec": 60
+        },
+        "mix": {
+          "assetId": "cue-crew-s601-mix",
+          "facts": {
+            "durationSec": 60,
+            "durationSamples": 2880000,
+            "sampleRateHz": 48000,
+            "channels": 2,
+            "bitDepth": 16,
+            "integratedLufs": -16.92,
+            "sha256": "5fe8e831382ffd648c18e0016654cceae2d42b77eaafedff3523295e6644bfbc",
+            "sourceFilename": "crew-s601-track_mix.flac"
+          },
+          "masterSrc": "/audio/grounded-v2/cue-crew-s601/masters/cue-crew-s601-mix.wav"
+        },
+        "stems": [
+          {
+            "role": "bass",
+            "assetId": "cue-crew-s601-bass",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "56d1da036cb45dcc9b34fef9c34ea61bc7ad5bf0d634630fde0394432918d9fc",
+              "sourceFilename": "crew-s601-stem_bass.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-crew-s601/masters/cue-crew-s601-bass.wav"
+          },
+          {
+            "role": "drums",
+            "assetId": "cue-crew-s601-drums",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "a2805df0241b564e2a1225e0b6f8b2cb2af21d9dc7a5526e6125ebdb8d6b6ad0",
+              "sourceFilename": "crew-s601-stem_drums.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-crew-s601/masters/cue-crew-s601-drums.wav"
+          },
+          {
+            "role": "other",
+            "assetId": "cue-crew-s601-other",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "f4b8a660124ff04c2adddecf996616127a1effd1cf6c9c48270e530f49d6c846",
+              "sourceFilename": "crew-s601-stem_other.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": false,
+            "masterSrc": "/audio/grounded-v2/cue-crew-s601/masters/cue-crew-s601-other.wav"
+          },
+          {
+            "role": "vocals",
+            "assetId": "cue-crew-s601-vocals",
+            "facts": {
+              "durationSec": 60,
+              "durationSamples": 2646000,
+              "sampleRateHz": 44100,
+              "channels": 2,
+              "bitDepth": 16,
+              "sha256": "e98408ed589798493116959182f845a6f84d98fdf6cc590f718c61b472c5208a",
+              "sourceFilename": "crew-s601-stem_vocals.flac"
+            },
+            "resampledSampleCount": 2880000,
+            "nearSilent": true,
+            "masterSrc": "/audio/grounded-v2/cue-crew-s601/masters/cue-crew-s601-vocals.wav"
+          }
+        ],
+        "cueId": "cue-crew-s601-cue",
+        "sceneId": "cue-crew-s601-scene",
+        "targetLufs": -14,
+        "gainDb": 2.9200000000000017,
+        "actualGainDb": 1.3123268024849766,
+        "peakLimited": true,
+        "resampler": {
+          "name": "kaiser-sinc",
+          "quality": "kaiser-windowed sinc, beta=10, 64 zero-crossings; 44.1 kHz to 48 kHz uses 147:160 polyphase"
+        },
+        "runtimeSampleRateHz": 48000,
+        "createdAt": "2026-08-19T09:09:23.285Z"
+      },
+      "assets": [
+        {
+          "id": "cue-crew-s601-mix",
+          "name": "cue-crew mix",
+          "src": "/audio/grounded-v2/cue-crew-s601/masters/cue-crew-s601-mix.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 95,
+          "key": "D minor",
+          "imported": true,
+          "originalFilename": "cue-crew-s601-mix.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:mix"
+          ]
+        },
+        {
+          "id": "cue-crew-s601-bass",
+          "name": "cue-crew bass",
+          "src": "/audio/grounded-v2/cue-crew-s601/masters/cue-crew-s601-bass.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 95,
+          "key": "D minor",
+          "imported": true,
+          "originalFilename": "cue-crew-s601-bass.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:bass"
+          ]
+        },
+        {
+          "id": "cue-crew-s601-drums",
+          "name": "cue-crew drums",
+          "src": "/audio/grounded-v2/cue-crew-s601/masters/cue-crew-s601-drums.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 95,
+          "key": "D minor",
+          "imported": true,
+          "originalFilename": "cue-crew-s601-drums.wav",
+          "sourceType": "drums",
+          "tags": [
+            "generation",
+            "generation:drums"
+          ]
+        },
+        {
+          "id": "cue-crew-s601-other",
+          "name": "cue-crew other",
+          "src": "/audio/grounded-v2/cue-crew-s601/masters/cue-crew-s601-other.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 95,
+          "key": "D minor",
+          "imported": true,
+          "originalFilename": "cue-crew-s601-other.wav",
+          "sourceType": "texture",
+          "tags": [
+            "generation",
+            "generation:other"
+          ]
+        },
+        {
+          "id": "cue-crew-s601-vocals",
+          "name": "cue-crew vocals",
+          "src": "/audio/grounded-v2/cue-crew-s601/masters/cue-crew-s601-vocals.wav",
+          "kind": "loop",
+          "durationMs": 60000,
+          "bpm": 95,
+          "key": "D minor",
+          "imported": true,
+          "originalFilename": "cue-crew-s601-vocals.wav",
+          "sourceType": "tonal",
+          "tags": [
+            "generation",
+            "generation:vocals"
+          ]
+        }
+      ],
+      "stems": [
+        {
+          "id": "cue-crew-s601-stem-bass",
+          "name": "cue-crew bass",
+          "assetId": "cue-crew-s601-bass",
+          "role": "base",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:bass"
+          ]
+        },
+        {
+          "id": "cue-crew-s601-stem-drums",
+          "name": "cue-crew drums",
+          "assetId": "cue-crew-s601-drums",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:drums"
+          ]
+        },
+        {
+          "id": "cue-crew-s601-stem-other",
+          "name": "cue-crew other",
+          "assetId": "cue-crew-s601-other",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": false,
+          "tags": [
+            "generation",
+            "generation:other"
+          ]
+        },
+        {
+          "id": "cue-crew-s601-stem-vocals",
+          "name": "cue-crew vocals",
+          "assetId": "cue-crew-s601-vocals",
+          "role": "accent",
+          "loop": true,
+          "mutedByDefault": true,
+          "tags": [
+            "generation",
+            "generation:vocals"
+          ]
+        }
+      ],
+      "familyId": "cf-crew",
+      "sceneId": "sc-crew",
+      "playbackDefault": true
+    }
+  ]
+}

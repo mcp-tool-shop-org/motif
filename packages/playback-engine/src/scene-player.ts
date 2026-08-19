@@ -2,7 +2,7 @@
 // Scene player — play layered stems + synth clips for a scene
 // ────────────────────────────────────────────
 
-import type { SoundtrackPack } from "@motif-studio/schema";
+import type { IntensityLevel, SoundtrackPack } from "@motif-studio/schema";
 import { resolveActiveLayers } from "@motif-studio/audio-engine";
 import { InstrumentRack } from "@motif-studio/instrument-rack";
 import { scheduleNotes, clipLengthSeconds } from "@motif-studio/clip-engine";
@@ -11,6 +11,12 @@ import type { StemHandle, PlaybackListener, PlaybackEventType } from "./types.js
 import type { AssetLoader } from "./loader.js";
 import type { Mixer } from "./mixer.js";
 import type { BusId } from "./mixer-types.js";
+
+const GENERATED_STEMS_BY_INTENSITY: Record<IntensityLevel, readonly string[]> = {
+  low: ["bass", "other"],
+  mid: ["bass", "drums", "other"],
+  high: ["bass", "drums", "other", "vocals"],
+};
 
 export class ScenePlayer {
   private ctx: AudioContext;
@@ -21,6 +27,9 @@ export class ScenePlayer {
   private soloActive = false;
   private listener: PlaybackListener | null = null;
   private mixer: Mixer | null = null;
+
+  private generatedIntensity: IntensityLevel = "mid";
+  private generatedRoles = new Map<string, string>();
 
   // Clip playback state
   private clipRack: InstrumentRack | null = null;
@@ -79,6 +88,15 @@ export class ScenePlayer {
     return this.masterGain;
   }
 
+  setGeneratedIntensity(level: IntensityLevel): void {
+    this.generatedIntensity = level;
+    this.applyGeneratedIntensity();
+  }
+
+  get generatedIntensityLevel(): IntensityLevel {
+    return this.generatedIntensity;
+  }
+
   /**
    * Play all stems for a scene. Loads assets if needed.
    * Returns the stem IDs that are playing.
@@ -86,11 +104,13 @@ export class ScenePlayer {
   async playScene(
     pack: SoundtrackPack,
     sceneId: string,
+    options?: { intensity?: IntensityLevel },
   ): Promise<string[]> {
     // Stop current scene
     this.stopAll();
 
     this.currentSceneId = sceneId;
+    if (options?.intensity) this.generatedIntensity = options.intensity;
     const plan = resolveActiveLayers(pack, sceneId);
 
     if (plan.warnings.length > 0) {
@@ -156,12 +176,17 @@ export class ScenePlayer {
 
       this.handles.set(stemId, handle);
       playingStemIds.push(stemId);
+      const genTag = stem.tags?.find((t) => t.startsWith("generation:"));
+      if (genTag) this.generatedRoles.set(stemId, genTag.slice("generation:".length));
     }
 
     this.soloActive = false;
+    this.applyGeneratedIntensity();
 
-    // ── Play clip layers through synth/drum voices ──
-    this.playClipLayers(pack, sceneId);
+    const sceneForClips = pack.scenes.find((s) => s.id === sceneId);
+    if (!sceneForClips?.tags?.includes("generated-audio")) {
+      this.playClipLayers(pack, sceneId);
+    }
 
     this.emit("scene-change", { sceneId });
     this.emit("stem-change");
@@ -301,8 +326,24 @@ export class ScenePlayer {
       this.mixer.disconnectAllStems();
     }
     this.handles.clear();
+    this.generatedRoles.clear();
     this.currentSceneId = null;
     this.soloActive = false;
+  }
+
+  private applyGeneratedIntensity(): void {
+    const allowed = new Set(GENERATED_STEMS_BY_INTENSITY[this.generatedIntensity]);
+    let changed = false;
+    for (const [stemId, handle] of this.handles) {
+      const role = this.generatedRoles.get(stemId);
+      if (!role) continue;
+      const muted = !allowed.has(role);
+      if (handle.muted !== muted) {
+        handle.muted = muted;
+        changed = true;
+      }
+    }
+    if (changed) this.updateEffectiveGains();
   }
 
   /** Set mute for a stem */

@@ -45,6 +45,8 @@ export interface IngestOptions {
    * Music: bed target (default −14). SFX: ceiling, never boost (default −14).
    */
   targetLufs?: number;
+  /** When true (default), [inst] vocals that are not near-silent throw VOCAL_BLEED. */
+  failOnVocalBleed?: boolean;
   decodeFlac?: FlacDecoderFn;
   now?: () => string;
 }
@@ -362,7 +364,12 @@ export async function ingestRunArtifact(
   }
 
   const vocals = layers.find((l) => l.role === "vocals");
-  if (generation.lyricsTag === "[inst]" && vocals && !vocals.nearSilent) {
+  if (
+    (options.failOnVocalBleed ?? true) &&
+    generation.lyricsTag === "[inst]" &&
+    vocals &&
+    !vocals.nearSilent
+  ) {
     throw new GenerationError(
       "VOCAL_BLEED",
       "Instrumental track expected a near-silent vocals stem (bleed check failed)",

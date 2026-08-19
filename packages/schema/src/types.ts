@@ -526,7 +526,7 @@ export type CueFamilyRole =
  */
 export interface CueFamilyGenerationLock {
   bpm: number;
-  keyscale: string;
+  keyscale: AceStepKeyscale;
   timesignature: string;
 }
 
@@ -806,14 +806,58 @@ export type GenerationKind = "music" | "sfx";
 export type GenerationStemRole = "bass" | "drums" | "other" | "vocals";
 
 /**
+ * ACE-Step 1.5 `keyscale` COMBO — 17 enharmonic roots × major/minor.
+ * Modes (phrygian, dorian, chromatic, …) are rejected server-side.
+ */
+export const ACE_STEP_KEYSCALE_VALUES = [
+  "C major",
+  "C minor",
+  "C# major",
+  "C# minor",
+  "Db major",
+  "Db minor",
+  "D major",
+  "D minor",
+  "D# major",
+  "D# minor",
+  "Eb major",
+  "Eb minor",
+  "E major",
+  "E minor",
+  "F major",
+  "F minor",
+  "F# major",
+  "F# minor",
+  "Gb major",
+  "Gb minor",
+  "G major",
+  "G minor",
+  "G# major",
+  "G# minor",
+  "Ab major",
+  "Ab minor",
+  "A major",
+  "A minor",
+  "A# major",
+  "A# minor",
+  "Bb major",
+  "Bb minor",
+  "B major",
+  "B minor",
+] as const;
+
+export type AceStepKeyscale = (typeof ACE_STEP_KEYSCALE_VALUES)[number];
+
+/**
  * Authored generation knobs plus cloud identity.
- * Combined with measured facts, this is enough to regenerate the cue bit-exactly
- * on a pinned seed (the cloud memoizes whole graphs).
+ * A pinned seed regenerates **byte-identical** audio only through the cloud
+ * memo cache; a fresh re-run is equivalent-but-new. Downloaded masters
+ * are canonical by local sha256.
  */
 export interface GenerationParams {
   bpm?: number;
-  /** Authored key+scale string from ACE-Step (e.g. "E minor"). */
-  keyscale?: string;
+  /** ACE-Step keyscale enum (e.g. "G minor"). Modes are not valid values. */
+  keyscale?: AceStepKeyscale;
   /** Authored time signature (e.g. "4/4" or "4"). */
   timesignature?: string;
   /** Lyrics / vocal tag (instrumental tracks use "[inst]"). */
