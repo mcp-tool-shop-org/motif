@@ -497,7 +497,9 @@ describe("music ingest (synthetic stems)", () => {
 });
 
 describe("scan + register", () => {
-  it("classifies a synthetic SFX folder and registers the cue", async () => {
+  // Kaiser-sinc resample of the 2^17-sample fixture is CPU-heavy; coverage-instrumented
+  // CI runners breach the 5 s default budget.
+  it("classifies a synthetic SFX folder and registers the cue", { timeout: 30_000 }, async () => {
     const dir = mkdtempSync(join(tmpdir(), "motif-artifact-"));
     writeFileSync(join(dir, "pin-sfx.flac"), packStreamInfo(44100, 2, 16, 131072));
     writeFileSync(join(dir, "pin-sfx_lufs.txt"), "Integrated Loudness: -21.94 LUFS\n");
