@@ -492,6 +492,12 @@ export const CueFamilyRoleSchema = z.enum([
   "mystery",
 ]);
 
+export const CueFamilyGenerationLockSchema = z.object({
+  bpm: z.number().positive(),
+  keyscale: z.string().min(1),
+  timesignature: z.string().min(1),
+});
+
 export const CueFamilySchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
@@ -500,6 +506,7 @@ export const CueFamilySchema = z.object({
   motifFamilyIds: z.array(z.string()).optional(),
   scoreProfileId: z.string().optional(),
   generatedCueIds: z.array(z.string()).optional(),
+  generationLock: CueFamilyGenerationLockSchema.optional(),
   emotion: EmotionTagSchema.optional(),
   tags: z.array(z.string()).optional(),
   notes: z.string().optional(),

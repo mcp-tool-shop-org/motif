@@ -519,6 +519,17 @@ export type CueFamilyRole =
   | "victory"
   | "mystery";
 
+/**
+ * Generation lock for a cue family. Every generated cue attached to the
+ * family must share these values so members are loop- and transition-
+ * compatible by construction (wave-7 contract item 2).
+ */
+export interface CueFamilyGenerationLock {
+  bpm: number;
+  keyscale: string;
+  timesignature: string;
+}
+
 export interface CueFamily {
   id: string;
   name: string;
@@ -528,6 +539,8 @@ export interface CueFamily {
   scoreProfileId?: string;
   /** Generated-cue records attached to this family (cloud ingest). */
   generatedCueIds?: string[];
+  /** Required identity for generated members of this family. */
+  generationLock?: CueFamilyGenerationLock;
   /** Emotional metadata for arc visualization */
   emotion?: EmotionTag;
   tags?: string[];

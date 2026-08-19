@@ -38,7 +38,8 @@ function fixturesAvailable(): boolean {
     existsSync(join(FIXTURE_DIR, "run4-sfx.flac")) &&
     existsSync(join(FIXTURE_DIR, "run4-sfx_lufs.txt")) &&
     existsSync(join(FIXTURE_DIR, "run3-track_lufs.txt")) &&
-    existsSync(join(FIXTURE_DIR, "run1-stem_bass.flac"))
+    existsSync(join(FIXTURE_DIR, "run3-track_mix.flac")) &&
+    existsSync(join(FIXTURE_DIR, "run3-stem_bass.flac"))
   );
 }
 
@@ -262,8 +263,8 @@ describe.skipIf(!fixturesAvailable())("confirmation-run fixtures", () => {
     expect(info.durationSec).toBeCloseTo(10.031, 3);
   });
 
-  it("reads run1-track_mix as 48 kHz / 120.000 s", () => {
-    const path = join(FIXTURE_DIR, "run1-track_mix.flac");
+  it("reads run3-track_mix as 48 kHz / 120.000 s", () => {
+    const path = join(FIXTURE_DIR, "run3-track_mix.flac");
     if (!existsSync(path)) return;
     const info = parseFlacStreamInfo(new Uint8Array(readFileSync(path)));
     expect(info.sampleRateHz).toBe(48000);
@@ -283,7 +284,7 @@ describe.skipIf(!fixturesAvailable())("confirmation-run fixtures", () => {
   it("aligns the four Demucs stems at 5_292_000 samples", () => {
     const counts = (["bass", "drums", "other", "vocals"] as const).map((role) => {
       const info = parseFlacStreamInfo(
-        new Uint8Array(readFileSync(join(FIXTURE_DIR, `run1-stem_${role}.flac`))),
+        new Uint8Array(readFileSync(join(FIXTURE_DIR, `run3-stem_${role}.flac`))),
       );
       expect(info.sampleRateHz).toBe(44100);
       return { role, samples: info.totalSamples };
@@ -293,10 +294,10 @@ describe.skipIf(!fixturesAvailable())("confirmation-run fixtures", () => {
   });
 
   it("mix sha256 starts with the receipt prefix", () => {
-    const path = join(FIXTURE_DIR, "run1-track_mix.flac");
+    const path = join(FIXTURE_DIR, "run3-track_mix.flac");
     if (!existsSync(path)) return;
     const hex = sha256Hex(new Uint8Array(readFileSync(path))).toUpperCase();
-    expect(hex.startsWith("FB655B1E28AEC1CB")).toBe(true);
+    expect(hex.startsWith("E8860678")).toBe(true);
   });
 
   it("ingests the 2.972 s SFX pin to a 48 kHz master", async () => {

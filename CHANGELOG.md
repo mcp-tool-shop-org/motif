@@ -12,10 +12,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `@motif-studio/schema` types for generation identity (params + measured duration/rate/LUFS/hashes) and optional `generatedCues` on the pack
 - Kaiser-windowed sinc resampler (44.1 kHz → 48 kHz), LUFS manifest parse, stem sample-count alignment, near-silent vocals bleed check
 - Thin Comfy Cloud client: `POST /api/prompt` (API-format only), job poll, `/api/view` download — UI-format graphs and `workflow_id` run are andon, not guessed
+- Cue-family generation lock (bpm / keyscale / timesignature) — mismatched attach is a typed error
+- Demucs stem → intensity map (low = no drums, mid = bed, high = all) and generated-cue playback / transition plans using measured file duration
+- Grounded family generation locks + proposed style-tag spec (spend gated)
 
 ### Fixed
 - Music ingest applies one joint peak clamp across mix + stems so a hot stem cannot take a different gain than the mix
 - `options.targetLufs` now drives `ingestGainDb` (the record no longer claims a target the gain path ignored)
+- Confirmation-run fixture identity: tests now use the run3 / `b81c6dbf` set (mix sha256 `e8860678…`); run1 remains a valid receipt of job `6c99f797`
 
 ## [1.2.0] - 2026-04-13
 

@@ -5,6 +5,7 @@
 
 import type { CueFamily, MotifFamily } from "@motif-studio/schema";
 import { createCueFamily, addSceneToCueFamily, linkMotifToCueFamily } from "./cue-family.js";
+import { GROUNDED_FAMILY_LOCKS } from "./grounded-generation.js";
 import { createMotifFamily, linkScene } from "./motif.js";
 
 // ══════════════════════════════════════════
@@ -89,6 +90,7 @@ cfMilitary = {
   emotion: { valence: -0.2, arousal: 0.4, label: "authority" },
   tags: ["grounded", "act-1"],
   notes: "Compact Fleet scenes — structured, hierarchical, heartbeat underneath",
+  generationLock: GROUNDED_FAMILY_LOCKS["cf-military"],
 };
 
 /** Frontier — Freeport survival scenes */
@@ -103,6 +105,7 @@ cfFrontier = {
   emotion: { valence: -0.3, arousal: 0.0, label: "survival" },
   tags: ["grounded", "act-2"],
   notes: "Sable Reach scenes — worn, functional, sparse but alive",
+  generationLock: GROUNDED_FAMILY_LOCKS["cf-frontier"],
 };
 
 /** Combat — cross-cutting action scenes */
@@ -116,6 +119,7 @@ cfCombat = {
   emotion: { valence: -0.2, arousal: 0.85, label: "action" },
   tags: ["grounded", "combat"],
   notes: "Both combat encounters — ambush (desperation) and derelict (redemption)",
+  generationLock: GROUNDED_FAMILY_LOCKS["cf-combat"],
 };
 
 /** Keth — Communion alien wonder */
@@ -128,6 +132,7 @@ cfKeth = {
   emotion: { valence: 0.6, arousal: 0.5, label: "wonder" },
   tags: ["grounded", "act-3", "keth"],
   notes: "Communion Relay — organic, bioluminescent, phrygian alien culture",
+  generationLock: GROUNDED_FAMILY_LOCKS["cf-keth"],
 };
 
 /** Investigation — conspiracy thread */
@@ -140,6 +145,7 @@ cfInvestigation = {
   emotion: { valence: -0.2, arousal: 0.6, label: "mystery" },
   tags: ["grounded", "investigation"],
   notes: "Conspiracy scenes — chromatic unease, data fragments, Solen's code",
+  generationLock: GROUNDED_FAMILY_LOCKS["cf-investigation"],
 };
 
 /** Crew — partnership and hope */
@@ -154,6 +160,7 @@ cfCrew = {
   emotion: { valence: 0.15, arousal: 0.15, label: "hope" },
   tags: ["grounded", "act-2", "crew"],
   notes: "Partnership forming — pragmatic bond, first non-transactional connection",
+  generationLock: GROUNDED_FAMILY_LOCKS["cf-crew"],
 };
 
 // ── Exports ──
