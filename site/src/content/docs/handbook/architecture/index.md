@@ -11,9 +11,8 @@ Motif is a TypeScript monorepo managed with pnpm workspaces and Turborepo.
 
 ```
 motif/
-├── apps/              # Deployable applications
-│   ├── studio/        # Main authoring UI (Next.js 15)
-│   └── docs/          # Documentation site (Astro)
+├── apps/
+│   └── studio/        # Main authoring UI (Next.js 15)
 ├── packages/          # Shared libraries
 │   ├── schema/        # Canonical types and Zod validation
 │   ├── asset-index/   # Pack integrity indexing and auditing
@@ -21,18 +20,19 @@ motif/
 │   ├── clip-engine/   # Clip sequencing, transforms, cue scheduling
 │   ├── instrument-rack/ # Synth/drum voice management with presets
 │   ├── music-theory/  # Scales, chords, motifs, intensity
-│   ├── playback-engine/ # Real-time playback, mixing, effects
-│   ├── scene-mapper/  # Trigger mapping and scene resolution
+│   ├── playback-engine/ # Real-time transport, players, mixing, effects
+│   ├── scene-mapper/  # Trigger mapping, scene resolution, the Grounded pack
 │   ├── runtime-pack/  # Runtime export/import
 │   ├── review/        # Summaries and audit helpers
 │   ├── ui/            # Shared UI components
-│   ├── sample-lab/    # Trim, slice, kit, instrument helpers
-│   ├── score-map/     # World scoring, motifs, profiles, cue families
+│   ├── sample-lab/    # Trim/slice/kit tools + generated-audio ingest lanes
+│   ├── score-map/     # World scoring, cue families, catalog-derived library packs
 │   ├── automation/    # Lanes, macros, envelopes, capture
 │   ├── library/       # Templates, snapshots, branches, favorites, compare
 │   └── test-kit/      # Fixtures and test utilities
+├── site/              # Landing page + this handbook (Astro + Starlight)
 ├── examples/          # Example packs and starter content
-├── handbook/          # Operating manual
+├── handbook/          # In-repo operating notes (source material for this site)
 ├── eslint.config.js   # Shared ESLint configuration
 ├── tsconfig.base.json # Shared TypeScript base config
 ├── turbo.json         # Turborepo pipeline configuration
@@ -60,10 +60,13 @@ Each package has a single, clear responsibility:
 | `instrument-rack` | Synth/drum voices, presets | Audio DSP |
 | `music-theory` | Scales, chords, motifs, intensity | Playback |
 | `playback-engine` | Mixing, effects, rendering | Composition |
-| `sample-lab` | Trim, slice, kit, instrument logic | Audio file decoding |
-| `score-map` | Motifs, profiles, cue families, derivation | Playback, rendering |
+| `sample-lab` | Trim/slice/kit logic; generated-audio ingest (FLAC decode, resample, loudness normalization, WAV masters, `GeneratedCueRecord`s) | Submitting generation jobs |
+| `score-map` | Motifs, profiles, cue families, derivation; catalog-driven library packs and generation locks | Playback, rendering |
 | `automation` | Lanes, macros, envelopes, capture | Audio DSP |
 | `library` | Templates, snapshots, branches, favorites | UI, persistence |
+| `runtime-pack` | Runtime export/import of packs | Authoring, playback |
+| `review` | Pack summaries and audit helpers | Mutation of pack data |
+| `ui` | Shared UI components | Application state |
 | `test-kit` | Fixtures, loader utilities | Application tests |
 
 ## Toolchain

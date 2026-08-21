@@ -9,19 +9,32 @@ The Motif Studio is the main authoring application. It is a single-page Next.js 
 
 ## Navigation Map
 
-| Section | Screen | Purpose |
-|---------|--------|---------|
-| Overview | Project | Pack metadata, entity counts, audit summary |
-| Assets | Assets | Browse, filter, and manage audio assets |
-| Stems | Stems | Create and edit stems bound to assets |
-| Scenes | Scenes | Build scenes from stem layers |
-| Bindings | Bindings | Map runtime state to scenes |
-| Transitions | Transitions | Define scene-to-scene transition behavior |
-| Clips | Clips | Compose clips with notes, instruments, and variants |
-| Sample Lab | Sample Lab | Import, trim, slice, build kits and instruments |
-| Score Map | Score Map | Profiles, motif families, cue families, world map, derivation |
-| Automation | Automation | Lanes, macros, envelopes, capture, mixer |
-| Library | Library | Templates, snapshots, branches, favorites, collections, compare |
+Eighteen screens in four sidebar groups:
+
+| Group | Screen | Purpose |
+|-------|--------|---------|
+| Create | Arrangement | Channel rack, per-scene clip channels, piano rolls, transport |
+| Create | Clip Editor | Compose clips with notes, instruments, and variants |
+| Create | Scenes | Build scenes from stem layers and clip layers |
+| Create | Mixer | Buses, per-stem routing, pan, FX slots |
+| Pack | Project | Pack metadata, entity counts, audit summary |
+| Pack | Assets | Browse, filter, and manage audio assets |
+| Pack | Stems | Create and edit stems bound to assets |
+| Pack | Bindings | Map runtime state to scenes |
+| Pack | Transitions | Define scene-to-scene transition behavior |
+| Quality | Review | Pack summaries and audit findings |
+| Quality | Export | Runtime pack export |
+| Advanced | Sample Lab | Import, trim, slice, build kits and instruments |
+| Advanced | Score Map | Profiles, motif families, cue families, world map, derivation |
+| Advanced | Automation | Lanes, macros, envelopes, capture |
+| Advanced | Library | Templates, snapshots, branches, favorites, collections, compare |
+| Advanced | Preview | Runtime simulation with pack-derived state controls |
+| Advanced | Performance | Live performance surface |
+| Advanced | Cues | Cue timelines, section playback, performance capture |
+
+The pack selector in the top strip switches between the bundled packs — the demo packs,
+Star Freight: Grounded, and any [generated library packs](/motif/handbook/workflows/generated-cues/)
+whose audio has been ingested.
 
 ## Architecture
 
