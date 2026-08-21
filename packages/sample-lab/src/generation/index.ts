@@ -6,6 +6,7 @@ export {
   RESAMPLER_QUALITY,
   NEAR_SILENT_RMS,
   NEAR_SILENT_RELATIVE_DB,
+  BOOST_CAP_DB,
 } from "./constants.js";
 export { GenerationError, CloudAndonError } from "./errors.js";
 export { parseIntegratedLufs } from "./lufs.js";
@@ -34,11 +35,12 @@ export type { RunArtifactFiles } from "./scan.js";
 export { ingestRunArtifact } from "./ingest.js";
 export type { IngestOptions, IngestResult } from "./ingest.js";
 export {
-  ingestGroundedWave2Take,
-  ingestAllGroundedWave2,
+  ingestGroundedTake,
+  ingestAllGrounded,
   generationParamsForTake,
-  DEFAULT_WAVE2_PUBLIC_DIR,
-} from "./ingest-grounded-wave2.js";
+  groundedPublicDir,
+  DEFAULT_GROUNDED_PUBLIC_ROOT,
+} from "./ingest-grounded.js";
 export { registerGeneratedCue } from "./register.js";
 export { decodeFlacPcm } from "./decode.js";
 export type { FlacPcm, FlacDecoderFn } from "./decode.js";

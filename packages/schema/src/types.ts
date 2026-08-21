@@ -918,9 +918,12 @@ export interface GeneratedCueRecord {
   cueId?: string;
   sceneId?: string;
   targetLufs: number;
+  /** Requested (uncapped) ingest gain — preserves regeneration-candidate evidence. */
   gainDb: number;
   actualGainDb: number;
   peakLimited: boolean;
+  /** True when the requested boost exceeded the ingest boost cap (+6 dB) and was clamped. */
+  boostCapped?: boolean;
   resampler: ResamplerIdentity;
   runtimeSampleRateHz: typeof MOTIF_RUNTIME_SAMPLE_RATE_HZ;
   createdAt: string;

@@ -24,10 +24,17 @@ import {
   registerGeneratedCue,
   GenerationError,
   MUSIC_BED_TARGET_LUFS,
+  BOOST_CAP_DB,
   RUNTIME_SAMPLE_RATE_HZ,
   sha256Hex,
+  generationParamsForTake,
   type FlacPcm,
 } from "../src/index.js";
+import {
+  GROUNDED_WAVE2_TAKES,
+  GROUNDED_WAVE3_TAKES,
+  styleTagsFor,
+} from "@motif-studio/score-map";
 
 const FIXTURE_DIR =
   process.env.MOTIF_CLOUD_AUDIO_FIXTURES ??
@@ -180,6 +187,50 @@ describe("loudness gain", () => {
     expect(shared.actualLinear).toBeLessThan(dbToLinear(6));
     expect(shared.actualLinear).toBeCloseTo(drumsSolo.peak / 0.99, 6);
     expect(shared.actualLinear).not.toBeCloseTo(mixSolo.channels[0]![0]! / 0.1, 5);
+  });
+});
+
+describe("boost cap", () => {
+  // Measured rationale: wave-2 normalized contracts-s302 with +13.19 dB and it
+  // played ~7-10 dB louder than every neighbor. Boosts clamp at +6; cuts don't.
+
+  it("clamps a +13.19 dB boost to +6 and flags it", () => {
+    const quiet = [new Float32Array([0.05, -0.05])];
+    const shared = resolveSharedGain([quiet], 13.19);
+    expect(shared.boostCapped).toBe(true);
+    expect(shared.requestedGainDb).toBeCloseTo(13.19, 5); // uncapped evidence preserved
+    expect(shared.actualGainDb).toBeCloseTo(BOOST_CAP_DB, 5);
+    expect(shared.actualLinear).toBeCloseTo(dbToLinear(BOOST_CAP_DB), 6);
+  });
+
+  it("a boost exactly at +6 is not flagged", () => {
+    const quiet = [new Float32Array([0.05])];
+    const shared = resolveSharedGain([quiet], BOOST_CAP_DB);
+    expect(shared.boostCapped).toBe(false);
+    expect(shared.actualGainDb).toBeCloseTo(BOOST_CAP_DB, 5);
+  });
+
+  it("cuts are uncapped", () => {
+    const hot = [new Float32Array([0.9])];
+    const shared = resolveSharedGain([hot], -20);
+    expect(shared.boostCapped).toBe(false);
+    expect(shared.actualGainDb).toBeCloseTo(-20, 5);
+  });
+
+  it("peak limiting still applies after the cap", () => {
+    // Peak 0.9 at +6 dB would exceed the 0.999 peak limit → peak limit wins
+    const hot = [new Float32Array([0.9])];
+    const shared = resolveSharedGain([hot], 13);
+    expect(shared.boostCapped).toBe(true);
+    expect(shared.peakLimited).toBe(true);
+    expect(shared.actualLinear).toBeCloseTo(0.999 / 0.9, 6);
+  });
+
+  it("applyGain propagates the flag", () => {
+    const quiet = [new Float32Array([0.01])];
+    const result = applyGain(quiet, 12);
+    expect(result.boostCapped).toBe(true);
+    expect(result.channels[0]![0]).toBeCloseTo(0.01 * dbToLinear(BOOST_CAP_DB), 6);
   });
 });
 
@@ -537,5 +588,33 @@ describe("scan + register", () => {
 describe("rms helper", () => {
   it("is zero for silence", () => {
     expect(rmsOf([new Float32Array(8)])).toBe(0);
+  });
+});
+
+describe("grounded take params (prose/params association)", () => {
+  it("wave-2 takes echo the v1 prose they actually ran with", () => {
+    const s101 = GROUNDED_WAVE2_TAKES.find((t) => t.seed === 101)!;
+    const params = generationParamsForTake(s101);
+    expect(params.prompt).toBe(styleTagsFor("cf-military", 1));
+    expect(params.prompt!.startsWith("Military March: A tense, disciplined orchestral march.")).toBe(true);
+    expect(params.jobId).toBe("e83f8c6a-3c26-463a-9ab9-804b0933fa0c");
+    expect(params.seed).toBe(101);
+    expect(params.bpm).toBe(100);
+    expect(params.keyscale).toBe("G minor");
+    const s302 = GROUNDED_WAVE2_TAKES.find((t) => t.seed === 302)!;
+    expect(generationParamsForTake(s302).prompt).toBe(styleTagsFor("cf-frontier", 1));
+  });
+
+  it("wave-3 takes echo the v2 prose", () => {
+    const s111 = GROUNDED_WAVE3_TAKES.find((t) => t.seed === 111)!;
+    const params = generationParamsForTake(s111);
+    expect(params.prompt).toBe(styleTagsFor("cf-military", 2));
+    expect(params.prompt!.startsWith("Military March: A quiet, disciplined orchestral underscore.")).toBe(true);
+    expect(params.jobId).toBe("d1432095-2636-47a2-8b5f-6e692930e94a");
+    const s311 = GROUNDED_WAVE3_TAKES.find((t) => t.seed === 311)!;
+    expect(generationParamsForTake(s311).prompt).toBe(styleTagsFor("cf-frontier", 2));
+    // Same family lock either wave — only the prose version differs.
+    expect(generationParamsForTake(s111).bpm).toBe(100);
+    expect(generationParamsForTake(s311).keyscale).toBe("D minor");
   });
 });

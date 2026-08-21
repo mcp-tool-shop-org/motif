@@ -1,4 +1,5 @@
 import {
+  BOOST_CAP_DB,
   MUSIC_BED_TARGET_LUFS,
   PEAK_LIMIT,
   SFX_CEILING_LUFS,
@@ -10,6 +11,7 @@ export interface GainResult {
   requestedGainDb: number;
   actualGainDb: number;
   peakLimited: boolean;
+  boostCapped: boolean;
   peak: number;
 }
 
@@ -52,19 +54,32 @@ export interface SharedGain {
   actualGainDb: number;
   actualLinear: number;
   peakLimited: boolean;
+  /** True when the requested boost exceeded the boost cap and was clamped. */
+  boostCapped: boolean;
   groupPeak: number;
 }
 
 /**
  * One clamp for a set of files (mix + stems). Vertical layers must share the
  * same actual gain so they still sum after ingest.
+ *
+ * Boosts are capped at `boostCapDb` (default +6 dB); cuts are uncapped.
+ * `requestedGainDb` in the result stays the UNCAPPED request so records
+ * preserve the evidence that a take is a regeneration candidate.
  */
 export function resolveSharedGain(
   files: Float32Array[][],
   requestedGainDb: number,
   peakLimit: number = PEAK_LIMIT,
+  boostCapDb: number = BOOST_CAP_DB,
 ): SharedGain {
-  const requestedLinear = dbToLinear(requestedGainDb);
+  let boostCapped = false;
+  let cappedGainDb = requestedGainDb;
+  if (requestedGainDb > boostCapDb) {
+    cappedGainDb = boostCapDb;
+    boostCapped = true;
+  }
+  const requestedLinear = dbToLinear(cappedGainDb);
   let groupPeak = 0;
   for (const file of files) {
     const p = peakOf(file);
@@ -81,6 +96,7 @@ export function resolveSharedGain(
     actualGainDb: linearToDb(actualLinear),
     actualLinear,
     peakLimited,
+    boostCapped,
     groupPeak,
   };
 }
@@ -106,6 +122,7 @@ export function applyGain(
     requestedGainDb: gainDb,
     actualGainDb: shared.actualGainDb,
     peakLimited: shared.peakLimited,
+    boostCapped: shared.boostCapped,
     peak: shared.groupPeak * shared.actualLinear,
   };
 }

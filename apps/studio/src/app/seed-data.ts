@@ -1,7 +1,7 @@
 import type { SoundtrackPack } from "@motif-studio/schema";
 import { buildGroundedPack } from "@motif-studio/scene-mapper";
 import { foldGeneratedIntoPack, type FoldableGenerated } from "@motif-studio/score-map";
-import wave2Folded from "./grounded-wave2-folded.json";
+import groundedFolded from "./grounded-folded.json";
 
 // ── Minimal Pack — smallest valid pack ──
 
@@ -1042,10 +1042,10 @@ export const synthDemoPack: SoundtrackPack = {
 
 // ── Example pack registry ──
 
-const groundedPack = foldWave2(buildGroundedPack());
+const groundedPack = foldGrounded(buildGroundedPack());
 
-function foldWave2(pack: SoundtrackPack): SoundtrackPack {
-  const items = (wave2Folded as { items?: FoldableGenerated[] }).items ?? [];
+function foldGrounded(pack: SoundtrackPack): SoundtrackPack {
+  const items = (groundedFolded as { items?: FoldableGenerated[] }).items ?? [];
   if (items.length === 0) return pack;
   return foldGeneratedIntoPack(pack, items);
 }

@@ -774,6 +774,7 @@ export const GeneratedCueRecordSchema = z
     gainDb: z.number(),
     actualGainDb: z.number(),
     peakLimited: z.boolean(),
+    boostCapped: z.boolean().optional(),
     resampler: ResamplerIdentitySchema,
     runtimeSampleRateHz: z.literal(48000),
     createdAt: z.string().min(1),
