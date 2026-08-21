@@ -14,7 +14,7 @@ export { parseFlacStreamInfo, durationMsFromStreamInfo } from "./flac-header.js"
 export type { FlacStreamInfo } from "./flac-header.js";
 export { sha256Hex } from "./hash.js";
 export { resampledSampleCount, resampleChannel, resamplePlanar } from "./resample.js";
-export { encodeWav24 } from "./wav.js";
+export { encodeWav24, encodeWav16 } from "./wav.js";
 export {
   ingestGainDb,
   applyGain,
@@ -42,6 +42,23 @@ export {
   DEFAULT_GROUNDED_PUBLIC_ROOT,
 } from "./ingest-grounded.js";
 export { registerGeneratedCue } from "./register.js";
+export {
+  populateDemoPacks,
+  renderMixdown,
+  renderSfx,
+  DEMO_PACK_MIXDOWNS,
+  DEMO_PACK_SFX_IDS,
+  MIXDOWN_PEAK_LIMIT,
+  LIBRARY_DAY1_MUSIC_ROOT,
+  LIBRARY_DAY1_SFX_ROOT,
+} from "./populate-demo-packs.js";
+export type {
+  MixdownSpec,
+  MixSource,
+  DemoPackDir,
+  WrittenWav,
+  PopulateOptions,
+} from "./populate-demo-packs.js";
 export { decodeFlacPcm } from "./decode.js";
 export type { FlacPcm, FlacDecoderFn } from "./decode.js";
 export {

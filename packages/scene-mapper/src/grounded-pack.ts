@@ -579,15 +579,16 @@ export function buildGroundedPack(): SoundtrackPack {
       schemaVersion: "1",
     },
     assets: [
-      // Placeholder assets for stinger references
-      { id: "sfx-ambush", name: "Ambush Stinger", src: "stingers/ambush.ogg", kind: "stinger", durationMs: 2000 },
-      { id: "sfx-casualty", name: "Casualty Stinger", src: "stingers/casualty.ogg", kind: "stinger", durationMs: 3000 },
-      { id: "sfx-verdict", name: "Verdict Stinger", src: "stingers/verdict.ogg", kind: "stinger", durationMs: 4000 },
-      { id: "sfx-keth", name: "Keth Contact Stinger", src: "stingers/keth.ogg", kind: "stinger", durationMs: 3000 },
-      { id: "sfx-discovery", name: "Discovery Stinger", src: "stingers/discovery.ogg", kind: "stinger", durationMs: 2000 },
-      { id: "sfx-patrol", name: "Patrol Hail Stinger", src: "stingers/patrol.ogg", kind: "stinger", durationMs: 1500 },
-      { id: "sfx-victory", name: "Victory Stinger", src: "stingers/victory.ogg", kind: "stinger", durationMs: 2500 },
-      { id: "sfx-threshold", name: "Threshold Stinger", src: "stingers/threshold.ogg", kind: "stinger", durationMs: 4000 },
+      // Generated day-1 stingers (studio serves them from public/audio/library/stingers/).
+      // durationMs values are the decoded 48 kHz lengths (SA3 durations snap to a latent grid).
+      { id: "sfx-ambush", name: "Ambush Stinger", src: "/audio/library/stingers/gr-stinger-ambush.wav", kind: "stinger", durationMs: 2043 },
+      { id: "sfx-casualty", name: "Casualty Stinger", src: "/audio/library/stingers/gr-stinger-casualty.wav", kind: "stinger", durationMs: 2972 },
+      { id: "sfx-verdict", name: "Verdict Stinger", src: "/audio/library/stingers/gr-stinger-verdict.wav", kind: "stinger", durationMs: 3994 },
+      { id: "sfx-keth", name: "Keth Contact Stinger", src: "/audio/library/stingers/gr-stinger-keth.wav", kind: "stinger", durationMs: 2972 },
+      { id: "sfx-discovery", name: "Discovery Stinger", src: "/audio/library/stingers/gr-stinger-discovery.wav", kind: "stinger", durationMs: 2043 },
+      { id: "sfx-patrol", name: "Patrol Hail Stinger", src: "/audio/library/stingers/gr-stinger-patrol.wav", kind: "stinger", durationMs: 1486 },
+      { id: "sfx-victory", name: "Victory Stinger", src: "/audio/library/stingers/gr-stinger-victory.wav", kind: "stinger", durationMs: 2508 },
+      { id: "sfx-threshold", name: "Threshold Stinger", src: "/audio/library/stingers/gr-stinger-threshold.wav", kind: "stinger", durationMs: 3994 },
       { id: "a-placeholder", name: "Placeholder Loop", src: "placeholder.ogg", kind: "loop", durationMs: 30000 },
     ],
     stems: [

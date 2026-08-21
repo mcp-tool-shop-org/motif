@@ -29,6 +29,7 @@
     "dev": "tsc --build --watch",
     "test": "vitest run",
     "ingest:grounded": "node dist/generation/run-ingest-grounded.js",
+    "populate:demo-packs": "node dist/generation/run-populate-demo-packs.js",
     "lint": "eslint src/",
     "typecheck": "tsc --noEmit"
   },
