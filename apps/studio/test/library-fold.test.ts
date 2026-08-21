@@ -6,6 +6,9 @@ import {
   librarySceneId,
 } from "@motif-studio/score-map";
 import { examplePacks } from "../src/app/seed-data";
+import libraryFolded from "../src/app/library-folded.json";
+
+type LibraryFolded = { packs?: Record<string, { items?: unknown[] }> };
 
 const FLAGSHIP = "fantasy-jrpg-core";
 const catalogPack = LIBRARY_PACKS.find((p) => p.id === FLAGSHIP)!;
@@ -24,11 +27,19 @@ function record(id: string) {
 }
 
 describe("library pack registry", () => {
-  it("registers only the packs that have ingested audio", () => {
+  it("registers exactly the packs that have ingested audio, and no others", () => {
+    // Derived from the folded manifest, never hard-coded: packs land one at a
+    // time as `ingest:library` works through the catalog, so a fixed list here
+    // would fail on every pack that lands rather than on a real regression.
+    const folded = (libraryFolded as LibraryFolded).packs ?? {};
+    const withAudio = Object.entries(folded)
+      .filter(([, v]) => (v?.items?.length ?? 0) > 0)
+      .map(([packId]) => libraryPackId(packId));
     const registered = examplePacks
       .map((p) => p.id)
       .filter((id) => id.startsWith("library-"));
-    expect(registered).toEqual([libraryPackId(FLAGSHIP)]);
+    expect([...registered].sort()).toEqual([...withAudio].sort());
+    expect(registered).toContain(libraryPackId(FLAGSHIP));
   });
 
   it("keeps the five authored example packs ahead of the library", () => {

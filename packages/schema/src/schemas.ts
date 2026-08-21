@@ -832,5 +832,6 @@ export const RuntimeMusicStateSchema = z
     region: z.string().optional(),
     faction: z.string().optional(),
     encounterType: z.string().optional(),
+    cue: z.string().optional(),
   })
   .passthrough();

@@ -1,5 +1,7 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { usePreviewStore } from "../src/app/preview-store";
+import { examplePacks } from "../src/app/seed-data";
+import { libraryPackId } from "@motif-studio/score-map";
 import type { RuntimeMusicState } from "@motif-studio/schema";
 
 beforeEach(() => {
@@ -105,5 +107,54 @@ describe("preview store — sequence steps", () => {
   it("duplicateSequenceStep ignores out-of-bounds index", () => {
     usePreviewStore.getState().duplicateSequenceStep(100);
     expect(usePreviewStore.getState().sequenceSteps).toHaveLength(6);
+  });
+});
+
+describe("preview store — pack fields", () => {
+  const flagship = examplePacks.find((p) => p.id === libraryPackId("fantasy-jrpg-core"))!.pack;
+  const grounded = examplePacks.find((p) => p.id === "star-freight-grounded")!.pack;
+  const firstCue = flagship.bindings[0].conditions[0].value;
+
+  it("seeds a menu pack's field so it resolves on open", () => {
+    usePreviewStore.getState().syncPackFields(flagship);
+    expect(usePreviewStore.getState().manualState.cue).toBe(firstCue);
+  });
+
+  it("leaves an existing valid choice alone", () => {
+    usePreviewStore.getState().setManualField("cue", "boss");
+    usePreviewStore.getState().syncPackFields(flagship);
+    expect(usePreviewStore.getState().manualState.cue).toBe("boss");
+  });
+
+  it("re-seeds when the current value cannot match this pack", () => {
+    usePreviewStore.getState().setManualField("cue", "cue-from-another-pack");
+    usePreviewStore.getState().syncPackFields(flagship);
+    expect(usePreviewStore.getState().manualState.cue).toBe(firstCue);
+  });
+
+  it("clears the previous state when it seeds, so no cross-pack transition fires", () => {
+    usePreviewStore.getState().snapshotManualState();
+    expect(usePreviewStore.getState().previousManualState).not.toBeNull();
+    usePreviewStore.getState().syncPackFields(flagship);
+    expect(usePreviewStore.getState().previousManualState).toBeNull();
+  });
+
+  it("never fabricates a state combination for a multi-axis game pack", () => {
+    const before = { ...usePreviewStore.getState().manualState };
+    usePreviewStore.getState().syncPackFields(grounded);
+    expect(usePreviewStore.getState().manualState).toEqual(before);
+  });
+
+  it("resets a menu pack's sequence to its cue list", () => {
+    usePreviewStore.getState().resetSequence(flagship);
+    const steps = usePreviewStore.getState().sequenceSteps;
+    expect(steps).toHaveLength(flagship.bindings.length);
+    expect(steps[0]).toEqual({ cue: firstCue });
+  });
+
+  it("keeps the authored escalation flow for a game pack", () => {
+    usePreviewStore.getState().resetSequence(grounded);
+    expect(usePreviewStore.getState().sequenceSteps).toHaveLength(6);
+    expect(usePreviewStore.getState().sequenceSteps[0].mode).toBe("exploration");
   });
 });

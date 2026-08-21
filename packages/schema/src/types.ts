@@ -955,6 +955,12 @@ export interface RuntimeMusicState {
   region?: string;
   faction?: string;
   encounterType?: string;
+  /**
+   * The cue the game is asking for by name. Library packs bind on this — a
+   * genre library is a menu of named cues, not a game-state graph — so a game
+   * consuming one drives it by setting this field rather than the flags above.
+   */
+  cue?: string;
   [key: string]: unknown;
 }
 

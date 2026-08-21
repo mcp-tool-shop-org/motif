@@ -4,9 +4,10 @@ import { useStudioStore } from "../store";
 import { usePreviewStore } from "../preview-store";
 import { usePlaybackStore } from "../playback-store";
 import { useSequencePreview } from "../preview-hooks";
+import { derivedPackFields, singleAxisMenuField } from "../pack-fields";
 import { StateEditor } from "../components/StateEditor";
 import { StateChips } from "../components/StateChips";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 export function SequencePreview() {
   const pack = useStudioStore((s) => s.pack);
@@ -23,6 +24,10 @@ export function SequencePreview() {
   const trace = useSequencePreview();
   const [editingStep, setEditingStep] = useState<number | null>(null);
 
+  const packFields = useMemo(() => derivedPackFields(pack), [pack]);
+  // A menu pack's example flow is its own cue list, not the escalation flow.
+  const isMenuPack = useMemo(() => singleAxisMenuField(pack) !== null, [pack]);
+
   const isPlaying = transportState === "playing";
   const isLoading = transportState === "loading";
 
@@ -37,8 +42,8 @@ export function SequencePreview() {
         <button className="btn btn-primary" onClick={addStep}>
           + Add Step
         </button>
-        <button className="btn" onClick={resetSequence}>
-          Reset to Example
+        <button className="btn" onClick={() => resetSequence(pack)}>
+          {isMenuPack ? "Reset to Cue List" : "Reset to Example"}
         </button>
         <span className="text-dim">{steps.length} steps</span>
         <div className="sequence-playback-controls">
@@ -79,6 +84,7 @@ export function SequencePreview() {
           <StateEditor
             state={steps[editingStep]}
             onChange={(field, value) => updateStep(editingStep, field, value)}
+            packFields={packFields}
           />
         </div>
       )}
