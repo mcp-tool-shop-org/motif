@@ -587,3 +587,171 @@ describe("TransitionPlayer — no rule fallback", () => {
     expect(t.getSnapshot().currentSceneId).toBe("scene-exploration");
   });
 });
+
+// ── Cancellation semantics ──
+// The regression these guard: Stop pressed mid-transition used to let the
+// transition finish and start fresh audio after teardown.
+
+describe("TransitionPlayer — cancellation", () => {
+  let pack: SoundtrackPack;
+
+  beforeEach(() => {
+    vi.useFakeTimers();
+    vi.stubGlobal(
+      "AudioContext",
+      vi.fn(() => createMockAudioContext()),
+    );
+    globalThis.fetch = vi.fn(() =>
+      Promise.resolve({
+        ok: true,
+        arrayBuffer: () => Promise.resolve(new ArrayBuffer(10)),
+      } as Response),
+    );
+    pack = loadFixture(FIXTURES.STARTER_PACK) as SoundtrackPack;
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+    vi.restoreAllMocks();
+  });
+
+  it("Transport.stop() during a crossfade prevents the target scene from launching", async () => {
+    const { Transport } = await import("../src/transport.js");
+    const t = new Transport();
+    const events: PlaybackEvent[] = [];
+    t.on((evt) => events.push(evt));
+
+    await t.playScene(pack, "scene-exploration");
+
+    // explore → tension is a 2000ms crossfade in the fixture
+    const switchPromise = t.switchScene(pack, "scene-tension");
+    await vi.advanceTimersByTimeAsync(500); // mid fade-out
+
+    t.stop();
+    const eventCountAtStop = events.length;
+
+    // Let the (cancelled) transition timers run out completely
+    await vi.advanceTimersByTimeAsync(10_000);
+    await switchPromise;
+
+    // Target scene never launched; transport stays stopped
+    expect(t.getSnapshot().currentSceneId).toBeNull();
+    expect(t.getSnapshot().transport).toBe("stopped");
+
+    // Nothing after Stop may start audio or flip the transport back to playing
+    const postStop = events.slice(eventCountAtStop);
+    expect(postStop.find((e) => e.type === "scene-change")).toBeUndefined();
+    const playingChange = postStop.find(
+      (e) =>
+        e.type === "transport-change" &&
+        (e.detail as { state: string }).state === "playing",
+    );
+    expect(playingChange).toBeUndefined();
+  });
+
+  it("cancel() aborts mid-crossfade, restores the master gain, and clears isTransitioning", async () => {
+    const { ScenePlayer } = await import("../src/scene-player.js");
+    const { AssetLoader } = await import("../src/loader.js");
+    const { TransitionPlayer } = await import("../src/transition-player.js");
+
+    const ctx = createMockAudioContext();
+    const loader = new AssetLoader(ctx);
+    const scenePlayer = new ScenePlayer(ctx, loader);
+    const tp = new TransitionPlayer(ctx, scenePlayer, loader);
+
+    await scenePlayer.playScene(pack, "scene-exploration");
+
+    // Simulate a user-set master volume the fade must not clobber
+    const master = scenePlayer.getMasterGain();
+    master.gain.value = 0.8;
+
+    const switchPromise = tp.switchScene(pack, "scene-tension");
+    expect(tp.isTransitioning).toBe(true);
+
+    await vi.advanceTimersByTimeAsync(500); // mid fade-out of 2000ms
+    tp.cancel();
+    expect(tp.isTransitioning).toBe(false);
+
+    // The interrupted ramp is cancelled and the gain snapped back
+    expect(master.gain.cancelScheduledValues).toHaveBeenCalled();
+    expect(master.gain.setValueAtTime).toHaveBeenLastCalledWith(0.8, 0);
+
+    await vi.advanceTimersByTimeAsync(10_000);
+    await switchPromise; // resolves without launching the target
+
+    expect(scenePlayer.sceneId).toBe("scene-exploration");
+  });
+
+  it("cancel() silences an in-flight stinger and skips the switch", async () => {
+    const { ScenePlayer } = await import("../src/scene-player.js");
+    const { AssetLoader } = await import("../src/loader.js");
+    const { TransitionPlayer } = await import("../src/transition-player.js");
+
+    const ctx = createMockAudioContext();
+    const loader = new AssetLoader(ctx);
+    const scenePlayer = new ScenePlayer(ctx, loader);
+    const tp = new TransitionPlayer(ctx, scenePlayer, loader);
+
+    // tension → combat is stinger-then-switch in the fixture
+    await scenePlayer.playScene(pack, "scene-tension");
+
+    const created: AudioBufferSourceNode[] = [];
+    const origCreate = ctx.createBufferSource;
+    (ctx as unknown as { createBufferSource: () => AudioBufferSourceNode }).createBufferSource =
+      () => {
+        const node = origCreate();
+        created.push(node);
+        return node;
+      };
+
+    const switchPromise = tp.switchScene(pack, "scene-combat");
+    // Let the stinger asset load and start, but not finish its wait
+    await vi.advanceTimersByTimeAsync(100);
+
+    tp.cancel();
+    await vi.advanceTimersByTimeAsync(10_000);
+    await switchPromise;
+
+    // The stinger source that was started must have been stopped by cancel()
+    const started = created.filter(
+      (n) => (n.start as ReturnType<typeof vi.fn>).mock.calls.length > 0,
+    );
+    expect(started.length).toBeGreaterThan(0);
+    for (const node of started) {
+      expect(node.stop).toHaveBeenCalled();
+    }
+
+    // Switch never happened
+    expect(scenePlayer.sceneId).toBe("scene-tension");
+  });
+
+  it("modeOverride synthesizes a transition when no pack rule exists", async () => {
+    const { ScenePlayer } = await import("../src/scene-player.js");
+    const { AssetLoader } = await import("../src/loader.js");
+    const { TransitionPlayer } = await import("../src/transition-player.js");
+
+    const ctx = createMockAudioContext();
+    const loader = new AssetLoader(ctx);
+    const scenePlayer = new ScenePlayer(ctx, loader);
+    const tp = new TransitionPlayer(ctx, scenePlayer, loader);
+    const events: PlaybackEvent[] = [];
+    tp.setListener((evt) => events.push(evt));
+
+    // No rule exists for exploration → safe-zone in the fixture; without the
+    // override this pair hard-cuts with no transition-start event.
+    await scenePlayer.playScene(pack, "scene-exploration");
+    const switchPromise = tp.switchScene(pack, "scene-safe-zone", {
+      modeOverride: "crossfade",
+      durationMs: 400,
+    });
+    await vi.advanceTimersByTimeAsync(2000);
+    await switchPromise;
+
+    const start = events.find((e) => e.type === "transition-start");
+    expect(start).toBeDefined();
+    const detail = start!.detail as { mode: string; durationMs: number };
+    expect(detail.mode).toBe("crossfade");
+    expect(detail.durationMs).toBe(400);
+    expect(scenePlayer.sceneId).toBe("scene-safe-zone");
+  });
+});

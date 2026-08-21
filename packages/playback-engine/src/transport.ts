@@ -145,7 +145,10 @@ export class Transport {
       this.setState("loading");
       this.sequencePlayer!.stop();
       await this.transitionPlayer!.switchScene(pack, sceneId);
-      this.setState("playing");
+      // Only advance to "playing" if nothing (stop/error) intervened while the
+      // transition was in flight — a cancelled transition must not resurrect
+      // a stopped transport.
+      if (this.state === "loading") this.setState("playing");
     } catch (err) {
       this.handleError(err);
     }
@@ -163,7 +166,10 @@ export class Transport {
       this.setState("loading");
       this.sequencePlayer!.stop();
       await this.transitionPlayer!.switchScene(pack, toSceneId, options);
-      this.setState("playing");
+      // Only advance to "playing" if nothing (stop/error) intervened while the
+      // transition was in flight — a cancelled transition must not resurrect
+      // a stopped transport.
+      if (this.state === "loading") this.setState("playing");
     } catch (err) {
       this.handleError(err);
     }
@@ -299,6 +305,9 @@ export class Transport {
 
   /** Stop all playback */
   stop(): void {
+    // Cancel in-flight transitions FIRST — otherwise a pending transition
+    // finishes after teardown and launches fresh audio into a stopped transport.
+    this.transitionPlayer?.cancel();
     this.sequencePlayer?.stop();
     this.cuePlayer?.stop();
     this.scenePlayer?.stopAll();
@@ -548,7 +557,10 @@ export class Transport {
   }
 
   private handleError(err: unknown): void {
-    // Stop all playback first — stale timers and audio nodes must not outlive the error
+    // Stop all playback first — stale timers and audio nodes must not outlive the error.
+    // Transition cancel comes first so an in-flight transition cannot launch
+    // fresh audio after teardown.
+    this.transitionPlayer?.cancel();
     this.sequencePlayer?.stop();
     this.cuePlayer?.stop();
     this.scenePlayer?.stopAll();
