@@ -1,7 +1,14 @@
 import type { SoundtrackPack } from "@motif-studio/schema";
 import { buildGroundedPack } from "@motif-studio/scene-mapper";
-import { foldGeneratedIntoPack, type FoldableGenerated } from "@motif-studio/score-map";
+import {
+  LIBRARY_PACKS,
+  buildLibraryPack,
+  foldGeneratedIntoPack,
+  libraryPackId,
+  type FoldableGenerated,
+} from "@motif-studio/score-map";
 import groundedFolded from "./grounded-folded.json";
+import libraryFolded from "./library-folded.json";
 
 // ── Minimal Pack — smallest valid pack ──
 
@@ -1050,10 +1057,40 @@ function foldGrounded(pack: SoundtrackPack): SoundtrackPack {
   return foldGeneratedIntoPack(pack, items);
 }
 
-export const examplePacks = [
+// ── Motif Library packs — derived from the catalog, one entry per ingested pack ──
+
+interface LibraryFolded {
+  packs?: Record<string, { items?: FoldableGenerated[] }>;
+}
+
+export interface ExamplePackEntry {
+  id: string;
+  name: string;
+  pack: SoundtrackPack;
+}
+
+/**
+ * A library pack only ships once its takes are on disk. Packs still waiting on
+ * `pnpm --filter @motif-studio/sample-lab ingest:library --pack <id>` are
+ * skipped rather than listed as silent placeholder entries.
+ */
+const libraryPacks: ExamplePackEntry[] = LIBRARY_PACKS.flatMap((catalogPack) => {
+  const items = (libraryFolded as LibraryFolded).packs?.[catalogPack.id]?.items ?? [];
+  if (items.length === 0) return [];
+  return [
+    {
+      id: libraryPackId(catalogPack.id),
+      name: catalogPack.name,
+      pack: foldGeneratedIntoPack(buildLibraryPack(catalogPack), items),
+    },
+  ];
+});
+
+export const examplePacks: ExamplePackEntry[] = [
   { id: "minimal-pack", name: "Minimal Pack", pack: minimalPack },
   { id: "starter-pack", name: "Starter Adventure Pack", pack: starterPack },
   { id: "combat-escalation-pack", name: "Combat Escalation Pack", pack: combatEscalationPack },
   { id: "synth-demo-pack", name: "Synth Demo — Game Soundtrack", pack: synthDemoPack },
   { id: "star-freight-grounded", name: "Star Freight: Grounded — Prologue", pack: groundedPack },
-] as const;
+  ...libraryPacks,
+];

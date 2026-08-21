@@ -1,0 +1,1873 @@
+{
+ "meta": {
+  "name": "Motif Library Catalog v1",
+  "ratified": "2026-08-21 (Director: 'I love your plan. Let's build that catalog')",
+  "config": "60s unit, ACE-Step 1.5 XL base @ 50 steps/cfg 6/shift 3, [inst], timesignature '4', mix + 4 Demucs stems + LUFS manifest (ace15-track-to-stems.api.json), A/B takes per cue (seedA default)",
+  "seed_rule": "seed = packBase + cueIndex*10 + take (1=A, 2=B)",
+  "prose_rules": {
+   "house_grammar": "<Title>: <concept sentence>. <instrumentation with active verbs>. <4 mood words/images>.",
+   "quiet_cue_rule": "A quiet cue MUST name at least one continuously-sounding anchor (sustained strings, a held drone, a slow but audible drum or pulse) and use presence verbs -- sings, holds, breathes, sustains, rings out. Absence language ('faint', 'distant', 'barely', 'empty', 'wind-like harmonics') with no anchor collapses the render past the +6 dB boost cap. Emptiness is carried by harmony and register, never by literal absence of sound.",
+   "quiet_cue_rule_earned": "2026-08-21 Tier-1 wave: 12/210 takes boost-capped; the only two cues where BOTH A/B takes failed were fantasy-jrpg-core/defeat (-24.63/-33.77) and tactics-war/aftermath (-30.28/-21.40), both written in absence language. Every quiet cue that survived named a continuously-sounding anchor.",
+   "keyscale": "34-value COMBO only (17 enharmonic roots x major/minor). Modes belong in the prose, never in keyscale."
+  },
+  "tier2_authored": "2026-08-21 — 10 packs / 100 cues / 200 takes"
+ },
+ "tier1": [
+  {
+   "id": "fantasy-jrpg-core",
+   "name": "Fantasy JRPG Core",
+   "flagship": true,
+   "seedBase": 2000,
+   "palette": "Classic JRPG orchestra — strings, woodwinds, French horn, harp, glockenspiel, timpani; SNES-era warmth in the Uematsu/Mitsuda tradition. Tonal home C major / A minor.",
+   "cues": [
+    {
+     "id": "town",
+     "bpm": 90,
+     "keyscale": "C major",
+     "seedA": 2011,
+     "seedB": 2012,
+     "prose": "Fantasy Town: A warm, bustling village theme. Cheerful woodwind melody dances over pizzicato strings and light tambourine, a friendly accordion answers in the second phrase. Cozy, welcoming, everyday, storybook."
+    },
+    {
+     "id": "village-festival",
+     "bpm": 120,
+     "keyscale": "F major",
+     "seedA": 2021,
+     "seedB": 2022,
+     "prose": "Festival Dance: A lively folk celebration. Fiddle and flute trade a spinning dance tune over hand drums and clapping rhythms, a hurdy-gurdy drone grounds the whirl. Joyful, communal, spinning, bright."
+    },
+    {
+     "id": "castle",
+     "bpm": 80,
+     "keyscale": "D major",
+     "seedA": 2031,
+     "seedB": 2032,
+     "prose": "Royal Castle: A stately court theme. Noble brass fanfares over measured timpani, elegant string counterpoint and a harpsichord glitter beneath. Regal, ceremonial, proud, grand."
+    },
+    {
+     "id": "overworld",
+     "bpm": 105,
+     "keyscale": "C major",
+     "seedA": 2041,
+     "seedB": 2042,
+     "prose": "Overworld Journey: A soaring adventure theme. Bold string melody rises over galloping percussion and bright brass swells, woodwinds flutter between phrases. Heroic, hopeful, expansive, wind-in-your-hair."
+    },
+    {
+     "id": "forest",
+     "bpm": 85,
+     "keyscale": "G major",
+     "seedA": 2051,
+     "seedB": 2052,
+     "prose": "Deep Forest: A gentle woodland theme. Flute and oboe weave a folk melody over soft harp arpeggios and light shakers, birdsong-like grace notes sparkle. Green, peaceful, curious, dappled."
+    },
+    {
+     "id": "cave-dungeon",
+     "bpm": 75,
+     "keyscale": "C minor",
+     "seedA": 2061,
+     "seedB": 2062,
+     "prose": "Cavern Depths: A cautious dungeon underscore. Low pizzicato steps under a hollow marimba pattern, distant low brass breathes, water-drop percussion echoes. Dark, careful, dripping, enclosed."
+    },
+    {
+     "id": "ruins",
+     "bpm": 70,
+     "keyscale": "E minor",
+     "seedA": 2071,
+     "seedB": 2072,
+     "prose": "Ancient Ruins: A solemn mystery theme. A lone duduk-like woodwind melody drifts over sustained low strings and sparse harp, deep bell tolls mark time. Old, sacred, forgotten, still."
+    },
+    {
+     "id": "battle",
+     "bpm": 140,
+     "keyscale": "A minor",
+     "seedA": 2081,
+     "seedB": 2082,
+     "prose": "JRPG Battle: A driving turn-based battle theme. Racing string ostinato under a bold brass melody, syncopated percussion pushes, a piano riff answers between phrases. Energetic, heroic, punchy, classic."
+    },
+    {
+     "id": "boss",
+     "bpm": 150,
+     "keyscale": "D minor",
+     "seedA": 2091,
+     "seedB": 2092,
+     "prose": "Boss Battle: A fierce orchestral boss theme. Pounding timpani and low brass stabs under slashing string runs, a menacing organ line rises through the texture. Threatening, urgent, towering, dramatic."
+    },
+    {
+     "id": "final-boss",
+     "bpm": 155,
+     "keyscale": "G minor",
+     "seedA": 2101,
+     "seedB": 2102,
+     "prose": "Final Confrontation: An apocalyptic final battle. Full choir chants over hammering percussion and screaming brass, pipe organ and strings collide in rising waves. Cataclysmic, desperate, majestic, ultimate."
+    },
+    {
+     "id": "victory",
+     "bpm": 120,
+     "keyscale": "C major",
+     "seedA": 2111,
+     "seedB": 2112,
+     "prose": "Victory Theme: A triumphant post-battle celebration. Brass fanfare bursts into a jaunty string-and-woodwind march, glockenspiel sparkles over a proud walking bass. Winning, sunny, satisfied, upbeat."
+    },
+    {
+     "id": "defeat",
+     "bpm": 55,
+     "keyscale": "A minor",
+     "seedA": 2121,
+     "seedB": 2122,
+     "prose": "Defeat: A quiet game-over lament. A slow solo piano line falls over faint string swells, a distant horn holds one long note. Heavy, final, mournful, empty."
+    },
+    {
+     "id": "inn-rest",
+     "bpm": 65,
+     "keyscale": "F major",
+     "seedA": 2131,
+     "seedB": 2132,
+     "prose": "Inn Rest: A tender resting theme. Soft music-box melody over warm sustained strings and gentle harp, breathing slowly. Safe, sleepy, kind, healing."
+    },
+    {
+     "id": "sorrow",
+     "bpm": 60,
+     "keyscale": "D minor",
+     "seedA": 2141,
+     "seedB": 2142,
+     "prose": "Sorrow Theme: A grieving emotional piece. Solo cello sings over sparse piano chords, strings swell and recede like held-back tears. Sad, intimate, aching, beautiful."
+    },
+    {
+     "id": "love",
+     "bpm": 75,
+     "keyscale": "E major",
+     "seedA": 2151,
+     "seedB": 2152,
+     "prose": "Love Theme: A warm romantic theme. Solo violin and piano share a rising melody over soft string pads, harp arpeggios bloom at the phrase peaks. Tender, devoted, blooming, timeless."
+    }
+   ]
+  },
+  {
+   "id": "tactics-war",
+   "name": "Tactics & War",
+   "seedBase": 3000,
+   "palette": "Military orchestra — snares, low brass, strings, taiko; Tactics Ogre / FFT tradition. Tonal home D minor.",
+   "cues": [
+    {
+     "id": "briefing",
+     "bpm": 85,
+     "keyscale": "D minor",
+     "seedA": 3011,
+     "seedB": 3012,
+     "prose": "War Briefing: A grave strategic underscore. Muted trumpets over a slow snare pattern and low string pulses, a map-table tension in held woodwind chords. Serious, measured, resolved, eve-of-battle."
+    },
+    {
+     "id": "march",
+     "bpm": 100,
+     "keyscale": "D minor",
+     "seedA": 3021,
+     "seedB": 3022,
+     "prose": "Army March: A disciplined war march. Full snare cadence drives low brass and unison strings in a grim forward theme, piccolo cuts above. Ordered, inexorable, proud, marching."
+    },
+    {
+     "id": "skirmish",
+     "bpm": 135,
+     "keyscale": "A minor",
+     "seedA": 3031,
+     "seedB": 3032,
+     "prose": "Field Skirmish: A tight tactical battle piece. Urgent string ostinato and brass punches over rolling snares, quick woodwind runs dart between hits. Sharp, mobile, decisive, engaged."
+    },
+    {
+     "id": "siege",
+     "bpm": 120,
+     "keyscale": "C minor",
+     "seedA": 3041,
+     "seedB": 3042,
+     "prose": "Siege Assault: A massive siege battle. Pounding taiko and timpani under wide brass walls, choir swells behind climbing string lines. Huge, grinding, relentless, walls-falling."
+    },
+    {
+     "id": "duel",
+     "bpm": 110,
+     "keyscale": "E minor",
+     "seedA": 3051,
+     "seedB": 3052,
+     "prose": "Champion Duel: A focused duel theme. Solo violin spars with a trumpet line over taut snare and staccato strings, space between phrases like circling fighters. Personal, tense, honorable, blade-to-blade."
+    },
+    {
+     "id": "war-council",
+     "bpm": 75,
+     "keyscale": "G minor",
+     "seedA": 3061,
+     "seedB": 3062,
+     "prose": "Council Intrigue: A scheming court underscore. Harpsichord and pizzicato strings tick beneath murmuring low woodwinds, a viola line curls with suspicion. Political, hushed, calculating, candlelit."
+    },
+    {
+     "id": "aftermath",
+     "bpm": 60,
+     "keyscale": "D minor",
+     "seedA": 3071,
+     "seedB": 3072,
+     "prose": "Battlefield Aftermath: A desolate post-battle piece. A lone horn over slow low strings, sparse snare taps like distant memory, wind-like string harmonics. Costly, gray, mourning, smoke-drift."
+    },
+    {
+     "id": "requiem",
+     "bpm": 55,
+     "keyscale": "F minor",
+     "seedA": 3081,
+     "seedB": 3082,
+     "prose": "Fallen Requiem: A choral funeral piece. Solemn choir over deep organ pedal tones and slow string suspensions, one bell tolls. Sacred, grieving, honored, candle-lit."
+    },
+    {
+     "id": "triumph",
+     "bpm": 115,
+     "keyscale": "D major",
+     "seedA": 3091,
+     "seedB": 3092,
+     "prose": "War Triumph: A hard-won victory theme. Brass chorale opens into a proud string march with rolling snares and cymbal swells. Earned, weighty, proud, banner-raised."
+    },
+    {
+     "id": "intrigue",
+     "bpm": 90,
+     "keyscale": "B minor",
+     "seedA": 3101,
+     "seedB": 3102,
+     "prose": "Shadow Intrigue: A cloak-and-dagger underscore. Plucked low strings and a wary clarinet line over brushed percussion, sudden held silences. Covert, sly, dangerous, whispered."
+    }
+   ]
+  },
+  {
+   "id": "dark-dungeon",
+   "name": "Dark Dungeon",
+   "seedBase": 3500,
+   "palette": "Horror-tinged orchestral — low string clusters, prepared piano, whispered choir, metallic percussion. Tonal home C minor.",
+   "cues": [
+    {
+     "id": "descent",
+     "bpm": 70,
+     "keyscale": "C minor",
+     "seedA": 3511,
+     "seedB": 3512,
+     "prose": "The Descent: A slow horror-tinged descent. Low string clusters sink stepwise under a tolling prepared piano, faint choir breath at the edges. Sinking, cold, committed, no-return."
+    },
+    {
+     "id": "catacombs",
+     "bpm": 65,
+     "keyscale": "F minor",
+     "seedA": 3521,
+     "seedB": 3522,
+     "prose": "Catacombs: A hollow crypt underscore. Bone-dry marimba ticks over sub-bass drones, whispered choir and distant chains shift in the dark. Dead, claustrophobic, watchful, dusty."
+    },
+    {
+     "id": "horror-ambush",
+     "bpm": 145,
+     "keyscale": "D minor",
+     "seedA": 3531,
+     "seedB": 3532,
+     "prose": "Horror Ambush: A panicked horror battle. Shrieking string stabs and irregular drum hits over a churning low ostinato, brass snarls. Terrifying, chaotic, clawing, survival."
+    },
+    {
+     "id": "ritual",
+     "bpm": 80,
+     "keyscale": "E minor",
+     "seedA": 3541,
+     "seedB": 3542,
+     "prose": "Dark Ritual: An occult ceremonial piece. Chanting low choir over a throbbing frame-drum pulse, dissonant bells and a rising string drone. Forbidden, hypnotic, gathering, candle-flame."
+    },
+    {
+     "id": "abomination-boss",
+     "bpm": 150,
+     "keyscale": "C minor",
+     "seedA": 3551,
+     "seedB": 3552,
+     "prose": "Abomination: A monstrous boss theme. Grinding low brass and detuned strings heave under hammering percussion, choir screams in bursts. Monstrous, wrong, crushing, cosmic."
+    },
+    {
+     "id": "escape",
+     "bpm": 160,
+     "keyscale": "G minor",
+     "seedA": 3561,
+     "seedB": 3562,
+     "prose": "Dungeon Escape: A desperate escape run. Sprinting string ostinato and pounding drums, brass alarms flare as the pattern climbs. Breathless, collapsing, urgent, run."
+    },
+    {
+     "id": "safe-alcove",
+     "bpm": 60,
+     "keyscale": "A minor",
+     "seedA": 3571,
+     "seedB": 3572,
+     "prose": "Safe Alcove: A fragile moment of rest. A small music-box melody over faint warm strings, darkness still audible in low drones beneath. Fragile, brief, warm, guarded."
+    },
+    {
+     "id": "madness",
+     "bpm": 75,
+     "keyscale": "B minor",
+     "seedA": 3581,
+     "seedB": 3582,
+     "prose": "Creeping Madness: A sanity-fraying underscore. Detuned piano fragments repeat off-grid over sliding string glissandi and reversed-sounding swells. Unstable, wrong, spiraling, whispering."
+    },
+    {
+     "id": "relief",
+     "bpm": 85,
+     "keyscale": "C major",
+     "seedA": 3591,
+     "seedB": 3592,
+     "prose": "Daylight Relief: An emergence into light. Warm strings open from a single note into a gentle rising theme, soft flute and harp confirm the dawn. Released, breathing, grateful, light."
+    },
+    {
+     "id": "dread",
+     "bpm": 50,
+     "keyscale": "C minor",
+     "seedA": 3601,
+     "seedB": 3602,
+     "prose": "Slow Dread: A minimal fear drone. A deep pedal tone swells under sparse high violin harmonics and irregular sub-bass thumps. Patient, looming, inevitable, held-breath."
+    }
+   ]
+  },
+  {
+   "id": "steampunk-skies",
+   "name": "Steampunk Skies",
+   "seedBase": 4000,
+   "palette": "Orchestra plus clockwork — ratchet/cog percussion, brass machinery, celesta gears, steam-hiss cymbals. Tonal home G major / E minor.",
+   "cues": [
+    {
+     "id": "airship",
+     "bpm": 100,
+     "keyscale": "G major",
+     "seedA": 4011,
+     "seedB": 4012,
+     "prose": "Airship Voyage: A buoyant flight theme. Soaring horn melody over churning clockwork percussion and bright strings, a celesta ticks like instruments in the cockpit. Uplifting, mechanical, adventurous, open-sky."
+    },
+    {
+     "id": "workshop",
+     "bpm": 95,
+     "keyscale": "C major",
+     "seedA": 4021,
+     "seedB": 4022,
+     "prose": "Inventor's Workshop: A busy tinkering theme. Playful bassoon and pizzicato strings over ratchet-and-cog percussion, a music-box motif winds between tools. Clever, cluttered, cheerful, ticking."
+    },
+    {
+     "id": "gear-city",
+     "bpm": 90,
+     "keyscale": "E minor",
+     "seedA": 4031,
+     "seedB": 4032,
+     "prose": "City of Gears: An industrial city underscore. Steady anvil-and-steam percussion under low string machinery, brass rises through smoke in a working theme. Industrial, vast, rhythmic, soot-and-brass."
+    },
+    {
+     "id": "chase",
+     "bpm": 150,
+     "keyscale": "D minor",
+     "seedA": 4041,
+     "seedB": 4042,
+     "prose": "Rooftop Chase: A frantic clockwork chase. Racing strings over triplet steam-drum patterns, brass stabs on the turns, a whistle-like piccolo streaks past. Careening, sparking, breathless, mechanical."
+    },
+    {
+     "id": "sky-battle",
+     "bpm": 140,
+     "keyscale": "E minor",
+     "seedA": 4051,
+     "seedB": 4052,
+     "prose": "Sky Battle: A broadside airship battle. Heavy brass artillery over storming percussion and diving string runs, choir gusts like wind between volleys. Thunderous, tilting, epic, cannon-smoke."
+    },
+    {
+     "id": "engine-room",
+     "bpm": 85,
+     "keyscale": "C minor",
+     "seedA": 4061,
+     "seedB": 4062,
+     "prose": "Engine Room: A pressure-cooker underscore. Deep piston percussion loops under groaning low brass, hissing cymbal releases mark the gauge. Hot, laboring, rhythmic, iron."
+    },
+    {
+     "id": "invention",
+     "bpm": 110,
+     "keyscale": "F major",
+     "seedA": 4071,
+     "seedB": 4072,
+     "prose": "Grand Invention: A eureka theme. A rising celesta-and-strings figure blossoms into confident brass, clockwork rhythm accelerates with the idea. Inspired, accelerating, gleaming, possible."
+    },
+    {
+     "id": "storm",
+     "bpm": 130,
+     "keyscale": "G minor",
+     "seedA": 4081,
+     "seedB": 4082,
+     "prose": "Storm Front: A tempest flight piece. Surging low strings and timpani waves under wailing high winds, brass calls fight the gale. Battering, dark-clouded, straining, lightning."
+    },
+    {
+     "id": "docking",
+     "bpm": 75,
+     "keyscale": "G major",
+     "seedA": 4091,
+     "seedB": 4092,
+     "prose": "Safe Docking: A journey's-end theme. Warm horn resolution over slowing clockwork percussion, strings settle like folding wings. Arriving, relieved, gentle, moored."
+    },
+    {
+     "id": "wonder",
+     "bpm": 80,
+     "keyscale": "D major",
+     "seedA": 4101,
+     "seedB": 4102,
+     "prose": "Sky Wonder: An awe-struck vista piece. Wide string chords bloom under a floating flute melody, harp and celesta glitter like sun on clouds. Awed, floating, golden, horizon."
+    }
+   ]
+  },
+  {
+   "id": "pirate-seas",
+   "name": "Pirate Seas",
+   "seedBase": 4500,
+   "palette": "Folk-orchestral — fiddle, accordion, tin whistle, concertina, bodhrán, stomps and claps over orchestra. Tonal home D / A minor.",
+   "cues": [
+    {
+     "id": "port",
+     "bpm": 95,
+     "keyscale": "D major",
+     "seedA": 4511,
+     "seedB": 4512,
+     "prose": "Harbor Port: A salty port town theme. Accordion and fiddle trade a rolling tune over a walking bass and light bodhran, gulls in high whistle flicks. Busy, briny, friendly, creaking-docks."
+    },
+    {
+     "id": "open-sea",
+     "bpm": 105,
+     "keyscale": "A minor",
+     "seedA": 4521,
+     "seedB": 4522,
+     "prose": "Open Sea: A wide sailing theme. A bold fiddle melody rides swelling strings and a rolling drum pattern, horns lift at the crests. Free, rolling, salt-wind, unbounded."
+    },
+    {
+     "id": "storm-sail",
+     "bpm": 135,
+     "keyscale": "D minor",
+     "seedA": 4531,
+     "seedB": 4532,
+     "prose": "Storm Sailing: A violent storm passage. Driving low strings and crashing percussion under desperate brass calls, fiddle spray whips over the deck. Heaving, soaked, dangerous, lashed."
+    },
+    {
+     "id": "boarding",
+     "bpm": 145,
+     "keyscale": "E minor",
+     "seedA": 4541,
+     "seedB": 4542,
+     "prose": "Boarding Action: A swashbuckling deck battle. Sword-fight strings and punchy brass over galloping drums, a defiant fiddle line duels the theme. Daring, clashing, grinning, steel."
+    },
+    {
+     "id": "tavern",
+     "bpm": 110,
+     "keyscale": "G major",
+     "seedA": 4551,
+     "seedB": 4552,
+     "prose": "Pirate Tavern: A rowdy tavern romp. Drunken accordion and fiddle stomp with clapping and floor-thump percussion, a whistle solo spins the room. Rowdy, sloshing, laughing, firelit."
+    },
+    {
+     "id": "treasure",
+     "bpm": 85,
+     "keyscale": "C major",
+     "seedA": 4561,
+     "seedB": 4562,
+     "prose": "Treasure Found: A glittering discovery theme. Harp and celesta cascade over warm swelling strings, horns open the chest with a golden chord. Gleaming, disbelieving, rich, wish-granted."
+    },
+    {
+     "id": "kraken-boss",
+     "bpm": 150,
+     "keyscale": "C minor",
+     "seedA": 4571,
+     "seedB": 4572,
+     "prose": "Kraken Battle: A monstrous sea-beast battle. Massive low brass and churning strings over war drums, choir surges like black water, high strings scream in the tentacles. Colossal, thrashing, mythic, deep."
+    },
+    {
+     "id": "becalmed",
+     "bpm": 60,
+     "keyscale": "A minor",
+     "seedA": 4581,
+     "seedB": 4582,
+     "prose": "Becalmed: A dead-wind drift piece. Sparse guitar-like plucks over glassy sustained strings, a lonely whistle floats with nowhere to go. Still, waiting, haunted, glass-sea."
+    },
+    {
+     "id": "homecoming",
+     "bpm": 80,
+     "keyscale": "F major",
+     "seedA": 4591,
+     "seedB": 4592,
+     "prose": "Homecoming: A weathered return theme. A tender fiddle melody over warm strings and soft accordion, the harbor theme returns slower and wiser. Weathered, warm, returning, earned."
+    },
+    {
+     "id": "shanty",
+     "bpm": 100,
+     "keyscale": "D major",
+     "seedA": 4601,
+     "seedB": 4602,
+     "prose": "Instrumental Shanty: A work-song shanty without voices. Concertina leads a call-and-answer tune over stomping percussion and rope-pull rhythm hits. Hearty, communal, swinging, heave-ho."
+    }
+   ]
+  },
+  {
+   "id": "western-frontier",
+   "name": "Western Frontier",
+   "seedBase": 5000,
+   "palette": "Morricone-adjacent — twangy baritone guitar, harmonica, whistling-tone winds, saloon piano, strings. Tonal home E minor / A minor.",
+   "cues": [
+    {
+     "id": "dust-town",
+     "bpm": 85,
+     "keyscale": "E minor",
+     "seedA": 5011,
+     "seedB": 5012,
+     "prose": "Dust Town: A dusty frontier town theme. Twangy baritone guitar over brushed drums and a wary harmonica line, saloon piano drifts from a doorway. Dry, squinting, quiet-streets, sun-bleached."
+    },
+    {
+     "id": "ride",
+     "bpm": 110,
+     "keyscale": "A minor",
+     "seedA": 5021,
+     "seedB": 5022,
+     "prose": "The Long Ride: A galloping trail theme. Cantering percussion under a wide string melody, guitar strums and a heroic horn open the plains. Loping, open, determined, horizon-bound."
+    },
+    {
+     "id": "standoff",
+     "bpm": 70,
+     "keyscale": "D minor",
+     "seedA": 5031,
+     "seedB": 5032,
+     "prose": "High Noon Standoff: A coiled standoff underscore. A lone whistling-tone melody over sparse twang guitar hits and a ticking clock-like rim pattern, strings tighten. Frozen, glaring, hair-trigger, noon."
+    },
+    {
+     "id": "saloon",
+     "bpm": 120,
+     "keyscale": "C major",
+     "seedA": 5041,
+     "seedB": 5042,
+     "prose": "Saloon Night: A honky-tonk saloon romp. Barrelhouse piano rolls over a shuffling brush beat and slap bass, fiddle joins the card game. Boisterous, whiskey-warm, rickety, gaslit."
+    },
+    {
+     "id": "ambush",
+     "bpm": 140,
+     "keyscale": "E minor",
+     "seedA": 5051,
+     "seedB": 5052,
+     "prose": "Canyon Ambush: A sudden ambush fight. Stabbing strings and gunshot percussion cracks over a driving guitar riff, brass ricochets off the rocks. Sudden, scrambling, cornered, gun-smoke."
+    },
+    {
+     "id": "campfire",
+     "bpm": 65,
+     "keyscale": "G major",
+     "seedA": 5061,
+     "seedB": 5062,
+     "prose": "Campfire: A gentle night-camp theme. Fingerpicked guitar under a soft harmonica melody, low strings hold the desert night, crickets in shaker taps. Quiet, starry, companionable, ember-glow."
+    },
+    {
+     "id": "pursuit",
+     "bpm": 150,
+     "keyscale": "A minor",
+     "seedA": 5071,
+     "seedB": 5072,
+     "prose": "Posse Pursuit: A breakneck chase. Pounding hooves percussion under racing strings and urgent brass calls, guitar tremolo burns the trail. Relentless, dust-kicking, closing-in, full-gallop."
+    },
+    {
+     "id": "showdown",
+     "bpm": 95,
+     "keyscale": "D minor",
+     "seedA": 5081,
+     "seedB": 5082,
+     "prose": "Final Showdown: A fatal duel theme. Church-bell tolls over building strings and a slow defiant trumpet, snare rolls gather like held breath, twang guitar answers. Fateful, mythic, unblinking, last-draw."
+    },
+    {
+     "id": "aftermath",
+     "bpm": 60,
+     "keyscale": "E minor",
+     "seedA": 5091,
+     "seedB": 5092,
+     "prose": "Frontier Aftermath: A hollow aftermath piece. A lone harmonica over sparse guitar and low strings, wind through an empty street. Emptied, costly, drifting, tumbleweed."
+    },
+    {
+     "id": "open-range",
+     "bpm": 90,
+     "keyscale": "C major",
+     "seedA": 5101,
+     "seedB": 5102,
+     "prose": "Open Range: A sweeping prairie theme. Broad strings and horns roll over an easy trotting rhythm, flute rides the grass wind. Vast, free, golden-hour, unclaimed."
+    }
+   ]
+  },
+  {
+   "id": "space-opera",
+   "name": "Space Opera",
+   "seedBase": 5500,
+   "palette": "Bright orchestral sci-fi with synth colors — noble horns, soaring strings, choir, pulsing arpeggios. Distinct from Grounded's industrial grit. Tonal home C.",
+   "cues": [
+    {
+     "id": "bridge",
+     "bpm": 80,
+     "keyscale": "C major",
+     "seedA": 5511,
+     "seedB": 5512,
+     "prose": "Starship Bridge: A stately command theme. Noble horns over slow string chords and a soft electronic pulse, harp runs glint like instrument panels. Composed, vast, dutiful, starlit."
+    },
+    {
+     "id": "warp-lane",
+     "bpm": 110,
+     "keyscale": "D major",
+     "seedA": 5521,
+     "seedB": 5522,
+     "prose": "Warp Transit: A streaking travel theme. Pulsing synth arpeggios under soaring strings and bright brass sweeps, percussion streams like passing stars. Swift, shimmering, forward, light-streaked."
+    },
+    {
+     "id": "alien-market",
+     "bpm": 100,
+     "keyscale": "E minor",
+     "seedA": 5531,
+     "seedB": 5532,
+     "prose": "Alien Bazaar: A curious alien market theme. Plucked exotic strings and hand percussion over a warm synth bed, a reedy melody haggles playfully. Strange, colorful, bustling, friendly-odd."
+    },
+    {
+     "id": "dogfight",
+     "bpm": 145,
+     "keyscale": "E minor",
+     "seedA": 5541,
+     "seedB": 5542,
+     "prose": "Starfighter Dogfight: A whirling space battle. Darting string runs and punchy brass over rapid-fire percussion, synth sirens bank through the mix. Agile, spinning, locked-on, afterburner."
+    },
+    {
+     "id": "capital-battle",
+     "bpm": 135,
+     "keyscale": "C minor",
+     "seedA": 5551,
+     "seedB": 5552,
+     "prose": "Fleet Battle: A massive capital-ship engagement. Huge brass broadsides over war-drum barrages and climbing choir, strings burn like hull fires. Titanic, gravitational, dire, broadside."
+    },
+    {
+     "id": "derelict",
+     "bpm": 60,
+     "keyscale": "F minor",
+     "seedA": 5561,
+     "seedB": 5562,
+     "prose": "Derelict Hulk: A dead-ship underscore. Hollow metallic percussion echoes over deep drones and faint string harmonics, a sonar-like ping repeats far away. Abandoned, airless, wary, ghost-ship."
+    },
+    {
+     "id": "first-contact",
+     "bpm": 75,
+     "keyscale": "D major",
+     "seedA": 5571,
+     "seedB": 5572,
+     "prose": "First Contact: A trembling wonder theme. Fragile high strings open over swelling low chords, a simple horn call is answered by glassy synth tones. Historic, breath-held, luminous, threshold."
+    },
+    {
+     "id": "homeworld",
+     "bpm": 85,
+     "keyscale": "F major",
+     "seedA": 5581,
+     "seedB": 5582,
+     "prose": "Homeworld: A warm planetary theme. Rich strings and choir swell over a gentle pulse, woodwinds turn a folk-like melody of belonging. Home, blue-green, cherished, gravity."
+    },
+    {
+     "id": "escape",
+     "bpm": 155,
+     "keyscale": "G minor",
+     "seedA": 5591,
+     "seedB": 5592,
+     "prose": "Reactor Escape: A countdown escape sequence. Alarm-pulse synths under sprinting strings and hammering percussion, brass klaxons stack the pressure. Critical, red-lit, sprinting, seconds-left."
+    },
+    {
+     "id": "starfall",
+     "bpm": 70,
+     "keyscale": "A minor",
+     "seedA": 5601,
+     "seedB": 5602,
+     "prose": "Starfall: An elegiac closing theme. A lone piano over widening string space, choir enters like distant light, slow brass resolves into stillness. Elegiac, immense, resolved, afterglow."
+    }
+   ]
+  },
+  {
+   "id": "cyberpunk-neon",
+   "name": "Cyberpunk Neon",
+   "seedBase": 6000,
+   "palette": "Synthwave/electronic with orchestral hybrid moments — analog pads, acid bass, breakbeats, glitch textures. Tonal home A minor.",
+   "cues": [
+    {
+     "id": "rain-street",
+     "bpm": 85,
+     "keyscale": "A minor",
+     "seedA": 6011,
+     "seedB": 6012,
+     "prose": "Neon Rain: A rain-slick street theme. Warm analog synth pads over a slow beat and sub bass, a lonely lead line reflects in the puddles. Nocturnal, wet, violet, alone-in-a-crowd."
+    },
+    {
+     "id": "club",
+     "bpm": 125,
+     "keyscale": "F minor",
+     "seedA": 6021,
+     "seedB": 6022,
+     "prose": "Underground Club: A pounding club track. Four-on-the-floor kick under acid bassline and strobing synth stabs, filtered risers breathe the room. Sweaty, strobing, bass-heavy, midnight."
+    },
+    {
+     "id": "netdive",
+     "bpm": 100,
+     "keyscale": "E minor",
+     "seedA": 6031,
+     "seedB": 6032,
+     "prose": "Net Dive: A cyberspace descent. Cascading arpeggio synths over a glitching beat, data-stream plucks and a cold pad horizon. Digital, falling, crystalline, immersed."
+    },
+    {
+     "id": "chase",
+     "bpm": 150,
+     "keyscale": "D minor",
+     "seedA": 6041,
+     "seedB": 6042,
+     "prose": "Grid Chase: A high-speed pursuit track. Driving synth bass sixteenths under sharp lead stabs and breakbeat drums, sirens smear past. Velocity, neon-blur, hunted, redline."
+    },
+    {
+     "id": "corp-tower",
+     "bpm": 80,
+     "keyscale": "C minor",
+     "seedA": 6051,
+     "seedB": 6052,
+     "prose": "Corporate Tower: A cold power underscore. Glassy pads and a slow heartbeat kick under sparse piano notes, strings glide like elevators. Sterile, looming, moneyed, chrome."
+    },
+    {
+     "id": "showdown",
+     "bpm": 130,
+     "keyscale": "A minor",
+     "seedA": 6061,
+     "seedB": 6062,
+     "prose": "Rooftop Showdown: A climactic hybrid battle. Distorted synth bass and orchestral stabs trade over hard drums, choir pads rise through the rain. Decisive, drenched, electric, final-floor."
+    },
+    {
+     "id": "back-alley",
+     "bpm": 75,
+     "keyscale": "G minor",
+     "seedA": 6071,
+     "seedB": 6072,
+     "prose": "Back Alley: A wary underbelly groove. Dub-spaced bass and skittering hats under a muted trumpet-like synth line, steam hisses in the reverb. Shady, cautious, flickering, deal-making."
+    },
+    {
+     "id": "memory",
+     "bpm": 65,
+     "keyscale": "C major",
+     "seedA": 6081,
+     "seedB": 6082,
+     "prose": "Memory Fragment: A bittersweet synth ballad. A music-box-like synth melody over warm slow pads, vinyl crackle and soft sub swells. Nostalgic, human, fading, saved-file."
+    },
+    {
+     "id": "uprising",
+     "bpm": 120,
+     "keyscale": "E minor",
+     "seedA": 6091,
+     "seedB": 6092,
+     "prose": "Neon Uprising: A rebellion anthem. Anthemic synth brass over marching electronic drums, crowd-stomp claps and a rising lead chorus. Defiant, gathering, torchlit, streets-rising."
+    },
+    {
+     "id": "neon-dawn",
+     "bpm": 90,
+     "keyscale": "D major",
+     "seedA": 6101,
+     "seedB": 6102,
+     "prose": "Neon Dawn: A hopeful sunrise outro. Bright pads open over a relaxed beat, a clean lead melody lifts as the night rinses off. Dawning, washed-clean, hopeful, exhale."
+    }
+   ]
+  },
+  {
+   "id": "mythic-aegean",
+   "name": "Mythic Aegean",
+   "seedBase": 6500,
+   "palette": "Ancient Mediterranean — lyre/kithara plucks, reedy aulos-like winds, frame drums, choir over orchestra; modal color carried in prose. Tonal home E minor / D.",
+   "cues": [
+    {
+     "id": "agora",
+     "bpm": 100,
+     "keyscale": "D major",
+     "seedA": 6511,
+     "seedB": 6512,
+     "prose": "Sunlit Agora: A bustling marble market theme. Bright lyre plucks and hand drums under a cheerful reed melody, strings warm the colonnade. Sunlit, civic, olive-and-salt, busy."
+    },
+    {
+     "id": "temple",
+     "bpm": 70,
+     "keyscale": "E minor",
+     "seedA": 6521,
+     "seedB": 6522,
+     "prose": "Marble Temple: A sacred temple underscore. Solemn choir over deep drones and slow frame-drum pulses, a modal reed line curls incense upward. Holy, columned, ancient, hushed."
+    },
+    {
+     "id": "oracle",
+     "bpm": 65,
+     "keyscale": "B minor",
+     "seedA": 6531,
+     "seedB": 6532,
+     "prose": "The Oracle: A prophetic trance piece. A quavering modal woodwind over shifting drone clusters and sparse metallic shimmer, whispers gather in the fumes. Cryptic, smoke-veiled, fated, trembling."
+    },
+    {
+     "id": "voyage",
+     "bpm": 105,
+     "keyscale": "A minor",
+     "seedA": 6541,
+     "seedB": 6542,
+     "prose": "Wine-Dark Voyage: A rowing sea theme. Surging strings pull with a rolling drum stroke, a heroic reed melody rides the oar rhythm, choir swells at the swell. Epic, oared, salt-sprayed, homeward."
+    },
+    {
+     "id": "monster-battle",
+     "bpm": 145,
+     "keyscale": "D minor",
+     "seedA": 6551,
+     "seedB": 6552,
+     "prose": "Mythic Beast Battle: A hero-versus-monster fight. Slashing strings and heavy frame drums under snarling brass, choir shouts answer the beast's motif. Legendary, circling, brutal, storied."
+    },
+    {
+     "id": "olympus",
+     "bpm": 85,
+     "keyscale": "C major",
+     "seedA": 6561,
+     "seedB": 6562,
+     "prose": "Halls of Olympus: A radiant divine theme. Golden brass chorale over harp cascades and shimmering strings, full choir crowns the summit. Divine, blinding, immortal, thunder-kissed."
+    },
+    {
+     "id": "underworld",
+     "bpm": 60,
+     "keyscale": "F minor",
+     "seedA": 6571,
+     "seedB": 6572,
+     "prose": "Underworld Crossing: A river-of-the-dead piece. A deep pulsing drone like an oar stroke under mournful low choir, cold high strings mist the banks. Chthonic, gray, tolling, one-way."
+    },
+    {
+     "id": "feast",
+     "bpm": 115,
+     "keyscale": "G major",
+     "seedA": 6581,
+     "seedB": 6582,
+     "prose": "Hero's Feast: A joyous feast dance. Whirling lyre and reed tune over stomping drums and clapping, wine-spill glissandi in the harp. Festive, garlanded, abundant, dancing."
+    },
+    {
+     "id": "lament",
+     "bpm": 55,
+     "keyscale": "E minor",
+     "seedA": 6591,
+     "seedB": 6592,
+     "prose": "Aegean Lament: A funeral lament. A solo modal voice-like reed over sparse lyre and low strings, slow frame drum like a heartbeat failing. Grieving, ritual, sea-wind, ash."
+    },
+    {
+     "id": "heroics",
+     "bpm": 130,
+     "keyscale": "C major",
+     "seedA": 6601,
+     "seedB": 6602,
+     "prose": "Hero's Trial: A triumphant trial theme. Bold brass fanfares over driving strings and frame-drum gallop, choir lifts the hero's name. Valorous, laurelled, striving, immortalized."
+    }
+   ]
+  },
+  {
+   "id": "wasteland",
+   "name": "Wasteland",
+   "seedBase": 7500,
+   "palette": "Post-apocalyptic — detuned guitar, found-metal percussion, dusty string pads, low synth, tape warble. Tonal home D minor.",
+   "cues": [
+    {
+     "id": "wind-ruins",
+     "bpm": 65,
+     "keyscale": "D minor",
+     "seedA": 7511,
+     "seedB": 7512,
+     "prose": "Wind Over Ruins: A desolate ruinscape drone. Dusty string pads drift over a detuned guitar figure, wind-like white-noise swells and far metal creaks. Scoured, empty, patient, after."
+    },
+    {
+     "id": "scavenge",
+     "bpm": 90,
+     "keyscale": "A minor",
+     "seedA": 7521,
+     "seedB": 7522,
+     "prose": "Scavenger Run: A wary scavenging groove. Found-metal percussion taps under a low guitar riff and heartbeat kick, thin strings watch the horizon. Alert, picking-through, lean, rust."
+    },
+    {
+     "id": "raider-battle",
+     "bpm": 145,
+     "keyscale": "E minor",
+     "seedA": 7531,
+     "seedB": 7532,
+     "prose": "Raider Battle: A savage wasteland fight. Distorted guitar riffs and junk-metal percussion slam under shouting brass bursts. Feral, jagged, scrap-armored, merciless."
+    },
+    {
+     "id": "shelter",
+     "bpm": 70,
+     "keyscale": "F major",
+     "seedA": 7541,
+     "seedB": 7542,
+     "prose": "Underground Shelter: A guarded rest theme. A soft guitar melody over warm low pads and a slow muffled pulse, tin-can chimes glint. Guarded, huddled, candle-warm, surviving."
+    },
+    {
+     "id": "rad-storm",
+     "bpm": 75,
+     "keyscale": "C minor",
+     "seedA": 7551,
+     "seedB": 7552,
+     "prose": "Radiation Storm: A poisonous storm piece. Geiger-tick percussion accelerates under boiling low drones and bending string wails, metal sheets shudder. Toxic, sweeping, skin-crawling, shelterless."
+    },
+    {
+     "id": "convoy",
+     "bpm": 110,
+     "keyscale": "D minor",
+     "seedA": 7561,
+     "seedB": 7562,
+     "prose": "Convoy Run: A rolling convoy theme. Motorik drums drive a gritty bass line and steady guitar chug, horns signal over the engine wall. Rolling, armored, fuel-burning, onward."
+    },
+    {
+     "id": "mutant-boss",
+     "bpm": 150,
+     "keyscale": "C minor",
+     "seedA": 7571,
+     "seedB": 7572,
+     "prose": "Mutant Behemoth: A grotesque boss fight. Lurching low brass and pounding industrial drums under shrieking strings, choir gasps in bursts. Grotesque, staggering, irradiated, enormous."
+    },
+    {
+     "id": "oasis",
+     "bpm": 80,
+     "keyscale": "G major",
+     "seedA": 7581,
+     "seedB": 7582,
+     "prose": "Green Oasis: An unexpected haven theme. Clean guitar arpeggios over fresh string pads, a simple flute melody like clear water. Verdant, disbelieving, healing, alive."
+    },
+    {
+     "id": "memorial",
+     "bpm": 60,
+     "keyscale": "A minor",
+     "seedA": 7591,
+     "seedB": 7592,
+     "prose": "Old World Memorial: A remembrance piece. A worn piano melody over tape-warble pads and faint static, strings remember what stood here. Remembering, faded, tender, pre-war."
+    },
+    {
+     "id": "dawn",
+     "bpm": 85,
+     "keyscale": "D major",
+     "seedA": 7601,
+     "seedB": 7602,
+     "prose": "Wasteland Dawn: A resilient sunrise theme. Warm strings rise over a steady hopeful pulse, guitar and horn share a rebuilding melody. Resilient, first-light, rebuilding, forward."
+    }
+   ]
+  }
+ ],
+ "tier2_planned": [
+  "eastern-blades",
+  "norse-saga",
+  "desert-caravan",
+  "deep-forest",
+  "frozen-north",
+  "gothic-castle",
+  "undersea",
+  "volcanic-depths",
+  "cozy-hamlet",
+  "noir-mystery"
+ ],
+ "tier3_planned": [
+  "emotional-themes",
+  "ambient-drones",
+  "tension-suite",
+  "menus-and-titles",
+  "fanfares-and-jingles-sfx"
+ ],
+ "tier2": [
+  {
+   "id": "eastern-blades",
+   "name": "Eastern Blades",
+   "seedBase": 8000,
+   "palette": "Wuxia orchestra — erhu-like bowed strings, guzheng and koto plucks, dizi and shakuhachi-like flutes, taiko and hand drums, temple bells; wire-fu string ostinatos. Tonal home D minor / G major.",
+   "cues": [
+    {
+     "id": "mountain-temple",
+     "bpm": 70,
+     "keyscale": "G major",
+     "seedA": 8011,
+     "seedB": 8012,
+     "prose": "Mountain Temple: A serene dawn at a cliffside monastery. A bamboo flute sings a slow modal melody over sustained bowed strings, a temple bell rings each phrase, plucked zither answers softly. Serene, high, disciplined, incense-air."
+    },
+    {
+     "id": "bamboo-road",
+     "bpm": 95,
+     "keyscale": "D minor",
+     "seedA": 8021,
+     "seedB": 8022,
+     "prose": "Bamboo Road: A wandering journey through green corridors. Plucked zither walks a steady figure under a reedy flute melody, hand drums keep a light travelling pulse, low strings hum beneath. Wandering, green, patient, road-worn."
+    },
+    {
+     "id": "rooftop-pursuit",
+     "bpm": 145,
+     "keyscale": "E minor",
+     "seedA": 8031,
+     "seedB": 8032,
+     "prose": "Rooftop Pursuit: A tile-and-moonlight chase. Fast plucked-string ostinato drives under stabbing bowed strings, taiko doubles the pulse, flute darts between phrases. Weightless, urgent, acrobatic, night-tile."
+    },
+    {
+     "id": "duel-of-blades",
+     "bpm": 150,
+     "keyscale": "D minor",
+     "seedA": 8041,
+     "seedB": 8042,
+     "prose": "Duel of Blades: A formal single combat. Bowed strings saw a driving ostinato, taiko and clave-like wood hits mark each exchange, erhu-like lead cuts across the top. Sharp, honorable, relentless, steel-ring."
+    },
+    {
+     "id": "sword-saint",
+     "bpm": 160,
+     "keyscale": "B minor",
+     "seedA": 8051,
+     "seedB": 8052,
+     "prose": "Sword Saint: The master who cannot be beaten. Full string ostinato storms beneath brass-weight low horns, taiko battery hammers a war pulse, a lone erhu-like voice wails the theme over it. Overwhelming, legendary, vertical, final."
+    },
+    {
+     "id": "teahouse",
+     "bpm": 85,
+     "keyscale": "F major",
+     "seedA": 8061,
+     "seedB": 8062,
+     "prose": "Teahouse: A warm room of gossip and rice wine. Plucked zither carries a lilting tune over light hand percussion, a reedy flute answers, low strings sustain a cozy floor. Convivial, warm, gossiping, lantern-lit."
+    },
+    {
+     "id": "inner-cultivation",
+     "bpm": 60,
+     "keyscale": "A major",
+     "seedA": 8071,
+     "seedB": 8072,
+     "prose": "Inner Cultivation: Breath, stillness, and gathering force. Sustained bowed strings hold a long open chord, a singing bowl rings slowly, plucked zither drops single deliberate notes that ring out fully. Still, gathering, luminous, breath-deep."
+    },
+    {
+     "id": "fallen-master",
+     "bpm": 55,
+     "keyscale": "C minor",
+     "seedA": 8081,
+     "seedB": 8082,
+     "prose": "Fallen Master: A teacher's death and the debt it leaves. Erhu-like solo string sings a grieving line over sustained low strings, a slow frame drum keeps a heartbeat, temple bell tolls each phrase. Grieving, filial, heavy, ash-and-rain."
+    },
+    {
+     "id": "school-triumph",
+     "bpm": 120,
+     "keyscale": "G major",
+     "seedA": 8091,
+     "seedB": 8092,
+     "prose": "School Triumph: The banner raised again. Full strings carry a proud ascending theme, taiko drives a celebratory pulse, flutes and zither ornament the melody, gongs crown each cadence. Proud, vindicated, bright, banner-high."
+    },
+    {
+     "id": "mist-valley",
+     "bpm": 65,
+     "keyscale": "E minor",
+     "seedA": 8101,
+     "seedB": 8102,
+     "prose": "Mist Valley: A landscape that hides everything. Sustained strings hold a wide unresolved chord, plucked zither drops slow ringing notes, a low flute breathes a long modal line across the top. Vast, hidden, cool, mist-white."
+    }
+   ]
+  },
+  {
+   "id": "norse-saga",
+   "name": "Norse Saga",
+   "seedBase": 8500,
+   "palette": "Nordic folk-orchestral — bowed tagelharpa and nyckelharpa-like strings, frame drums, low male-choir-like drones, birch flutes, war horns; heavy ostinato. Tonal home D minor / A minor.",
+   "cues": [
+    {
+     "id": "longhouse",
+     "bpm": 90,
+     "keyscale": "D minor",
+     "seedA": 8511,
+     "seedB": 8512,
+     "prose": "Longhouse: Mead, smoke, and boasting under a turf roof. Bowed folk strings saw a rhythmic figure over a low vocal-like drone, frame drums keep a stamping pulse, a birch flute cuts the melody. Rowdy, smoky, communal, mead-warm."
+    },
+    {
+     "id": "oar-song",
+     "bpm": 100,
+     "keyscale": "A minor",
+     "seedA": 8521,
+     "seedB": 8522,
+     "prose": "Oar Song: A rowing chant across open water. Frame drums lock a steady stroke, low drone holds beneath, bowed strings and a flute trade a repeating call-and-answer melody. Rhythmic, salt-wet, enduring, grey-sea."
+    },
+    {
+     "id": "raid-shore",
+     "bpm": 140,
+     "keyscale": "E minor",
+     "seedA": 8531,
+     "seedB": 8532,
+     "prose": "Raid Shore: Keels grounding on foreign sand. Driving bowed-string ostinato under war-horn blasts, frame drums hammer double-time, a choir-like drone swells to a shout. Violent, sudden, exultant, surf-and-iron."
+    },
+    {
+     "id": "shield-wall",
+     "bpm": 150,
+     "keyscale": "D minor",
+     "seedA": 8541,
+     "seedB": 8542,
+     "prose": "Shield Wall: Two lines meeting and holding. Low strings grind a repeating figure, war horns stack fifths, frame drums and stamping percussion drive an unbroken pulse, high strings scream over the top. Immovable, brutal, roaring, shield-splinter."
+    },
+    {
+     "id": "jotun",
+     "bpm": 155,
+     "keyscale": "C minor",
+     "seedA": 8551,
+     "seedB": 8552,
+     "prose": "Jotun: A giant out of the frost. Enormous low brass and bowed strings move in slow heavy steps against a fast drum battery, choir-like drone booms underneath, high strings shriek. Titanic, grinding, ancient, mountain-shoulder."
+    },
+    {
+     "id": "hearth-rest",
+     "bpm": 70,
+     "keyscale": "F major",
+     "seedA": 8561,
+     "seedB": 8562,
+     "prose": "Hearth Rest: The fire and the long night after. Bowed folk strings sustain a warm open chord, a flute sings a simple lullaby line, frame drum taps a slow steady heartbeat. Warm, safe, tired, ember-glow."
+    },
+    {
+     "id": "runestone",
+     "bpm": 65,
+     "keyscale": "A minor",
+     "seedA": 8571,
+     "seedB": 8572,
+     "prose": "Runestone: Carved words nobody living can read. Low drone holds unbroken, bowed strings sustain a slow modal chord, a flute breathes a long questioning line, struck stone-like percussion rings out. Ancient, cryptic, patient, moss-and-granite."
+    },
+    {
+     "id": "burial-mound",
+     "bpm": 55,
+     "keyscale": "E minor",
+     "seedA": 8581,
+     "seedB": 8582,
+     "prose": "Burial Mound: A king under the earth. Choir-like low drone sustains throughout, bowed strings sing a slow grieving theme above it, a frame drum keeps a solemn processional heartbeat. Solemn, honoring, cold, turf-and-gold."
+    },
+    {
+     "id": "saga-told",
+     "bpm": 115,
+     "keyscale": "G major",
+     "seedA": 8591,
+     "seedB": 8592,
+     "prose": "Saga Told: The story that outlives the man. Full bowed strings carry a rising heroic melody, war horns answer, frame drums drive a proud march, flutes double the theme an octave up. Triumphant, legendary, generous, fire-lit."
+    },
+    {
+     "id": "fjord-dawn",
+     "bpm": 70,
+     "keyscale": "D major",
+     "seedA": 8601,
+     "seedB": 8602,
+     "prose": "Fjord Dawn: First light on black water between cliffs. Sustained strings hold a wide bright chord, a flute sings a slow open melody, low drone breathes beneath, a single bell marks each phrase. Vast, clean, hopeful, cold-gold."
+    }
+   ]
+  },
+  {
+   "id": "desert-caravan",
+   "name": "Desert Caravan",
+   "seedBase": 9000,
+   "palette": "Middle-Eastern-inflected — oud-like plucks, ney flutes, riq and darbuka hand percussion, bowed strings with expressive bends, hammered dulcimer, low drone. Tonal home D minor / A minor.",
+   "cues": [
+    {
+     "id": "bazaar",
+     "bpm": 100,
+     "keyscale": "D minor",
+     "seedA": 9011,
+     "seedB": 9012,
+     "prose": "Bazaar: A hundred deals shouted at once. Oud-like plucked strings run a lively figure over busy hand percussion, a reedy flute snakes the melody, hammered dulcimer sparkles between phrases. Bustling, spiced, haggling, sun-glare."
+    },
+    {
+     "id": "dune-crossing",
+     "bpm": 85,
+     "keyscale": "A minor",
+     "seedA": 9021,
+     "seedB": 9022,
+     "prose": "Dune Crossing: The long walk between wells. Low drone sustains beneath a swaying hand-drum gait, bowed strings bend a slow modal melody, oud-like plucks answer each phrase. Endless, swaying, sun-heavy, ochre."
+    },
+    {
+     "id": "sandstorm",
+     "bpm": 130,
+     "keyscale": "E minor",
+     "seedA": 9031,
+     "seedB": 9032,
+     "prose": "Sandstorm: The horizon standing up and walking. Bowed strings churn a fast tremolo, frame drums and shakers drive a hissing storm pulse, low brass swells roar underneath. Suffocating, roaring, blinding, grit-wind."
+    },
+    {
+     "id": "raider-strike",
+     "bpm": 145,
+     "keyscale": "D minor",
+     "seedA": 9041,
+     "seedB": 9042,
+     "prose": "Raider Strike: Horsemen out of the dust. Darbuka and riq hammer a galloping pattern, oud-like strings stab a sharp riff, bowed strings drive the ostinato, flute shrieks above. Fast, predatory, glittering, hoof-thunder."
+    },
+    {
+     "id": "serpent-king",
+     "bpm": 155,
+     "keyscale": "F minor",
+     "seedA": 9051,
+     "seedB": 9052,
+     "prose": "Serpent King: A coiled thing beneath the sand. Low strings grind a heavy chromatic figure, thunderous frame drums pound, brass clusters swell and recede like breathing, a reed flute wails over it. Immense, coiling, venomous, dune-deep."
+    },
+    {
+     "id": "oasis-night",
+     "bpm": 65,
+     "keyscale": "C major",
+     "seedA": 9061,
+     "seedB": 9062,
+     "prose": "Oasis Night: Water, palms, and safety for one night. Oud-like plucks carry a gentle rocking figure, sustained strings hold a warm chord beneath, a soft flute sings, hand drum taps a slow calm pulse. Restful, green, grateful, star-cool."
+    },
+    {
+     "id": "hidden-tomb",
+     "bpm": 70,
+     "keyscale": "B minor",
+     "seedA": 9071,
+     "seedB": 9072,
+     "prose": "Hidden Tomb: A door that should have stayed buried. Low drone sustains unbroken, hammered dulcimer drops slow ringing notes, bowed strings hold a tense chord, a frame drum keeps a wary heartbeat. Airless, forbidden, glittering, dust-and-gold."
+    },
+    {
+     "id": "lost-caravan",
+     "bpm": 55,
+     "keyscale": "G minor",
+     "seedA": 9081,
+     "seedB": 9082,
+     "prose": "Lost Caravan: Bones and cloth where a road used to be. Bowed strings sing a slow grieving modal line over a sustained low drone, oud-like plucks answer sparsely, a slow frame drum keeps a funeral pace. Mourning, dry, sun-bleached, ribs-in-sand."
+    },
+    {
+     "id": "sultan-court",
+     "bpm": 110,
+     "keyscale": "A major",
+     "seedA": 9091,
+     "seedB": 9092,
+     "prose": "Sultan's Court: Power dressed in silk. Full strings carry a stately ornamented theme, hand percussion drives a regal pulse, dulcimer and oud ornament every cadence, brass answers with fanfare weight. Opulent, ceremonial, proud, gold-leaf."
+    },
+    {
+     "id": "star-desert",
+     "bpm": 60,
+     "keyscale": "D major",
+     "seedA": 9101,
+     "seedB": 9102,
+     "prose": "Star Desert: Cold sand under an enormous sky. Sustained strings hold a wide open chord throughout, a ney-like flute breathes a long slow melody, dulcimer rings single notes that hang in the air. Immense, cold, awed, star-salt."
+    }
+   ]
+  },
+  {
+   "id": "deep-forest",
+   "name": "Deep Forest",
+   "seedBase": 9500,
+   "palette": "Celtic folk — fiddle, tin whistle, bodhran, harp, uilleann-pipe-like drones, hammered dulcimer. Tonal home D major / B minor.",
+   "cues": [
+    {
+     "id": "greenwood",
+     "bpm": 90,
+     "keyscale": "D major",
+     "seedA": 9511,
+     "seedB": 9512,
+     "prose": "Greenwood: Sunlight coming down through leaves. Fiddle sings a lilting reel-like melody over a pipe drone, harp arpeggios run underneath, bodhran keeps a light lifting pulse. Alive, dappled, kind, leaf-gold."
+    },
+    {
+     "id": "old-road",
+     "bpm": 100,
+     "keyscale": "B minor",
+     "seedA": 9521,
+     "seedB": 9522,
+     "prose": "Old Road: A track older than the kingdom. Tin whistle carries a wandering modal tune, bodhran walks a steady travelling beat, fiddle and harp answer in turn over a low pipe drone. Wandering, mossy, ancient, stone-and-fern."
+    },
+    {
+     "id": "wisp-lure",
+     "bpm": 75,
+     "keyscale": "F# minor",
+     "seedA": 9531,
+     "seedB": 9532,
+     "prose": "Wisp Lure: A light that wants you to follow it. Harp drops slow ringing notes over sustained strings, a tin whistle breathes a beckoning phrase, dulcimer shimmers, pipe drone holds unbroken beneath. Beguiling, cold, luring, bog-light."
+    },
+    {
+     "id": "thorn-ambush",
+     "bpm": 140,
+     "keyscale": "E minor",
+     "seedA": 9541,
+     "seedB": 9542,
+     "prose": "Thorn Ambush: The trees were watching the whole time. Fast fiddle ostinato drives hard, bodhran hammers double-time, low strings stab under a shrieking whistle line. Sudden, wild, thrashing, bramble-tear."
+    },
+    {
+     "id": "horned-king",
+     "bpm": 150,
+     "keyscale": "B minor",
+     "seedA": 9551,
+     "seedB": 9552,
+     "prose": "Horned King: The old power that predates the crown. Massive low drone under a driving fiddle ostinato, war-drum bodhran battery pounds, pipes wail the theme, strings surge in waves. Primal, antlered, enormous, root-deep."
+    },
+    {
+     "id": "hollow-camp",
+     "bpm": 70,
+     "keyscale": "G major",
+     "seedA": 9561,
+     "seedB": 9562,
+     "prose": "Hollow Camp: A fire in a ring of old stones. Harp carries a gentle rocking figure, sustained strings hold a warm chord, tin whistle sings a simple tune, bodhran taps a slow easy pulse. Safe, warm, companionable, ember-and-dew."
+    },
+    {
+     "id": "faerie-ring",
+     "bpm": 85,
+     "keyscale": "A major",
+     "seedA": 9571,
+     "seedB": 9572,
+     "prose": "Faerie Ring: A dance you should not join. Harp and dulcimer spin an interlocking figure, fiddle sings a sweet circling melody, bodhran keeps a hypnotic lilting pulse, drone hums beneath. Enchanting, circling, sweet, dangerous-bright."
+    },
+    {
+     "id": "withered-grove",
+     "bpm": 55,
+     "keyscale": "D minor",
+     "seedA": 9581,
+     "seedB": 9582,
+     "prose": "Withered Grove: Something killed this place slowly. Fiddle sings a slow grieving line over a sustained low drone, harp drops sparse ringing notes, bodhran keeps a heavy funeral heartbeat. Grieving, blighted, hushed, grey-bark."
+    },
+    {
+     "id": "beltane",
+     "bpm": 125,
+     "keyscale": "D major",
+     "seedA": 9591,
+     "seedB": 9592,
+     "prose": "Beltane: Fire, dancing, and the year turning. Fiddle and whistle drive a fast joyful reel, bodhran hammers a dance pulse, harp and dulcimer ornament wildly, drone surges beneath. Ecstatic, whirling, communal, bonfire-bright."
+    },
+    {
+     "id": "moss-silence",
+     "bpm": 60,
+     "keyscale": "E minor",
+     "seedA": 9601,
+     "seedB": 9602,
+     "prose": "Moss Silence: A clearing where sound goes to die. Sustained strings hold a soft unresolved chord throughout, harp drops slow single notes that ring fully, a low whistle breathes one long line. Hushed, green-dark, waiting, moss-deep."
+    }
+   ]
+  },
+  {
+   "id": "frozen-north",
+   "name": "Frozen North",
+   "seedBase": 10000,
+   "palette": "Glacial orchestral — high sustained strings, bowed metal and crotales, low brass swells, breathy flutes, sparse piano; ice-crack percussion. Tonal home C minor / Eb major.",
+   "cues": [
+    {
+     "id": "white-waste",
+     "bpm": 70,
+     "keyscale": "C minor",
+     "seedA": 10011,
+     "seedB": 10012,
+     "prose": "White Waste: Horizon in every direction, all of it the same. Sustained high strings hold a wide cold chord, low brass swells breathe underneath, piano drops slow ringing single notes. Vast, indifferent, beautiful, snow-glare."
+    },
+    {
+     "id": "ice-trek",
+     "bpm": 90,
+     "keyscale": "G minor",
+     "seedA": 10021,
+     "seedB": 10022,
+     "prose": "Ice Trek: Walking because stopping is death. Low strings keep a trudging ostinato, a breathy flute sings a weary melody, struck ice-like percussion marks each step, brass sustains beneath. Grinding, cold, determined, boot-crunch."
+    },
+    {
+     "id": "blizzard",
+     "bpm": 125,
+     "keyscale": "D minor",
+     "seedA": 10031,
+     "seedB": 10032,
+     "prose": "Blizzard: The world reduced to white noise and wind. Strings churn a fast tremolo storm, low brass roars in swells, percussion clatters like driven ice, high strings shriek across the top. Overwhelming, blinding, screaming, whiteout."
+    },
+    {
+     "id": "wolf-pack",
+     "bpm": 145,
+     "keyscale": "A minor",
+     "seedA": 10041,
+     "seedB": 10042,
+     "prose": "Wolf Pack: Something has been following for hours. Driving low-string ostinato, hard percussion drives a hunting pulse, brass stabs punctuate, high strings howl a rising line. Predatory, tightening, breathless, frost-fang."
+    },
+    {
+     "id": "frost-titan",
+     "bpm": 150,
+     "keyscale": "C minor",
+     "seedA": 10051,
+     "seedB": 10052,
+     "prose": "Frost Titan: A mountain that opened its eyes. Colossal low brass moves in slow heavy steps over a fast drum battery, strings surge in enormous waves, bowed metal screams above. Titanic, glacial, crushing, blue-ice."
+    },
+    {
+     "id": "shelter-fire",
+     "bpm": 65,
+     "keyscale": "Eb major",
+     "seedA": 10061,
+     "seedB": 10062,
+     "prose": "Shelter Fire: Four walls and enough fuel until morning. Sustained warm strings hold a soft chord, piano plays a simple gentle melody, low brass hums beneath, light percussion taps a slow calm pulse. Warm, relieved, small, firelight."
+    },
+    {
+     "id": "aurora",
+     "bpm": 60,
+     "keyscale": "Bb major",
+     "seedA": 10071,
+     "seedB": 10072,
+     "prose": "Aurora: Light behaving in ways it should not. Sustained strings hold a slowly shifting bright chord, bowed metal and crotales ring in long shimmering tones, a flute breathes one continuous rising line. Awed, shimmering, silent, green-fire."
+    },
+    {
+     "id": "frozen-dead",
+     "bpm": 55,
+     "keyscale": "F minor",
+     "seedA": 10081,
+     "seedB": 10082,
+     "prose": "Frozen Dead: They sat down and did not get up. Low strings sustain a heavy chord throughout, a solo cello-like line sings a slow grieving melody above it, a deep drum keeps a funeral heartbeat. Mourning, still, merciless, blue-lip."
+    },
+    {
+     "id": "thaw",
+     "bpm": 100,
+     "keyscale": "Eb major",
+     "seedA": 10091,
+     "seedB": 10092,
+     "prose": "Thaw: The first water moving in months. Full strings carry a warm rising theme, piano and celesta run bright figures like meltwater, brass swells generously, percussion drives a hopeful pulse. Relieved, opening, generous, drip-and-sun."
+    },
+    {
+     "id": "glass-plain",
+     "bpm": 60,
+     "keyscale": "G minor",
+     "seedA": 10101,
+     "seedB": 10102,
+     "prose": "Glass Plain: Ice so clear you can see how deep it goes. Sustained strings hold a wide unresolved chord, bowed metal rings long shimmering tones, piano drops slow notes that hang and decay fully. Fragile, transparent, eerie, blue-deep."
+    }
+   ]
+  },
+  {
+   "id": "gothic-castle",
+   "name": "Gothic Castle",
+   "seedBase": 10500,
+   "palette": "Gothic organ-and-orchestra — pipe organ, harpsichord, tremolo strings, choir-like pads, tubular bells, timpani. Tonal home D minor / Bb minor.",
+   "cues": [
+    {
+     "id": "black-gates",
+     "bpm": 80,
+     "keyscale": "D minor",
+     "seedA": 10511,
+     "seedB": 10512,
+     "prose": "Black Gates: An invitation nobody should accept. Pipe organ sustains a heavy minor chord, tremolo strings shiver beneath, tubular bells toll each phrase, timpani rolls swell. Foreboding, grand, rotten, iron-and-rain."
+    },
+    {
+     "id": "corridors",
+     "bpm": 90,
+     "keyscale": "Bb minor",
+     "seedA": 10521,
+     "seedB": 10522,
+     "prose": "Corridors: Hallways that do not agree on their own length. Harpsichord picks a restless repeating figure, sustained low strings hold beneath, organ breathes long chords, a bell rings irregularly. Labyrinthine, wrong, watchful, candle-shadow."
+    },
+    {
+     "id": "portrait-hall",
+     "bpm": 70,
+     "keyscale": "F minor",
+     "seedA": 10531,
+     "seedB": 10532,
+     "prose": "Portrait Hall: Every painted eye tracks the room. Sustained strings hold a tense chord unbroken, harpsichord drops slow deliberate notes, choir-like pad hums underneath, a single bell marks time. Uneasy, observed, aristocratic, varnish-dark."
+    },
+    {
+     "id": "hunt",
+     "bpm": 145,
+     "keyscale": "D minor",
+     "seedA": 10541,
+     "seedB": 10542,
+     "prose": "The Hunt: Something elegant is running you down. Driving string ostinato, organ pedal roars beneath, timpani hammers a chase pulse, harpsichord runs frantic figures, brass stabs. Frantic, elegant, merciless, torch-and-hound."
+    },
+    {
+     "id": "the-count",
+     "bpm": 155,
+     "keyscale": "Bb minor",
+     "seedA": 10551,
+     "seedB": 10552,
+     "prose": "The Count: Centuries of appetite in a tailored coat. Full organ and orchestra storm together, choir-like voices surge, timpani battery pounds, strings scream a descending theme, bells crash. Overwhelming, operatic, ancient, blood-velvet."
+    },
+    {
+     "id": "crypt-rest",
+     "bpm": 60,
+     "keyscale": "C minor",
+     "seedA": 10561,
+     "seedB": 10562,
+     "prose": "Crypt Rest: Cold stone, but nothing is hunting here. Organ sustains a soft low chord, strings hold a warm-dark pad, harp drops slow ringing notes, a deep drum keeps a slow calm heartbeat. Sheltered, cold, hushed, stone-and-wax."
+    },
+    {
+     "id": "moon-window",
+     "bpm": 65,
+     "keyscale": "Ab major",
+     "seedA": 10571,
+     "seedB": 10572,
+     "prose": "Moon Window: Beauty in a place that has none. Sustained strings hold a wide luminous chord, celesta rings slow bright notes, choir-like pad breathes beneath, organ sustains softly. Luminous, aching, brief, silver-glass."
+    },
+    {
+     "id": "bride-lament",
+     "bpm": 55,
+     "keyscale": "G minor",
+     "seedA": 10581,
+     "seedB": 10582,
+     "prose": "Bride's Lament: A woman singing to a hall that no longer answers. A solo cello-like line sings a grieving melody over sustained low strings, organ holds a soft chord beneath, tubular bell tolls a slow heartbeat. Grieving, beautiful, trapped, lace-and-dust."
+    },
+    {
+     "id": "dawn-breaks",
+     "bpm": 110,
+     "keyscale": "D major",
+     "seedA": 10591,
+     "seedB": 10592,
+     "prose": "Dawn Breaks: Light doing what a hundred blades could not. Full strings carry a rising triumphant theme, organ blazes in major, bells peal brightly, timpani drives a victorious pulse. Triumphant, cleansing, enormous, gold-through-glass."
+    },
+    {
+     "id": "rain-battlements",
+     "bpm": 70,
+     "keyscale": "E minor",
+     "seedA": 10601,
+     "seedB": 10602,
+     "prose": "Rain on the Battlements: The castle breathing between horrors. Sustained strings hold a soft grey chord, organ hums a low sustained note, harpsichord drops sparse ringing figures, a slow drum keeps a patient pulse. Melancholy, wet, waiting, slate-and-water."
+    }
+   ]
+  },
+  {
+   "id": "undersea",
+   "name": "Undersea",
+   "seedBase": 11000,
+   "palette": "Submerged orchestral — glassy sustained strings, harp and celesta, whale-like low brass, filtered pads, waterphone-like textures. Tonal home Bb major / G minor.",
+   "cues": [
+    {
+     "id": "coral-city",
+     "bpm": 80,
+     "keyscale": "Bb major",
+     "seedA": 11011,
+     "seedB": 11012,
+     "prose": "Coral City: A civilization grown rather than built. Harp and celesta run bright interlocking figures, sustained strings hold a warm shimmering chord, low brass hums a gentle swell beneath. Wondrous, luminous, alive, coral-gold."
+    },
+    {
+     "id": "drift-current",
+     "bpm": 70,
+     "keyscale": "G minor",
+     "seedA": 11021,
+     "seedB": 11022,
+     "prose": "Drift Current: Letting the water decide. Sustained strings hold a slowly shifting chord, harp drops slow ringing notes, a filtered pad breathes underneath, a soft drum pulses steadily like a tide. Weightless, patient, blue, slow-turn."
+    },
+    {
+     "id": "abyss-descent",
+     "bpm": 65,
+     "keyscale": "C minor",
+     "seedA": 11031,
+     "seedB": 11032,
+     "prose": "Abyss Descent: Down past where light bothers to go. Low brass sustains a long descending swell, strings hold a dark unbroken chord, struck metal rings out slowly, a deep drum keeps a pressure-heartbeat. Crushing, dark, immense, black-water."
+    },
+    {
+     "id": "leviathan-chase",
+     "bpm": 140,
+     "keyscale": "D minor",
+     "seedA": 11041,
+     "seedB": 11042,
+     "prose": "Leviathan Chase: Something enormous decided you are food. Driving low-string ostinato churns, brass roars in huge swells, percussion hammers a fleeing pulse, high strings shriek. Terrifying, vast, breathless, jaw-shadow."
+    },
+    {
+     "id": "deep-sovereign",
+     "bpm": 150,
+     "keyscale": "G minor",
+     "seedA": 11051,
+     "seedB": 11052,
+     "prose": "Deep Sovereign: The thing the abyss answers to. Colossal low brass moves in slow steps against a fast drum battery, strings surge in enormous waves, choir-like pad booms, metal screams above. Titanic, alien, sovereign, trench-deep."
+    },
+    {
+     "id": "air-pocket",
+     "bpm": 70,
+     "keyscale": "F major",
+     "seedA": 11061,
+     "seedB": 11062,
+     "prose": "Air Pocket: Breathing, unexpectedly. Sustained warm strings hold a soft bright chord, celesta plays a gentle simple melody, harp arpeggios run underneath, light percussion taps a calm pulse. Relieved, warm, small, lamp-and-echo."
+    },
+    {
+     "id": "sunken-ruin",
+     "bpm": 60,
+     "keyscale": "A minor",
+     "seedA": 11071,
+     "seedB": 11072,
+     "prose": "Sunken Ruin: Streets with fish in the windows. Sustained strings hold a wide melancholy chord, harp drops slow ringing notes, low brass hums a long sustained line, struck metal marks each phrase. Haunted, grand, drowned, silt-and-marble."
+    },
+    {
+     "id": "drowned-song",
+     "bpm": 55,
+     "keyscale": "E minor",
+     "seedA": 11081,
+     "seedB": 11082,
+     "prose": "Drowned Song: A voice the water kept. A solo cello-like line sings a slow grieving melody over sustained low strings, harp answers sparsely, a soft drum keeps a steady heartbeat beneath. Mourning, beautiful, submerged, salt-and-echo."
+    },
+    {
+     "id": "surface-break",
+     "bpm": 115,
+     "keyscale": "C major",
+     "seedA": 11091,
+     "seedB": 11092,
+     "prose": "Surface Break: Sky, at last. Full strings carry a soaring rising theme, brass blazes generously, harp and celesta sparkle, percussion drives a jubilant pulse. Exultant, bursting, bright, sun-and-spray."
+    },
+    {
+     "id": "plankton-lights",
+     "bpm": 60,
+     "keyscale": "Bb major",
+     "seedA": 11101,
+     "seedB": 11102,
+     "prose": "Plankton Lights: The dark deciding to glow. Sustained strings hold a slowly shifting luminous chord, celesta rings slow bright notes, a filtered pad breathes continuously, harp shimmers. Magical, drifting, gentle, blue-spark."
+    }
+   ]
+  },
+  {
+   "id": "volcanic-depths",
+   "name": "Volcanic Depths",
+   "seedBase": 11500,
+   "palette": "Molten percussion-forward — anvil and found-metal hits, low taiko, brass clusters, heavy low strings, ember-hiss textures. Tonal home E minor / C minor.",
+   "cues": [
+    {
+     "id": "ashfall",
+     "bpm": 75,
+     "keyscale": "E minor",
+     "seedA": 11511,
+     "seedB": 11512,
+     "prose": "Ashfall: Grey snow that burns. Sustained low strings hold a heavy chord, struck metal rings slowly, brass swells breathe underneath, a deep drum keeps a patient pulse. Oppressive, grey, smothering, ember-drift."
+    },
+    {
+     "id": "magma-road",
+     "bpm": 95,
+     "keyscale": "C minor",
+     "seedA": 11521,
+     "seedB": 11522,
+     "prose": "Magma Road: A path across something still alive. Low strings grind a trudging ostinato, anvil-like metal marks each step, brass sustains a hot low swell, percussion hisses like steam. Dangerous, trudging, radiant, crust-and-glow."
+    },
+    {
+     "id": "forge-heart",
+     "bpm": 110,
+     "keyscale": "A minor",
+     "seedA": 11531,
+     "seedB": 11532,
+     "prose": "Forge Heart: A workshop at the centre of the mountain. Hammered metal drives an interlocking rhythmic figure, low strings pump a working ostinato, brass answers in bright bursts, drums keep an industrious pulse. Industrious, hot, rhythmic, spark-shower."
+    },
+    {
+     "id": "eruption",
+     "bpm": 150,
+     "keyscale": "E minor",
+     "seedA": 11541,
+     "seedB": 11542,
+     "prose": "Eruption: The mountain finishing its argument. Full brass roars in enormous clusters, drum battery hammers relentlessly, low strings churn a fast ostinato, metal crashes across the top. Cataclysmic, roaring, unstoppable, fire-sky."
+    },
+    {
+     "id": "fire-drake",
+     "bpm": 160,
+     "keyscale": "C minor",
+     "seedA": 11551,
+     "seedB": 11552,
+     "prose": "Fire Drake: Something that considers lava comfortable. Colossal low brass and strings drive a heavy theme over a fast taiko battery, metal shrieks, high strings scream a descending line. Enormous, furious, scaled, furnace-breath."
+    },
+    {
+     "id": "obsidian-rest",
+     "bpm": 65,
+     "keyscale": "G minor",
+     "seedA": 11561,
+     "seedB": 11562,
+     "prose": "Obsidian Rest: Black glass and, briefly, no heat. Sustained strings hold a soft dark chord, struck metal rings slow and clear, low brass hums beneath, a deep drum keeps a calm slow heartbeat. Sheltered, cooling, hard, glass-black."
+    },
+    {
+     "id": "molten-cathedral",
+     "bpm": 70,
+     "keyscale": "B minor",
+     "seedA": 11571,
+     "seedB": 11572,
+     "prose": "Molten Cathedral: A cavern that light built itself. Sustained strings hold a wide awed chord, brass swells slowly and continuously, struck metal rings long shimmering tones, deep drum pulses beneath. Awed, immense, radiant, gold-and-shadow."
+    },
+    {
+     "id": "cinders",
+     "bpm": 55,
+     "keyscale": "D minor",
+     "seedA": 11581,
+     "seedB": 11582,
+     "prose": "Cinders: What is left when the fire is done. A solo cello-like line sings a slow grieving melody over sustained low strings, struck metal rings sparsely, a deep drum keeps a funeral heartbeat. Mourning, spent, warm-grey, ash-and-bone."
+    },
+    {
+     "id": "quenched",
+     "bpm": 115,
+     "keyscale": "E major",
+     "seedA": 11591,
+     "seedB": 11592,
+     "prose": "Quenched: Steel finished and the mountain quiet. Full strings carry a rising resolute theme, brass answers brightly, hammered metal drives a triumphant pulse, drums crown each cadence. Resolute, earned, bright, steam-and-steel."
+    },
+    {
+     "id": "heat-shimmer",
+     "bpm": 65,
+     "keyscale": "F minor",
+     "seedA": 11601,
+     "seedB": 11602,
+     "prose": "Heat Shimmer: Air bending over stone. Sustained strings hold a slowly wavering chord, brass breathes long continuous swells, metal rings slow ringing tones, a low drum pulses steadily. Hazy, wavering, hot, mirage-red."
+    }
+   ]
+  },
+  {
+   "id": "cozy-hamlet",
+   "name": "Cozy Hamlet",
+   "seedBase": 12000,
+   "palette": "Warm pastoral folk — acoustic guitar, accordion, recorder and whistle, brushed light percussion, celesta, small string section. Tonal home C major / G major.",
+   "cues": [
+    {
+     "id": "morning-chores",
+     "bpm": 85,
+     "keyscale": "C major",
+     "seedA": 12011,
+     "seedB": 12012,
+     "prose": "Morning Chores: The day starting gently and on purpose. Acoustic guitar picks a warm rolling figure, recorder sings a simple cheerful melody, accordion answers, light brushed percussion keeps an easy pulse. Cheerful, unhurried, homely, dew-and-sun."
+    },
+    {
+     "id": "market-day",
+     "bpm": 105,
+     "keyscale": "G major",
+     "seedA": 12021,
+     "seedB": 12022,
+     "prose": "Market Day: Everyone out and everything for sale. Accordion drives a lively dance-like tune, guitar strums a bouncing rhythm, whistle ornaments the melody, hand percussion keeps a bustling pulse. Bustling, friendly, colorful, awning-stripe."
+    },
+    {
+     "id": "river-walk",
+     "bpm": 75,
+     "keyscale": "F major",
+     "seedA": 12031,
+     "seedB": 12032,
+     "prose": "River Walk: Water, willows, and nowhere to be. Guitar picks a gentle rocking figure, sustained small strings hold a warm chord, recorder breathes a slow easy melody, celesta sparkles between phrases. Peaceful, green, drifting, water-light."
+    },
+    {
+     "id": "harvest-dance",
+     "bpm": 125,
+     "keyscale": "D major",
+     "seedA": 12041,
+     "seedB": 12042,
+     "prose": "Harvest Dance: Boards laid down and everyone on them. Fiddle-like strings drive a fast joyful reel, accordion pumps the rhythm, guitar strums hard, percussion hammers a stamping dance pulse. Joyful, stamping, communal, lantern-and-straw."
+    },
+    {
+     "id": "storm-night",
+     "bpm": 95,
+     "keyscale": "A minor",
+     "seedA": 12051,
+     "seedB": 12052,
+     "prose": "Storm Night: Rain on the shutters and everyone indoors. Low strings sustain a tense chord, guitar picks a restless minor figure, accordion breathes long swells, percussion rolls steadily like thunder outside. Uneasy, wet, huddled, shutter-rattle."
+    },
+    {
+     "id": "hearth-evening",
+     "bpm": 65,
+     "keyscale": "Bb major",
+     "seedA": 12061,
+     "seedB": 12062,
+     "prose": "Hearth Evening: The best part of the day, quietly. Sustained warm strings hold a soft chord, guitar picks a slow gentle figure, celesta plays a simple lullaby line, brushed percussion keeps a calm steady pulse. Warm, content, sleepy, ember-glow."
+    },
+    {
+     "id": "first-crop",
+     "bpm": 90,
+     "keyscale": "C major",
+     "seedA": 12071,
+     "seedB": 12072,
+     "prose": "First Crop: Something you planted actually grew. Guitar and accordion carry a warm rising melody together, small strings swell generously beneath, whistle doubles the tune, light percussion drives a proud pulse. Proud, tender, earned, green-shoot."
+    },
+    {
+     "id": "old-friend",
+     "bpm": 60,
+     "keyscale": "E minor",
+     "seedA": 12081,
+     "seedB": 12082,
+     "prose": "Old Friend: A chair nobody sits in now. A solo cello-like line sings a gentle grieving melody over sustained warm strings, guitar answers with slow ringing notes, a soft drum keeps a steady heartbeat. Tender, bittersweet, grateful, photograph-warm."
+    },
+    {
+     "id": "festival",
+     "bpm": 130,
+     "keyscale": "G major",
+     "seedA": 12091,
+     "seedB": 12092,
+     "prose": "Festival: The whole village in the square. Accordion and whistle drive a fast celebratory tune, guitar strums hard, small strings surge, percussion hammers a dancing pulse, bells ring out. Exuberant, communal, bright, bunting-and-bonfire."
+    },
+    {
+     "id": "fireflies",
+     "bpm": 60,
+     "keyscale": "A major",
+     "seedA": 12101,
+     "seedB": 12102,
+     "prose": "Fireflies: Small lights over the long grass. Sustained strings hold a soft luminous chord, celesta rings slow bright notes, guitar picks a gentle repeating figure, recorder breathes one long line. Magical, hushed, tender, green-spark."
+    }
+   ]
+  },
+  {
+   "id": "noir-mystery",
+   "name": "Noir Mystery",
+   "seedBase": 12500,
+   "palette": "Jazz-noir — muted trumpet, brushed kit, walking upright bass, vibraphone, breathy saxophone, film-noir strings. Tonal home C minor / F minor.",
+   "cues": [
+    {
+     "id": "rain-office",
+     "bpm": 75,
+     "keyscale": "C minor",
+     "seedA": 12511,
+     "seedB": 12512,
+     "prose": "Rain Office: Bourbon, a desk lamp, and no clients. Muted trumpet sings a slow bluesy line over walking upright bass, brushed kit keeps a lazy swing, vibraphone drops cool chords, strings sustain beneath. Weary, smoky, wet, neon-through-blinds."
+    },
+    {
+     "id": "the-client",
+     "bpm": 85,
+     "keyscale": "F minor",
+     "seedA": 12521,
+     "seedB": 12522,
+     "prose": "The Client: She is lying and it does not matter. Breathy saxophone carries a sultry melody, upright bass walks steadily, brushed kit swings, vibraphone answers, strings hold a warm-dark chord. Sultry, suspicious, elegant, perfume-and-smoke."
+    },
+    {
+     "id": "tailing",
+     "bpm": 100,
+     "keyscale": "Bb minor",
+     "seedA": 12531,
+     "seedB": 12532,
+     "prose": "Tailing: Two blocks back and keeping it that way. Upright bass walks an insistent line, brushed kit ticks a nervous pulse, muted trumpet drops short wary phrases, low strings sustain tension. Watchful, patient, tightening, streetlamp-shadow."
+    },
+    {
+     "id": "back-room",
+     "bpm": 130,
+     "keyscale": "D minor",
+     "seedA": 12541,
+     "seedB": 12542,
+     "prose": "Back Room: The conversation stopped being a conversation. Upright bass drives hard, drums switch to sticks and hammer a fast pattern, brass stabs sharply, strings churn a fast ostinato. Violent, fast, cornered, blood-and-felt."
+    },
+    {
+     "id": "the-fixer",
+     "bpm": 145,
+     "keyscale": "C minor",
+     "seedA": 12551,
+     "seedB": 12552,
+     "prose": "The Fixer: The man the dangerous people call. Full brass and strings drive a hard-swinging theme, drums batter a relentless pulse, bass runs a fast line, saxophone screams over the top. Menacing, slick, overwhelming, gun-oil."
+    },
+    {
+     "id": "late-bar",
+     "bpm": 70,
+     "keyscale": "Eb major",
+     "seedA": 12561,
+     "seedB": 12562,
+     "prose": "Late Bar: Last call and nobody in a hurry. Vibraphone plays a warm loose melody, upright bass walks gently, brushed kit keeps a soft swing, saxophone breathes a slow easy line, strings sustain warmly. Warm, loose, tired, whiskey-amber."
+    },
+    {
+     "id": "photograph",
+     "bpm": 65,
+     "keyscale": "G minor",
+     "seedA": 12571,
+     "seedB": 12572,
+     "prose": "Photograph: Proof of the thing you hoped was wrong. Sustained strings hold a tense unresolved chord, vibraphone drops slow ringing notes, muted trumpet holds one long aching tone, bass sustains beneath. Sinking, cold, certain, flashbulb-grey."
+    },
+    {
+     "id": "she-lied",
+     "bpm": 60,
+     "keyscale": "A minor",
+     "seedA": 12581,
+     "seedB": 12582,
+     "prose": "She Lied: The part that stings is that it worked. Saxophone sings a slow grieving melody over sustained low strings, upright bass holds long notes, brushed kit keeps a soft steady heartbeat, vibraphone answers. Bitter, aching, resigned, rain-and-regret."
+    },
+    {
+     "id": "case-closed",
+     "bpm": 110,
+     "keyscale": "C major",
+     "seedA": 12591,
+     "seedB": 12592,
+     "prose": "Case Closed: Justice, roughly, and late. Full brass carries a swaggering resolved theme, drums swing hard, bass walks confidently, strings surge, vibraphone crowns each cadence. Satisfied, swaggering, bittersweet, morning-after."
+    },
+    {
+     "id": "streetlight",
+     "bpm": 70,
+     "keyscale": "F minor",
+     "seedA": 12601,
+     "seedB": 12602,
+     "prose": "Streetlight: The city breathing at four in the morning. Sustained strings hold a soft grey chord, muted trumpet breathes one long slow line, upright bass sustains beneath, brushed kit keeps a patient pulse. Lonely, wet, patient, sodium-glow."
+    }
+   ]
+  }
+ ],
+ "tier1_revisions": [
+  {
+   "packId": "fantasy-jrpg-core",
+   "cueId": "defeat",
+   "promptVersion": 2,
+   "reason": "v1 takes both boost-capped (-24.63 / -33.77 LUFS): prose used absence language ('faint string swells', 'distant horn', 'empty') with no continuously-sounding anchor. v2 gives every element a presence verb and adds a timpani heartbeat. bpm/keyscale held identical to v1 — prose is the only lever.",
+   "bpm": 55,
+   "keyscale": "A minor",
+   "seedC": 2123,
+   "seedD": 2124,
+   "prose": "Defeat: A quiet game-over lament. A solo piano line falls in slow deliberate steps over sustained low strings that hold unbroken beneath, a French horn sings one long held note, timpani keeps a slow funeral heartbeat. Heavy, final, mournful, stone-weight.",
+   "supersedes": {
+    "seedA": 2121,
+    "seedB": 2122,
+    "proseV1": "Defeat: A quiet game-over lament. A slow solo piano line falls over faint string swells, a distant horn holds one long note. Heavy, final, mournful, empty."
+   }
+  },
+  {
+   "packId": "tactics-war",
+   "cueId": "aftermath",
+   "promptVersion": 2,
+   "reason": "v1 takes both boost-capped (-30.28 / -21.40 LUFS): prose used 'sparse snare taps like distant memory' and 'wind-like string harmonics' — both near-inaudible instructions. v2 makes the snare a steady muffled march and the strings a heavy sustained chord. bpm/keyscale held identical to v1.",
+   "bpm": 60,
+   "keyscale": "D minor",
+   "seedC": 3073,
+   "seedD": 3074,
+   "prose": "Battlefield Aftermath: A desolate post-battle piece. A lone horn sings a slow grieving line over low strings that sustain a heavy unbroken chord, a snare keeps a steady muffled march pulse, cellos answer each phrase. Costly, gray, mourning, smoke-and-iron.",
+   "supersedes": {
+    "seedA": 3071,
+    "seedB": 3072,
+    "proseV1": "Battlefield Aftermath: A desolate post-battle piece. A lone horn over slow low strings, sparse snare taps like distant memory, wind-like string harmonics. Costly, gray, mourning, smoke-drift."
+   }
+  }
+ ]
+}

@@ -28,11 +28,20 @@ import {
   RUNTIME_SAMPLE_RATE_HZ,
   sha256Hex,
   generationParamsForTake,
+  generationParamsForLibraryTake,
+  jobIdForTake,
+  loadLibraryCollectionPlan,
+  libraryPublicDir,
+  libraryPublicSrc,
+  LIBRARY_COLLECTION_PLAN_FILE,
   type FlacPcm,
 } from "../src/index.js";
 import {
+  ACE_STEP_WORKFLOW_ID,
   GROUNDED_WAVE2_TAKES,
   GROUNDED_WAVE3_TAKES,
+  libraryCatalogCue,
+  libraryTakes,
   styleTagsFor,
 } from "@motif-studio/score-map";
 
@@ -616,5 +625,74 @@ describe("grounded take params (prose/params association)", () => {
     // Same family lock either wave — only the prose version differs.
     expect(generationParamsForTake(s111).bpm).toBe(100);
     expect(generationParamsForTake(s311).keyscale).toBe("D minor");
+  });
+});
+
+describe("library take params (catalog / artifact association)", () => {
+  const FLAGSHIP = "fantasy-jrpg-core";
+  const takes = libraryTakes(FLAGSHIP);
+  const townA = takes.find((t) => t.seed === 2011)!;
+  const townB = takes.find((t) => t.seed === 2012)!;
+  const JOB_A = "6e2f7c63-b506-4c96-976e-4e7b6fc88679";
+  const plan = new Map([[`${FLAGSHIP}/${townA.folder}`, JOB_A]]);
+
+  it("echoes the catalog cue a take actually ran with", () => {
+    const cue = libraryCatalogCue(FLAGSHIP, "town")!;
+    const params = generationParamsForLibraryTake(townA, JOB_A);
+    expect(params.bpm).toBe(cue.bpm);
+    expect(params.keyscale).toBe(cue.keyscale);
+    expect(params.timesignature).toBe("4");
+    expect(params.lyricsTag).toBe("[inst]");
+    expect(params.seed).toBe(2011);
+    expect(params.jobId).toBe(JOB_A);
+    expect(params.workflowId).toBe(ACE_STEP_WORKFLOW_ID);
+    expect(params.requestedDurationSec).toBe(60);
+    expect(params.prompt).toBe(cue.prose);
+  });
+
+  it("gives both takes of a cue the same prose — only the seed differs", () => {
+    const a = generationParamsForLibraryTake(townA, JOB_A);
+    const b = generationParamsForLibraryTake(townB, JOB_A);
+    expect(b.prompt).toBe(a.prompt);
+    expect(b.seed).toBe(2012);
+  });
+
+  it("resolves the full job UUID from the collection plan", () => {
+    expect(jobIdForTake(townA, plan)).toBe(JOB_A);
+  });
+
+  it("halts on a missing plan entry rather than ingesting an unidentified take", () => {
+    expect(() => jobIdForTake(townB, plan)).toThrow(GenerationError);
+    expect(() => jobIdForTake(townB, plan)).toThrow(/town-s2012/);
+  });
+
+  it("halts on a truncated job id (receipts law: full UUIDs only)", () => {
+    const truncated = new Map([[`${FLAGSHIP}/${townA.folder}`, JOB_A.slice(0, 8)]]);
+    expect(() => jobIdForTake(townA, truncated)).toThrow(/not a full UUID/);
+  });
+
+  it("keys the loaded plan by <packId>/<folder>", () => {
+    const dir = mkdtempSync(join(tmpdir(), "motif-library-plan-"));
+    writeFileSync(
+      join(dir, LIBRARY_COLLECTION_PLAN_FILE),
+      JSON.stringify({
+        [FLAGSHIP]: {
+          batch_id: "batch_x",
+          items: [
+            { job_id: JOB_A, cueId: "town", seed: 2011, folder: "town-s2011", label: "town-s2011" },
+          ],
+        },
+      }),
+    );
+    const loaded = loadLibraryCollectionPlan(dir);
+    expect(loaded.get(`${FLAGSHIP}/town-s2011`)).toBe(JOB_A);
+    expect(loaded.size).toBe(1);
+  });
+
+  it("lands masters under a pack-scoped public dir", () => {
+    expect(libraryPublicDir(FLAGSHIP)).toBe("library-packs/fantasy-jrpg-core");
+    expect(libraryPublicSrc(FLAGSHIP, townA.folder, "town-s2011-mix.wav")).toBe(
+      "/audio/library-packs/fantasy-jrpg-core/town-s2011/masters/town-s2011-mix.wav",
+    );
   });
 });

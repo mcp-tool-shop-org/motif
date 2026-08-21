@@ -9,5 +9,6 @@ export * from "./grounded-profiles.js";
 export * from "./grounded-families.js";
 export * from "./generation-layers.js";
 export * from "./grounded-generation.js";
+export * from "./library-packs.js";
 export { foldGeneratedIntoPack } from "./fold-generated.js";
 export type { FoldableGenerated } from "./fold-generated.js";

@@ -41,6 +41,23 @@ export {
   groundedPublicDir,
   DEFAULT_GROUNDED_PUBLIC_ROOT,
 } from "./ingest-grounded.js";
+export {
+  ingestLibraryTake,
+  ingestLibraryPack,
+  generationParamsForLibraryTake,
+  loadLibraryCollectionPlan,
+  jobIdForTake,
+  libraryPublicDir,
+  libraryPublicSrc,
+  LIBRARY_TIER1_ARTIFACT_ROOT,
+  LIBRARY_COLLECTION_PLAN_FILE,
+  DEFAULT_LIBRARY_PUBLIC_ROOT,
+} from "./ingest-library.js";
+export type {
+  LibraryIngestOptions,
+  LibraryCollectionPlan,
+  LibraryCollectionPlanItem,
+} from "./ingest-library.js";
 export { registerGeneratedCue } from "./register.js";
 export {
   populateDemoPacks,
