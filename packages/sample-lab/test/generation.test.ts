@@ -3,7 +3,7 @@ import { copyFileSync, existsSync, mkdtempSync, readFileSync, writeFileSync } fr
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { GeneratedCueRecordSchema } from "@motif-studio/schema";
-import type { SoundtrackPack } from "@motif-studio/schema";
+import type { GeneratedCueRecord, SoundtrackPack } from "@motif-studio/schema";
 import {
   parseIntegratedLufs,
   parseFlacStreamInfo,
@@ -29,11 +29,20 @@ import {
   sha256Hex,
   generationParamsForTake,
   generationParamsForLibraryTake,
+  ingestLibraryPack,
   jobIdForTake,
   loadLibraryCollectionPlan,
+  loadLibraryPlans,
   libraryPublicDir,
   libraryPublicSrc,
+  libraryTakeArtifactDir,
+  libraryTakePlanKey,
+  selectPlaybackDefaults,
+  RESAMPLER_NAME,
+  RESAMPLER_QUALITY,
+  LIBRARY_ARTIFACT_ROOTS,
   LIBRARY_COLLECTION_PLAN_FILE,
+  LIBRARY_COLLECTION_PLAN_FILES,
   type FlacPcm,
 } from "../src/index.js";
 import {
@@ -43,6 +52,8 @@ import {
   libraryCatalogCue,
   libraryTakes,
   styleTagsFor,
+  type FoldableGenerated,
+  type LibraryTake,
 } from "@motif-studio/score-map";
 
 const FIXTURE_DIR =
@@ -694,5 +705,236 @@ describe("library take params (catalog / artifact association)", () => {
     expect(libraryPublicSrc(FLAGSHIP, townA.folder, "town-s2011-mix.wav")).toBe(
       "/audio/library-packs/fantasy-jrpg-core/town-s2011/masters/town-s2011-mix.wav",
     );
+  });
+});
+
+// ── Extra takes: the C/D re-rolls live in their own artifact trees ──
+
+const REVISION_TAKE: LibraryTake = {
+  packId: "fantasy-jrpg-core",
+  cueId: "defeat",
+  seed: 2123,
+  take: "C",
+  familyId: "cf-fantasy-jrpg-core-defeat",
+  sceneId: "sc-fantasy-jrpg-core-defeat",
+  folder: "defeat-s2123",
+  playbackDefault: false,
+  promptVersion: 2,
+  prose: "Defeat (v2): a timpani heartbeat holds under a falling piano line.",
+  artifact: { root: "tier2", dir: "tier1-revisions" },
+};
+
+const REGEN_TAKE: LibraryTake = {
+  packId: "cozy-hamlet",
+  cueId: "fireflies",
+  seed: 12103,
+  take: "C",
+  familyId: "cf-cozy-hamlet-fireflies",
+  sceneId: "sc-cozy-hamlet-fireflies",
+  folder: "fireflies-s12103",
+  playbackDefault: false,
+  promptVersion: 1,
+  prose: "Fireflies: unchanged prose — seed is the only lever.",
+  artifact: { root: "regen-cd", dir: "cozy-hamlet" },
+};
+
+describe("library artifact trees", () => {
+  const JOB = "5bd5d95f-7a5a-45ba-9133-b6f3a3235e0f";
+
+  it("keys a take's plan entry by its artifact dir, not by its owning pack", () => {
+    expect(libraryTakePlanKey(REVISION_TAKE)).toBe("tier1-revisions/defeat-s2123");
+    expect(libraryTakePlanKey(REGEN_TAKE)).toBe("cozy-hamlet/fireflies-s12103");
+  });
+
+  it("resolves revision masters under the tier-2 tree and regen masters under the regen tree", () => {
+    expect(libraryTakeArtifactDir(REVISION_TAKE, { tier2: "/roots/t2" })).toBe(
+      join("/roots/t2", "tier1-revisions", "defeat-s2123"),
+    );
+    expect(libraryTakeArtifactDir(REGEN_TAKE, { "regen-cd": "/roots/rc" })).toBe(
+      join("/roots/rc", "cozy-hamlet", "fireflies-s12103"),
+    );
+    expect(libraryTakeArtifactDir(REVISION_TAKE)).toBe(
+      join(LIBRARY_ARTIFACT_ROOTS.tier2, "tier1-revisions", "defeat-s2123"),
+    );
+  });
+
+  it("halts when a take names an artifact tree with no configured root", () => {
+    expect(() => libraryTakeArtifactDir(REGEN_TAKE, { tier1: "/roots/t1" })).toThrow(
+      GenerationError,
+    );
+    expect(() => libraryTakeArtifactDir(REGEN_TAKE, { tier1: "/roots/t1" })).toThrow(
+      /regen-cd/,
+    );
+  });
+
+  it("echoes the take's own prose, so a v2 revision never records the cue's v1 string", () => {
+    const params = generationParamsForLibraryTake(REVISION_TAKE, JOB);
+    const cue = libraryCatalogCue("fantasy-jrpg-core", "defeat")!;
+    expect(params.prompt).toBe(REVISION_TAKE.prose);
+    expect(params.prompt).not.toBe(cue.prose);
+    // bpm / keyscale were held identical across the re-roll — prose was the only lever
+    expect(params.bpm).toBe(cue.bpm);
+    expect(params.keyscale).toBe(cue.keyscale);
+    expect(params.seed).toBe(2123);
+  });
+
+  it("merges every tree's plan into one map and skips trees with no plan file", () => {
+    const t2 = mkdtempSync(join(tmpdir(), "motif-plan-t2-"));
+    const rc = mkdtempSync(join(tmpdir(), "motif-plan-rc-"));
+    const empty = mkdtempSync(join(tmpdir(), "motif-plan-none-"));
+    writeFileSync(
+      join(t2, LIBRARY_COLLECTION_PLAN_FILES.tier2),
+      JSON.stringify({
+        "tier1-revisions": { items: [{ job_id: JOB, folder: "defeat-s2123" }] },
+      }),
+    );
+    writeFileSync(
+      join(rc, LIBRARY_COLLECTION_PLAN_FILES["regen-cd"]),
+      JSON.stringify({
+        "cozy-hamlet": {
+          items: [
+            { job_id: "480e4f79-0d4e-4786-9205-34a7a37de4ed", folder: "fireflies-s12103" },
+          ],
+        },
+      }),
+    );
+    const plan = loadLibraryPlans({ tier1: empty, tier2: t2, "regen-cd": rc });
+    expect(plan.size).toBe(2);
+    expect(jobIdForTake(REVISION_TAKE, plan)).toBe(JOB);
+    expect(jobIdForTake(REGEN_TAKE, plan)).toBe("480e4f79-0d4e-4786-9205-34a7a37de4ed");
+  });
+
+  it("halts when two collection runs disagree on the same take", () => {
+    const a = mkdtempSync(join(tmpdir(), "motif-plan-a-"));
+    const b = mkdtempSync(join(tmpdir(), "motif-plan-b-"));
+    const entry = (jobId: string) => ({
+      "cozy-hamlet": { items: [{ job_id: jobId, folder: "fireflies-s12103" }] },
+    });
+    writeFileSync(
+      join(a, LIBRARY_COLLECTION_PLAN_FILES.tier2),
+      JSON.stringify(entry("480e4f79-0d4e-4786-9205-34a7a37de4ed")),
+    );
+    writeFileSync(
+      join(b, LIBRARY_COLLECTION_PLAN_FILES["regen-cd"]),
+      JSON.stringify(entry(JOB)),
+    );
+    expect(() => loadLibraryPlans({ tier2: a, "regen-cd": b })).toThrow(/disagree/);
+  });
+
+  it("skips a take whose masters are not collected yet instead of andoning", async () => {
+    const roots = { "regen-cd": mkdtempSync(join(tmpdir(), "motif-regen-empty-")) };
+    const publicAudioRoot = mkdtempSync(join(tmpdir(), "motif-public-"));
+    const skipped: string[] = [];
+    const items = await ingestLibraryPack("cozy-hamlet", {
+      publicAudioRoot,
+      roots,
+      plan: new Map(),
+      takes: [REGEN_TAKE],
+      onSkip: (take, dir) => skipped.push(`${take.folder} ${dir}`),
+    });
+    expect(items).toEqual([]);
+    expect(skipped).toHaveLength(1);
+    expect(skipped[0]).toContain(join(roots["regen-cd"], "cozy-hamlet", "fireflies-s12103"));
+    expect(existsSync(join(publicAudioRoot, "library-packs"))).toBe(false);
+  });
+});
+
+// ── Playback default: measured, not catalog-ordered ──
+
+const JOB_UUID = "6e2f7c63-b506-4c96-976e-4e7b6fc88679";
+
+describe("selectPlaybackDefaults", () => {
+  function take(familyId: string, seed: number, boostCapped: boolean): FoldableGenerated {
+    const record: GeneratedCueRecord = {
+      id: `${familyId}-s${seed}`,
+      name: `Take ${seed}`,
+      kind: "music",
+      generation: { seed, workflowId: ACE_STEP_WORKFLOW_ID, jobId: JOB_UUID },
+      targetLufs: MUSIC_BED_TARGET_LUFS,
+      gainDb: 12,
+      actualGainDb: boostCapped ? BOOST_CAP_DB : 12,
+      peakLimited: false,
+      ...(boostCapped ? { boostCapped: true } : {}),
+      resampler: { name: RESAMPLER_NAME, quality: RESAMPLER_QUALITY },
+      runtimeSampleRateHz: RUNTIME_SAMPLE_RATE_HZ,
+      createdAt: "2026-08-21T00:00:00.000Z",
+    };
+    return {
+      record,
+      assets: [],
+      stems: [],
+      familyId,
+      sceneId: `sc-${familyId}`,
+      playbackDefault: false,
+    };
+  }
+
+  const defaultSeed = (items: FoldableGenerated[], familyId: string): number | undefined =>
+    items.find((i) => i.playbackDefault && i.familyId === familyId)?.record.generation.seed;
+
+  it("beds the lowest seed when it cleared the boost cap", () => {
+    const picked = selectPlaybackDefaults([
+      take("cf-a", 1011, false),
+      take("cf-a", 1012, false),
+    ]);
+    expect(defaultSeed(picked, "cf-a")).toBe(1011);
+    expect(picked.filter((i) => i.playbackDefault)).toHaveLength(1);
+  });
+
+  it("skips capped takes so a C/D rescue actually reaches playback", () => {
+    // the shape that motivated the rule: A and B both floored, C is usable
+    const picked = selectPlaybackDefaults([
+      take("cf-a", 1011, true),
+      take("cf-a", 1012, true),
+      take("cf-a", 1013, false),
+      take("cf-a", 1014, false),
+    ]);
+    expect(defaultSeed(picked, "cf-a")).toBe(1013);
+  });
+
+  it("prefers the lowest UNCAPPED seed, not merely the first uncapped in input order", () => {
+    const picked = selectPlaybackDefaults([
+      take("cf-a", 1014, false),
+      take("cf-a", 1011, true),
+      take("cf-a", 1012, false),
+    ]);
+    expect(defaultSeed(picked, "cf-a")).toBe(1012);
+  });
+
+  it("falls back to the lowest seed when every take of a cue capped", () => {
+    const picked = selectPlaybackDefaults([
+      take("cf-a", 1012, true),
+      take("cf-a", 1011, true),
+    ]);
+    expect(defaultSeed(picked, "cf-a")).toBe(1011);
+    expect(picked.filter((i) => i.playbackDefault)).toHaveLength(1);
+  });
+
+  it("decides each cue family independently, one default each", () => {
+    const picked = selectPlaybackDefaults([
+      take("cf-a", 1011, true),
+      take("cf-a", 1012, false),
+      take("cf-b", 2011, false),
+      take("cf-b", 2012, false),
+      take("cf-c", 3011, true),
+      take("cf-c", 3012, true),
+    ]);
+    expect(defaultSeed(picked, "cf-a")).toBe(1012);
+    expect(defaultSeed(picked, "cf-b")).toBe(2011);
+    expect(defaultSeed(picked, "cf-c")).toBe(3011);
+    expect(picked.filter((i) => i.playbackDefault)).toHaveLength(3);
+  });
+
+  it("clears a stale default carried in from the catalog prior", () => {
+    const stale = { ...take("cf-a", 1011, true), playbackDefault: true };
+    const picked = selectPlaybackDefaults([stale, take("cf-a", 1012, false)]);
+    expect(picked.find((i) => i.record.generation.seed === 1011)!.playbackDefault).toBe(false);
+    expect(defaultSeed(picked, "cf-a")).toBe(1012);
+    // input is not mutated — the caller keeps its own array
+    expect(stale.playbackDefault).toBe(true);
+  });
+
+  it("returns nothing to bed when a pack ingested no takes at all", () => {
+    expect(selectPlaybackDefaults([])).toEqual([]);
   });
 });

@@ -8,9 +8,14 @@
    "house_grammar": "<Title>: <concept sentence>. <instrumentation with active verbs>. <4 mood words/images>.",
    "quiet_cue_rule": "A quiet cue MUST name at least one continuously-sounding anchor (sustained strings, a held drone, a slow but audible drum or pulse) and use presence verbs -- sings, holds, breathes, sustains, rings out. Absence language ('faint', 'distant', 'barely', 'empty', 'wind-like harmonics') with no anchor collapses the render past the +6 dB boost cap. Emptiness is carried by harmony and register, never by literal absence of sound.",
    "quiet_cue_rule_earned": "2026-08-21 Tier-1 wave: 12/210 takes boost-capped; the only two cues where BOTH A/B takes failed were fantasy-jrpg-core/defeat (-24.63/-33.77) and tactics-war/aftermath (-30.28/-21.40), both written in absence language. Every quiet cue that survived named a continuously-sounding anchor.",
-   "keyscale": "34-value COMBO only (17 enharmonic roots x major/minor). Modes belong in the prose, never in keyscale."
+   "keyscale": "34-value COMBO only (17 enharmonic roots x major/minor). Modes belong in the prose, never in keyscale.",
+   "quiet_cue_rule_measured": "Tested 2026-08-21 as a controlled single-lever re-roll: same bpm, same keyscale, v2 prose only, new C/D seeds. Result 2 of 4 takes cleared the +6 dB cap; deltas +9.07, +9.41, +18.38, -0.97 dB (mean +8.97). Both A-takes cleared, so both broken cues regained a usable playback default. CONCLUSION: the rule is a strong lever on the mean but NOT deterministic per take — seed still dominates individual outcomes, so the A/B curation lever stays necessary. n=4; treat as directional. One take (aftermath-s3073, -30.28 -> -11.90) overshot the -14 target, so v2 prose can over-densify a cue that was written for restraint.",
+   "quiet_cue_rule_STATUS": "FALSIFIED at scale 2026-08-21 — see quiet_cue_rule_falsification. Kept as a style guideline only; it is NOT a loudness control.",
+   "quiet_cue_rule_falsification": "Tested at n=410 takes by comparing Tier 1 (authored WITHOUT the rule) against Tier 2 (authored WITH it, validator-enforced). In the population the rule targets — cues at bpm<=70 — Tier 1 capped 9/48 (18.8%) and Tier 2 capped 19/84 (22.6%): difference +3.9pp against a pooled SE of 7.4pp, z=+0.52. NO DETECTABLE EFFECT. The headline rates (5.7% -> 10.0%) differ only because Tier 2 deliberately contains far more slow cues (84 vs 48 slow takes) — a composition effect, not a regression. The earlier n=4 controlled re-roll that appeared to show +8.97 dB was almost certainly regression to the mean: all four v1 takes were extreme outliers (-21 to -34 LUFS), so any re-roll would return closer to typical.",
+   "what_actually_predicts_collapse": "TEMPO, overwhelmingly. Pooled across both tiers: bpm<=70 caps 28/132 (21.2%); bpm>70 caps 4/278 (1.4%). z=+7.0 — a ~15x difference and the only robust predictor found. Above 85 bpm collapse is essentially absent (1/94). PLAN FOR IT rather than trying to write around it: a slow cue collapses roughly 1 take in 5 no matter how its prose is worded, so slow cues need more takes (C/D as standard, not exception), not better adjectives. Four Tier-2 cues lost BOTH takes: desert-caravan/hidden-tomb, deep-forest/withered-grove, frozen-north/glass-plain, cozy-hamlet/fireflies — all bpm<=70, all written in full compliance with the rule."
   },
-  "tier2_authored": "2026-08-21 — 10 packs / 100 cues / 200 takes"
+  "tier2_authored": "2026-08-21 — 10 packs / 100 cues / 200 takes",
+  "tier3_authored": "2026-08-21 — 4 music packs / 28 cues / 56 takes"
  },
  "tier1": [
   {
@@ -952,7 +957,7 @@
   "ambient-drones",
   "tension-suite",
   "menus-and-titles",
-  "fanfares-and-jingles-sfx"
+  "fanfares-and-jingles (SA3 SFX)"
  ],
  "tier2": [
   {
@@ -1868,6 +1873,343 @@
     "seedB": 3072,
     "proseV1": "Battlefield Aftermath: A desolate post-battle piece. A lone horn over slow low strings, sparse snare taps like distant memory, wind-like string harmonics. Costly, gray, mourning, smoke-drift."
    }
+  }
+ ],
+ "tier3": [
+  {
+   "id": "emotional-themes",
+   "name": "Emotional Themes",
+   "seedBase": 13000,
+   "palette": "Intimate chamber orchestra — solo piano, solo cello, small string section, harp and soft woodwinds, with a low sustained pad under everything. Character-moment music. Tonal home D minor / F major.",
+   "cues": [
+    {
+     "id": "sorrow",
+     "bpm": 58,
+     "keyscale": "D minor",
+     "seedA": 13011,
+     "seedB": 13012,
+     "prose": "Sorrow: Grief that has stopped fighting. Solo cello sings a slow descending line over sustained low strings that hold unbroken, piano answers with slow full chords, a soft drum keeps a steady heartbeat. Grieving, warm, heavy, held."
+    },
+    {
+     "id": "hope",
+     "bpm": 80,
+     "keyscale": "F major",
+     "seedA": 13021,
+     "seedB": 13022,
+     "prose": "Hope: The first honest reason to keep going. Piano carries a rising simple theme, strings swell warmly beneath and sustain, a solo flute answers each phrase, harp arpeggios lift underneath. Tender, opening, brave, first-light."
+    },
+    {
+     "id": "love",
+     "bpm": 70,
+     "keyscale": "Bb major",
+     "seedA": 13031,
+     "seedB": 13032,
+     "prose": "Love: Two people who finally stopped pretending. Solo cello and violin trade a warm melody over sustained strings, piano holds gentle full chords, harp rolls beneath each phrase. Intimate, aching, generous, held-breath."
+    },
+    {
+     "id": "loss",
+     "bpm": 55,
+     "keyscale": "G minor",
+     "seedA": 13041,
+     "seedB": 13042,
+     "prose": "Loss: The chair, the coat, the habit of turning to speak. Solo piano plays slow deliberate chords over low strings sustaining an unbroken bed, a cello sings one long grieving line, timpani keeps a slow funeral pulse. Hollow, weighted, tender, grey-morning."
+    },
+    {
+     "id": "nostalgia",
+     "bpm": 72,
+     "keyscale": "Eb major",
+     "seedA": 13051,
+     "seedB": 13052,
+     "prose": "Nostalgia: A memory warmer than the thing it remembers. Celesta plays a simple music-box melody, warm strings sustain beneath, piano answers softly, harp rings slow full notes. Wistful, golden, gentle, half-remembered."
+    },
+    {
+     "id": "resolve",
+     "bpm": 95,
+     "keyscale": "A minor",
+     "seedA": 13061,
+     "seedB": 13062,
+     "prose": "Resolve: Deciding, and not looking back. Low strings drive a steady rising ostinato, piano hammers firm repeated chords, horns sustain a long determined note, timpani keeps a marching pulse. Firm, gathering, unafraid, iron-set."
+    },
+    {
+     "id": "farewell",
+     "bpm": 62,
+     "keyscale": "C minor",
+     "seedA": 13071,
+     "seedB": 13072,
+     "prose": "Farewell: Saying it properly, once. Solo cello sings a long slow melody over sustained strings that hold throughout, piano answers with warm full chords, a soft drum keeps a steady heartbeat. Bittersweet, dignified, warm, last-look."
+    },
+    {
+     "id": "reunion",
+     "bpm": 105,
+     "keyscale": "D major",
+     "seedA": 13081,
+     "seedB": 13082,
+     "prose": "Reunion: The thing you stopped expecting. Full strings carry a soaring warm theme, piano runs bright figures beneath, horns answer generously, harp and celesta sparkle, percussion drives a glad pulse. Overjoyed, tearful, bright, arms-open."
+    }
+   ]
+  },
+  {
+   "id": "ambient-drones",
+   "name": "Ambient Drones",
+   "seedBase": 13500,
+   "palette": "Sustained textural beds — evolving synth and bowed-string drones, filtered noise layers, slow bell and metal resonances, minimal rhythmic content but never absent sound. Long-loop background beds. Tonal home C minor / A minor.",
+   "cues": [
+    {
+     "id": "forest-bed",
+     "bpm": 66,
+     "keyscale": "A minor",
+     "seedA": 13511,
+     "seedB": 13512,
+     "prose": "Forest Bed: A living green room. A warm sustained string drone holds unbroken, soft wooden flute breathes long continuous phrases above it, harp drops slow ringing notes, a low pulse keeps steady time. Alive, green, patient, leaf-shade."
+    },
+    {
+     "id": "cave-bed",
+     "bpm": 62,
+     "keyscale": "C minor",
+     "seedA": 13521,
+     "seedB": 13522,
+     "prose": "Cave Bed: Stone with a heartbeat. A low sustained drone holds continuously, bowed metal rings long shimmering tones, deep drum pulses slowly and steadily, strings sustain a dark chord above. Enclosed, resonant, patient, wet-stone."
+    },
+    {
+     "id": "ocean-bed",
+     "bpm": 64,
+     "keyscale": "Bb major",
+     "seedA": 13531,
+     "seedB": 13532,
+     "prose": "Ocean Bed: Motion that never stops. Sustained strings hold a wide rolling chord, a filtered pad breathes in long continuous swells, harp runs slow figures, a soft drum keeps a tidal pulse. Vast, rolling, calm, salt-blue."
+    },
+    {
+     "id": "desert-bed",
+     "bpm": 68,
+     "keyscale": "D minor",
+     "seedA": 13541,
+     "seedB": 13542,
+     "prose": "Desert Bed: Heat with a pulse in it. A low drone sustains unbroken, bowed strings hold a slow bending chord, a reed flute breathes one long continuous line, hand drum keeps a steady walking pulse. Wide, hot, enduring, ochre-air."
+    },
+    {
+     "id": "snow-bed",
+     "bpm": 60,
+     "keyscale": "Eb major",
+     "seedA": 13551,
+     "seedB": 13552,
+     "prose": "Snow Bed: Cold that hums. High sustained strings hold a wide bright chord, bowed metal rings long shimmering tones continuously, low brass breathes slow swells, a soft drum keeps a slow pulse. Clean, cold, luminous, blue-white."
+    },
+    {
+     "id": "ruins-bed",
+     "bpm": 63,
+     "keyscale": "E minor",
+     "seedA": 13561,
+     "seedB": 13562,
+     "prose": "Ruins Bed: A place still holding its shape. Sustained strings hold a wide melancholy chord, a low drone hums beneath without break, struck stone-like percussion rings slowly, harp drops full ringing notes. Ancient, patient, hollow, moss-and-marble."
+    },
+    {
+     "id": "machine-bed",
+     "bpm": 70,
+     "keyscale": "G minor",
+     "seedA": 13571,
+     "seedB": 13572,
+     "prose": "Machine Bed: Something that never powers down. A low synth drone holds a constant foundation, filtered noise breathes in slow steady cycles, struck metal keeps a regular mechanical pulse, strings sustain a cold chord. Industrial, humming, tireless, oil-and-ozone."
+    },
+    {
+     "id": "void-bed",
+     "bpm": 58,
+     "keyscale": "C minor",
+     "seedA": 13581,
+     "seedB": 13582,
+     "prose": "Void Bed: Nothing, but loud enough to hear. A deep sustained drone holds unbroken, high strings sustain a thin bright chord far above, bowed metal rings long tones, a slow deep pulse marks time. Immense, weightless, dread-calm, star-black."
+    },
+    {
+     "id": "swamp-bed",
+     "bpm": 65,
+     "keyscale": "F minor",
+     "seedA": 13591,
+     "seedB": 13592,
+     "prose": "Swamp Bed: Wet air that keeps moving. A low drone sustains continuously, bowed strings hold a murky chord, a bass flute breathes long slow lines, soft hand percussion keeps a slow bubbling pulse. Humid, thick, uneasy, green-black."
+    },
+    {
+     "id": "temple-bed",
+     "bpm": 61,
+     "keyscale": "A major",
+     "seedA": 13601,
+     "seedB": 13602,
+     "prose": "Temple Bed: Stone that was built to resonate. Sustained strings hold a wide open chord, a choir-like pad breathes continuously beneath, a temple bell rings slow full tones, low drum keeps a ceremonial pulse. Sacred, resonant, still, incense-gold."
+    }
+   ]
+  },
+  {
+   "id": "tension-suite",
+   "name": "Tension Suite",
+   "seedBase": 14000,
+   "palette": "Escalation kit — five conditioned tiers of the same dread, from watchful to breached. Tremolo strings, low pulses, ticking percussion, brass swells, rising cluster chords. Tonal home E minor / C minor.",
+   "cues": [
+    {
+     "id": "watch",
+     "bpm": 70,
+     "keyscale": "E minor",
+     "seedA": 14011,
+     "seedB": 14012,
+     "prose": "Tension I — Watch: Something is wrong but nothing has happened. Low strings sustain an unresolved chord, a soft drum keeps a slow steady pulse, muted brass breathes long swells, high strings hold a thin line above. Wary, patient, unresolved, held-still."
+    },
+    {
+     "id": "unease",
+     "bpm": 90,
+     "keyscale": "E minor",
+     "seedA": 14021,
+     "seedB": 14022,
+     "prose": "Tension II — Unease: The feeling has a direction now. Tremolo strings shiver continuously, low pulse quickens beneath, ticking percussion enters steadily, muted brass presses in with slow swells. Tightening, watchful, closer, cold-sweat."
+    },
+    {
+     "id": "closing-in",
+     "bpm": 110,
+     "keyscale": "C minor",
+     "seedA": 14031,
+     "seedB": 14032,
+     "prose": "Tension III — Closing In: It knows where you are. Strings churn a driving tremolo, low drum hammers a hard pulse, ticking percussion doubles, brass stabs punctuate, cluster chords rise. Urgent, pressing, inevitable, breath-short."
+    },
+    {
+     "id": "alarm",
+     "bpm": 130,
+     "keyscale": "C minor",
+     "seedA": 14041,
+     "seedB": 14042,
+     "prose": "Tension IV — Alarm: No more pretending. Full strings drive a fast ostinato, brass blares rising cluster figures, percussion hammers a relentless pulse, low drone roars beneath. Blaring, frantic, exposed, red-light."
+    },
+    {
+     "id": "breach",
+     "bpm": 150,
+     "keyscale": "E minor",
+     "seedA": 14051,
+     "seedB": 14052,
+     "prose": "Tension V — Breach: It is through. Full orchestra storms together, drum battery pounds without let-up, brass screams cluster chords, strings saw a furious ostinato, low drone thunders. Overwhelming, chaotic, final, door-splinter."
+    }
+   ]
+  },
+  {
+   "id": "menus-and-titles",
+   "name": "Menus and Titles",
+   "seedBase": 14500,
+   "palette": "Front-of-house orchestral — clean strings, piano, soft brass, celesta and light percussion; polished, brand-forward, loops cleanly under UI. Tonal home C major / A minor.",
+   "cues": [
+    {
+     "id": "title",
+     "bpm": 92,
+     "keyscale": "C major",
+     "seedA": 14511,
+     "seedB": 14512,
+     "prose": "Title Screen: The promise of the whole game in forty seconds. Full strings carry a broad noble theme, horns answer with weight, piano runs bright figures beneath, timpani drives a stately pulse, celesta crowns the cadence. Grand, inviting, confident, curtain-up."
+    },
+    {
+     "id": "main-menu",
+     "bpm": 74,
+     "keyscale": "G major",
+     "seedA": 14521,
+     "seedB": 14522,
+     "prose": "Main Menu: Somewhere comfortable to make decisions. Piano plays a gentle rolling figure, warm strings sustain beneath continuously, a soft flute sings a simple melody, light percussion keeps an easy pulse. Calm, welcoming, unhurried, lamp-warm."
+    },
+    {
+     "id": "save-room",
+     "bpm": 64,
+     "keyscale": "F major",
+     "seedA": 14531,
+     "seedB": 14532,
+     "prose": "Save Room: Safety, and a moment to breathe. Celesta plays a simple reassuring motif, sustained warm strings hold a soft chord throughout, harp rolls slowly beneath, a low pulse keeps steady time. Safe, gentle, restorative, blue-glow."
+    },
+    {
+     "id": "credits",
+     "bpm": 86,
+     "keyscale": "Bb major",
+     "seedA": 14541,
+     "seedB": 14542,
+     "prose": "Credits: The long warm exhale after the ending. Piano and strings carry a reflective melody together, horns answer softly, harp and celesta ornament each phrase, light percussion keeps a gentle pulse. Reflective, grateful, warm, slow-scroll."
+    },
+    {
+     "id": "results",
+     "bpm": 118,
+     "keyscale": "D major",
+     "seedA": 14551,
+     "seedB": 14552,
+     "prose": "Results Screen: Numbers going up, pleasantly. Bright strings drive a bouncing cheerful theme, glockenspiel and celesta sparkle on the beat, horns punch short bright answers, percussion keeps a brisk satisfying pulse. Upbeat, rewarding, crisp, tally-bright."
+    }
+   ]
+  }
+ ],
+ "regen_cd": [
+  {
+   "packId": "cozy-hamlet",
+   "cueId": "fireflies",
+   "tier": "tier2",
+   "bpm": 60,
+   "keyscale": "A major",
+   "seedC": 12103,
+   "seedD": 12104,
+   "prose": "Fireflies: Small lights over the long grass. Sustained strings hold a soft luminous chord, celesta rings slow bright notes, guitar picks a gentle repeating figure, recorder breathes one long line. Magical, hushed, tender, green-spark.",
+   "lever": "SEED ONLY — prose, bpm and keyscale identical to the failed A/B pair. Tests whether seed variance alone rescues a cue whose both takes floored. The prose-wording rule was falsified at n=410, so wording is deliberately NOT changed."
+  },
+  {
+   "packId": "deep-forest",
+   "cueId": "withered-grove",
+   "tier": "tier2",
+   "bpm": 55,
+   "keyscale": "D minor",
+   "seedC": 9583,
+   "seedD": 9584,
+   "prose": "Withered Grove: Something killed this place slowly. Fiddle sings a slow grieving line over a sustained low drone, harp drops sparse ringing notes, bodhran keeps a heavy funeral heartbeat. Grieving, blighted, hushed, grey-bark.",
+   "lever": "SEED ONLY — prose, bpm and keyscale identical to the failed A/B pair. Tests whether seed variance alone rescues a cue whose both takes floored. The prose-wording rule was falsified at n=410, so wording is deliberately NOT changed."
+  },
+  {
+   "packId": "desert-caravan",
+   "cueId": "hidden-tomb",
+   "tier": "tier2",
+   "bpm": 70,
+   "keyscale": "B minor",
+   "seedC": 9073,
+   "seedD": 9074,
+   "prose": "Hidden Tomb: A door that should have stayed buried. Low drone sustains unbroken, hammered dulcimer drops slow ringing notes, bowed strings hold a tense chord, a frame drum keeps a wary heartbeat. Airless, forbidden, glittering, dust-and-gold.",
+   "lever": "SEED ONLY — prose, bpm and keyscale identical to the failed A/B pair. Tests whether seed variance alone rescues a cue whose both takes floored. The prose-wording rule was falsified at n=410, so wording is deliberately NOT changed."
+  },
+  {
+   "packId": "frozen-north",
+   "cueId": "glass-plain",
+   "tier": "tier2",
+   "bpm": 60,
+   "keyscale": "G minor",
+   "seedC": 10103,
+   "seedD": 10104,
+   "prose": "Glass Plain: Ice so clear you can see how deep it goes. Sustained strings hold a wide unresolved chord, bowed metal rings long shimmering tones, piano drops slow notes that hang and decay fully. Fragile, transparent, eerie, blue-deep.",
+   "lever": "SEED ONLY — prose, bpm and keyscale identical to the failed A/B pair. Tests whether seed variance alone rescues a cue whose both takes floored. The prose-wording rule was falsified at n=410, so wording is deliberately NOT changed."
+  },
+  {
+   "packId": "ambient-drones",
+   "cueId": "cave-bed",
+   "tier": "tier3",
+   "bpm": 62,
+   "keyscale": "C minor",
+   "seedC": 13523,
+   "seedD": 13524,
+   "prose": "Cave Bed: Stone with a heartbeat. A low sustained drone holds continuously, bowed metal rings long shimmering tones, deep drum pulses slowly and steadily, strings sustain a dark chord above. Enclosed, resonant, patient, wet-stone.",
+   "lever": "SEED ONLY — prose, bpm and keyscale identical to the failed A/B pair. Tests whether seed variance alone rescues a cue whose both takes floored. The prose-wording rule was falsified at n=410, so wording is deliberately NOT changed."
+  },
+  {
+   "packId": "ambient-drones",
+   "cueId": "snow-bed",
+   "tier": "tier3",
+   "bpm": 60,
+   "keyscale": "Eb major",
+   "seedC": 13553,
+   "seedD": 13554,
+   "prose": "Snow Bed: Cold that hums. High sustained strings hold a wide bright chord, bowed metal rings long shimmering tones continuously, low brass breathes slow swells, a soft drum keeps a slow pulse. Clean, cold, luminous, blue-white.",
+   "lever": "SEED ONLY — prose, bpm and keyscale identical to the failed A/B pair. Tests whether seed variance alone rescues a cue whose both takes floored. The prose-wording rule was falsified at n=410, so wording is deliberately NOT changed."
+  },
+  {
+   "packId": "ambient-drones",
+   "cueId": "temple-bed",
+   "tier": "tier3",
+   "bpm": 61,
+   "keyscale": "A major",
+   "seedC": 13603,
+   "seedD": 13604,
+   "prose": "Temple Bed: Stone that was built to resonate. Sustained strings hold a wide open chord, a choir-like pad breathes continuously beneath, a temple bell rings slow full tones, low drum keeps a ceremonial pulse. Sacred, resonant, still, incense-gold.",
+   "lever": "SEED ONLY — prose, bpm and keyscale identical to the failed A/B pair. Tests whether seed variance alone rescues a cue whose both takes floored. The prose-wording rule was falsified at n=410, so wording is deliberately NOT changed."
   }
  ]
 }

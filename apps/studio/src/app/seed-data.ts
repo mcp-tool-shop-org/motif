@@ -1070,7 +1070,8 @@ export interface ExamplePackEntry {
 }
 
 /**
- * A library pack only ships once its takes are on disk. Packs still waiting on
+ * Every catalog pack across every tier, in catalog order — but a library pack
+ * only ships once its takes are on disk. Packs still waiting on
  * `pnpm --filter @motif-studio/sample-lab ingest:library --pack <id>` are
  * skipped rather than listed as silent placeholder entries.
  */

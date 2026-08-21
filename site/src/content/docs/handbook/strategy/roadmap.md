@@ -64,9 +64,14 @@ transitioning, and audible in the Studio:
 
 - **No take switching in the Studio UI** — A/B takes both live in the pack and the runtime
   honours `playbackDefault`, but changing the default currently means re-running ingest
-- **Ingested masters are heavy** — 24-bit WAV at roughly 86 MB per take; a full generated
-  library is tens of gigabytes of rebuildable cache (see the disk-cost note in
-  [Generated Cues](/motif/handbook/workflows/generated-cues/))
+- **Ingest does not scale, and this is the biggest one** — measured at ~1.2 takes/min
+  (~43 s per take), so a 24-pack library is a **~6.7 hour build** writing **~42 GB** of
+  24-bit WAV. Three separate causes, each worth roughly an order of magnitude: there is
+  **no content-hash skip**, so an unfiltered re-run rebuilds unchanged takes byte-for-byte;
+  every take is **transcoded** to WAV when browsers decode FLAC natively; and the loop is
+  **fully serial with synchronous writes**. Fixing any one makes library-scale practical.
+  Until then, always pass `--pack` or `--tier` — see
+  [Generated Cues](/motif/handbook/workflows/generated-cues/)
 - **No loop/seam construction yet** — generated beds play as fixed-length loops without
   crafted seam points
 - **No collaborative editing** — single-user, single-file authoring only
@@ -76,6 +81,8 @@ transitioning, and audible in the Studio:
 
 - **Library breadth** — ingest and audition the remaining catalog tiers; per-cue re-rolls
   where a take underperforms (extra seeds are cheap; quiet slow cues especially benefit)
+- **Faster ingest** — content-hash skip first (turns a re-run from hours into seconds),
+  then serve FLAC instead of transcoding, then parallelise per-take work
 - **Take curation UI** — switch A/B/C takes per cue from the Studio instead of re-ingesting
 - **Intensity-variant takes** — calm/intense conditioned generations per cue family,
   complementing stem-mute intensity tiers

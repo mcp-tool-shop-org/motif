@@ -4,15 +4,29 @@ import {
   libraryCatalogCue,
   libraryPackId,
   librarySceneId,
+  libraryTakes,
 } from "@motif-studio/score-map";
 import { examplePacks } from "../src/app/seed-data";
 import libraryFolded from "../src/app/library-folded.json";
 
-type LibraryFolded = { packs?: Record<string, { items?: unknown[] }> };
+interface FoldedItem {
+  record: { id: string; generation: { seed: number }; boostCapped?: boolean };
+  playbackDefault: boolean;
+}
+type LibraryFolded = { packs?: Record<string, { items?: FoldedItem[] }> };
 
 const FLAGSHIP = "fantasy-jrpg-core";
 const catalogPack = LIBRARY_PACKS.find((p) => p.id === FLAGSHIP)!;
 const flagship = examplePacks.find((p) => p.id === libraryPackId(FLAGSHIP))!.pack;
+
+/**
+ * The flagship's folded takes, read from the manifest rather than hard-coded.
+ * A cue carries its A/B pair and, once its C/D re-roll is ingested, up to four
+ * records — so a fixed count here would fail on the re-roll landing rather than
+ * on a real regression.
+ */
+const foldedItems: FoldedItem[] =
+  (libraryFolded as LibraryFolded).packs?.[FLAGSHIP]?.items ?? [];
 
 function scene(cueId: string) {
   const s = flagship.scenes.find((sc) => sc.id === librarySceneId(FLAGSHIP, cueId));
@@ -53,46 +67,71 @@ describe("library pack registry", () => {
   });
 });
 
-describe("fantasy-jrpg-core fold (flagship, 15 cues × A/B)", () => {
-  it("folds all 30 takes as generated cue records", () => {
-    expect(flagship.generatedCues).toHaveLength(30);
+describe("fantasy-jrpg-core fold (flagship, 15 cues)", () => {
+  it("folds every ingested take as a generated cue record", () => {
+    expect(foldedItems.length).toBeGreaterThanOrEqual(catalogPack.cues.length * 2);
+    expect(flagship.generatedCues).toHaveLength(foldedItems.length);
+    // every folded record id is a take the catalog derives — no orphans
+    const derived = new Set(libraryTakes(FLAGSHIP).map((t) => t.folder));
+    for (const item of foldedItems) expect(derived.has(item.record.id)).toBe(true);
   });
 
-  it("beds exactly one take per scene — the A take (lower seed)", () => {
+  it("beds exactly one take per scene — the one the ingest marked default", () => {
     for (const cue of catalogPack.cues) {
+      const cueItems = foldedItems.filter((i) =>
+        i.record.id.startsWith(`${cue.id}-s`),
+      );
+      const bedded = cueItems.filter((i) => i.playbackDefault);
+      expect(bedded, cue.id).toHaveLength(1);
       const stemIds = scene(cue.id).layers.map((l) => l.stemId);
-      expect(stemIds).toContain(`${cue.id}-s${cue.seedA}-stem-bass`);
-      expect(stemIds.some((id) => id.startsWith(`${cue.id}-s${cue.seedB}-`))).toBe(false);
+      expect(stemIds).toContain(`${bedded[0]!.record.id}-stem-bass`);
+      for (const other of cueItems.filter((i) => !i.playbackDefault)) {
+        expect(stemIds.some((id) => id.startsWith(`${other.record.id}-`))).toBe(false);
+      }
       expect(stemIds).not.toContain("s-placeholder");
       expect(scene(cue.id).tags).toContain("generated-audio");
     }
   });
 
-  it("keeps the B take attached to the family as a non-default record", () => {
+  it("beds the lowest-seed take that cleared the boost cap", () => {
+    // The rescue rule, checked against what actually shipped: a capped take is
+    // only bedded when every take of that cue capped.
     for (const cue of catalogPack.cues) {
-      expect(record(`${cue.id}-s${cue.seedB}`).kind).toBe("music");
+      const cueItems = foldedItems
+        .filter((i) => i.record.id.startsWith(`${cue.id}-s`))
+        .sort((a, b) => a.record.generation.seed - b.record.generation.seed);
+      const expected =
+        cueItems.find((i) => !i.record.boostCapped) ?? cueItems[0];
+      expect(cueItems.find((i) => i.playbackDefault)?.record.id, cue.id).toBe(
+        expected!.record.id,
+      );
     }
   });
 
-  it("every family attach succeeded (lock-checked) for all 30 records", () => {
+  it("keeps every non-default take attached to the family as a record", () => {
+    for (const item of foldedItems) {
+      expect(record(item.record.id).kind).toBe("music");
+    }
+  });
+
+  it("every family attach succeeded (lock-checked) for every folded record", () => {
     const attached = (flagship.cueFamilies ?? []).flatMap((f) => f.generatedCueIds ?? []);
-    expect(attached).toHaveLength(30);
+    expect(attached).toHaveLength(foldedItems.length);
     for (const family of flagship.cueFamilies ?? []) {
-      expect(family.generatedCueIds).toHaveLength(2);
+      expect(family.generatedCueIds!.length).toBeGreaterThanOrEqual(2);
     }
   });
 
-  it("records echo the catalog prose and lock their cue's bpm / keyscale", () => {
-    for (const cue of catalogPack.cues) {
-      const catalogCue = libraryCatalogCue(FLAGSHIP, cue.id)!;
-      for (const seed of [cue.seedA, cue.seedB]) {
-        const rec = record(`${cue.id}-s${seed}`);
-        expect(rec.generation.prompt).toBe(catalogCue.prose);
-        expect(rec.generation.bpm).toBe(catalogCue.bpm);
-        expect(rec.generation.keyscale).toBe(catalogCue.keyscale);
-        expect(rec.generation.seed).toBe(seed);
-        expect(rec.generation.requestedDurationSec).toBe(60);
-      }
+  it("records echo the prose their take ran with and lock their cue's bpm / keyscale", () => {
+    for (const take of libraryTakes(FLAGSHIP)) {
+      if (!foldedItems.some((i) => i.record.id === take.folder)) continue;
+      const catalogCue = libraryCatalogCue(FLAGSHIP, take.cueId)!;
+      const rec = record(take.folder);
+      expect(rec.generation.prompt).toBe(take.prose);
+      expect(rec.generation.bpm).toBe(catalogCue.bpm);
+      expect(rec.generation.keyscale).toBe(catalogCue.keyscale);
+      expect(rec.generation.seed).toBe(take.seed);
+      expect(rec.generation.requestedDurationSec).toBe(60);
     }
   });
 
@@ -110,7 +149,11 @@ describe("fantasy-jrpg-core fold (flagship, 15 cues × A/B)", () => {
   });
 
   it("carries one mix + four stem assets per take", () => {
-    expect(flagship.assets.filter((a) => a.tags?.includes("generation:mix"))).toHaveLength(30);
-    expect(flagship.stems.filter((s) => s.tags?.includes("generation"))).toHaveLength(120);
+    expect(flagship.assets.filter((a) => a.tags?.includes("generation:mix"))).toHaveLength(
+      foldedItems.length,
+    );
+    expect(flagship.stems.filter((s) => s.tags?.includes("generation"))).toHaveLength(
+      foldedItems.length * 4,
+    );
   });
 });

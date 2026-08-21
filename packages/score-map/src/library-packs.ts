@@ -1,8 +1,9 @@
 // ────────────────────────────────────────────
 // Motif Library — catalog-driven pack derivation
 // Every library pack (scenes, cue families, generation locks, takes) is
-// DERIVED from library-catalog.json. Adding a pack or a cue to the catalog
-// is the whole change — no code lands here for Tier-2 / Tier-3.
+// DERIVED from library-catalog.json. Adding a pack or a cue to an existing
+// tier is the whole change; a brand-new tier array additionally needs its
+// artifact root listed in LIBRARY_TIER_ARTIFACT_ROOTS.
 // ────────────────────────────────────────────
 
 import type {
@@ -59,16 +60,24 @@ export interface LibraryCatalog {
   tier1: LibraryCatalogPack[];
   /** Authored 2026-08-21; absent until a tier is written. */
   tier2?: LibraryCatalogPack[];
+  /** Authored 2026-08-21 — short-form suites (5–10 cues), not the ten-cue tier shape. */
+  tier3?: LibraryCatalogPack[];
   tier2_planned: string[];
   tier3_planned: string[];
   /**
-   * Re-rolls of published cues at new C/D seeds under revised prose. Carries no
-   * `cues` array, so these never derive packs — the original takes keep the
-   * exact string they ran.
+   * Re-rolls of published cues at new C/D seeds under REVISED (v2) prose.
+   * Carries no `cues` array, so these never derive packs — the original takes
+   * keep the exact string they ran.
    */
   tier1_revisions?: LibraryCatalogRevision[];
+  /**
+   * Re-rolls at new C/D seeds under the cue's UNCHANGED prose — seed is the only
+   * lever. Also carries no `cues` array, so no pack derives from it either.
+   */
+  regen_cd?: LibraryCatalogRegen[];
 }
 
+/** A C/D re-roll under rewritten prose; `promptVersion` is the version those takes ran at. */
 export interface LibraryCatalogRevision {
   packId: string;
   cueId: string;
@@ -79,6 +88,26 @@ export interface LibraryCatalogRevision {
   seedD: number;
   prose: string;
   reason: string;
+  /** The v1 pair these supersede as playback candidates, kept as a receipt. */
+  supersedes?: { seedA: number; seedB: number; proseV1: string };
+}
+
+/**
+ * A C/D re-roll at the cue's UNCHANGED prose — the wording rule was falsified
+ * at n=410, so these test seed variance alone. The prose is stored verbatim
+ * anyway, so a take never has to reach back into the cue to know what it ran with.
+ */
+export interface LibraryCatalogRegen {
+  packId: string;
+  cueId: string;
+  /** Catalog tier the owning pack was authored under. */
+  tier: string;
+  bpm: number;
+  keyscale: string;
+  seedC: number;
+  seedD: number;
+  prose: string;
+  lever: string;
 }
 
 /**
@@ -89,29 +118,54 @@ export interface LibraryCatalogRevision {
  */
 export const LIBRARY_CATALOG = rawCatalog as unknown as LibraryCatalog;
 
+/** A materialized pack plus the catalog key it was authored under. */
+export interface LibraryPack extends LibraryCatalogPack {
+  /**
+   * Top-level catalog array this pack came from — "tier1" / "tier2" / "tier3".
+   * Selects the artifact tree its takes were collected into.
+   */
+  tier: string;
+}
+
 /**
- * Every catalog entry that is a materialized pack (i.e. carries cues).
- * Tier-2 / Tier-3 land either as more `tier1` entries or as a new top-level
- * array — both are picked up here without a code change. The planned-name
- * string arrays carry no cues and drop out.
+ * Every catalog entry that is a materialized pack (i.e. carries cues), tagged
+ * with the top-level key it was authored under. A new tier lands as a new
+ * top-level array and is picked up here with no change to this function; the
+ * planned-name string arrays and the revision / regen entries carry no `cues`
+ * and drop out.
  */
-function collectCatalogPacks(catalog: LibraryCatalog): LibraryCatalogPack[] {
-  return Object.values(catalog as unknown as Record<string, unknown>)
-    .filter((v): v is unknown[] => Array.isArray(v))
-    .flat()
-    .filter(
-      (e): e is LibraryCatalogPack =>
-        typeof e === "object" &&
-        e !== null &&
-        Array.isArray((e as LibraryCatalogPack).cues),
-    );
+function collectCatalogPacks(catalog: LibraryCatalog): LibraryPack[] {
+  return Object.entries(catalog as unknown as Record<string, unknown>).flatMap(
+    ([tier, value]) =>
+      (Array.isArray(value) ? (value as unknown[]) : []).flatMap((entry) =>
+        typeof entry === "object" &&
+        entry !== null &&
+        Array.isArray((entry as LibraryCatalogPack).cues)
+          ? [{ ...(entry as LibraryCatalogPack), tier }]
+          : [],
+      ),
+  );
 }
 
 /** Every materialized library pack, catalog order. */
-export const LIBRARY_PACKS: LibraryCatalogPack[] = collectCatalogPacks(LIBRARY_CATALOG);
+export const LIBRARY_PACKS: LibraryPack[] = collectCatalogPacks(LIBRARY_CATALOG);
 
-export function libraryCatalogPack(packId: string): LibraryCatalogPack | undefined {
+export function libraryCatalogPack(packId: string): LibraryPack | undefined {
   return LIBRARY_PACKS.find((p) => p.id === packId);
+}
+
+/** Catalog tier a pack was authored under. Andon: an unknown pack id is a typo, never an empty tier. */
+export function libraryPackTier(packId: string): string {
+  const pack = libraryCatalogPack(packId);
+  if (!pack) {
+    throw new Error(`No library catalog pack ${packId}`);
+  }
+  return pack.tier;
+}
+
+/** Every pack authored under one catalog tier key. */
+export function libraryPacksForTier(tier: string): LibraryPack[] {
+  return LIBRARY_PACKS.filter((p) => p.tier === tier);
 }
 
 export function libraryCatalogCue(
@@ -446,39 +500,172 @@ export function buildLibraryPacks(): SoundtrackPack[] {
 // TAKES
 // ══════════════════════════════════════════
 
-/** One generated take. Seeds come straight from the catalog; A is the lower one. */
+/** Take letter, assigned by seed order within a cue. A/B are the catalog pair; C/D are re-rolls. */
+export type LibraryTakeLetter = "A" | "B" | "C" | "D";
+
+const LIBRARY_TAKE_LETTERS: readonly LibraryTakeLetter[] = ["A", "B", "C", "D"];
+
+/**
+ * Prose version a take ran at. 1 is the catalog cue's prose — which the
+ * seed-only C/D re-rolls also ran, deliberately; 2 is a `tier1_revisions`
+ * rewrite.
+ */
+export type LibraryPromptVersion = 1 | 2;
+
+/** Artifact tree a take's masters were collected into. */
+export type LibraryArtifactRootId = "tier1" | "tier2" | "tier3" | "regen-cd";
+
+/** Where a take's masters live: which artifact tree, and which directory under that tree's root. */
+export interface LibraryTakeArtifact {
+  root: LibraryArtifactRootId;
+  /** Directory under the root that holds `<folder>/` — the owning pack id, except for revisions. */
+  dir: string;
+}
+
+/**
+ * Catalog tiers that have their own artifact tree, in tier order. Authoring a
+ * `tier4` array means adding its root id here and its filesystem path in
+ * sample-lab; until then a tier-4 take andons rather than silently reading
+ * tier-1 masters.
+ */
+export const LIBRARY_TIER_ARTIFACT_ROOTS: readonly LibraryArtifactRootId[] = [
+  "tier1",
+  "tier2",
+  "tier3",
+];
+
+/**
+ * The Tier-1 revision takes were generated inside the Tier-2 wave, so their
+ * masters AND their collection-plan entries sit under the TIER-2 root in a
+ * `tier1-revisions` pseudo-pack — not beside the pack that owns the cue.
+ */
+export const LIBRARY_REVISION_ARTIFACT_ROOT: LibraryArtifactRootId = "tier2";
+export const LIBRARY_REVISION_ARTIFACT_DIR = "tier1-revisions";
+
+/** Artifact tree the seed-only C/D re-rolls were collected into, as `<root>/<packId>/<folder>/`. */
+export const LIBRARY_REGEN_ARTIFACT_ROOT: LibraryArtifactRootId = "regen-cd";
+
+function tierArtifactRoot(tier: string): LibraryArtifactRootId {
+  const root = LIBRARY_TIER_ARTIFACT_ROOTS.find((r) => r === tier);
+  if (!root) {
+    throw new Error(
+      `No artifact tree for catalog tier ${tier} — add one to LIBRARY_TIER_ARTIFACT_ROOTS`,
+    );
+  }
+  return root;
+}
+
+/** One generated take. Seeds come straight from the catalog; A is the lowest. */
 export interface LibraryTake {
   packId: string;
   cueId: string;
   seed: number;
-  /** A is the catalog's lower seed and the scene-bed default; B is the curation alternative. */
-  take: "A" | "B";
+  /** Seed order within the cue — A is the lowest seed, D the highest. */
+  take: LibraryTakeLetter;
   familyId: string;
   sceneId: string;
   /** Artifact + public folder name, and the take/record id. */
   folder: string;
+  /**
+   * Catalog PRIOR for the scene bed (lowest seed). The shipped default is
+   * chosen from the MEASURED ingest instead — see `selectPlaybackDefaults`.
+   */
   playbackDefault: boolean;
+  /** Prose version this take ACTUALLY ran with; records echo `prose`, never a newer string. */
+  promptVersion: LibraryPromptVersion;
+  /** EXACT prose this take was submitted with. */
+  prose: string;
+  /** Artifact tree + directory holding this take's masters. */
+  artifact: LibraryTakeArtifact;
 }
 
-/** Both takes of every cue in a pack, catalog order, A before B. */
-export function libraryTakesForPack(pack: LibraryCatalogPack): LibraryTake[] {
+/** A seed plus the identity it ran under, before letters and ids are assigned. */
+interface LibrarySeededTake {
+  seed: number;
+  promptVersion: LibraryPromptVersion;
+  prose: string;
+  artifact: LibraryTakeArtifact;
+}
+
+/** C/D seeds a cue was re-rolled at under rewritten (v2) prose. */
+function revisionSeededTakes(packId: string, cueId: string): LibrarySeededTake[] {
+  const artifact: LibraryTakeArtifact = {
+    root: LIBRARY_REVISION_ARTIFACT_ROOT,
+    dir: LIBRARY_REVISION_ARTIFACT_DIR,
+  };
+  return (LIBRARY_CATALOG.tier1_revisions ?? [])
+    .filter((r) => r.packId === packId && r.cueId === cueId)
+    .flatMap((r) =>
+      [r.seedC, r.seedD].map((seed) => ({
+        seed,
+        promptVersion: (r.promptVersion === 2 ? 2 : 1) as LibraryPromptVersion,
+        prose: r.prose,
+        artifact,
+      })),
+    );
+}
+
+/** C/D seeds a cue was re-rolled at with the prose held identical — seed is the only lever. */
+function regenSeededTakes(packId: string, cueId: string): LibrarySeededTake[] {
+  const artifact: LibraryTakeArtifact = { root: LIBRARY_REGEN_ARTIFACT_ROOT, dir: packId };
+  return (LIBRARY_CATALOG.regen_cd ?? [])
+    .filter((r) => r.packId === packId && r.cueId === cueId)
+    .flatMap((r) =>
+      [r.seedC, r.seedD].map((seed) => ({
+        seed,
+        promptVersion: 1 as LibraryPromptVersion,
+        prose: r.prose,
+        artifact,
+      })),
+    );
+}
+
+/**
+ * Every take of every cue in a pack, catalog order, lowest seed first.
+ *
+ * Each cue always has its catalog A/B pair. A cue the catalog re-rolled also
+ * carries C/D takes — ADDITIONAL records on the same cue family, sourced from a
+ * different artifact tree. They add no scene, no family and no binding, so
+ * those counts stay 1:1 with cues.
+ */
+export function libraryTakesForPack(pack: LibraryPack): LibraryTake[] {
+  const baseArtifact: LibraryTakeArtifact = { root: tierArtifactRoot(pack.tier), dir: pack.id };
   return pack.cues.flatMap((cue) => {
-    const seeds = [cue.seedA, cue.seedB].sort((a, b) => a - b);
-    return seeds.map((seed, i) => ({
+    const base: LibrarySeededTake[] = [cue.seedA, cue.seedB].map((seed) => ({
+      seed,
+      promptVersion: 1 as LibraryPromptVersion,
+      prose: cue.prose,
+      artifact: baseArtifact,
+    }));
+    const seeded = [
+      ...base,
+      ...revisionSeededTakes(pack.id, cue.id),
+      ...regenSeededTakes(pack.id, cue.id),
+    ].sort((a, b) => a.seed - b.seed);
+    if (seeded.length > LIBRARY_TAKE_LETTERS.length) {
+      throw new Error(
+        `${pack.id}/${cue.id} derives ${seeded.length} takes; the letter ladder stops at ` +
+          `${LIBRARY_TAKE_LETTERS[LIBRARY_TAKE_LETTERS.length - 1]}`,
+      );
+    }
+    return seeded.map((t, i) => ({
       packId: pack.id,
       cueId: cue.id,
-      seed,
-      take: (i === 0 ? "A" : "B") as LibraryTake["take"],
+      seed: t.seed,
+      take: LIBRARY_TAKE_LETTERS[i]!,
       familyId: libraryFamilyId(pack.id, cue.id),
       sceneId: librarySceneId(pack.id, cue.id),
-      folder: libraryTakeFolder(cue.id, seed),
+      folder: libraryTakeFolder(cue.id, t.seed),
       playbackDefault: i === 0,
+      promptVersion: t.promptVersion,
+      prose: t.prose,
+      artifact: t.artifact,
     }));
   });
 }
 
-/** Every take across every materialized pack. Exactly one playback default per cue. */
-export const LIBRARY_TAKES: LibraryTake[] = LIBRARY_PACKS.flatMap(libraryTakesForPack);
+/** Every take across every materialized pack. Exactly one catalog-prior default per cue. */
+export const LIBRARY_TAKES: LibraryTake[] = LIBRARY_PACKS.flatMap((p) => libraryTakesForPack(p));
 
 /** Takes for one pack. Throws on an unknown pack id (andon: never ingest a typo). */
 export function libraryTakes(packId: string): LibraryTake[] {

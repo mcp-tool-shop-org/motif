@@ -94,7 +94,15 @@ Ingest one pack:
 pnpm --filter @motif-studio/sample-lab ingest:library --pack fantasy-jrpg-core
 ```
 
-`--pack` is repeatable, and omitting it ingests every pack in the catalog. `--artifact-root <path>` points at a different masters directory.
+Or a whole tier at a time:
+
+```bash
+pnpm --filter @motif-studio/sample-lab ingest:library --tier 2 --tier 3
+```
+
+`--pack` and `--tier` are both repeatable and combine as a union; with neither, every pack of every tier is ingested. `--root <treeId>=<path>` points one artifact tree (`tier1`, `tier2`, `tier3`, `regen-cd`) at a different masters directory, and `--artifact-root <path>` points all of them at one.
+
+A cue's C/D re-rolls live in a different tree from its A/B pair, so every tree's collection plan is merged before the run and takes that have not been collected yet are reported and skipped rather than halting.
 
 Ingest is **incremental** — folding one pack never drops another's records — and **idempotent**, so a re-run rebuilds from the masters rather than duplicating.
 
@@ -102,8 +110,32 @@ For each take, ingest decodes the mix and stems, resamples to the runtime rate, 
 
 A pack only appears in Studio once it has ingested audio, so a half-built library never shows a broken or silent entry.
 
-:::note[Disk cost]
-Masters are written as 24-bit WAV — roughly **17 MB per stem**, about **86 MB per take**. A ten-cue pack is ~1.7 GB. This is comfortable for local work but not something to sync or ship as-is; treat the generated masters as the durable artifact and the ingested WAVs as a rebuildable cache.
+:::caution[Ingest is slow, and a re-run is not cheap]
+Ingest decodes, resamples and re-encodes every take, writing 24-bit WAV at roughly **86 MB per
+take**. Measured throughput is **~1.2 takes/min (~43 s each)**.
+
+That scales badly, and you should plan around it:
+
+| pack | takes | ingest time | disk |
+|---|---:|---:|---:|
+| 5-cue demo | 10 | ~8 min | ~0.9 GB |
+| 10-cue pack | 20 | ~17 min | ~1.7 GB |
+| 24-pack library | 484 | **~6.7 hours** | **~42 GB** |
+
+Three things follow from that, and none of them are obvious from the command:
+
+- **Always pass `--pack` or `--tier`.** An unfiltered run re-ingests everything, including
+  packs that are already built and unchanged — there is currently no content-hash skip, so
+  identical output is rebuilt byte-for-byte at full cost.
+- **Treat re-ingest as expensive, not routine.** Editing one cue's catalog entry and re-running
+  that pack costs the whole pack.
+- **Treat the ingested WAVs as a local cache, not a deliverable.** The FLAC masters are the
+  durable artifact at roughly a tenth of the size.
+
+This is a known design limitation rather than an intended trade-off. Fixing any one of the
+three causes — skipping unchanged takes by hash, serving FLAC directly instead of transcoding,
+or parallelising the per-take work — would remove most of the cost. Until then, filter your
+runs.
 :::
 
 ## Reproducibility
