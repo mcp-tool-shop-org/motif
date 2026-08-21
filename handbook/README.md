@@ -30,6 +30,7 @@ The operating manual for Motif — the product, the monorepo, and the philosophy
 - [Automation and Orchestration Model](src/18-automation-orchestration.md)
 - [Library / Recall Model](src/19-library-recall.md)
 - [Runtime Pack Contract](src/20-runtime-pack-contract.md)
+- [Generated Cue Model](src/41-generated-cues.md)
 
 ## Part IV — Using Studio
 
@@ -50,6 +51,7 @@ The operating manual for Motif — the product, the monorepo, and the philosophy
 - [World Scoring](src/32-world-scoring-workflow.md)
 - [Automation and Performance Capture](src/33-automation-capture.md)
 - [Library, Branching, and Reuse](src/34-library-branching-reuse.md)
+- [Building a Library Pack](src/42-library-packs.md)
 
 ## Part VI — Engineering
 

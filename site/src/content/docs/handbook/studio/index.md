@@ -46,6 +46,16 @@ Screens are not isolated. Entities created in one screen appear in others:
 - **Automation Lanes** and **Macros** affect mixer parameters and scene behavior
 - **Templates, Snapshots, and Favorites** in Library can reference any entity kind
 
+## Preview and Binding Resolution
+
+The Preview screen simulates runtime state and shows which binding wins, which scene resolves, and which stems play.
+
+Its controls are **derived from the loaded pack's own bindings** rather than from a fixed field list. Alongside the built-in mode / danger / flag controls, Preview reads every binding condition in the pack and renders an input for each field it does not already cover — a picker for `eq` comparisons against strings, a checkbox for booleans, a number for `gt`/`lt` comparisons, text otherwise.
+
+This matters because packs bind on very different things. A demo pack binds on `mode` and `danger`. A game score binds on `location` and `combat_active`. A generated library pack binds on `cue`. A pack binding on fields the simulator cannot set resolves nothing at all — so the controls follow the pack, not the other way round.
+
+A pack whose bindings form a flat menu over one field is seeded to its first value on load, so Preview opens resolved and playable. A multi-axis pack is left unset on purpose — seeding it would mean asserting several unrelated game-state flags simultaneously — and shows "no scene resolved" until you set a field.
+
 ## Where to Start
 
 For a new project:
