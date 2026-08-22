@@ -3,7 +3,9 @@ import type { SiteConfig } from '@mcptoolshop/site-theme';
 export const config: SiteConfig = {
   title: 'Motif',
   description: 'Adaptive soundtrack studio for composing, arranging, scoring, and exporting interactive game music',
-  logoBadge: 'SW',
+  // The theme renders this as a text badge in the header. It read 'SW' — some
+  // other product's initials, carried in from the scaffold.
+  logoBadge: 'M',
   brandName: 'Motif',
   repoUrl: 'https://github.com/mcp-tool-shop-org/motif',
   footerText: 'MIT Licensed — built by <a href="https://github.com/mcp-tool-shop-org" style="color:var(--color-muted);text-decoration:underline">mcp-tool-shop-org</a>',

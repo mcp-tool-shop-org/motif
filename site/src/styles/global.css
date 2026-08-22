@@ -1,3 +1,17 @@
 @import "tailwindcss";
 @import "@mcptoolshop/site-theme/styles/theme.css";
 @source "../../node_modules/@mcptoolshop/site-theme";
+
+/* Header logo.
+
+   The shared theme renders the header brand as a TEXT badge — `logoBadge` is
+   interpolated into a span, so it cannot carry markup (see BaseLayout.astro in
+   @mcptoolshop/site-theme). Motif has a real mark, so swap the glyph for it
+   here rather than forking the whole layout for one element. The badge string
+   stays set to "M" as the fallback if this rule ever stops matching. */
+header > a > span:first-child {
+  background-image: url("/motif/favicon.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  color: transparent;
+}

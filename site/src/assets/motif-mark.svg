@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 112 84" width="112" height="84" role="img" aria-label="Motif">
+  <title>Motif</title>
+  <!--
+    Exact vector reproduction of the generated mark (Comfy Cloud, 2026-08-22),
+    not a trace of it. The source render was perfectly regular — six bars of
+    equal width on an even pitch, heights in a 35 : 59 : 84 ratio stated twice,
+    the final bar accented — so it redraws as clean geometry.
+
+    That repetition is the point: a motif is a figure that returns. The three
+    bars state it, the next three restate it, and the accent lands on the
+    return.
+  -->
+  <g fill="#8F9AAC">
+    <rect x="0"   y="49" width="12" height="35" rx="6"/>
+    <rect x="20"  y="25" width="12" height="59" rx="6"/>
+    <rect x="40"  y="0"  width="12" height="84" rx="6"/>
+    <rect x="60"  y="49" width="12" height="35" rx="6"/>
+    <rect x="80"  y="25" width="12" height="59" rx="6"/>
+  </g>
+  <rect x="100" y="0" width="12" height="84" rx="6" fill="#48D7E5"/>
+</svg>

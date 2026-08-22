@@ -10,6 +10,10 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Motif',
+      logo: {
+        src: './src/assets/motif-mark.svg',
+        alt: 'Motif',
+      },
       social: [
         { icon: 'github', label: 'GitHub', href: 'https://github.com/mcp-tool-shop-org/motif' },
       ],

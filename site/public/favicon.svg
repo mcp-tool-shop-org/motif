@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Motif">
+  <title>Motif</title>
+  <!-- App / favicon tile: the mark centred on the slate the render used. -->
+  <rect width="64" height="64" rx="14" fill="#151D2D"/>
+  <g transform="translate(10 15.5) scale(0.393)">
+    <g fill="#8F9AAC">
+      <rect x="0"   y="49" width="12" height="35" rx="6"/>
+      <rect x="20"  y="25" width="12" height="59" rx="6"/>
+      <rect x="40"  y="0"  width="12" height="84" rx="6"/>
+      <rect x="60"  y="49" width="12" height="35" rx="6"/>
+      <rect x="80"  y="25" width="12" height="59" rx="6"/>
+    </g>
+    <rect x="100" y="0" width="12" height="84" rx="6" fill="#48D7E5"/>
+  </g>
+</svg>
