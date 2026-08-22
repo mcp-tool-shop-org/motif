@@ -51,10 +51,11 @@ A cue family carries a **generation lock** — the bpm, keyscale and time signat
 
 Every cue is generated **twice**, at two seeds. Generative models vary a lot between seeds — in measured runs, two takes of the same cue with identical settings have differed by more than 9 dB in loudness and considerably more in character.
 
-- The **lower seed (A)** becomes the scene's playing bed by default.
-- The **higher seed (B)** is attached to the cue family as a non-default record.
+The bed is chosen from the **measured** result, not from seed order: the lowest-seed take that cleared the boost cap wins, falling back to the lowest seed when every take of that cue capped. Remaining takes are attached to the cue family as non-default records.
 
-Both live in the pack. `playbackDefault` decides which one plays.
+That distinction matters. Nine cues in the built-in library lost *both* their A and B takes to the cap, and their C/D re-rolls exist purely to rescue them. Under a plain lowest-seed-wins rule the rescue would be inert — the pack would keep bedding a near-silent take with a good one sitting beside it in the same family. `boostCapped` is only known after normalization, which is why the choice is made from ingest results rather than from the catalog.
+
+Both takes live in the pack. `playbackDefault` decides which one plays.
 
 :::caution[Known gap]
 Studio does not yet expose take switching in the UI. Both takes are in the pack and the runtime honours `playbackDefault`, but changing which take is the default currently means re-running the ingest rather than clicking in Studio. Until that lands, B-takes are stored but not auditionable in-app.
@@ -104,38 +105,38 @@ pnpm --filter @motif-studio/sample-lab ingest:library --tier 2 --tier 3
 
 A cue's C/D re-rolls live in a different tree from its A/B pair, so every tree's collection plan is merged before the run and takes that have not been collected yet are reported and skipped rather than halting.
 
-Ingest is **incremental** — folding one pack never drops another's records — and **idempotent**, so a re-run rebuilds from the masters rather than duplicating.
-
 For each take, ingest decodes the mix and stems, resamples to the runtime rate, applies the shared gain, writes masters into the app's public audio directory, and records a `GeneratedCueRecord` carrying the full generation parameters: seed, bpm, keyscale, prompt, duration, workflow id, and the job id that produced it.
 
 A pack only appears in Studio once it has ingested audio, so a half-built library never shows a broken or silent entry.
 
-:::caution[Ingest is slow, and a re-run is not cheap]
-Ingest decodes, resamples and re-encodes every take, writing 24-bit WAV at roughly **86 MB per
-take**. Measured throughput is **~1.2 takes/min (~43 s each)**.
+### Ingest is incremental twice over
 
-That scales badly, and you should plan around it:
+**Across packs:** folding one pack never drops another's records, so building the library a tier at a time is safe.
 
-| pack | takes | ingest time | disk |
-|---|---:|---:|---:|
-| 5-cue demo | 10 | ~8 min | ~0.9 GB |
-| 10-cue pack | 20 | ~17 min | ~1.7 GB |
-| 24-pack library | 484 | **~6.7 hours** | **~42 GB** |
+**Within a pack:** every input file is content-addressed. A take whose FLACs still hash to what the previous ingest recorded — with the same loudness target, the same generation identity, and all of its masters still on disk — is reused rather than decoded again. Anything else falls through to a full rebuild.
 
-Three things follow from that, and none of them are obvious from the command:
+In practice that means:
 
-- **Always pass `--pack` or `--tier`.** An unfiltered run re-ingests everything, including
-  packs that are already built and unchanged — there is currently no content-hash skip, so
-  identical output is rebuilt byte-for-byte at full cost.
-- **Treat re-ingest as expensive, not routine.** Editing one cue's catalog entry and re-running
-  that pack costs the whole pack.
-- **Treat the ingested WAVs as a local cache, not a deliverable.** The FLAC masters are the
-  durable artifact at roughly a tenth of the size.
+| operation | cost |
+|---|---|
+| first ingest of a 20-take pack | ~14 min |
+| re-running that same pack | **~1 second** |
+| resuming an interrupted run | only the takes that had not finished |
 
-This is a known design limitation rather than an intended trade-off. Fixing any one of the
-three causes — skipping unchanged takes by hash, serving FLAC directly instead of transcoding,
-or parallelising the per-take work — would remove most of the cost. Until then, filter your
-runs.
+So re-ingest is routine, not expensive. Editing one cue's catalog entry and re-running its pack rebuilds that cue and reuses the rest.
+
+Two flags exist for the cases where you do *not* want the cache:
+
+- `--force` re-decodes and rewrites everything even when the cache would hit. Use it to prove the pipeline still reproduces its own output — it does, byte for byte.
+- `--skip-defective` narrows the failure boundary from the run to the take. By default a malformed artifact halts the whole ingest, which is right when you can fix it in place, but punishing when one bad file appears 400 takes into a batch. With the flag, the bad take is still refused and never folded, the remaining packs finish, every failure is listed at the end, and the process exits non-zero so a run that dropped something cannot be mistaken for a clean one.
+
+:::note[Budget the disk, not the time]
+Ingest writes 24-bit WAV at roughly **86 MB per take** — the full 24-pack library is about
+**39 GB** on disk, from roughly 4 GB of FLAC masters. Time is no longer the binding
+constraint, but space still is.
+
+Treat the ingested WAVs as a local cache and the FLAC masters as the durable artifact. Serving
+FLAC directly instead of transcoding would cut the footprint several-fold and is not yet done.
 :::
 
 ## Reproducibility

@@ -60,7 +60,7 @@ Each package has a single, clear responsibility:
 | `instrument-rack` | Synth/drum voices, presets | Audio DSP |
 | `music-theory` | Scales, chords, motifs, intensity | Playback |
 | `playback-engine` | Mixing, effects, rendering | Composition |
-| `sample-lab` | Trim/slice/kit logic; generated-audio ingest (FLAC decode, resample, loudness normalization, WAV masters, `GeneratedCueRecord`s) | Submitting generation jobs |
+| `sample-lab` | Trim/slice/kit logic; the generation lane — submitting and retrieving cloud jobs, then ingesting the artifacts (FLAC decode, resample, loudness normalization, WAV masters, `GeneratedCueRecord`s, content-addressed reuse) | Generating audio itself; composition; playback |
 | `score-map` | Motifs, profiles, cue families, derivation; catalog-driven library packs and generation locks | Playback, rendering |
 | `automation` | Lanes, macros, envelopes, capture | Audio DSP |
 | `library` | Templates, snapshots, branches, favorites | UI, persistence |

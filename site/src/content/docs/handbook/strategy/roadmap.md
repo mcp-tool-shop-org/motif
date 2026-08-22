@@ -42,7 +42,7 @@ transitioning, and audible in the Studio:
   in-memory pack, including a runtime Preview whose state controls are derived from the
   loaded pack's own bindings
 - **Validation**: Zod 4 schema validation, integrity auditing via
-  `@motif-studio/asset-index`, and 1,680 tests spanning all 16 packages plus the Studio
+  `@motif-studio/asset-index`, and 1,709 tests spanning all 16 packages plus the Studio
 
 ## Current Strengths
 

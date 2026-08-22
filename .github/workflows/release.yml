@@ -1,0 +1,77 @@
+name: Release
+
+# Publishes every public @motif-studio package to npm when a GitHub release is
+# published.
+#
+# THE FILENAME IS LOAD-BEARING. npm's Trusted Publisher config for these
+# packages names this workflow (`release.yml`) explicitly, and npm checks that
+# name in the OIDC token claim. Renaming or moving this file breaks publishing
+# until the Trusted Publisher entry is updated to match on npmjs.com.
+#
+# Auth is OIDC — there is deliberately no NPM_TOKEN here, and none is needed.
+# `id-token: write` is what lets npm mint a short-lived credential for this
+# exact repo + workflow, so no long-lived publish token exists to leak.
+#
+# pnpm is pinned to 10.x through the root `packageManager` field, which matters:
+# pnpm 10 publishes correctly over OIDC, and pnpm 11.0.8 regressed it to a 404
+# (pnpm/pnpm#11513). Do not float this to 11 without re-verifying a publish.
+
+# Published releases only — deliberately no `workflow_dispatch` and no push
+# trigger. A manual dispatch would happily publish whatever versions sit on the
+# branch it was run from, and npm versions are immutable and un-unpublishable
+# after 72 hours. To retry a failed publish, re-run this workflow from the
+# Actions tab on the run that failed, or set the release back to draft and
+# publish it again.
+on:
+  release:
+    types: [published]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          # Build the tag that was released, not whatever main points at now.
+          ref: ${{ github.event.release.tag_name || github.ref }}
+          repository: ${{ github.repository }}
+          persist-credentials: false
+          fetch-depth: 1
+
+      - uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
+
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: 22
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      # Gate the publish on the same checks CI runs. A release tag that cannot
+      # build or pass its tests must not reach the registry, where versions are
+      # immutable and un-unpublishable after 72 hours.
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Build
+        run: pnpm build
+
+      - name: Test
+        run: pnpm vitest run
+
+      - name: Publish packages
+        # `-r` walks the workspace in dependency order and skips private
+        # packages, so apps/studio stays unpublished. pnpm rewrites the
+        # `workspace:*` interdependencies to real versions in the published
+        # manifests; publishing these with plain `npm publish` would ship
+        # manifests that no consumer could install.
+        run: pnpm -r publish --no-git-checks --access public
