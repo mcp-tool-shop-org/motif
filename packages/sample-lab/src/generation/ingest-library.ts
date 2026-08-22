@@ -219,6 +219,17 @@ export interface LibraryIngestOptions {
   takes?: LibraryTake[];
   /** Called instead of ingesting when a take's masters are not on disk yet. */
   onSkip?: (take: LibraryTake, artifactDir: string) => void;
+  /** Re-decode and re-write every take even when a previous ingest matches. */
+  force?: boolean;
+  /** Called when a take was served from a previous ingest instead of redone. */
+  onCacheHit?: (take: LibraryTake) => void;
+  /**
+   * Called when a take's own ingest throws. Supplying this downgrades that
+   * take's andon from "halt the run" to "drop this take and report it" — the
+   * defect still never reaches the manifest, but 400 healthy takes no longer
+   * die because one artifact is malformed. Omit it to keep halting.
+   */
+  onFailure?: (take: LibraryTake, error: unknown) => void;
 }
 
 function rootsFor(options: LibraryIngestOptions): Record<LibraryArtifactRootId, string> {
@@ -258,6 +269,8 @@ export async function ingestLibraryTake(
     destDir,
     generation: generationParamsForLibraryTake(take, jobIdForTake(take, plan)),
     failOnVocalBleed: false,
+    force: options.force,
+    onCacheHit: () => options.onCacheHit?.(take),
   });
   const result = rewriteSrcs(raw, take);
   return {
@@ -319,7 +332,15 @@ export async function ingestLibraryPack(
       options.onSkip?.(take, artifactDir);
       continue;
     }
-    out.push(await ingestLibraryTake(take, { ...options, roots, plan }));
+    if (!options.onFailure) {
+      out.push(await ingestLibraryTake(take, { ...options, roots, plan }));
+      continue;
+    }
+    try {
+      out.push(await ingestLibraryTake(take, { ...options, roots, plan }));
+    } catch (error) {
+      options.onFailure(take, error);
+    }
   }
   return selectPlaybackDefaults(out);
 }

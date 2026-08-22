@@ -32,7 +32,7 @@ export {
 export { parseKeyscale, parseBeatsPerBar, durationBarsFromSeconds } from "./keyscale.js";
 export { scanRunArtifact } from "./scan.js";
 export type { RunArtifactFiles } from "./scan.js";
-export { ingestRunArtifact } from "./ingest.js";
+export { ingestRunArtifact, deriveIngestResult } from "./ingest.js";
 export type { IngestOptions, IngestResult } from "./ingest.js";
 export {
   ingestGroundedTake,

@@ -1,4 +1,4 @@
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { basename, join } from "node:path";
 import type {
   AudioAsset,
@@ -47,6 +47,14 @@ export interface IngestOptions {
   targetLufs?: number;
   /** When true (default), [inst] vocals that are not near-silent throw VOCAL_BLEED. */
   failOnVocalBleed?: boolean;
+  /**
+   * Re-decode and re-write even when a previous ingest of the same inputs is on
+   * disk. The cache keys on input hashes, so this is only needed to prove the
+   * pipeline still reproduces its own output.
+   */
+  force?: boolean;
+  /** Called instead of the work when a take is served from a previous ingest. */
+  onCacheHit?: (id: string) => void;
   decodeFlac?: FlacDecoderFn;
   now?: () => string;
 }
@@ -135,6 +143,137 @@ function writeMaster(destDir: string, filename: string, channels: Float32Array[]
   return src.replace(/\\/g, "/");
 }
 
+const RECORD_FILENAME = "cue.json";
+
+function writeRecord(destDir: string, record: GeneratedCueRecord): void {
+  writeFileSync(
+    join(destDir, RECORD_FILENAME),
+    `${JSON.stringify(record, null, 2)}\n`,
+    "utf-8",
+  );
+}
+
+/** Master path this ingest would write for a stored `masterSrc`, wherever destDir is now. */
+function masterPathFor(destDir: string, storedSrc: string): string {
+  return join(destDir, "masters", basename(storedSrc));
+}
+
+/**
+ * Reuse a previous ingest of the same inputs, or return undefined.
+ *
+ * The expensive half of an ingest — decode, resample, gain, 24-bit encode, five
+ * ~17 MB writes — is a pure function of the input FLACs and the loudness target.
+ * Every one of those inputs is already content-addressed in the persisted
+ * record: `facts.sha256` per FLAC, plus the generation identity and
+ * `targetLufs`. So a run whose inputs hash the same, whose target matches, and
+ * whose masters are all still on disk has nothing to recompute.
+ *
+ * Hashing the inputs costs one sequential read of the source FLACs; the work it
+ * skips costs a decode and roughly 86 MB of writes. Any mismatch — a re-pointed
+ * job id, a different target, one deleted master — falls through to a full
+ * ingest, so the cache can only ever be a speed-up, never a source of truth.
+ */
+function loadCachedIngest(
+  destDir: string,
+  id: string,
+  name: string,
+  scanned: ReturnType<typeof scanRunArtifact>,
+  generation: GenerationParams,
+  targetLufs: number,
+): GeneratedCueRecord | undefined {
+  const recordPath = join(destDir, RECORD_FILENAME);
+  if (!existsSync(recordPath)) return undefined;
+
+  let record: GeneratedCueRecord;
+  try {
+    record = JSON.parse(readFileSync(recordPath, "utf-8")) as GeneratedCueRecord;
+  } catch {
+    return undefined; // Truncated by an interrupted run — redo it.
+  }
+
+  // Ids and the display name are baked into every derived asset, stem, scene
+  // and cue, so a record written under a different id or name cannot be reused
+  // under this one.
+  if (record.id !== id || record.name !== name) return undefined;
+  if (record.kind !== scanned.kind) return undefined;
+  if (record.targetLufs !== targetLufs) return undefined;
+  if (
+    record.generation?.jobId !== generation.jobId ||
+    record.generation?.seed !== generation.seed ||
+    record.generation?.workflowId !== generation.workflowId
+  ) {
+    return undefined;
+  }
+  if (record.runtimeSampleRateHz !== RUNTIME_SAMPLE_RATE_HZ) return undefined;
+  if (record.resampler?.name !== RESAMPLER_NAME) return undefined;
+  if (record.resampler?.quality !== RESAMPLER_QUALITY) return undefined;
+
+  // Every output still present, and every input still hashing the same.
+  const pairs: Array<{ sourcePath: string; storedSha: string; storedSrc: string }> = [];
+  if (record.kind === "sfx") {
+    if (!record.sfx || !scanned.sfx) return undefined;
+    pairs.push({
+      sourcePath: scanned.sfx,
+      storedSha: record.sfx.facts.sha256,
+      storedSrc: record.sfx.masterSrc,
+    });
+  } else {
+    if (!record.mix || !record.stems || !scanned.mix || !scanned.stems) return undefined;
+    if (record.stems.length !== STEM_ROLES.length) return undefined;
+    pairs.push({
+      sourcePath: scanned.mix,
+      storedSha: record.mix.facts.sha256,
+      storedSrc: record.mix.masterSrc,
+    });
+    for (const layer of record.stems) {
+      const sourcePath = scanned.stems[layer.role];
+      if (!sourcePath) return undefined;
+      pairs.push({
+        sourcePath,
+        storedSha: layer.facts.sha256,
+        storedSrc: layer.masterSrc,
+      });
+    }
+  }
+
+  const rebound: Record<string, string> = {};
+  for (const { sourcePath, storedSha, storedSrc } of pairs) {
+    const masterPath = masterPathFor(destDir, storedSrc);
+    if (!existsSync(masterPath) || !existsSync(sourcePath)) return undefined;
+    if (!storedSha) return undefined;
+    if (sha256Hex(new Uint8Array(readFileSync(sourcePath))) !== storedSha) return undefined;
+    rebound[storedSrc] = masterPath.replace(/\\/g, "/");
+  }
+
+  // Re-point masters at this destDir so a moved or renamed checkout still resolves.
+  const bind = (src: string): string => rebound[src] ?? src;
+  return {
+    ...record,
+    generation,
+    ...(record.sfx ? { sfx: { ...record.sfx, masterSrc: bind(record.sfx.masterSrc) } } : {}),
+    ...(record.mix ? { mix: { ...record.mix, masterSrc: bind(record.mix.masterSrc) } } : {}),
+    ...(record.stems
+      ? { stems: record.stems.map((s) => ({ ...s, masterSrc: bind(s.masterSrc) })) }
+      : {}),
+  };
+}
+
+/** Instrumental runs must demux to a near-silent vocals stem; anything else is bleed. */
+function assertNoVocalBleed(
+  stems: GenerationStemLayer[] | undefined,
+  lyricsTag: string | undefined,
+  enabled: boolean,
+): void {
+  if (!enabled || lyricsTag !== "[inst]") return;
+  const vocals = stems?.find((l) => l.role === "vocals");
+  if (vocals && !vocals.nearSilent) {
+    throw new GenerationError(
+      "VOCAL_BLEED",
+      "Instrumental track expected a near-silent vocals stem (bleed check failed)",
+    );
+  }
+}
+
 function makeAsset(
   id: string,
   name: string,
@@ -158,6 +297,121 @@ function makeAsset(
     sourceType,
     tags: ["generation", ...extraTags],
   };
+}
+
+/**
+ * Rebuild everything an ingest returns besides the record itself.
+ *
+ * Assets, stems, the scene and the cue are pure functions of the record — ids
+ * are templated off `record.id`, durations come from the measured facts the
+ * record already carries, and `nearSilent` was decided at normalization time
+ * and stored on the layer. Deriving them in one place is what lets a cached
+ * ingest reuse a persisted `cue.json` without the fresh and cached paths
+ * drifting apart: both call this, so there is only one definition.
+ */
+export function deriveIngestResult(record: GeneratedCueRecord): IngestResult {
+  const { id, name, generation } = record;
+  const durationMsOf = (facts: MeasuredAudioFacts): number =>
+    durationMsFromStreamInfo({
+      sampleRateHz: facts.sampleRateHz,
+      channels: facts.channels,
+      bitDepth: facts.bitDepth,
+      totalSamples: facts.durationSamples,
+      durationSec: facts.durationSec,
+    });
+
+  if (record.kind === "sfx") {
+    if (!record.sfx) {
+      throw new GenerationError("ARTIFACT_LAYOUT", "sfx record is missing its sfx asset");
+    }
+    const asset = makeAsset(
+      `${id}-sfx`,
+      name,
+      record.sfx.masterSrc,
+      durationMsOf(record.sfx.facts),
+      generation,
+      "oneshot",
+      "fx",
+      ["generation:sfx"],
+    );
+    return { record, assets: [asset], stems: [] };
+  }
+
+  if (!record.mix || !record.stems) {
+    throw new GenerationError("ARTIFACT_LAYOUT", "music record needs mix + stems");
+  }
+
+  const assets: AudioAsset[] = [
+    makeAsset(
+      `${id}-mix`,
+      `${name} mix`,
+      record.mix.masterSrc,
+      durationMsOf(record.mix.facts),
+      generation,
+      "loop",
+      "tonal",
+      ["generation:mix"],
+    ),
+  ];
+  const motifStems: Stem[] = [];
+
+  for (const layer of record.stems) {
+    const assetId = `${id}-${layer.role}`;
+    assets.push(
+      makeAsset(
+        assetId,
+        `${name} ${layer.role}`,
+        layer.masterSrc,
+        durationMsOf(layer.facts),
+        generation,
+        "loop",
+        layer.role === "drums" ? "drums" : layer.role === "other" ? "texture" : "tonal",
+        [`generation:${layer.role}`],
+      ),
+    );
+    motifStems.push({
+      id: `${id}-stem-${layer.role}`,
+      name: `${name} ${layer.role}`,
+      assetId,
+      role: STEM_TO_MOTIF_ROLE[layer.role],
+      loop: true,
+      mutedByDefault: layer.role === "vocals",
+      tags: ["generation", `generation:${layer.role}`],
+    });
+  }
+
+  const sceneId = record.sceneId ?? `${id}-scene`;
+  const scene: Scene = {
+    id: sceneId,
+    name: `${name} scene`,
+    category: "exploration",
+    layers: motifStems.map((s) => ({ stemId: s.id })),
+    tags: ["generation"],
+  };
+
+  const beatsPerBar = parseBeatsPerBar(generation.timesignature);
+  const parsedKey = generation.keyscale ? parseKeyscale(generation.keyscale) : undefined;
+  const bpm = generation.bpm!;
+  const cue: Cue = {
+    id: record.cueId ?? `${id}-cue`,
+    name,
+    bpm,
+    keyRoot: parsedKey?.keyRoot,
+    keyScale: parsedKey?.keyScale,
+    beatsPerBar,
+    sections: [
+      {
+        id: `${id}-body`,
+        name: "body",
+        role: "body",
+        durationBars: durationBarsFromSeconds(record.mix.facts.durationSec, bpm, beatsPerBar),
+        sceneId,
+      },
+    ],
+    tags: ["generation"],
+  };
+
+  return { record, assets, stems: motifStems, scene, cue };
 }
 
 /**
@@ -188,35 +442,34 @@ export async function ingestRunArtifact(
     );
   }
 
+  if (!options.force) {
+    const cached = loadCachedIngest(
+      options.destDir,
+      options.id,
+      name,
+      scanned,
+      generation,
+      targetLufs,
+    );
+    if (cached) {
+      assertNoVocalBleed(cached.stems, generation.lyricsTag, options.failOnVocalBleed ?? true);
+      options.onCacheHit?.(options.id);
+      return deriveIngestResult(cached);
+    }
+  }
+
   if (scanned.kind === "sfx" && scanned.sfx) {
     const bytes = new Uint8Array(readFileSync(scanned.sfx));
     const facts = factsFrom(bytes, scanned.sfx, lufs);
     const pcm = await toRuntimePcm(bytes, facts.sampleRateHz, decode);
     const gained = applyGain(pcm, gainDb);
     const masterSrc = writeMaster(options.destDir, `${options.id}.wav`, gained.channels);
-    const durationMs = durationMsFromStreamInfo({
-      sampleRateHz: facts.sampleRateHz,
-      channels: facts.channels,
-      bitDepth: facts.bitDepth,
-      totalSamples: facts.durationSamples,
-      durationSec: facts.durationSec,
-    });
-    const asset = makeAsset(
-      `${options.id}-sfx`,
-      name,
-      masterSrc,
-      durationMs,
-      generation,
-      "oneshot",
-      "fx",
-      ["generation:sfx"],
-    );
     const record: GeneratedCueRecord = {
       id: options.id,
       name,
       kind: "sfx",
       generation,
-      sfx: { assetId: asset.id, facts, masterSrc },
+      sfx: { assetId: `${options.id}-sfx`, facts, masterSrc },
       targetLufs,
       gainDb,
       actualGainDb: gained.actualGainDb,
@@ -226,12 +479,8 @@ export async function ingestRunArtifact(
       runtimeSampleRateHz: RUNTIME_SAMPLE_RATE_HZ,
       createdAt,
     };
-    writeFileSync(
-      join(options.destDir, "cue.json"),
-      `${JSON.stringify(record, null, 2)}\n`,
-      "utf-8",
-    );
-    return { record, assets: [asset], stems: [] };
+    writeRecord(options.destDir, record);
+    return deriveIngestResult(record);
   }
 
   if (!scanned.mix || !scanned.stems) {
@@ -291,28 +540,6 @@ export async function ingestRunArtifact(
   const mixRms = rmsOf(mixGained);
 
   const layers: GenerationStemLayer[] = [];
-  const assets: AudioAsset[] = [];
-  const motifStems: Stem[] = [];
-
-  const mixDurationMs = durationMsFromStreamInfo({
-    sampleRateHz: mixFacts.sampleRateHz,
-    channels: mixFacts.channels,
-    bitDepth: mixFacts.bitDepth,
-    totalSamples: mixFacts.durationSamples,
-    durationSec: mixFacts.durationSec,
-  });
-
-  const mixAsset = makeAsset(
-    `${options.id}-mix`,
-    `${name} mix`,
-    mixMaster,
-    mixDurationMs,
-    generation,
-    "loop",
-    "tonal",
-    ["generation:mix"],
-  );
-  assets.push(mixAsset);
 
   for (const { stem, pcm, resampled } of preparedStems) {
     const gained = scalePlanar(pcm, shared.actualLinear);
@@ -321,42 +548,13 @@ export async function ingestRunArtifact(
       `${options.id}-${stem.role}.wav`,
       gained,
     );
-    const durationMs = durationMsFromStreamInfo({
-      sampleRateHz: stem.facts.sampleRateHz,
-      channels: stem.facts.channels,
-      bitDepth: stem.facts.bitDepth,
-      totalSamples: stem.facts.durationSamples,
-      durationSec: stem.facts.durationSec,
-    });
-    const assetId = `${options.id}-${stem.role}`;
     const nearSilent =
       stem.role === "vocals"
         ? isNearSilent(gained, mixRms)
         : isNearSilent(gained);
-    assets.push(
-      makeAsset(
-        assetId,
-        `${name} ${stem.role}`,
-        masterSrc,
-        durationMs,
-        generation,
-        "loop",
-        stem.role === "drums" ? "drums" : stem.role === "other" ? "texture" : "tonal",
-        [`generation:${stem.role}`],
-      ),
-    );
-    motifStems.push({
-      id: `${options.id}-stem-${stem.role}`,
-      name: `${name} ${stem.role}`,
-      assetId,
-      role: STEM_TO_MOTIF_ROLE[stem.role],
-      loop: true,
-      mutedByDefault: stem.role === "vocals",
-      tags: ["generation", `generation:${stem.role}`],
-    });
     layers.push({
       role: stem.role,
-      assetId,
+      assetId: `${options.id}-${stem.role}`,
       facts: stem.facts,
       resampledSampleCount: resampled,
       nearSilent,
@@ -364,60 +562,17 @@ export async function ingestRunArtifact(
     });
   }
 
-  const vocals = layers.find((l) => l.role === "vocals");
-  if (
-    (options.failOnVocalBleed ?? true) &&
-    generation.lyricsTag === "[inst]" &&
-    vocals &&
-    !vocals.nearSilent
-  ) {
-    throw new GenerationError(
-      "VOCAL_BLEED",
-      "Instrumental track expected a near-silent vocals stem (bleed check failed)",
-    );
-  }
-
-  const sceneId = `${options.id}-scene`;
-  const cueId = `${options.id}-cue`;
-  const scene: Scene = {
-    id: sceneId,
-    name: `${name} scene`,
-    category: "exploration",
-    layers: motifStems.map((s) => ({ stemId: s.id })),
-    tags: ["generation"],
-  };
-
-  const beatsPerBar = parseBeatsPerBar(generation.timesignature);
-  const parsedKey = generation.keyscale ? parseKeyscale(generation.keyscale) : undefined;
-  const bpm = generation.bpm!;
-  const cue: Cue = {
-    id: cueId,
-    name,
-    bpm,
-    keyRoot: parsedKey?.keyRoot,
-    keyScale: parsedKey?.keyScale,
-    beatsPerBar,
-    sections: [
-      {
-        id: `${options.id}-body`,
-        name: "body",
-        role: "body",
-        durationBars: durationBarsFromSeconds(mixFacts.durationSec, bpm, beatsPerBar),
-        sceneId,
-      },
-    ],
-    tags: ["generation"],
-  };
+  assertNoVocalBleed(layers, generation.lyricsTag, options.failOnVocalBleed ?? true);
 
   const record: GeneratedCueRecord = {
     id: options.id,
     name,
     kind: "music",
     generation,
-    mix: { assetId: mixAsset.id, facts: mixFacts, masterSrc: mixMaster },
+    mix: { assetId: `${options.id}-mix`, facts: mixFacts, masterSrc: mixMaster },
     stems: layers,
-    cueId,
-    sceneId,
+    cueId: `${options.id}-cue`,
+    sceneId: `${options.id}-scene`,
     targetLufs,
     gainDb,
     actualGainDb: shared.actualGainDb,
@@ -428,11 +583,6 @@ export async function ingestRunArtifact(
     createdAt,
   };
 
-  writeFileSync(
-    join(options.destDir, "cue.json"),
-    `${JSON.stringify(record, null, 2)}\n`,
-    "utf-8",
-  );
-
-  return { record, assets, stems: motifStems, scene, cue };
+  writeRecord(options.destDir, record);
+  return deriveIngestResult(record);
 }

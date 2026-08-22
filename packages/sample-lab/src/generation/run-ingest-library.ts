@@ -6,6 +6,7 @@ import {
   libraryTakes,
   type FoldableGenerated,
   type LibraryArtifactRootId,
+  type LibraryTake,
 } from "@motif-studio/score-map";
 import {
   LIBRARY_ARTIFACT_ROOTS,
@@ -30,8 +31,19 @@ import {
  * the plans of every tree are merged up front. Takes whose masters have not been
  * collected yet are reported and skipped, never andoned.
  *
- * Ingest is INCREMENTAL: only the named packs are rewritten in the folded
- * manifest, so a pack ingested earlier keeps its entries.
+ * A take whose artifact is present but MALFORMED halts the whole run by default
+ * — bad audio must never reach the manifest. `--skip-defective` narrows that
+ * andon from the run to the take: the defect is still refused and never folded,
+ * but the remaining packs finish, every failure is listed at the end, and the
+ * process exits non-zero so a run that dropped something cannot read as clean.
+ *
+ * Ingest is INCREMENTAL twice over. Across packs: only the named packs are
+ * rewritten in the folded manifest, so a pack ingested earlier keeps its
+ * entries. Within a pack: a take whose input FLACs still hash to what the
+ * previous ingest recorded, and whose masters are all still on disk, is served
+ * from that ingest instead of being decoded and rewritten. A full-library
+ * re-run is therefore seconds, not hours — pass `--force` to re-decode
+ * everything anyway and prove the pipeline still reproduces its own output.
  *
  * Budget ~86 MB of 24-bit WAV per take (mix + 4 stems at 60 s): ~2.6 GB for
  * the 30-take flagship, ~18 GB for all ten Tier-1 packs. Name the packs you
@@ -49,15 +61,21 @@ const manifestPath = join(repoRoot, "apps/studio/src/app/library-folded.json");
 interface Args {
   packIds: string[];
   roots: Record<LibraryArtifactRootId, string>;
+  force: boolean;
+  skipDefective: boolean;
 }
 
 function parseArgs(argv: string[]): Args {
   const named: string[] = [];
   const tiers: string[] = [];
+  let force = false;
+  let skipDefective = false;
   const roots: Record<LibraryArtifactRootId, string> = { ...LIBRARY_ARTIFACT_ROOTS };
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i]!;
     if (arg === "--pack") named.push(argv[++i]!);
+    else if (arg === "--force") force = true;
+    else if (arg === "--skip-defective") skipDefective = true;
     else if (arg === "--tier") {
       const value = argv[++i];
       if (!value) throw new Error("--tier wants a tier number, e.g. --tier 2");
@@ -98,6 +116,8 @@ function parseArgs(argv: string[]): Args {
         ? LIBRARY_PACKS.filter((p) => wanted.has(p.id)).map((p) => p.id)
         : LIBRARY_PACKS.map((p) => p.id),
     roots,
+    force,
+    skipDefective,
   };
 }
 
@@ -115,7 +135,7 @@ function writeManifest(manifest: FoldedManifest): void {
   writeFileSync(manifestPath, `${JSON.stringify({ packs }, null, 2)}\n`, "utf-8");
 }
 
-const { packIds, roots } = parseArgs(process.argv.slice(2));
+const { packIds, roots, force, skipDefective } = parseArgs(process.argv.slice(2));
 const plan = loadLibraryPlans(roots);
 const manifest = readManifest();
 
@@ -128,6 +148,9 @@ process.stdout.write(
 
 let ingested = 0;
 let skipped = 0;
+let reused = 0;
+const failures: Array<{ packId: string; folder: string; message: string }> = [];
+const startedAt = Date.now();
 
 for (const packId of packIds) {
   mkdirSync(join(publicAudioRoot, libraryPublicDir(packId)), { recursive: true });
@@ -135,6 +158,19 @@ for (const packId of packIds) {
     publicAudioRoot,
     roots,
     plan,
+    force,
+    onCacheHit: () => {
+      reused++;
+    },
+    ...(skipDefective
+      ? {
+          onFailure: (take: LibraryTake, error: unknown) => {
+            const message = error instanceof Error ? error.message : String(error);
+            failures.push({ packId, folder: take.folder, message });
+            process.stdout.write(`${packId}/${take.folder}  DEFECTIVE — ${message}\n`);
+          },
+        }
+      : {}),
     onSkip: (take, artifactDir) => {
       skipped++;
       process.stdout.write(
@@ -183,6 +219,20 @@ for (const packId of packIds) {
 
 const total = Object.values(manifest.packs).reduce((n, p) => n + p.items.length, 0);
 process.stdout.write(
-  `ingested ${ingested} take(s), skipped ${skipped} across ${packIds.length} pack(s); ` +
+  `ingested ${ingested} take(s) — ${ingested - reused} freshly decoded, ${reused} reused ` +
+    `from a previous ingest — skipped ${skipped}, across ${packIds.length} pack(s) in ` +
+    `${((Date.now() - startedAt) / 1000).toFixed(1)}s; ` +
     `manifest now holds ${total} takes over ${Object.keys(manifest.packs).length} pack(s) → ${manifestPath}\n`,
 );
+
+// A dropped take is still a defect. Report every one and exit non-zero, so a
+// run that skipped something can never be mistaken for a clean one.
+if (failures.length > 0) {
+  process.stdout.write(
+    `\n${failures.length} DEFECTIVE take(s) left out of the manifest — each needs a re-roll or a re-collect:\n`,
+  );
+  for (const f of failures) {
+    process.stdout.write(`  ${f.packId}/${f.folder}: ${f.message}\n`);
+  }
+  process.exitCode = 1;
+}

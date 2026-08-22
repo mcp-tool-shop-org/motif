@@ -1,5 +1,13 @@
 import { describe, it, expect } from "vitest";
-import { copyFileSync, existsSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import {
+  copyFileSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { GeneratedCueRecordSchema } from "@motif-studio/schema";
@@ -837,6 +845,60 @@ describe("library artifact trees", () => {
     expect(skipped[0]).toContain(join(roots["regen-cd"], "cozy-hamlet", "fireflies-s12103"));
     expect(existsSync(join(publicAudioRoot, "library-packs"))).toBe(false);
   });
+
+  /**
+   * A present-but-malformed artifact is a defect either way. The question is
+   * blast radius: by default it halts the run, and with `onFailure` it costs
+   * only its own take. Neither path may ever fold the bad take.
+   */
+  function writeDefectiveTake(): { roots: Record<string, string>; plan: Map<string, string> } {
+    const root = mkdtempSync(join(tmpdir(), "motif-defective-"));
+    const dir = join(root, "cozy-hamlet", "fireflies-s12103");
+    mkdirSync(dir, { recursive: true });
+    // Mix + stems present so the layout check passes, but the mix header is
+    // garbage — the failure lands inside the take, not in the scan.
+    writeFileSync(join(dir, "fireflies-s12103-track_mix.flac"), Buffer.alloc(64));
+    for (const role of ["bass", "drums", "other", "vocals"] as const) {
+      writeFileSync(join(dir, `fireflies-s12103-stem_${role}.flac`), packStreamInfo(48000, 2, 16, 480));
+    }
+    writeFileSync(
+      join(dir, "fireflies-s12103-track_lufs.txt"),
+      "Integrated Loudness: -12.32 LUFS\n",
+    );
+    return {
+      roots: { "regen-cd": root },
+      plan: new Map([["cozy-hamlet/fireflies-s12103", "5bd5d95f-7a5a-45ba-9133-b6f3a3235e0f"]]),
+    };
+  }
+
+  it("halts the run on a malformed artifact when no onFailure is given", async () => {
+    const { roots, plan } = writeDefectiveTake();
+    await expect(
+      ingestLibraryPack("cozy-hamlet", {
+        publicAudioRoot: mkdtempSync(join(tmpdir(), "motif-public-")),
+        roots,
+        plan,
+        takes: [REGEN_TAKE],
+      }),
+    ).rejects.toThrow();
+  });
+
+  it("drops only the malformed take when onFailure is given", async () => {
+    const { roots, plan } = writeDefectiveTake();
+    const failed: string[] = [];
+    const items = await ingestLibraryPack("cozy-hamlet", {
+      publicAudioRoot: mkdtempSync(join(tmpdir(), "motif-public-")),
+      roots,
+      plan,
+      takes: [REGEN_TAKE],
+      onFailure: (take, error) => {
+        failed.push(`${take.folder}: ${error instanceof Error ? error.message : String(error)}`);
+      },
+    });
+    expect(failed).toHaveLength(1);
+    expect(failed[0]).toContain("fireflies-s12103");
+    expect(items).toEqual([]); // the defect never reaches the manifest
+  });
 });
 
 // ── Playback default: measured, not catalog-ordered ──
@@ -936,5 +998,192 @@ describe("selectPlaybackDefaults", () => {
 
   it("returns nothing to bed when a pack ingested no takes at all", () => {
     expect(selectPlaybackDefaults([])).toEqual([]);
+  });
+});
+
+describe("ingest cache (unchanged inputs are not re-decoded)", () => {
+  /** A complete synthetic music artifact: mix + 4 stems + LUFS. */
+  function writeMusicArtifact(): string {
+    const dir = mkdtempSync(join(tmpdir(), "motif-cache-art-"));
+    writeFileSync(join(dir, "track_mix.flac"), packStreamInfo(48000, 2, 16, 480));
+    for (const [i, role] of (["bass", "drums", "other", "vocals"] as const).entries()) {
+      const buf = packStreamInfo(48000, 2, 16, 480);
+      buf[26] = i + 1;
+      writeFileSync(join(dir, `stem_${role}.flac`), buf);
+    }
+    writeFileSync(join(dir, "track_lufs.txt"), "Integrated Loudness: -12.32 LUFS\n");
+    return dir;
+  }
+
+  const generation = {
+    seed: 7,
+    workflowId: ACE_STEP_WORKFLOW_ID,
+    jobId: "b81c6dbf-76de-463b-97e0-0ba5dcf99a60",
+    bpm: 90,
+    keyscale: "E minor",
+    timesignature: "4",
+    lyricsTag: "[inst]",
+    requestedDurationSec: 60,
+  };
+
+  /** Counts decoder calls so "did it redo the work" is observed, not inferred. */
+  function countingDecode(): { decode: typeof fakeDecode; calls: () => number } {
+    let calls = 0;
+    return {
+      decode: async (bytes) => {
+        calls++;
+        return fakeDecode(bytes);
+      },
+      calls: () => calls,
+    };
+  }
+
+  async function ingestOnce(
+    dir: string,
+    dest: string,
+    extra: Record<string, unknown> = {},
+  ): Promise<{ result: Awaited<ReturnType<typeof ingestRunArtifact>>; decodes: number; hits: number }> {
+    const { decode, calls } = countingDecode();
+    let hits = 0;
+    const result = await ingestRunArtifact(dir, {
+      id: "cached-bed",
+      destDir: dest,
+      decodeFlac: decode,
+      failOnVocalBleed: false,
+      onCacheHit: () => {
+        hits++;
+      },
+      generation,
+      ...extra,
+    });
+    return { result, decodes: calls(), hits };
+  }
+
+  it("decodes on the first ingest and reuses an identical record on the second", async () => {
+    const dir = writeMusicArtifact();
+    const dest = mkdtempSync(join(tmpdir(), "motif-cache-dest-"));
+
+    const first = await ingestOnce(dir, dest);
+    expect(first.decodes).toBe(5); // mix + 4 stems
+    expect(first.hits).toBe(0);
+
+    const second = await ingestOnce(dir, dest);
+    expect(second.decodes).toBe(0); // nothing re-decoded
+    expect(second.hits).toBe(1);
+
+    // The cached path must reproduce the fresh one exactly, `createdAt` aside —
+    // it is the same record, not a lookalike rebuilt from different rules.
+    const strip = (r: GeneratedCueRecord) => ({ ...r, createdAt: "" });
+    expect(strip(second.result.record)).toEqual(strip(first.result.record));
+    expect(second.result.assets).toEqual(first.result.assets);
+    expect(second.result.stems).toEqual(first.result.stems);
+    expect(second.result.scene).toEqual(first.result.scene);
+    expect(second.result.cue).toEqual(first.result.cue);
+    expect(GeneratedCueRecordSchema.safeParse(second.result.record).success).toBe(true);
+  });
+
+  it("re-decodes under --force even when the cache would have hit", async () => {
+    const dir = writeMusicArtifact();
+    const dest = mkdtempSync(join(tmpdir(), "motif-cache-force-"));
+    await ingestOnce(dir, dest);
+    const forced = await ingestOnce(dir, dest, { force: true });
+    expect(forced.decodes).toBe(5);
+    expect(forced.hits).toBe(0);
+  });
+
+  it("re-decodes when a master was deleted", async () => {
+    const dir = writeMusicArtifact();
+    const dest = mkdtempSync(join(tmpdir(), "motif-cache-gone-"));
+    const first = await ingestOnce(dir, dest);
+    const master = first.result.record.stems!.find((s) => s.role === "drums")!.masterSrc;
+    expect(existsSync(master)).toBe(true);
+    rmSync(master);
+
+    const second = await ingestOnce(dir, dest);
+    expect(second.decodes).toBe(5);
+    expect(second.hits).toBe(0);
+    expect(existsSync(master)).toBe(true); // rebuilt
+  });
+
+  it("re-decodes when an input FLAC changed underneath", async () => {
+    const dir = writeMusicArtifact();
+    const dest = mkdtempSync(join(tmpdir(), "motif-cache-dirty-"));
+    await ingestOnce(dir, dest);
+
+    // Same shape, different bytes — only the content hash can catch this.
+    const swapped = packStreamInfo(48000, 2, 16, 480);
+    swapped[27] = 42;
+    writeFileSync(join(dir, "stem_other.flac"), swapped);
+
+    const second = await ingestOnce(dir, dest);
+    expect(second.decodes).toBe(5);
+    expect(second.hits).toBe(0);
+  });
+
+  it("re-decodes when the take was re-pointed at a different job", async () => {
+    const dir = writeMusicArtifact();
+    const dest = mkdtempSync(join(tmpdir(), "motif-cache-job-"));
+    await ingestOnce(dir, dest);
+    const second = await ingestOnce(dir, dest, {
+      generation: { ...generation, jobId: "0f2b1c44-5d6e-4a7b-8c9d-0e1f2a3b4c5d" },
+    });
+    expect(second.decodes).toBe(5);
+    expect(second.hits).toBe(0);
+  });
+
+  it("re-decodes when the loudness target changed", async () => {
+    const dir = writeMusicArtifact();
+    const dest = mkdtempSync(join(tmpdir(), "motif-cache-target-"));
+    await ingestOnce(dir, dest);
+    const second = await ingestOnce(dir, dest, { targetLufs: MUSIC_BED_TARGET_LUFS + 2 });
+    expect(second.decodes).toBe(5);
+    expect(second.hits).toBe(0);
+  });
+});
+
+describe("ingest cache identity", () => {
+  it("does not reuse a record written under a different id or name", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "motif-cache-id-art-"));
+    writeFileSync(join(dir, "track_mix.flac"), packStreamInfo(48000, 2, 16, 480));
+    for (const [i, role] of (["bass", "drums", "other", "vocals"] as const).entries()) {
+      const buf = packStreamInfo(48000, 2, 16, 480);
+      buf[26] = i + 1;
+      writeFileSync(join(dir, `stem_${role}.flac`), buf);
+    }
+    writeFileSync(join(dir, "track_lufs.txt"), "Integrated Loudness: -12.32 LUFS\n");
+    const dest = mkdtempSync(join(tmpdir(), "motif-cache-id-dest-"));
+
+    const generation = {
+      seed: 11,
+      workflowId: ACE_STEP_WORKFLOW_ID,
+      jobId: "b81c6dbf-76de-463b-97e0-0ba5dcf99a60",
+      bpm: 90,
+      keyscale: "E minor",
+      timesignature: "4",
+      lyricsTag: "[inst]",
+      requestedDurationSec: 60,
+    };
+    const run = async (id: string, name: string) => {
+      let decodes = 0;
+      const result = await ingestRunArtifact(dir, {
+        id,
+        name,
+        destDir: dest,
+        failOnVocalBleed: false,
+        generation,
+        decodeFlac: async (bytes) => {
+          decodes++;
+          return fakeDecode(bytes);
+        },
+      });
+      return { result, decodes };
+    };
+
+    await run("take-a", "Take A");
+    const renamed = await run("take-a", "Take A Renamed");
+    expect(renamed.decodes).toBe(5); // name is baked into every asset — no reuse
+    const reId = await run("take-b", "Take A Renamed");
+    expect(reId.decodes).toBe(5); // id is baked into every asset id — no reuse
+    expect(reId.result.assets[0]!.id).toBe("take-b-mix");
   });
 });
