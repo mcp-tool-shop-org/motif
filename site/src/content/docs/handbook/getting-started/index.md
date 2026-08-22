@@ -51,7 +51,7 @@ git clone https://github.com/mcp-tool-shop-org/motif.git
 cd motif
 pnpm install
 pnpm build
-pnpm test        # 663 tests across all packages
+pnpm test        # 1,709 tests across all packages
 pnpm dev         # Start the Studio dev server
 ```
 

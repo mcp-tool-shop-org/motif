@@ -1,7 +1,14 @@
 import type { SoundtrackPack } from "@motif-studio/schema";
 import { buildGroundedPack } from "@motif-studio/scene-mapper";
-import { foldGeneratedIntoPack, type FoldableGenerated } from "@motif-studio/score-map";
-import wave2Folded from "./grounded-wave2-folded.json";
+import {
+  LIBRARY_PACKS,
+  buildLibraryPack,
+  foldGeneratedIntoPack,
+  libraryPackId,
+  type FoldableGenerated,
+} from "@motif-studio/score-map";
+import groundedFolded from "./grounded-folded.json";
+import libraryFolded from "./library-folded.json";
 
 // ── Minimal Pack — smallest valid pack ──
 
@@ -19,9 +26,9 @@ export const minimalPack: SoundtrackPack = {
     {
       id: "asset-drone",
       name: "Ambient Drone",
-      src: "audio/drone.ogg",
+      src: "audio/library/minimal/drone.wav",
       kind: "loop",
-      durationMs: 16000,
+      durationMs: 60000,
       bpm: 60,
       key: "Cm",
     },
@@ -72,76 +79,76 @@ export const combatEscalationPack: SoundtrackPack = {
     {
       id: "asset-patrol-base",
       name: "Patrol Base",
-      src: "audio/patrol-base.ogg",
+      src: "audio/library/combat-escalation/patrol-base.wav",
       kind: "loop",
-      durationMs: 16000,
+      durationMs: 60000,
       bpm: 100,
       key: "Dm",
     },
     {
       id: "asset-patrol-perc",
       name: "Patrol Percussion",
-      src: "audio/patrol-perc.ogg",
+      src: "audio/library/combat-escalation/patrol-perc.wav",
       kind: "loop",
-      durationMs: 16000,
+      durationMs: 60000,
       bpm: 100,
     },
     {
       id: "asset-skirmish-base",
       name: "Skirmish Base",
-      src: "audio/skirmish-base.ogg",
+      src: "audio/library/combat-escalation/skirmish-base.wav",
       kind: "loop",
-      durationMs: 8000,
+      durationMs: 60000,
       bpm: 130,
       key: "Em",
     },
     {
       id: "asset-skirmish-strings",
       name: "Skirmish Strings",
-      src: "audio/skirmish-strings.ogg",
+      src: "audio/library/combat-escalation/skirmish-strings.wav",
       kind: "loop",
-      durationMs: 8000,
+      durationMs: 60000,
       bpm: 130,
       key: "Em",
     },
     {
       id: "asset-boss-base",
       name: "Boss Base",
-      src: "audio/boss-base.ogg",
+      src: "audio/library/combat-escalation/boss-base.wav",
       kind: "loop",
-      durationMs: 8000,
+      durationMs: 60000,
       bpm: 160,
       key: "Gm",
     },
     {
       id: "asset-boss-choir",
       name: "Boss Choir",
-      src: "audio/boss-choir.ogg",
+      src: "audio/library/combat-escalation/boss-choir.wav",
       kind: "loop",
-      durationMs: 8000,
+      durationMs: 60000,
       bpm: 160,
       key: "Gm",
     },
     {
       id: "asset-victory-fanfare",
       name: "Victory Fanfare",
-      src: "audio/victory-fanfare.ogg",
+      src: "audio/library/stingers/ce-victory-fanfare.wav",
       kind: "oneshot",
-      durationMs: 5000,
+      durationMs: 5016,
     },
     {
       id: "asset-stinger-engage",
       name: "Engage Stinger",
-      src: "audio/stinger-engage.ogg",
+      src: "audio/library/stingers/ce-stinger-engage.wav",
       kind: "stinger",
-      durationMs: 1200,
+      durationMs: 1486,
     },
     {
       id: "asset-stinger-boss",
       name: "Boss Stinger",
-      src: "audio/stinger-boss.ogg",
+      src: "audio/library/stingers/ce-stinger-boss.wav",
       kind: "stinger",
-      durationMs: 2000,
+      durationMs: 2043,
     },
   ],
   stems: [
@@ -284,7 +291,7 @@ export const combatEscalationPack: SoundtrackPack = {
       toSceneId: "scene-skirmish",
       mode: "stinger-then-switch",
       stingerAssetId: "asset-stinger-engage",
-      durationMs: 1200,
+      durationMs: 1486,
     },
     {
       id: "trans-skirmish-to-boss",
@@ -337,68 +344,68 @@ export const starterPack: SoundtrackPack = {
     {
       id: "asset-explore-base",
       name: "Exploration Base",
-      src: "audio/explore-base.ogg",
+      src: "audio/library/starter/explore-base.wav",
       kind: "loop",
-      durationMs: 16000,
+      durationMs: 60000,
       bpm: 90,
       key: "Am",
     },
     {
       id: "asset-explore-accent",
       name: "Exploration Accent",
-      src: "audio/explore-accent.ogg",
+      src: "audio/library/starter/explore-accent.wav",
       kind: "loop",
-      durationMs: 16000,
+      durationMs: 60000,
       bpm: 90,
       loopStartMs: 0,
-      loopEndMs: 16000,
+      loopEndMs: 60000,
     },
     {
       id: "asset-tension-base",
       name: "Tension Base",
-      src: "audio/tension-base.ogg",
+      src: "audio/library/starter/tension-base.wav",
       kind: "loop",
-      durationMs: 8000,
+      durationMs: 60000,
       bpm: 110,
       key: "Dm",
     },
     {
       id: "asset-combat-base",
       name: "Combat Base",
-      src: "audio/combat-base.ogg",
+      src: "audio/library/starter/combat-base.wav",
       kind: "loop",
-      durationMs: 8000,
+      durationMs: 60000,
       bpm: 140,
       key: "Em",
     },
     {
       id: "asset-combat-danger",
       name: "Combat Danger Layer",
-      src: "audio/combat-danger.ogg",
+      src: "audio/library/starter/combat-danger.wav",
       kind: "loop",
-      durationMs: 8000,
+      durationMs: 60000,
       bpm: 140,
     },
     {
       id: "asset-victory-fanfare",
       name: "Victory Fanfare",
-      src: "audio/victory-fanfare.ogg",
+      src: "audio/library/stingers/st-victory-fanfare.wav",
       kind: "oneshot",
-      durationMs: 4000,
+      durationMs: 3994,
     },
     {
       id: "asset-stinger-combat",
       name: "Combat Stinger",
-      src: "audio/stinger-combat.ogg",
+      src: "audio/library/stingers/st-stinger-combat.wav",
       kind: "stinger",
-      durationMs: 1500,
+      durationMs: 1486,
     },
     {
       id: "asset-safe-ambient",
       name: "Safe Zone Ambient",
-      src: "audio/safe-ambient.ogg",
+      src: "audio/library/starter/safe-ambient.wav",
       kind: "ambient",
-      durationMs: 30000,
+      durationMs: 60000,
       tags: ["calm", "town"],
     },
   ],
@@ -1042,18 +1049,49 @@ export const synthDemoPack: SoundtrackPack = {
 
 // ── Example pack registry ──
 
-const groundedPack = foldWave2(buildGroundedPack());
+const groundedPack = foldGrounded(buildGroundedPack());
 
-function foldWave2(pack: SoundtrackPack): SoundtrackPack {
-  const items = (wave2Folded as { items?: FoldableGenerated[] }).items ?? [];
+function foldGrounded(pack: SoundtrackPack): SoundtrackPack {
+  const items = (groundedFolded as { items?: FoldableGenerated[] }).items ?? [];
   if (items.length === 0) return pack;
   return foldGeneratedIntoPack(pack, items);
 }
 
-export const examplePacks = [
+// ── Motif Library packs — derived from the catalog, one entry per ingested pack ──
+
+interface LibraryFolded {
+  packs?: Record<string, { items?: FoldableGenerated[] }>;
+}
+
+export interface ExamplePackEntry {
+  id: string;
+  name: string;
+  pack: SoundtrackPack;
+}
+
+/**
+ * Every catalog pack across every tier, in catalog order — but a library pack
+ * only ships once its takes are on disk. Packs still waiting on
+ * `pnpm --filter @motif-studio/sample-lab ingest:library --pack <id>` are
+ * skipped rather than listed as silent placeholder entries.
+ */
+const libraryPacks: ExamplePackEntry[] = LIBRARY_PACKS.flatMap((catalogPack) => {
+  const items = (libraryFolded as LibraryFolded).packs?.[catalogPack.id]?.items ?? [];
+  if (items.length === 0) return [];
+  return [
+    {
+      id: libraryPackId(catalogPack.id),
+      name: catalogPack.name,
+      pack: foldGeneratedIntoPack(buildLibraryPack(catalogPack), items),
+    },
+  ];
+});
+
+export const examplePacks: ExamplePackEntry[] = [
   { id: "minimal-pack", name: "Minimal Pack", pack: minimalPack },
   { id: "starter-pack", name: "Starter Adventure Pack", pack: starterPack },
   { id: "combat-escalation-pack", name: "Combat Escalation Pack", pack: combatEscalationPack },
   { id: "synth-demo-pack", name: "Synth Demo — Game Soundtrack", pack: synthDemoPack },
   { id: "star-freight-grounded", name: "Star Freight: Grounded — Prologue", pack: groundedPack },
-] as const;
+  ...libraryPacks,
+];

@@ -2,24 +2,30 @@ import { join } from "node:path";
 import type { GenerationParams } from "@motif-studio/schema";
 import {
   ACE_STEP_WORKFLOW_ID,
-  GROUNDED_WAVE2_ROOT,
-  GROUNDED_WAVE2_TAKES,
+  GROUNDED_TAKES,
+  groundedArtifactRoot,
   specForFamily,
-  type GroundedWave2Take,
+  styleTagsFor,
+  type GroundedTake,
 } from "@motif-studio/score-map";
 import { ingestRunArtifact, type IngestResult } from "./ingest.js";
 import type { FoldableGenerated } from "@motif-studio/score-map";
 
-export const DEFAULT_WAVE2_PUBLIC_DIR = "apps/studio/public/audio/grounded-v2";
+/** Public audio root inside the studio app; each take lands under `grounded-v<wave>/<folder>/`. */
+export const DEFAULT_GROUNDED_PUBLIC_ROOT = "apps/studio/public/audio";
 
-function publicSrc(folder: string, filename: string): string {
-  return `/audio/grounded-v2/${folder}/masters/${filename}`;
+export function groundedPublicDir(wave: GroundedTake["wave"]): string {
+  return `grounded-v${wave}`;
 }
 
-function rewriteSrcs(result: IngestResult, takeId: string): IngestResult {
+function publicSrc(wave: GroundedTake["wave"], folder: string, filename: string): string {
+  return `/audio/${groundedPublicDir(wave)}/${folder}/masters/${filename}`;
+}
+
+function rewriteSrcs(result: IngestResult, take: GroundedTake): IngestResult {
   const mapSrc = (src: string): string => {
     const base = src.replace(/\\/g, "/").split("/").pop() ?? src;
-    return publicSrc(takeId, base);
+    return publicSrc(take.wave, take.folder, base);
   };
   const assets = result.assets.map((a) => ({ ...a, src: mapSrc(a.src) }));
   const record = {
@@ -32,7 +38,12 @@ function rewriteSrcs(result: IngestResult, takeId: string): IngestResult {
   return { ...result, assets, record };
 }
 
-export function generationParamsForTake(take: GroundedWave2Take): GenerationParams {
+/**
+ * Exact generation params a take RAN with. Prose resolves through the take's
+ * promptVersion (wave-2 = v1, wave-3 = v2) — never the family's current
+ * grammar — so records echo what was actually submitted.
+ */
+export function generationParamsForTake(take: GroundedTake): GenerationParams {
   const spec = specForFamily(take.familyId);
   if (!spec) {
     throw new Error(`No generation spec for family ${take.familyId}`);
@@ -44,18 +55,21 @@ export function generationParamsForTake(take: GroundedWave2Take): GenerationPara
     lyricsTag: spec.lyricsTag,
     seed: take.seed,
     workflowId: ACE_STEP_WORKFLOW_ID,
-    jobId: take.jobIdPrefix,
-    prompt: spec.styleTags,
+    jobId: take.jobId,
+    prompt: styleTagsFor(take.familyId, take.promptVersion),
     requestedDurationSec: spec.durationSec,
   };
 }
 
-export async function ingestGroundedWave2Take(
-  take: GroundedWave2Take,
-  options: { destRoot: string; artifactRoot?: string },
+export async function ingestGroundedTake(
+  take: GroundedTake,
+  options: { publicAudioRoot: string; artifactRoot?: string },
 ): Promise<FoldableGenerated> {
-  const artifactDir = join(options.artifactRoot ?? GROUNDED_WAVE2_ROOT, take.folder);
-  const destDir = join(options.destRoot, take.folder);
+  const artifactDir = join(
+    options.artifactRoot ?? groundedArtifactRoot(take.wave),
+    take.folder,
+  );
+  const destDir = join(options.publicAudioRoot, groundedPublicDir(take.wave), take.folder);
   const takeId = `${take.cueId}-s${take.seed}`;
   const raw = await ingestRunArtifact(artifactDir, {
     id: takeId,
@@ -64,7 +78,7 @@ export async function ingestGroundedWave2Take(
     generation: generationParamsForTake(take),
     failOnVocalBleed: false,
   });
-  const result = rewriteSrcs(raw, take.folder);
+  const result = rewriteSrcs(raw, take);
   return {
     record: result.record,
     assets: result.assets,
@@ -75,15 +89,15 @@ export async function ingestGroundedWave2Take(
   };
 }
 
-export async function ingestAllGroundedWave2(options: {
-  destRoot: string;
+export async function ingestAllGrounded(options: {
+  publicAudioRoot: string;
   artifactRoot?: string;
-  takes?: GroundedWave2Take[];
+  takes?: GroundedTake[];
 }): Promise<FoldableGenerated[]> {
-  const takes = options.takes ?? GROUNDED_WAVE2_TAKES;
+  const takes = options.takes ?? GROUNDED_TAKES;
   const out: FoldableGenerated[] = [];
   for (const take of takes) {
-    out.push(await ingestGroundedWave2Take(take, options));
+    out.push(await ingestGroundedTake(take, options));
   }
   return out;
 }

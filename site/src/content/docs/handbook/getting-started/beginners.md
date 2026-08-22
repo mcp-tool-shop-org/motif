@@ -53,7 +53,7 @@ git clone https://github.com/mcp-tool-shop-org/motif.git
 cd motif
 pnpm install
 pnpm build
-pnpm test        # 663 tests across all packages
+pnpm test        # 1,709 tests across all packages
 pnpm dev         # Start the Studio dev server
 ```
 
@@ -91,14 +91,14 @@ Motif follows a composition-first pipeline. You compose real music, then connect
 
 ## 4. Architecture at a Glance
 
-Motif is a TypeScript monorepo with two apps and 14 library packages.
+Motif is a TypeScript monorepo with one app, 16 library packages, and a docs site.
 
-### Apps
+### Apps and sites
 
-| App | Stack | Purpose |
-|-----|-------|---------|
-| `apps/studio` | Next.js 15, Zustand 5 | Main authoring UI with 14+ screens |
-| `apps/docs` | Astro + Starlight | Documentation site (this handbook) |
+| Directory | Stack | Purpose | In the pnpm workspace |
+|-----------|-------|---------|-----------------------|
+| `apps/studio` | Next.js 15, Zustand 5 | Main authoring UI with 14+ screens | yes |
+| `site` | Astro + Starlight | Landing page and this handbook | no — built separately |
 
 ### Key packages
 

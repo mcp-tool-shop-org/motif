@@ -7,7 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-08-22
+
 ### Added
+- **Content-addressed ingest.** A take whose input FLACs still hash to what the previous ingest recorded — with the same loudness target, generation identity and resampler, and all masters present — is reused instead of decoded again. Re-running a built pack drops from ~14 min to ~1 s, and an interrupted run resumes instead of restarting
+- `deriveIngestResult` — assets, stems, scene and cue are derived from the record in one place, called by both the fresh and cached ingest paths so they cannot drift apart
+- `--force` on `ingest:library` re-decodes everything even when the cache would hit (proves the pipeline still reproduces its own output byte-for-byte)
+- `--skip-defective` on `ingest:library` narrows the andon from the run to the take: a malformed artifact is still refused and never folded, the remaining packs finish, every failure is listed, and the process exits non-zero
+- Ingest reports fresh-vs-reused take counts and elapsed time
+- Built-in genre library catalog completed to 24 packs / 233 cues / 2 takes per cue, with the folded manifest committed
 - Generation ingest lane: cloud-run artifacts (ACE-Step mix + Demucs stems + SA3 SFX + LUFS manifests) become 48 kHz normalized masters and `GeneratedCueRecord`s that `score-map` / `clip-engine` can consume
 - `@motif-studio/schema` types for generation identity (params + measured duration/rate/LUFS/hashes) and optional `generatedCues` on the pack
 - Kaiser-windowed sinc resampler (44.1 kHz → 48 kHz), LUFS manifest parse, stem sample-count alignment, near-silent vocals bleed check
@@ -17,10 +25,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Grounded family generation locks + proposed style-tag spec (spend gated)
 - Wave-2 consumption: 60 s production unit, ACE-Step keyscale enum, house-grammar style tags, fold generated beds onto Grounded scenes for studio playback
 
+### Changed
+- The playback bed is chosen from the measured ingest — the lowest-seed take that cleared the +6 dB boost cap, falling back to the lowest seed when every take capped. Previously lowest-seed-wins, which left rescue re-rolls inert for cues whose A and B takes had both collapsed
+- One FLAC decoder is held for the process and reset between files rather than instantiated per file. Measured at 417.4 s vs 414.0 s baseline over ten takes — **not** a throughput win, kept only because it is strictly less work
+
 ### Fixed
 - Music ingest applies one joint peak clamp across mix + stems so a hot stem cannot take a different gain than the mix
 - `options.targetLufs` now drives `ingestGainDb` (the record no longer claims a target the gain path ignored)
 - Confirmation-run fixture identity: tests now use the run3 / `b81c6dbf` set (mix sha256 `e8860678…`); run1 remains a valid receipt of job `6c99f797`
+- Root vitest config globbed `*.test.ts` only, so 93 Studio tests never ran in CI; the root run now delegates to each package's own config
+
+### Tests
+- 1,709 tests across 74 files (up from 1,116 at 1.2.0), including 9 covering ingest-cache invalidation on changed input bytes, deleted master, re-pointed job id, changed loudness target, and changed id/name
 
 ## [1.2.0] - 2026-04-13
 

@@ -1,9 +1,17 @@
 import { describe, it, expect } from "vitest";
-import { copyFileSync, existsSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import {
+  copyFileSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { GeneratedCueRecordSchema } from "@motif-studio/schema";
-import type { SoundtrackPack } from "@motif-studio/schema";
+import type { GeneratedCueRecord, SoundtrackPack } from "@motif-studio/schema";
 import {
   parseIntegratedLufs,
   parseFlacStreamInfo,
@@ -24,10 +32,37 @@ import {
   registerGeneratedCue,
   GenerationError,
   MUSIC_BED_TARGET_LUFS,
+  BOOST_CAP_DB,
   RUNTIME_SAMPLE_RATE_HZ,
   sha256Hex,
+  generationParamsForTake,
+  generationParamsForLibraryTake,
+  ingestLibraryPack,
+  jobIdForTake,
+  loadLibraryCollectionPlan,
+  loadLibraryPlans,
+  libraryPublicDir,
+  libraryPublicSrc,
+  libraryTakeArtifactDir,
+  libraryTakePlanKey,
+  selectPlaybackDefaults,
+  RESAMPLER_NAME,
+  RESAMPLER_QUALITY,
+  LIBRARY_ARTIFACT_ROOTS,
+  LIBRARY_COLLECTION_PLAN_FILE,
+  LIBRARY_COLLECTION_PLAN_FILES,
   type FlacPcm,
 } from "../src/index.js";
+import {
+  ACE_STEP_WORKFLOW_ID,
+  GROUNDED_WAVE2_TAKES,
+  GROUNDED_WAVE3_TAKES,
+  libraryCatalogCue,
+  libraryTakes,
+  styleTagsFor,
+  type FoldableGenerated,
+  type LibraryTake,
+} from "@motif-studio/score-map";
 
 const FIXTURE_DIR =
   process.env.MOTIF_CLOUD_AUDIO_FIXTURES ??
@@ -180,6 +215,50 @@ describe("loudness gain", () => {
     expect(shared.actualLinear).toBeLessThan(dbToLinear(6));
     expect(shared.actualLinear).toBeCloseTo(drumsSolo.peak / 0.99, 6);
     expect(shared.actualLinear).not.toBeCloseTo(mixSolo.channels[0]![0]! / 0.1, 5);
+  });
+});
+
+describe("boost cap", () => {
+  // Measured rationale: wave-2 normalized contracts-s302 with +13.19 dB and it
+  // played ~7-10 dB louder than every neighbor. Boosts clamp at +6; cuts don't.
+
+  it("clamps a +13.19 dB boost to +6 and flags it", () => {
+    const quiet = [new Float32Array([0.05, -0.05])];
+    const shared = resolveSharedGain([quiet], 13.19);
+    expect(shared.boostCapped).toBe(true);
+    expect(shared.requestedGainDb).toBeCloseTo(13.19, 5); // uncapped evidence preserved
+    expect(shared.actualGainDb).toBeCloseTo(BOOST_CAP_DB, 5);
+    expect(shared.actualLinear).toBeCloseTo(dbToLinear(BOOST_CAP_DB), 6);
+  });
+
+  it("a boost exactly at +6 is not flagged", () => {
+    const quiet = [new Float32Array([0.05])];
+    const shared = resolveSharedGain([quiet], BOOST_CAP_DB);
+    expect(shared.boostCapped).toBe(false);
+    expect(shared.actualGainDb).toBeCloseTo(BOOST_CAP_DB, 5);
+  });
+
+  it("cuts are uncapped", () => {
+    const hot = [new Float32Array([0.9])];
+    const shared = resolveSharedGain([hot], -20);
+    expect(shared.boostCapped).toBe(false);
+    expect(shared.actualGainDb).toBeCloseTo(-20, 5);
+  });
+
+  it("peak limiting still applies after the cap", () => {
+    // Peak 0.9 at +6 dB would exceed the 0.999 peak limit → peak limit wins
+    const hot = [new Float32Array([0.9])];
+    const shared = resolveSharedGain([hot], 13);
+    expect(shared.boostCapped).toBe(true);
+    expect(shared.peakLimited).toBe(true);
+    expect(shared.actualLinear).toBeCloseTo(0.999 / 0.9, 6);
+  });
+
+  it("applyGain propagates the flag", () => {
+    const quiet = [new Float32Array([0.01])];
+    const result = applyGain(quiet, 12);
+    expect(result.boostCapped).toBe(true);
+    expect(result.channels[0]![0]).toBeCloseTo(0.01 * dbToLinear(BOOST_CAP_DB), 6);
   });
 });
 
@@ -537,5 +616,574 @@ describe("scan + register", () => {
 describe("rms helper", () => {
   it("is zero for silence", () => {
     expect(rmsOf([new Float32Array(8)])).toBe(0);
+  });
+});
+
+describe("grounded take params (prose/params association)", () => {
+  it("wave-2 takes echo the v1 prose they actually ran with", () => {
+    const s101 = GROUNDED_WAVE2_TAKES.find((t) => t.seed === 101)!;
+    const params = generationParamsForTake(s101);
+    expect(params.prompt).toBe(styleTagsFor("cf-military", 1));
+    expect(params.prompt!.startsWith("Military March: A tense, disciplined orchestral march.")).toBe(true);
+    expect(params.jobId).toBe("e83f8c6a-3c26-463a-9ab9-804b0933fa0c");
+    expect(params.seed).toBe(101);
+    expect(params.bpm).toBe(100);
+    expect(params.keyscale).toBe("G minor");
+    const s302 = GROUNDED_WAVE2_TAKES.find((t) => t.seed === 302)!;
+    expect(generationParamsForTake(s302).prompt).toBe(styleTagsFor("cf-frontier", 1));
+  });
+
+  it("wave-3 takes echo the v2 prose", () => {
+    const s111 = GROUNDED_WAVE3_TAKES.find((t) => t.seed === 111)!;
+    const params = generationParamsForTake(s111);
+    expect(params.prompt).toBe(styleTagsFor("cf-military", 2));
+    expect(params.prompt!.startsWith("Military March: A quiet, disciplined orchestral underscore.")).toBe(true);
+    expect(params.jobId).toBe("d1432095-2636-47a2-8b5f-6e692930e94a");
+    const s311 = GROUNDED_WAVE3_TAKES.find((t) => t.seed === 311)!;
+    expect(generationParamsForTake(s311).prompt).toBe(styleTagsFor("cf-frontier", 2));
+    // Same family lock either wave — only the prose version differs.
+    expect(generationParamsForTake(s111).bpm).toBe(100);
+    expect(generationParamsForTake(s311).keyscale).toBe("D minor");
+  });
+});
+
+describe("library take params (catalog / artifact association)", () => {
+  const FLAGSHIP = "fantasy-jrpg-core";
+  const takes = libraryTakes(FLAGSHIP);
+  const townA = takes.find((t) => t.seed === 2011)!;
+  const townB = takes.find((t) => t.seed === 2012)!;
+  const JOB_A = "6e2f7c63-b506-4c96-976e-4e7b6fc88679";
+  const plan = new Map([[`${FLAGSHIP}/${townA.folder}`, JOB_A]]);
+
+  it("echoes the catalog cue a take actually ran with", () => {
+    const cue = libraryCatalogCue(FLAGSHIP, "town")!;
+    const params = generationParamsForLibraryTake(townA, JOB_A);
+    expect(params.bpm).toBe(cue.bpm);
+    expect(params.keyscale).toBe(cue.keyscale);
+    expect(params.timesignature).toBe("4");
+    expect(params.lyricsTag).toBe("[inst]");
+    expect(params.seed).toBe(2011);
+    expect(params.jobId).toBe(JOB_A);
+    expect(params.workflowId).toBe(ACE_STEP_WORKFLOW_ID);
+    expect(params.requestedDurationSec).toBe(60);
+    expect(params.prompt).toBe(cue.prose);
+  });
+
+  it("gives both takes of a cue the same prose — only the seed differs", () => {
+    const a = generationParamsForLibraryTake(townA, JOB_A);
+    const b = generationParamsForLibraryTake(townB, JOB_A);
+    expect(b.prompt).toBe(a.prompt);
+    expect(b.seed).toBe(2012);
+  });
+
+  it("resolves the full job UUID from the collection plan", () => {
+    expect(jobIdForTake(townA, plan)).toBe(JOB_A);
+  });
+
+  it("halts on a missing plan entry rather than ingesting an unidentified take", () => {
+    expect(() => jobIdForTake(townB, plan)).toThrow(GenerationError);
+    expect(() => jobIdForTake(townB, plan)).toThrow(/town-s2012/);
+  });
+
+  it("halts on a truncated job id (receipts law: full UUIDs only)", () => {
+    const truncated = new Map([[`${FLAGSHIP}/${townA.folder}`, JOB_A.slice(0, 8)]]);
+    expect(() => jobIdForTake(townA, truncated)).toThrow(/not a full UUID/);
+  });
+
+  it("keys the loaded plan by <packId>/<folder>", () => {
+    const dir = mkdtempSync(join(tmpdir(), "motif-library-plan-"));
+    writeFileSync(
+      join(dir, LIBRARY_COLLECTION_PLAN_FILE),
+      JSON.stringify({
+        [FLAGSHIP]: {
+          batch_id: "batch_x",
+          items: [
+            { job_id: JOB_A, cueId: "town", seed: 2011, folder: "town-s2011", label: "town-s2011" },
+          ],
+        },
+      }),
+    );
+    const loaded = loadLibraryCollectionPlan(dir);
+    expect(loaded.get(`${FLAGSHIP}/town-s2011`)).toBe(JOB_A);
+    expect(loaded.size).toBe(1);
+  });
+
+  it("lands masters under a pack-scoped public dir", () => {
+    expect(libraryPublicDir(FLAGSHIP)).toBe("library-packs/fantasy-jrpg-core");
+    expect(libraryPublicSrc(FLAGSHIP, townA.folder, "town-s2011-mix.wav")).toBe(
+      "/audio/library-packs/fantasy-jrpg-core/town-s2011/masters/town-s2011-mix.wav",
+    );
+  });
+});
+
+// ── Extra takes: the C/D re-rolls live in their own artifact trees ──
+
+const REVISION_TAKE: LibraryTake = {
+  packId: "fantasy-jrpg-core",
+  cueId: "defeat",
+  seed: 2123,
+  take: "C",
+  familyId: "cf-fantasy-jrpg-core-defeat",
+  sceneId: "sc-fantasy-jrpg-core-defeat",
+  folder: "defeat-s2123",
+  playbackDefault: false,
+  promptVersion: 2,
+  prose: "Defeat (v2): a timpani heartbeat holds under a falling piano line.",
+  artifact: { root: "tier2", dir: "tier1-revisions" },
+};
+
+const REGEN_TAKE: LibraryTake = {
+  packId: "cozy-hamlet",
+  cueId: "fireflies",
+  seed: 12103,
+  take: "C",
+  familyId: "cf-cozy-hamlet-fireflies",
+  sceneId: "sc-cozy-hamlet-fireflies",
+  folder: "fireflies-s12103",
+  playbackDefault: false,
+  promptVersion: 1,
+  prose: "Fireflies: unchanged prose — seed is the only lever.",
+  artifact: { root: "regen-cd", dir: "cozy-hamlet" },
+};
+
+describe("library artifact trees", () => {
+  const JOB = "5bd5d95f-7a5a-45ba-9133-b6f3a3235e0f";
+
+  it("keys a take's plan entry by its artifact dir, not by its owning pack", () => {
+    expect(libraryTakePlanKey(REVISION_TAKE)).toBe("tier1-revisions/defeat-s2123");
+    expect(libraryTakePlanKey(REGEN_TAKE)).toBe("cozy-hamlet/fireflies-s12103");
+  });
+
+  it("resolves revision masters under the tier-2 tree and regen masters under the regen tree", () => {
+    expect(libraryTakeArtifactDir(REVISION_TAKE, { tier2: "/roots/t2" })).toBe(
+      join("/roots/t2", "tier1-revisions", "defeat-s2123"),
+    );
+    expect(libraryTakeArtifactDir(REGEN_TAKE, { "regen-cd": "/roots/rc" })).toBe(
+      join("/roots/rc", "cozy-hamlet", "fireflies-s12103"),
+    );
+    expect(libraryTakeArtifactDir(REVISION_TAKE)).toBe(
+      join(LIBRARY_ARTIFACT_ROOTS.tier2, "tier1-revisions", "defeat-s2123"),
+    );
+  });
+
+  it("halts when a take names an artifact tree with no configured root", () => {
+    expect(() => libraryTakeArtifactDir(REGEN_TAKE, { tier1: "/roots/t1" })).toThrow(
+      GenerationError,
+    );
+    expect(() => libraryTakeArtifactDir(REGEN_TAKE, { tier1: "/roots/t1" })).toThrow(
+      /regen-cd/,
+    );
+  });
+
+  it("echoes the take's own prose, so a v2 revision never records the cue's v1 string", () => {
+    const params = generationParamsForLibraryTake(REVISION_TAKE, JOB);
+    const cue = libraryCatalogCue("fantasy-jrpg-core", "defeat")!;
+    expect(params.prompt).toBe(REVISION_TAKE.prose);
+    expect(params.prompt).not.toBe(cue.prose);
+    // bpm / keyscale were held identical across the re-roll — prose was the only lever
+    expect(params.bpm).toBe(cue.bpm);
+    expect(params.keyscale).toBe(cue.keyscale);
+    expect(params.seed).toBe(2123);
+  });
+
+  it("merges every tree's plan into one map and skips trees with no plan file", () => {
+    const t2 = mkdtempSync(join(tmpdir(), "motif-plan-t2-"));
+    const rc = mkdtempSync(join(tmpdir(), "motif-plan-rc-"));
+    const empty = mkdtempSync(join(tmpdir(), "motif-plan-none-"));
+    writeFileSync(
+      join(t2, LIBRARY_COLLECTION_PLAN_FILES.tier2),
+      JSON.stringify({
+        "tier1-revisions": { items: [{ job_id: JOB, folder: "defeat-s2123" }] },
+      }),
+    );
+    writeFileSync(
+      join(rc, LIBRARY_COLLECTION_PLAN_FILES["regen-cd"]),
+      JSON.stringify({
+        "cozy-hamlet": {
+          items: [
+            { job_id: "480e4f79-0d4e-4786-9205-34a7a37de4ed", folder: "fireflies-s12103" },
+          ],
+        },
+      }),
+    );
+    const plan = loadLibraryPlans({ tier1: empty, tier2: t2, "regen-cd": rc });
+    expect(plan.size).toBe(2);
+    expect(jobIdForTake(REVISION_TAKE, plan)).toBe(JOB);
+    expect(jobIdForTake(REGEN_TAKE, plan)).toBe("480e4f79-0d4e-4786-9205-34a7a37de4ed");
+  });
+
+  it("halts when two collection runs disagree on the same take", () => {
+    const a = mkdtempSync(join(tmpdir(), "motif-plan-a-"));
+    const b = mkdtempSync(join(tmpdir(), "motif-plan-b-"));
+    const entry = (jobId: string) => ({
+      "cozy-hamlet": { items: [{ job_id: jobId, folder: "fireflies-s12103" }] },
+    });
+    writeFileSync(
+      join(a, LIBRARY_COLLECTION_PLAN_FILES.tier2),
+      JSON.stringify(entry("480e4f79-0d4e-4786-9205-34a7a37de4ed")),
+    );
+    writeFileSync(
+      join(b, LIBRARY_COLLECTION_PLAN_FILES["regen-cd"]),
+      JSON.stringify(entry(JOB)),
+    );
+    expect(() => loadLibraryPlans({ tier2: a, "regen-cd": b })).toThrow(/disagree/);
+  });
+
+  it("skips a take whose masters are not collected yet instead of andoning", async () => {
+    const roots = { "regen-cd": mkdtempSync(join(tmpdir(), "motif-regen-empty-")) };
+    const publicAudioRoot = mkdtempSync(join(tmpdir(), "motif-public-"));
+    const skipped: string[] = [];
+    const items = await ingestLibraryPack("cozy-hamlet", {
+      publicAudioRoot,
+      roots,
+      plan: new Map(),
+      takes: [REGEN_TAKE],
+      onSkip: (take, dir) => skipped.push(`${take.folder} ${dir}`),
+    });
+    expect(items).toEqual([]);
+    expect(skipped).toHaveLength(1);
+    expect(skipped[0]).toContain(join(roots["regen-cd"], "cozy-hamlet", "fireflies-s12103"));
+    expect(existsSync(join(publicAudioRoot, "library-packs"))).toBe(false);
+  });
+
+  /**
+   * A present-but-malformed artifact is a defect either way. The question is
+   * blast radius: by default it halts the run, and with `onFailure` it costs
+   * only its own take. Neither path may ever fold the bad take.
+   */
+  function writeDefectiveTake(): { roots: Record<string, string>; plan: Map<string, string> } {
+    const root = mkdtempSync(join(tmpdir(), "motif-defective-"));
+    const dir = join(root, "cozy-hamlet", "fireflies-s12103");
+    mkdirSync(dir, { recursive: true });
+    // Mix + stems present so the layout check passes, but the mix header is
+    // garbage — the failure lands inside the take, not in the scan.
+    writeFileSync(join(dir, "fireflies-s12103-track_mix.flac"), Buffer.alloc(64));
+    for (const role of ["bass", "drums", "other", "vocals"] as const) {
+      writeFileSync(join(dir, `fireflies-s12103-stem_${role}.flac`), packStreamInfo(48000, 2, 16, 480));
+    }
+    writeFileSync(
+      join(dir, "fireflies-s12103-track_lufs.txt"),
+      "Integrated Loudness: -12.32 LUFS\n",
+    );
+    return {
+      roots: { "regen-cd": root },
+      plan: new Map([["cozy-hamlet/fireflies-s12103", "5bd5d95f-7a5a-45ba-9133-b6f3a3235e0f"]]),
+    };
+  }
+
+  it("halts the run on a malformed artifact when no onFailure is given", async () => {
+    const { roots, plan } = writeDefectiveTake();
+    await expect(
+      ingestLibraryPack("cozy-hamlet", {
+        publicAudioRoot: mkdtempSync(join(tmpdir(), "motif-public-")),
+        roots,
+        plan,
+        takes: [REGEN_TAKE],
+      }),
+    ).rejects.toThrow();
+  });
+
+  it("drops only the malformed take when onFailure is given", async () => {
+    const { roots, plan } = writeDefectiveTake();
+    const failed: string[] = [];
+    const items = await ingestLibraryPack("cozy-hamlet", {
+      publicAudioRoot: mkdtempSync(join(tmpdir(), "motif-public-")),
+      roots,
+      plan,
+      takes: [REGEN_TAKE],
+      onFailure: (take, error) => {
+        failed.push(`${take.folder}: ${error instanceof Error ? error.message : String(error)}`);
+      },
+    });
+    expect(failed).toHaveLength(1);
+    expect(failed[0]).toContain("fireflies-s12103");
+    expect(items).toEqual([]); // the defect never reaches the manifest
+  });
+});
+
+// ── Playback default: measured, not catalog-ordered ──
+
+const JOB_UUID = "6e2f7c63-b506-4c96-976e-4e7b6fc88679";
+
+describe("selectPlaybackDefaults", () => {
+  function take(familyId: string, seed: number, boostCapped: boolean): FoldableGenerated {
+    const record: GeneratedCueRecord = {
+      id: `${familyId}-s${seed}`,
+      name: `Take ${seed}`,
+      kind: "music",
+      generation: { seed, workflowId: ACE_STEP_WORKFLOW_ID, jobId: JOB_UUID },
+      targetLufs: MUSIC_BED_TARGET_LUFS,
+      gainDb: 12,
+      actualGainDb: boostCapped ? BOOST_CAP_DB : 12,
+      peakLimited: false,
+      ...(boostCapped ? { boostCapped: true } : {}),
+      resampler: { name: RESAMPLER_NAME, quality: RESAMPLER_QUALITY },
+      runtimeSampleRateHz: RUNTIME_SAMPLE_RATE_HZ,
+      createdAt: "2026-08-21T00:00:00.000Z",
+    };
+    return {
+      record,
+      assets: [],
+      stems: [],
+      familyId,
+      sceneId: `sc-${familyId}`,
+      playbackDefault: false,
+    };
+  }
+
+  const defaultSeed = (items: FoldableGenerated[], familyId: string): number | undefined =>
+    items.find((i) => i.playbackDefault && i.familyId === familyId)?.record.generation.seed;
+
+  it("beds the lowest seed when it cleared the boost cap", () => {
+    const picked = selectPlaybackDefaults([
+      take("cf-a", 1011, false),
+      take("cf-a", 1012, false),
+    ]);
+    expect(defaultSeed(picked, "cf-a")).toBe(1011);
+    expect(picked.filter((i) => i.playbackDefault)).toHaveLength(1);
+  });
+
+  it("skips capped takes so a C/D rescue actually reaches playback", () => {
+    // the shape that motivated the rule: A and B both floored, C is usable
+    const picked = selectPlaybackDefaults([
+      take("cf-a", 1011, true),
+      take("cf-a", 1012, true),
+      take("cf-a", 1013, false),
+      take("cf-a", 1014, false),
+    ]);
+    expect(defaultSeed(picked, "cf-a")).toBe(1013);
+  });
+
+  it("prefers the lowest UNCAPPED seed, not merely the first uncapped in input order", () => {
+    const picked = selectPlaybackDefaults([
+      take("cf-a", 1014, false),
+      take("cf-a", 1011, true),
+      take("cf-a", 1012, false),
+    ]);
+    expect(defaultSeed(picked, "cf-a")).toBe(1012);
+  });
+
+  it("falls back to the lowest seed when every take of a cue capped", () => {
+    const picked = selectPlaybackDefaults([
+      take("cf-a", 1012, true),
+      take("cf-a", 1011, true),
+    ]);
+    expect(defaultSeed(picked, "cf-a")).toBe(1011);
+    expect(picked.filter((i) => i.playbackDefault)).toHaveLength(1);
+  });
+
+  it("decides each cue family independently, one default each", () => {
+    const picked = selectPlaybackDefaults([
+      take("cf-a", 1011, true),
+      take("cf-a", 1012, false),
+      take("cf-b", 2011, false),
+      take("cf-b", 2012, false),
+      take("cf-c", 3011, true),
+      take("cf-c", 3012, true),
+    ]);
+    expect(defaultSeed(picked, "cf-a")).toBe(1012);
+    expect(defaultSeed(picked, "cf-b")).toBe(2011);
+    expect(defaultSeed(picked, "cf-c")).toBe(3011);
+    expect(picked.filter((i) => i.playbackDefault)).toHaveLength(3);
+  });
+
+  it("clears a stale default carried in from the catalog prior", () => {
+    const stale = { ...take("cf-a", 1011, true), playbackDefault: true };
+    const picked = selectPlaybackDefaults([stale, take("cf-a", 1012, false)]);
+    expect(picked.find((i) => i.record.generation.seed === 1011)!.playbackDefault).toBe(false);
+    expect(defaultSeed(picked, "cf-a")).toBe(1012);
+    // input is not mutated — the caller keeps its own array
+    expect(stale.playbackDefault).toBe(true);
+  });
+
+  it("returns nothing to bed when a pack ingested no takes at all", () => {
+    expect(selectPlaybackDefaults([])).toEqual([]);
+  });
+});
+
+describe("ingest cache (unchanged inputs are not re-decoded)", () => {
+  /** A complete synthetic music artifact: mix + 4 stems + LUFS. */
+  function writeMusicArtifact(): string {
+    const dir = mkdtempSync(join(tmpdir(), "motif-cache-art-"));
+    writeFileSync(join(dir, "track_mix.flac"), packStreamInfo(48000, 2, 16, 480));
+    for (const [i, role] of (["bass", "drums", "other", "vocals"] as const).entries()) {
+      const buf = packStreamInfo(48000, 2, 16, 480);
+      buf[26] = i + 1;
+      writeFileSync(join(dir, `stem_${role}.flac`), buf);
+    }
+    writeFileSync(join(dir, "track_lufs.txt"), "Integrated Loudness: -12.32 LUFS\n");
+    return dir;
+  }
+
+  const generation = {
+    seed: 7,
+    workflowId: ACE_STEP_WORKFLOW_ID,
+    jobId: "b81c6dbf-76de-463b-97e0-0ba5dcf99a60",
+    bpm: 90,
+    keyscale: "E minor",
+    timesignature: "4",
+    lyricsTag: "[inst]",
+    requestedDurationSec: 60,
+  };
+
+  /** Counts decoder calls so "did it redo the work" is observed, not inferred. */
+  function countingDecode(): { decode: typeof fakeDecode; calls: () => number } {
+    let calls = 0;
+    return {
+      decode: async (bytes) => {
+        calls++;
+        return fakeDecode(bytes);
+      },
+      calls: () => calls,
+    };
+  }
+
+  async function ingestOnce(
+    dir: string,
+    dest: string,
+    extra: Record<string, unknown> = {},
+  ): Promise<{ result: Awaited<ReturnType<typeof ingestRunArtifact>>; decodes: number; hits: number }> {
+    const { decode, calls } = countingDecode();
+    let hits = 0;
+    const result = await ingestRunArtifact(dir, {
+      id: "cached-bed",
+      destDir: dest,
+      decodeFlac: decode,
+      failOnVocalBleed: false,
+      onCacheHit: () => {
+        hits++;
+      },
+      generation,
+      ...extra,
+    });
+    return { result, decodes: calls(), hits };
+  }
+
+  it("decodes on the first ingest and reuses an identical record on the second", async () => {
+    const dir = writeMusicArtifact();
+    const dest = mkdtempSync(join(tmpdir(), "motif-cache-dest-"));
+
+    const first = await ingestOnce(dir, dest);
+    expect(first.decodes).toBe(5); // mix + 4 stems
+    expect(first.hits).toBe(0);
+
+    const second = await ingestOnce(dir, dest);
+    expect(second.decodes).toBe(0); // nothing re-decoded
+    expect(second.hits).toBe(1);
+
+    // The cached path must reproduce the fresh one exactly, `createdAt` aside —
+    // it is the same record, not a lookalike rebuilt from different rules.
+    const strip = (r: GeneratedCueRecord) => ({ ...r, createdAt: "" });
+    expect(strip(second.result.record)).toEqual(strip(first.result.record));
+    expect(second.result.assets).toEqual(first.result.assets);
+    expect(second.result.stems).toEqual(first.result.stems);
+    expect(second.result.scene).toEqual(first.result.scene);
+    expect(second.result.cue).toEqual(first.result.cue);
+    expect(GeneratedCueRecordSchema.safeParse(second.result.record).success).toBe(true);
+  });
+
+  it("re-decodes under --force even when the cache would have hit", async () => {
+    const dir = writeMusicArtifact();
+    const dest = mkdtempSync(join(tmpdir(), "motif-cache-force-"));
+    await ingestOnce(dir, dest);
+    const forced = await ingestOnce(dir, dest, { force: true });
+    expect(forced.decodes).toBe(5);
+    expect(forced.hits).toBe(0);
+  });
+
+  it("re-decodes when a master was deleted", async () => {
+    const dir = writeMusicArtifact();
+    const dest = mkdtempSync(join(tmpdir(), "motif-cache-gone-"));
+    const first = await ingestOnce(dir, dest);
+    const master = first.result.record.stems!.find((s) => s.role === "drums")!.masterSrc;
+    expect(existsSync(master)).toBe(true);
+    rmSync(master);
+
+    const second = await ingestOnce(dir, dest);
+    expect(second.decodes).toBe(5);
+    expect(second.hits).toBe(0);
+    expect(existsSync(master)).toBe(true); // rebuilt
+  });
+
+  it("re-decodes when an input FLAC changed underneath", async () => {
+    const dir = writeMusicArtifact();
+    const dest = mkdtempSync(join(tmpdir(), "motif-cache-dirty-"));
+    await ingestOnce(dir, dest);
+
+    // Same shape, different bytes — only the content hash can catch this.
+    const swapped = packStreamInfo(48000, 2, 16, 480);
+    swapped[27] = 42;
+    writeFileSync(join(dir, "stem_other.flac"), swapped);
+
+    const second = await ingestOnce(dir, dest);
+    expect(second.decodes).toBe(5);
+    expect(second.hits).toBe(0);
+  });
+
+  it("re-decodes when the take was re-pointed at a different job", async () => {
+    const dir = writeMusicArtifact();
+    const dest = mkdtempSync(join(tmpdir(), "motif-cache-job-"));
+    await ingestOnce(dir, dest);
+    const second = await ingestOnce(dir, dest, {
+      generation: { ...generation, jobId: "0f2b1c44-5d6e-4a7b-8c9d-0e1f2a3b4c5d" },
+    });
+    expect(second.decodes).toBe(5);
+    expect(second.hits).toBe(0);
+  });
+
+  it("re-decodes when the loudness target changed", async () => {
+    const dir = writeMusicArtifact();
+    const dest = mkdtempSync(join(tmpdir(), "motif-cache-target-"));
+    await ingestOnce(dir, dest);
+    const second = await ingestOnce(dir, dest, { targetLufs: MUSIC_BED_TARGET_LUFS + 2 });
+    expect(second.decodes).toBe(5);
+    expect(second.hits).toBe(0);
+  });
+});
+
+describe("ingest cache identity", () => {
+  it("does not reuse a record written under a different id or name", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "motif-cache-id-art-"));
+    writeFileSync(join(dir, "track_mix.flac"), packStreamInfo(48000, 2, 16, 480));
+    for (const [i, role] of (["bass", "drums", "other", "vocals"] as const).entries()) {
+      const buf = packStreamInfo(48000, 2, 16, 480);
+      buf[26] = i + 1;
+      writeFileSync(join(dir, `stem_${role}.flac`), buf);
+    }
+    writeFileSync(join(dir, "track_lufs.txt"), "Integrated Loudness: -12.32 LUFS\n");
+    const dest = mkdtempSync(join(tmpdir(), "motif-cache-id-dest-"));
+
+    const generation = {
+      seed: 11,
+      workflowId: ACE_STEP_WORKFLOW_ID,
+      jobId: "b81c6dbf-76de-463b-97e0-0ba5dcf99a60",
+      bpm: 90,
+      keyscale: "E minor",
+      timesignature: "4",
+      lyricsTag: "[inst]",
+      requestedDurationSec: 60,
+    };
+    const run = async (id: string, name: string) => {
+      let decodes = 0;
+      const result = await ingestRunArtifact(dir, {
+        id,
+        name,
+        destDir: dest,
+        failOnVocalBleed: false,
+        generation,
+        decodeFlac: async (bytes) => {
+          decodes++;
+          return fakeDecode(bytes);
+        },
+      });
+      return { result, decodes };
+    };
+
+    await run("take-a", "Take A");
+    const renamed = await run("take-a", "Take A Renamed");
+    expect(renamed.decodes).toBe(5); // name is baked into every asset — no reuse
+    const reId = await run("take-b", "Take A Renamed");
+    expect(reId.decodes).toBe(5); // id is baked into every asset id — no reuse
+    expect(reId.result.assets[0]!.id).toBe("take-b-mix");
   });
 });

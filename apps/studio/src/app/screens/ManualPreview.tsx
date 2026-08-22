@@ -1,9 +1,11 @@
 "use client";
 
+import { useEffect, useMemo } from "react";
 import { useStudioStore } from "../store";
 import { usePreviewStore } from "../preview-store";
 import { usePlaybackStore } from "../playback-store";
 import { useManualPreview } from "../preview-hooks";
+import { derivedPackFields } from "../pack-fields";
 import { StateEditor } from "../components/StateEditor";
 import { StemMixer } from "../components/StemMixer";
 
@@ -11,11 +13,23 @@ export function ManualPreview() {
   const pack = useStudioStore((s) => s.pack);
   const manualState = usePreviewStore((s) => s.manualState);
   const setManualField = usePreviewStore((s) => s.setManualField);
+  const syncPackFields = usePreviewStore((s) => s.syncPackFields);
   const playScene = usePlaybackStore((s) => s.playScene);
   const stopPlayback = usePlaybackStore((s) => s.stop);
   const transportState = usePlaybackStore((s) => s.transportState);
   const { resolution, layers, transition, transitionWarning } =
     useManualPreview();
+
+  // Controls for whatever this pack actually binds on — a library pack's `cue`,
+  // Grounded's `location`/`combat_active`/… — which the fixed mode/danger/flag
+  // controls below can't set.
+  const packFields = useMemo(() => derivedPackFields(pack), [pack]);
+
+  // Seeds a menu pack's field so it resolves on open; idempotent, and a no-op
+  // for packs the built-in controls already drive.
+  useEffect(() => {
+    syncPackFields(pack);
+  }, [pack, syncPackFields]);
 
   const winningBinding = resolution.winningBindingId
     ? pack.bindings.find((b) => b.id === resolution.winningBindingId)
@@ -40,7 +54,11 @@ export function ManualPreview() {
       <div className="preview-controls">
         <div className="meta-section">
           <h3>Runtime State</h3>
-          <StateEditor state={manualState} onChange={setManualField} />
+          <StateEditor
+            state={manualState}
+            onChange={setManualField}
+            packFields={packFields}
+          />
         </div>
 
         {/* Playback controls */}

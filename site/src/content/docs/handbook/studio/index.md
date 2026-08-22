@@ -9,19 +9,32 @@ The Motif Studio is the main authoring application. It is a single-page Next.js 
 
 ## Navigation Map
 
-| Section | Screen | Purpose |
-|---------|--------|---------|
-| Overview | Project | Pack metadata, entity counts, audit summary |
-| Assets | Assets | Browse, filter, and manage audio assets |
-| Stems | Stems | Create and edit stems bound to assets |
-| Scenes | Scenes | Build scenes from stem layers |
-| Bindings | Bindings | Map runtime state to scenes |
-| Transitions | Transitions | Define scene-to-scene transition behavior |
-| Clips | Clips | Compose clips with notes, instruments, and variants |
-| Sample Lab | Sample Lab | Import, trim, slice, build kits and instruments |
-| Score Map | Score Map | Profiles, motif families, cue families, world map, derivation |
-| Automation | Automation | Lanes, macros, envelopes, capture, mixer |
-| Library | Library | Templates, snapshots, branches, favorites, collections, compare |
+Eighteen screens in four sidebar groups:
+
+| Group | Screen | Purpose |
+|-------|--------|---------|
+| Create | Arrangement | Channel rack, per-scene clip channels, piano rolls, transport |
+| Create | Clip Editor | Compose clips with notes, instruments, and variants |
+| Create | Scenes | Build scenes from stem layers and clip layers |
+| Create | Mixer | Buses, per-stem routing, pan, FX slots |
+| Pack | Project | Pack metadata, entity counts, audit summary |
+| Pack | Assets | Browse, filter, and manage audio assets |
+| Pack | Stems | Create and edit stems bound to assets |
+| Pack | Bindings | Map runtime state to scenes |
+| Pack | Transitions | Define scene-to-scene transition behavior |
+| Quality | Review | Pack summaries and audit findings |
+| Quality | Export | Runtime pack export |
+| Advanced | Sample Lab | Import, trim, slice, build kits and instruments |
+| Advanced | Score Map | Profiles, motif families, cue families, world map, derivation |
+| Advanced | Automation | Lanes, macros, envelopes, capture |
+| Advanced | Library | Templates, snapshots, branches, favorites, collections, compare |
+| Advanced | Preview | Runtime simulation with pack-derived state controls |
+| Advanced | Performance | Live performance surface |
+| Advanced | Cues | Cue timelines, section playback, performance capture |
+
+The pack selector in the top strip switches between the bundled packs — the demo packs,
+Star Freight: Grounded, and any [generated library packs](/motif/handbook/workflows/generated-cues/)
+whose audio has been ingested.
 
 ## Architecture
 
@@ -45,6 +58,16 @@ Screens are not isolated. Entities created in one screen appear in others:
 - **Score Profiles** and **Motif Families** defined in Score Map are used by cue families and world map entries
 - **Automation Lanes** and **Macros** affect mixer parameters and scene behavior
 - **Templates, Snapshots, and Favorites** in Library can reference any entity kind
+
+## Preview and Binding Resolution
+
+The Preview screen simulates runtime state and shows which binding wins, which scene resolves, and which stems play.
+
+Its controls are **derived from the loaded pack's own bindings** rather than from a fixed field list. Alongside the built-in mode / danger / flag controls, Preview reads every binding condition in the pack and renders an input for each field it does not already cover — a picker for `eq` comparisons against strings, a checkbox for booleans, a number for `gt`/`lt` comparisons, text otherwise.
+
+This matters because packs bind on very different things. A demo pack binds on `mode` and `danger`. A game score binds on `location` and `combat_active`. A generated library pack binds on `cue`. A pack binding on fields the simulator cannot set resolves nothing at all — so the controls follow the pack, not the other way round.
+
+A pack whose bindings form a flat menu over one field is seeded to its first value on load, so Preview opens resolved and playable. A multi-axis pack is left unset on purpose — seeding it would mean asserting several unrelated game-state flags simultaneously — and shows "no scene resolved" until you set a field.
 
 ## Where to Start
 

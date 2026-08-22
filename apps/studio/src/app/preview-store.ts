@@ -1,7 +1,8 @@
 "use client";
 
 import { create } from "zustand";
-import type { RuntimeMusicState } from "@motif-studio/schema";
+import type { RuntimeMusicState, SoundtrackPack } from "@motif-studio/schema";
+import { singleAxisMenuField } from "./pack-fields";
 
 export type PreviewMode = "manual" | "sequence";
 
@@ -36,12 +37,13 @@ export interface PreviewState {
   setPreviewMode: (mode: PreviewMode) => void;
   setManualField: <K extends keyof RuntimeMusicState>(field: K, value: RuntimeMusicState[K]) => void;
   snapshotManualState: () => void;
+  syncPackFields: (pack: SoundtrackPack) => void;
   setSequenceSteps: (steps: RuntimeMusicState[]) => void;
   updateSequenceStep: <K extends keyof RuntimeMusicState>(index: number, field: K, value: RuntimeMusicState[K]) => void;
   addSequenceStep: () => void;
   removeSequenceStep: (index: number) => void;
   duplicateSequenceStep: (index: number) => void;
-  resetSequence: () => void;
+  resetSequence: (pack?: SoundtrackPack) => void;
 }
 
 export const usePreviewStore = create<PreviewState>((set) => ({
@@ -62,6 +64,35 @@ export const usePreviewStore = create<PreviewState>((set) => ({
     set((state) => ({
       previousManualState: { ...state.manualState },
     })),
+
+  /**
+   * Seed the manual state for a single-axis menu pack — one whose bindings are
+   * a flat `eq` menu on one field, which is how a genre library pack binds (the
+   * game names the cue it wants). Without this such a pack opens Preview with
+   * every binding rejected, because the built-in mode/danger/flag controls
+   * can't set the field it keys on.
+   *
+   * Only fires when the current value can't match this pack, so it seeds on
+   * first load and re-seeds across a pack switch, but never overwrites a
+   * choice. Multi-axis game packs are left alone: there is no defensible
+   * default combination of their flags, so the director drives them by hand.
+   */
+  syncPackFields: (pack) =>
+    set((state) => {
+      const menu = singleAxisMenuField(pack);
+      if (!menu || menu.options.length === 0) return state;
+
+      const current = state.manualState[menu.field];
+      if (current !== undefined && menu.options.includes(current as string | number | boolean)) {
+        return state;
+      }
+
+      return {
+        // A transition out of the previous pack's scene is meaningless.
+        previousManualState: null,
+        manualState: { ...state.manualState, [menu.field]: menu.options[0] },
+      };
+    }),
 
   setSequenceSteps: (sequenceSteps) => set({ sequenceSteps }),
 
@@ -94,6 +125,19 @@ export const usePreviewStore = create<PreviewState>((set) => ({
       return { sequenceSteps: steps };
     }),
 
-  resetSequence: () =>
-    set({ sequenceSteps: defaultSequence.map((s) => ({ ...s })) }),
+  /**
+   * For a single-axis menu pack, the example flow is the menu itself — one step
+   * per cue, so Sequence mode walks the pack. Every other pack (and the no-arg
+   * call) gets the authored escalation flow.
+   */
+  resetSequence: (pack) =>
+    set(() => {
+      const menu = pack ? singleAxisMenuField(pack) : null;
+      if (menu && menu.options.length > 0) {
+        return {
+          sequenceSteps: menu.options.map((value) => ({ [menu.field]: value })),
+        };
+      }
+      return { sequenceSteps: defaultSequence.map((s) => ({ ...s })) };
+    }),
 }));

@@ -8,6 +8,7 @@ import type {
   PerformanceCaptureEvent,
   PerformanceCapture,
   IntensityLevel,
+  TransitionMode,
 } from "@motif-studio/schema";
 import type {
   PlaybackListener,
@@ -37,6 +38,8 @@ interface ResolvedSec {
   durationBars: number;
   sceneId?: string;
   intensity?: IntensityLevel;
+  /** Authored transition mode entering this section (overrides pack rules) */
+  transitionMode?: TransitionMode;
 }
 
 export class CuePlayer {
@@ -107,6 +110,7 @@ export class CuePlayer {
         durationBars: s.durationBars,
         sceneId: s.sceneId,
         intensity: s.intensity,
+        transitionMode: s.transitionMode,
       };
       bar += s.durationBars;
       return sec;
@@ -138,9 +142,20 @@ export class CuePlayer {
         // Launch scene for this section
         if (section.sceneId) {
           if (i === startSectionIndex) {
+            // First launched section always starts fresh
             await this.scenePlayer.playScene(pack, section.sceneId);
-          } else {
-            await this.transitionPlayer.switchScene(pack, section.sceneId);
+          } else if (section.sceneId !== this.scenePlayer.sceneId) {
+            // Only switch when the scene actually changes — restarting the
+            // same scene at a section boundary audibly resets the bed mid-cue.
+            // Authored section transitionMode overrides pack rules; when the
+            // section has none, pack from→to rules apply as before.
+            await this.transitionPlayer.switchScene(
+              pack,
+              section.sceneId,
+              section.transitionMode
+                ? { modeOverride: section.transitionMode }
+                : undefined,
+            );
           }
         }
 

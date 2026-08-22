@@ -13,5 +13,12 @@ site/node_modules/
 # Confirmation-run FLACs stay outside git (see wave-7 fixture path).
 packages/sample-lab/test/fixtures/audio/
 
-# Ingested 48 kHz masters (rebuilt from grounded-v2 FLACs).
+# Ingested 48 kHz masters (rebuilt from grounded-v2/v3 FLACs).
 apps/studio/public/audio/grounded-v2/
+apps/studio/public/audio/grounded-v3/
+
+# Demo-pack mixdowns + stinger WAVs (rebuilt from library-day1 FLACs via populate:demo-packs).
+apps/studio/public/audio/library/
+
+# Ingested library-pack masters (rebuilt from library-tier1 FLACs via ingest:library).
+apps/studio/public/audio/library-packs/

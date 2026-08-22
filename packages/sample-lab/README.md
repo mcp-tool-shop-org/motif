@@ -8,7 +8,7 @@
 
 # @motif-studio/sample-lab
 
-Trim, slice, kit, and instrument helpers for the Motif sample workflow.
+Sample-workflow helpers for Motif — trim, slice, kit and instrument tools — plus the **generation lane** that turns generated audio into playable, loudness-normalized soundtrack packs.
 
 ## What It Owns
 
@@ -17,6 +17,9 @@ Trim, slice, kit, and instrument helpers for the Motif sample workflow.
 - Sample kit construction and slot management
 - Sample instrument creation and pitch utilities
 - Audio file import helpers (filename → asset inference)
+- The generation lane: submitting and retrieving cloud jobs, ingesting the artifacts, and building catalog-driven library packs
+
+This package does **not** generate audio. It submits jobs to a generation endpoint you configure and ingests artifacts you supply. Its job starts once a take exists as a mix, its stems, and a loudness reading.
 
 ## Key Exports
 
@@ -50,10 +53,39 @@ Trim, slice, kit, and instrument helpers for the Motif sample workflow.
 
 ### Generation ingest (`generation/`)
 - `ingestRunArtifact(dir, options)` — consume a cloud run folder (mix + 4 stems + SFX FLACs + LUFS txt), resample to 48 kHz, normalize from the LUFS manifest, emit masters + a `GeneratedCueRecord`
+- `deriveIngestResult(record)` — rebuild the assets, stems, scene and cue from a record. They are pure functions of it, and both the fresh and cached ingest paths call this, so the two cannot drift apart
 - `registerGeneratedCue(pack, ingested)` — fold the record into a pack for score-map / clip-engine
 - `parseIntegratedLufs`, `parseFlacStreamInfo` — duration is always samples/rate, never the requested figure
 - Resampler: Kaiser-windowed sinc (β=10, 64 zero-crossings; upsample-only). Default music-bed target **−14 LUFS** (SFX is capped, not boosted). Mix + stems share one peak clamp so layering still sums. `targetLufs` is the gain target written into the cue record.
 - Thin cloud client: `submitPrompt` / `pollJob` / `landRunArtifact` (`X-API-Key` → `POST /api/prompt` → poll → `/api/view`). UI-format graphs are rejected (andon — no client-side conversion)
+
+### Ingest is content-addressed
+
+Every input FLAC is hashed into the record ingest persists. A take whose inputs still hash the same — with an unchanged loudness target, generation identity and resampler, and all of its masters still on disk — is reused rather than decoded again. Anything else falls through to a full rebuild, so the cache can only ever be a speed-up, never a source of truth.
+
+| operation | cost |
+|---|---|
+| first ingest of a 20-take pack | ~14 min |
+| re-running that same pack | **~1 second** |
+| resuming an interrupted run | only the unfinished takes |
+
+Pass `force: true` to re-decode anyway — it reproduces its own masters byte for byte.
+
+### Library packs (`ingest-library.ts`)
+- `ingestLibraryPack(packId, options)` — ingest every take of a catalog pack, choosing each cue's playback bed from the **measured** result: the lowest-seed take that cleared the +6 dB boost cap, falling back to the lowest seed when all of them capped
+- `selectPlaybackDefaults(items)` — the bed rule on its own
+- `onFailure` narrows a take's andon from "halt the run" to "drop this take and report it" — the defect still never reaches the manifest
+
+A CLI drives it:
+
+```bash
+node dist/generation/run-ingest-library.js --pack fantasy-jrpg-core
+node dist/generation/run-ingest-library.js --tier 2 --tier 3
+```
+
+`--pack` and `--tier` are repeatable and combine as a union; with neither, every pack is ingested. `--force` re-decodes everything; `--skip-defective` drops malformed takes, lists them, and exits non-zero so a run that dropped something cannot read as clean. `--root <treeId>=<path>` and `--artifact-root <path>` relocate the masters.
+
+Budget roughly **86 MB of 24-bit WAV per take** — space, not time, is the binding constraint.
 
 ## What It Does Not Own
 
@@ -64,4 +96,6 @@ Trim, slice, kit, and instrument helpers for the Motif sample workflow.
 
 ## Dependencies
 
-- `@motif-studio/schema` — types for assets, slices, kits, instruments
+- `@motif-studio/schema` — types for assets, slices, kits, instruments, and generated-cue records
+- `@motif-studio/score-map` — the library catalog and the take/pack derivation the ingest lane builds from
+- `@wasm-audio-decoders/flac` — FLAC decoding for the ingest lane

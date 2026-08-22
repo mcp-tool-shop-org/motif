@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { InstrumentRack } from "../src/rack";
-import { FACTORY_PRESETS } from "../src/presets";
+import { ALL_PRESETS, FACTORY_PRESETS, SCIFI_PRESETS } from "../src/presets";
 
 // Mock Web Audio API for Node environment
 function mockAudioParam() {
@@ -63,9 +63,18 @@ describe("InstrumentRack", () => {
     rack = new InstrumentRack();
   });
 
-  it("lists all factory presets", () => {
+  it("lists all presets (factory + scifi)", () => {
+    // Regression: getVoice/listPresets once consulted FACTORY_PRESETS only,
+    // silently dropping every scifi-* voice.
     const presets = rack.listPresets();
-    expect(presets.length).toBe(FACTORY_PRESETS.length);
+    expect(presets.length).toBe(ALL_PRESETS.length);
+    expect(ALL_PRESETS.length).toBe(FACTORY_PRESETS.length + SCIFI_PRESETS.length);
+  });
+
+  it("resolves a scifi preset to a voice (silent-scene regression)", () => {
+    const scifi = SCIFI_PRESETS[0]!;
+    const voice = rack.getVoice(scifi.id);
+    expect(voice).not.toBeNull();
   });
 
   it("resolves a factory preset to a voice", () => {

@@ -6,19 +6,45 @@ The Motif Studio is the main authoring application. It is a single-page Next.js 
 
 The Studio sidebar provides access to all screens:
 
-| Section | Screen | Purpose |
-|---------|--------|---------|
-| Overview | Project | Pack metadata, entity counts, audit summary |
-| Assets | Assets | Browse, filter, and manage audio assets |
-| Stems | Stems | Create and edit stems bound to assets |
-| Scenes | Scenes | Build scenes from stem layers |
-| Bindings | Bindings | Map runtime state to scenes |
-| Transitions | Transitions | Define scene-to-scene transition behavior |
-| Clips | Clips | Compose clips with notes, instruments, and variants |
-| Sample Lab | Sample Lab | Import, trim, slice, build kits and instruments |
-| Score Map | Score Map | Profiles, motif families, cue families, world map, derivation |
-| Automation | Automation | Lanes, macros, envelopes, capture, mixer |
-| Library | Library | Templates, snapshots, branches, favorites, collections, compare |
+| Group | Screen | Purpose |
+|-------|--------|---------|
+| Create | Arrangement | Scene playback, channel rack, per-scene layer editing |
+| Create | Clip Editor | Compose clips with notes, instruments, and variants |
+| Create | Scenes | Build scenes from stem layers |
+| Create | Mixer | Channel levels and routing |
+| Pack | Project | Pack metadata, entity counts, audit summary |
+| Pack | Assets | Browse, filter, and manage audio assets |
+| Pack | Stems | Create and edit stems bound to assets |
+| Pack | Bindings | Map runtime state to scenes |
+| Pack | Transitions | Define scene-to-scene transition behavior |
+| Quality | Review | Validation issues and pack health |
+| Quality | Export | Runtime pack export |
+| Advanced | Sample Lab | Import, trim, slice, build kits and instruments |
+| Advanced | Score Map | Profiles, motif families, cue families, world map, derivation |
+| Advanced | Automation | Lanes, macros, envelopes, capture, mixer |
+| Advanced | Library | Templates, snapshots, branches, favorites, collections, compare |
+| Advanced | Preview | Simulate runtime state and inspect binding resolution |
+| Advanced | Performance | Playback timing and diagnostics |
+| Advanced | Cues | Cue sections, intensity, and transition modes |
+
+## Preview and binding resolution
+
+The Preview screen simulates runtime state and shows which binding wins, which scene resolves, and which stems are active.
+
+Its controls are **derived from the loaded pack's own bindings**, not from a fixed field list. Alongside the built-in mode / danger / flag controls, Preview inspects every binding condition in the pack and renders an input for each field it does not already cover, choosing the control from how the field is compared:
+
+| condition shape | control |
+|---|---|
+| `eq` against string values | picker of exactly those values |
+| all-boolean | checkbox |
+| any `gt` / `gte` / `lt` / `lte` | number |
+| anything else | text |
+
+This matters because packs bind on very different fields. A demo pack binds on `mode` and `danger`; a game score binds on `location`, `combat_active`, `alert_level`; a generated library pack binds on `cue`. A fixed control set silently becomes an assumption about which packs may exist — and a pack binding on fields the simulator cannot set will resolve nothing at all.
+
+**Seeding is asymmetric by design.** A pack whose bindings form a flat `eq` menu over a single field — the shape a library pack has — is seeded to its first value on load, so Preview opens resolved and playable. A multi-axis pack is left unset deliberately: seeding it would mean asserting several independent game-state flags at once, which is not a state worth presenting as a default. Such a pack opens unresolved until you set a field, and says so.
+
+A test asserts that no example pack binds on a field Preview cannot set.
 
 ## Architecture
 

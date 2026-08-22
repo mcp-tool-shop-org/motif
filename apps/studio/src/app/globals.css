@@ -753,6 +753,23 @@ textarea.field-input {
   margin-bottom: 8px;
 }
 
+/* Controls derived from the loaded pack's own bindings — a library pack's
+   cue menu, Grounded's location vocabulary. Set apart from the fixed
+   mode/danger/flag controls below them. */
+.pack-fields {
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.pack-fields-label {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
 /* ── State chips ── */
 .state-chips {
   display: flex;

@@ -8,7 +8,7 @@
 
 # @motif-studio/score-map
 
-World scoring logic for Motif — motif families, score profiles, cue families, world map entries, and derivation.
+World scoring logic for Motif — motif families, score profiles, cue families, world map entries, derivation, and the catalog that library packs are derived from.
 
 ## What It Owns
 
@@ -17,6 +17,7 @@ World scoring logic for Motif — motif families, score profiles, cue families, 
 - Cue family construction and scene/motif association
 - Score map entry resolution (profile, families, motifs)
 - Derivation records and lineage tracing
+- The library catalog: the spec every generated pack is built from
 
 ## Key Exports
 
@@ -52,6 +53,16 @@ World scoring logic for Motif — motif families, score profiles, cue families, 
 - `createDerivation(id, sourceId, targetId, transform)` — create a derivation record
 - `deriveScene(scene, transform)` — apply a transform and get a new scene
 - `derivationsFrom` / `derivationsTo` / `derivationChain` / `derivationGraphIds`
+
+### Library catalog (`library-catalog.json`, `library-packs.ts`, `fold-generated.ts`)
+
+One JSON file is the spec for every generated pack. A cue entry carries its `bpm`, `keyscale`, seeds and prose; from that, a whole pack is derived — one scene per cue, one cue family locked to that cue's bpm/keyscale/time signature, one binding, and two takes per cue.
+
+- `LIBRARY_PACKS` / `libraryTakes(packId)` — the packs and their takes, in seed order
+- `libraryCatalogCue(packId, cueId)` — the authored spec for one cue
+- `foldGeneratedIntoPack(pack, items)` — fold ingested takes into a playable pack
+
+The bundled catalog describes **24 genre packs, 233 cues, two takes each**. Adding a pack costs no code: the derivation picks up any catalog entry carrying a `cues` array, so your own packs and new tiers are found on load. The catalog is the spec; the audio is yours to generate and supply.
 
 ## What It Does Not Own
 

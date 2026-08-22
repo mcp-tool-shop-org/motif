@@ -3,7 +3,8 @@ import { render, screen, fireEvent, cleanup, act } from "@testing-library/react"
 import Studio from "../src/app/Studio";
 import { useStudioStore } from "../src/app/store";
 import { usePreviewStore } from "../src/app/preview-store";
-import { starterPack } from "../src/app/seed-data";
+import { examplePacks, starterPack } from "../src/app/seed-data";
+import { libraryPackId, librarySceneId } from "@motif-studio/score-map";
 import type { SoundtrackPack } from "@motif-studio/schema";
 
 beforeEach(() => {
@@ -231,5 +232,98 @@ describe("Preview — live pack updates", () => {
     // bind-safe (safeZone=false) and bind-tension (danger<0.5) also don't match
     // So no binding matches
     expect(screen.getByText("No binding matched")).toBeInTheDocument();
+  });
+});
+
+describe("Preview — packs that bind on their own fields", () => {
+  const flagship = examplePacks.find(
+    (p) => p.id === libraryPackId("fantasy-jrpg-core"),
+  )!.pack;
+  const grounded = examplePacks.find((p) => p.id === "star-freight-grounded")!.pack;
+
+  function loadAndPreview(pack: SoundtrackPack) {
+    useStudioStore.setState({
+      pack: JSON.parse(JSON.stringify(pack)) as SoundtrackPack,
+      section: "project",
+    });
+    navigateToPreview();
+  }
+
+  it("offers a cue picker for a library pack", () => {
+    loadAndPreview(flagship);
+    const picker = screen.getByLabelText("cue") as HTMLSelectElement;
+    expect(picker.tagName).toBe("SELECT");
+    // "—" plus one option per cue in the menu.
+    expect(picker.options).toHaveLength(flagship.bindings.length + 1);
+  });
+
+  it("resolves a scene on open instead of rejecting every binding", () => {
+    loadAndPreview(flagship);
+    expect(screen.queryByText("No scene resolved")).not.toBeInTheDocument();
+    expect(screen.queryByText("No binding matched")).not.toBeInTheDocument();
+    expect(screen.getByText(librarySceneId("fantasy-jrpg-core", "town"))).toBeInTheDocument();
+  });
+
+  it("enables playback once a cue resolves", () => {
+    loadAndPreview(flagship);
+    expect(screen.getByRole("button", { name: /Play Scene/ })).toBeEnabled();
+  });
+
+  it("switches scene when a different cue is picked", () => {
+    loadAndPreview(flagship);
+    fireEvent.change(screen.getByLabelText("cue"), { target: { value: "boss" } });
+    expect(
+      screen.getByText(librarySceneId("fantasy-jrpg-core", "boss")),
+    ).toBeInTheDocument();
+  });
+
+  it("unsets the cue when the picker is cleared", () => {
+    loadAndPreview(flagship);
+    fireEvent.change(screen.getByLabelText("cue"), { target: { value: "" } });
+    expect(usePreviewStore.getState().manualState.cue).toBeUndefined();
+    expect(screen.getByText("No scene resolved")).toBeInTheDocument();
+  });
+
+  it("walks the cue list in sequence mode", () => {
+    loadAndPreview(flagship);
+    fireEvent.click(screen.getByRole("button", { name: "Sequence" }));
+    fireEvent.click(screen.getByRole("button", { name: "Reset to Cue List" }));
+    expect(
+      screen.getByText(`${flagship.bindings.length} steps`),
+    ).toBeInTheDocument();
+    // Every cue in the menu resolves its own scene — the whole list plays,
+    // not just the seeded first step.
+    for (const binding of flagship.bindings) {
+      expect(
+        screen.getAllByText(binding.sceneId).length,
+        `${binding.sceneId} missing from the trace`,
+      ).toBeGreaterThan(0);
+    }
+  });
+
+  it("offers Grounded's own vocabulary rather than seeding a game state", () => {
+    loadAndPreview(grounded);
+    // Multi-axis pack: nothing is assumed, so it opens unresolved.
+    expect(screen.getByText("No scene resolved")).toBeInTheDocument();
+    expect(screen.getByLabelText("location")).toBeInTheDocument();
+    expect(screen.getByLabelText(/combat_active/)).toBeInTheDocument();
+    expect(screen.getByLabelText("alert_level")).toHaveAttribute("type", "number");
+  });
+
+  it("resolves Grounded once its location is set", () => {
+    loadAndPreview(grounded);
+    fireEvent.change(screen.getByLabelText("location"), {
+      target: { value: "freeport" },
+    });
+    expect(screen.queryByText("No scene resolved")).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Play Scene/ })).toBeEnabled();
+  });
+
+  it("leaves the built-in controls in place for the authored demo packs", () => {
+    loadAndPreview(starterPack);
+    expect(screen.queryByText("Pack Fields")).not.toBeInTheDocument();
+    expect(screen.getByText("scene-exploration")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("checkbox", { name: /inCombat/ }));
+    expect(screen.getByText("scene-combat")).toBeInTheDocument();
   });
 });

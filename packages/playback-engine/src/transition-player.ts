@@ -2,9 +2,12 @@
 // Transition player — crossfade, stinger-then-switch, immediate,
 // bar-sync, cooldown-fade
 // Supports exponential + linear fade curves and stinger level control
+// All phases are cancellable: Transport.stop() calls cancel(), which aborts
+// pending waits, prevents the post-wait scene launch, restores the master
+// gain, and silences any in-flight stinger.
 // ────────────────────────────────────────────
 
-import type { SoundtrackPack, TransitionRule } from "@motif-studio/schema";
+import type { SoundtrackPack, TransitionRule, TransitionMode } from "@motif-studio/schema";
 import { findTransitionRule } from "@motif-studio/audio-engine";
 import type { PlaybackListener } from "./types.js";
 import type { ScenePlayer } from "./scene-player.js";
@@ -19,6 +22,13 @@ export interface TransitionOptions {
   immediate?: boolean;
   fadeCurve?: FadeCurve;
   stingerGainDb?: number;
+  /**
+   * Force a transition mode for this switch, overriding (or substituting for)
+   * any pack-authored from→to rule. Used by cue playback, where sections author
+   * their own transitionMode. durationMs applies to the override.
+   */
+  modeOverride?: TransitionMode;
+  durationMs?: number;
 }
 
 export class TransitionPlayer {
@@ -28,6 +38,12 @@ export class TransitionPlayer {
   private listener: PlaybackListener | null = null;
   private transitioning = false;
   private mixer: Mixer | null = null;
+
+  private abortController: AbortController | null = null;
+  /** Gain node + value captured at fade start, restored on cancel */
+  private gainRestore: { node: GainNode; value: number } | null = null;
+  /** In-flight stinger nodes, silenced on cancel */
+  private activeStinger: { source: AudioBufferSourceNode; gain: GainNode } | null = null;
 
   constructor(
     ctx: AudioContext,
@@ -53,14 +69,54 @@ export class TransitionPlayer {
   }
 
   /**
+   * Cancel any in-flight transition: pending waits resolve without launching
+   * the target scene, interrupted gain ramps are restored, and an in-flight
+   * stinger is silenced. Safe to call when idle.
+   */
+  cancel(): void {
+    if (this.abortController) {
+      this.abortController.abort();
+      this.abortController = null;
+    }
+    if (this.gainRestore) {
+      const { node, value } = this.gainRestore;
+      try {
+        node.gain.cancelScheduledValues(this.ctx.currentTime);
+        node.gain.setValueAtTime(value, this.ctx.currentTime);
+      } catch {
+        // Node may belong to a closed context
+      }
+      this.gainRestore = null;
+    }
+    if (this.activeStinger) {
+      try {
+        this.activeStinger.source.stop();
+      } catch {
+        // Already stopped
+      }
+      try {
+        this.activeStinger.gain.disconnect();
+      } catch {
+        // Already disconnected
+      }
+      this.activeStinger = null;
+    }
+    this.transitioning = false;
+  }
+
+  /**
    * Switch from current scene to target scene, applying the transition rule if one exists.
-   * Falls back to immediate switch if no rule or unsupported mode.
+   * Falls back to immediate switch if no rule or unsupported mode. A cancel() during any
+   * phase resolves this promise WITHOUT starting the target scene.
    */
   async switchScene(
     pack: SoundtrackPack,
     toSceneId: string,
     options?: TransitionOptions,
   ): Promise<void> {
+    // A new switch supersedes any in-flight transition.
+    this.cancel();
+
     const fromSceneId = this.scenePlayer.sceneId;
 
     if (options?.immediate || !fromSceneId || fromSceneId === toSceneId) {
@@ -68,12 +124,26 @@ export class TransitionPlayer {
       return;
     }
 
-    const rule = findTransitionRule(pack, fromSceneId, toSceneId);
+    const authored = findTransitionRule(pack, fromSceneId, toSceneId);
+    const rule: TransitionRule | undefined = options?.modeOverride
+      ? {
+          id: authored?.id ?? `override-${fromSceneId}-${toSceneId}`,
+          name: authored?.name ?? "Section transition",
+          fromSceneId,
+          toSceneId,
+          ...authored,
+          mode: options.modeOverride,
+          durationMs: options.durationMs ?? authored?.durationMs,
+        }
+      : authored;
     if (!rule) {
       // No rule → immediate hard cut
       await this.scenePlayer.playScene(pack, toSceneId);
       return;
     }
+
+    this.abortController = new AbortController();
+    const signal = this.abortController.signal;
 
     this.transitioning = true;
     this.emit("transition-start", {
@@ -86,7 +156,7 @@ export class TransitionPlayer {
       const fadeCurve = options?.fadeCurve ?? "exponential";
       switch (rule.mode) {
         case "crossfade":
-          await this.crossfade(pack, toSceneId, rule, fadeCurve);
+          await this.crossfade(pack, toSceneId, rule, fadeCurve, signal);
           break;
         case "stinger-then-switch":
           await this.stingerThenSwitch(
@@ -94,13 +164,14 @@ export class TransitionPlayer {
             toSceneId,
             rule,
             options?.stingerGainDb ?? 0,
+            signal,
           );
           break;
         case "bar-sync":
-          await this.barSync(pack, toSceneId, rule, fadeCurve);
+          await this.barSync(pack, toSceneId, rule, fadeCurve, signal);
           break;
         case "cooldown-fade":
-          await this.cooldownFade(pack, toSceneId, rule);
+          await this.cooldownFade(pack, toSceneId, rule, signal);
           break;
         case "immediate":
           await this.scenePlayer.playScene(pack, toSceneId);
@@ -110,9 +181,13 @@ export class TransitionPlayer {
           await this.scenePlayer.playScene(pack, toSceneId);
           break;
       }
-      this.emit("scene-change", { sceneId: toSceneId });
+      if (!signal.aborted) {
+        this.emit("scene-change", { sceneId: toSceneId });
+      }
     } finally {
       this.transitioning = false;
+      this.gainRestore = null;
+      this.activeStinger = null;
     }
   }
 
@@ -121,6 +196,7 @@ export class TransitionPlayer {
     toSceneId: string,
     rule: TransitionRule,
     fadeCurve: FadeCurve,
+    signal: AbortSignal,
   ): Promise<void> {
     const durationMs = rule.durationMs ?? 1000;
     const durationS = durationMs / 1000;
@@ -134,6 +210,7 @@ export class TransitionPlayer {
     // Capture the user's master gain so we can restore it after the fade-in.
     // Without this, the crossfade would overwrite the musician's volume to 1.0.
     const originalGain = masterGain.gain.value;
+    this.gainRestore = { node: masterGain, value: originalGain };
 
     // Fade out using selected curve
     masterGain.gain.setValueAtTime(originalGain, now);
@@ -147,10 +224,12 @@ export class TransitionPlayer {
     // Wait for the full fade-out before starting the new scene,
     // so the old scene audio completes its fade naturally.
     // Safety margin (+50ms) prevents premature cutoff from setTimeout drift.
-    await sleep(durationMs + 50);
+    await abortableSleep(durationMs + 50, signal);
+    if (signal.aborted) return;
 
-    // Play new scene (this stops old stems and resets master gain)
+    // Play new scene (this stops old stems)
     await this.scenePlayer.playScene(pack, toSceneId);
+    if (signal.aborted) return;
 
     // Fade in new scene — restore to the user's original gain, not hardcoded 1.0
     const newMasterGain = this.mixer
@@ -179,7 +258,12 @@ export class TransitionPlayer {
 
     // Safety margin (+50ms) prevents premature scene cutoff when setTimeout
     // drifts behind the AudioContext clock.
-    await sleep(durationMs / 2 + 50);
+    await abortableSleep(durationMs / 2 + 50, signal);
+    if (!signal.aborted) {
+      // Fade-in completed naturally — clear the restore checkpoint so a later
+      // cancel() (from an unrelated stop) doesn't yank the gain around.
+      this.gainRestore = null;
+    }
   }
 
   private async stingerThenSwitch(
@@ -187,6 +271,7 @@ export class TransitionPlayer {
     toSceneId: string,
     rule: TransitionRule,
     stingerGainDb: number,
+    signal: AbortSignal,
   ): Promise<void> {
     if (!rule.stingerAssetId) {
       await this.scenePlayer.playScene(pack, toSceneId);
@@ -197,7 +282,11 @@ export class TransitionPlayer {
       pack,
       rule.stingerAssetId,
     );
+    if (signal.aborted) return;
     if (!buffer) {
+      console.warn(
+        `[TransitionPlayer] Stinger asset '${rule.stingerAssetId}' failed to load — switching without stinger.`,
+      );
       await this.scenePlayer.playScene(pack, toSceneId);
       return;
     }
@@ -215,11 +304,18 @@ export class TransitionPlayer {
     stingerSource.buffer = buffer;
     stingerSource.connect(stingerGain);
     stingerSource.start(0);
+    this.activeStinger = { source: stingerSource, gain: stingerGain };
 
     const waitMs = rule.durationMs ?? buffer.duration * 1000;
-    await sleep(waitMs);
+    await abortableSleep(waitMs, signal);
 
-    stingerGain.disconnect();
+    this.activeStinger = null;
+    try {
+      stingerGain.disconnect();
+    } catch {
+      // Already disconnected by cancel()
+    }
+    if (signal.aborted) return;
 
     await this.scenePlayer.playScene(pack, toSceneId);
   }
@@ -234,6 +330,7 @@ export class TransitionPlayer {
     toSceneId: string,
     rule: TransitionRule,
     fadeCurve: FadeCurve,
+    signal: AbortSignal,
   ): Promise<void> {
     // Resolve BPM from the current scene's stems
     const fromSceneId = this.scenePlayer.sceneId;
@@ -268,11 +365,12 @@ export class TransitionPlayer {
 
     // Wait until the bar boundary
     if (delayMs > 10) {
-      await sleep(delayMs);
+      await abortableSleep(delayMs, signal);
+      if (signal.aborted) return;
     }
 
     // Crossfade at the bar boundary using the existing crossfade logic
-    await this.crossfade(pack, toSceneId, rule, fadeCurve);
+    await this.crossfade(pack, toSceneId, rule, fadeCurve, signal);
   }
 
   /**
@@ -283,6 +381,7 @@ export class TransitionPlayer {
     pack: SoundtrackPack,
     toSceneId: string,
     rule: TransitionRule,
+    signal: AbortSignal,
   ): Promise<void> {
     const durationMs = rule.durationMs ?? 1000;
     const durationS = durationMs / 1000;
@@ -294,22 +393,26 @@ export class TransitionPlayer {
       : this.scenePlayer.getMasterGain();
 
     const originalGain = masterGain.gain.value;
+    this.gainRestore = { node: masterGain, value: originalGain };
 
     // Linear fade out over the full duration
     masterGain.gain.setValueAtTime(originalGain, now);
     masterGain.gain.linearRampToValueAtTime(0, now + durationS);
 
     // Wait for the fade-out to complete (+ safety margin)
-    await sleep(durationMs + 50);
+    await abortableSleep(durationMs + 50, signal);
+    if (signal.aborted) return;
 
     // Stop old scene, start new scene (no overlap — sequential)
     await this.scenePlayer.playScene(pack, toSceneId);
+    if (signal.aborted) return;
 
     // Restore gain to original level immediately (no fade-in for cooldown)
     const newMasterGain = this.mixer
       ? this.mixer.getMasterGain()
       : this.scenePlayer.getMasterGain();
     newMasterGain.gain.setValueAtTime(originalGain, this.ctx.currentTime);
+    this.gainRestore = null;
   }
 
   private emit(type: string, detail: unknown): void {
@@ -318,8 +421,22 @@ export class TransitionPlayer {
 
 }
 
-function sleep(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+function abortableSleep(ms: number, signal: AbortSignal): Promise<void> {
+  return new Promise((resolve) => {
+    if (signal.aborted) {
+      resolve();
+      return;
+    }
+    const timer = setTimeout(() => {
+      signal.removeEventListener("abort", onAbort);
+      resolve();
+    }, ms);
+    const onAbort = () => {
+      clearTimeout(timer);
+      resolve();
+    };
+    signal.addEventListener("abort", onAbort, { once: true });
+  });
 }
 
 function dbToLinear(db: number): number {

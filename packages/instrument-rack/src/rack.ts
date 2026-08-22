@@ -7,7 +7,7 @@ import type { InstrumentVoice, SynthParams } from "./types.js";
 import { SynthVoice } from "./synth-voice.js";
 import { DrumVoice } from "./drum-voice.js";
 import { SampleVoice } from "./sample-voice.js";
-import { FACTORY_PRESETS } from "./presets.js";
+import { ALL_PRESETS } from "./presets.js";
 
 /**
  * The instrument rack manages voice instances for each preset.
@@ -58,9 +58,12 @@ export class InstrumentRack {
 
     const preset =
       this.customPresets.find((p) => p.id === presetId) ??
-      FACTORY_PRESETS.find((p) => p.id === presetId);
+      ALL_PRESETS.find((p) => p.id === presetId);
 
-    if (!preset) return null;
+    if (!preset) {
+      console.warn(`[InstrumentRack] No preset found for instrument id '${presetId}' — voice request ignored.`);
+      return null;
+    }
 
     const voice = createVoiceForPreset(preset);
     this.voices.set(presetId, voice);
@@ -70,7 +73,7 @@ export class InstrumentRack {
   /** List all available preset IDs */
   listPresets(): InstrumentPreset[] {
     const byId = new Map<string, InstrumentPreset>();
-    for (const p of FACTORY_PRESETS) byId.set(p.id, p);
+    for (const p of ALL_PRESETS) byId.set(p.id, p);
     for (const p of this.customPresets) byId.set(p.id, p);
     return Array.from(byId.values());
   }

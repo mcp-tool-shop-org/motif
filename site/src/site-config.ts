@@ -32,6 +32,7 @@ export const config: SiteConfig = {
         { title: 'Compose', desc: 'Clips with notes, multi-oscillator synth (unison/supersaw), sample instruments, LFO modulation, and intensity variants — structured music authoring, not random generation.' },
         { title: 'Score Worlds', desc: 'Motif families, score profiles, cue families, world map entries, and derivation chains for game-wide musical coherence.' },
         { title: 'Mix and Effect', desc: '8 effect types (EQ, delay, reverb, compressor, chorus, distortion, phaser, limiter) with 4 insert FX slots per stem. MIDI import/export. 24/32-bit WAV rendering.' },
+        { title: 'Ingest Generated Audio', desc: 'Turn a generated mix plus stems plus a loudness reading into a playable, normalized pack. Content-addressed, so re-running a built pack takes about a second. Motif does not generate — it scores what you bring it.' },
       ],
     },
     {
@@ -41,8 +42,8 @@ export const config: SiteConfig = {
       subtitle: 'Author in Studio, export for your game engine.',
       features: [
         { title: 'Adaptive Logic', desc: 'Trigger bindings, transitions, and deterministic scene resolution — music responds to game state predictably.' },
-        { title: '1,116 Tests', desc: 'Schema validation, synthesis, effects, MIDI, sample operations, world scoring, automation, library management — all tested.' },
-        { title: 'Zero Network', desc: 'Runs entirely in the browser. No server, no cloud sync, no telemetry. Your music stays local.' },
+        { title: '1,709 Tests', desc: 'Schema validation, synthesis, effects, MIDI, sample operations, world scoring, automation, library management, generation ingest — all tested.' },
+        { title: 'Offline Studio', desc: 'Studio runs entirely in the browser. No server, no cloud sync, no telemetry. Your music stays local.' },
       ],
     },
     {
@@ -67,8 +68,8 @@ export const config: SiteConfig = {
         ['@motif-studio/instrument-rack', 'Multi-oscillator synth, drum voice, sample voice, LFO modulation'],
         ['@motif-studio/music-theory', 'Scales, chords, motifs, intensity'],
         ['@motif-studio/playback-engine', 'Real-time playback, mixing, 8 FX types, MIDI I/O, WAV export'],
-        ['@motif-studio/sample-lab', 'Trim, slice, kit, instrument helpers'],
-        ['@motif-studio/score-map', 'Motifs, profiles, cue families, derivation'],
+        ['@motif-studio/sample-lab', 'Trim, slice, kit helpers, plus the generation lane: cloud run, ingest, loudness'],
+        ['@motif-studio/score-map', 'Motifs, profiles, cue families, derivation, library catalog'],
         ['@motif-studio/automation', 'Lanes, macros, envelopes, capture'],
         ['@motif-studio/library', 'Templates, snapshots, branches, favorites'],
         ['@motif-studio/scene-mapper', 'Trigger mapping and scene resolution'],

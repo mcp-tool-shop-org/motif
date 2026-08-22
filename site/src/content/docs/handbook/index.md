@@ -23,7 +23,7 @@ Repository structure, package boundaries, toolchain, and why a monorepo.
 Navigation map, screen relationships, state management, and where to start.
 
 ### [Creative Workflows](/motif/handbook/workflows/building-a-cue/)
-Building cues from scratch, working with custom samples, world scoring, automation capture, and library branching.
+Building cues from scratch, working with custom samples, world scoring, automation capture, library branching — and [turning generated audio into playable library packs](/motif/handbook/workflows/generated-cues/).
 
 ### [Strategy](/motif/handbook/strategy/rendering-export/)
 Rendering, runtime export, roadmap, and glossary.

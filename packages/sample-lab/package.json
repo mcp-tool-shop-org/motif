@@ -1,7 +1,7 @@
 {
   "name": "@motif-studio/sample-lab",
-  "version": "1.2.0",
-  "description": "Trim, slice, kit, and instrument helpers for Motif",
+  "version": "1.3.0",
+  "description": "Sample helpers and the generated-audio ingest lane for Motif — trim, slice, kit, instrument, plus content-addressed cloud-artifact ingest and library packs",
   "license": "MIT",
   "author": "mcp-tool-shop-org",
   "repository": {
@@ -28,7 +28,9 @@
     "build": "tsc --build",
     "dev": "tsc --build --watch",
     "test": "vitest run",
-    "ingest:grounded-v2": "node dist/generation/run-ingest-wave2.js",
+    "ingest:grounded": "node dist/generation/run-ingest-grounded.js",
+    "ingest:library": "node dist/generation/run-ingest-library.js",
+    "populate:demo-packs": "node dist/generation/run-populate-demo-packs.js",
     "lint": "eslint src/",
     "typecheck": "tsc --noEmit"
   },

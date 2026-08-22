@@ -774,6 +774,7 @@ export const GeneratedCueRecordSchema = z
     gainDb: z.number(),
     actualGainDb: z.number(),
     peakLimited: z.boolean(),
+    boostCapped: z.boolean().optional(),
     resampler: ResamplerIdentitySchema,
     runtimeSampleRateHz: z.literal(48000),
     createdAt: z.string().min(1),
@@ -831,5 +832,6 @@ export const RuntimeMusicStateSchema = z
     region: z.string().optional(),
     faction: z.string().optional(),
     encounterType: z.string().optional(),
+    cue: z.string().optional(),
   })
   .passthrough();

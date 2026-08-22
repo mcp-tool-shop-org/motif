@@ -28,3 +28,12 @@ export const NEAR_SILENT_RELATIVE_DB = 40;
 export const WAV_BIT_DEPTH = 24 as const;
 
 export const PEAK_LIMIT = 0.999;
+
+/**
+ * Maximum ingest BOOST in dB (cuts are uncapped). Measured rationale:
+ * wave-2 normalized contracts-s302 with +13.19 dB and it played ~7-10 dB
+ * louder than every neighbor. Takes needing more than +6 dB of boost are
+ * regeneration candidates, not boost candidates — the record flags them
+ * with `boostCapped: true`.
+ */
+export const BOOST_CAP_DB = 6;

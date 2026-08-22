@@ -34,6 +34,9 @@ import {
   GROUNDED_FAMILY_LOCKS,
   GROUNDED_GENERATION_SPEC,
   GROUNDED_WAVE2_TAKES,
+  GROUNDED_WAVE3_TAKES,
+  GROUNDED_TAKES,
+  styleTagsFor,
   foldGeneratedIntoPack,
   // resolve
   createScoreMapEntry,
@@ -391,7 +394,9 @@ describe("generated stem intensity map", () => {
   });
 });
 
-describe("wave-2 generation spec", () => {
+describe("grounded generation spec + takes", () => {
+  const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+
   it("is a 60 s unit with house-grammar tags and enum keyscales", () => {
     expect(GROUNDED_GENERATION_SPEC.every((s) => s.durationSec === 60)).toBe(true);
     expect(GROUNDED_GENERATION_SPEC.find((s) => s.familyId === "cf-keth")!.lock.keyscale).toBe(
@@ -400,8 +405,72 @@ describe("wave-2 generation spec", () => {
     expect(GROUNDED_GENERATION_SPEC.find((s) => s.familyId === "cf-military")!.styleTags.startsWith("Military March:")).toBe(
       true,
     );
+  });
+
+  it("family spec carries the ratified v2 grammar for cf-military and cf-frontier", () => {
+    expect(GROUNDED_GENERATION_SPEC.find((s) => s.familyId === "cf-military")!.styleTags).toBe(
+      "Military March: A quiet, disciplined orchestral underscore. Soft low brass pedal tones and distant muffled snare keep a slow steady march, muted strings sustain long notes beneath sparse woodwind phrases. Somber, composed, dignified — weight carried in stillness, never aggressive.",
+    );
+    expect(GROUNDED_GENERATION_SPEC.find((s) => s.familyId === "cf-frontier")!.styleTags).toBe(
+      "Ambient Industrial: A steady, full atmospheric bed on a warm continuous synth drone. Lonely clean electric guitar phrases and sustained strings rest on a constant low foundation, soft distant percussion underneath. Desolate but calm, worn, evenly breathing, never fading out.",
+    );
+    // The other four families never re-ran; their spec prose is still v1.
+    expect(GROUNDED_GENERATION_SPEC.find((s) => s.familyId === "cf-combat")!.styleTags).toBe(
+      styleTagsFor("cf-combat", 1),
+    );
+  });
+
+  it("preserves v1 prose verbatim for wave-2 records", () => {
+    expect(styleTagsFor("cf-military", 1)).toBe(
+      "Military March: A tense, disciplined orchestral march. Low brass ostinato and military snare drive a relentless pulse, staccato strings and taiko hits build pressure. Dark, cinematic, restrained power that never fully releases.",
+    );
+    expect(styleTagsFor("cf-frontier", 1)).toBe(
+      "Ambient Industrial: A sparse, atmospheric piece built on a low pulsing synth drone. Lonely clean electric guitar phrases and thin sustained strings drift over soft metallic percussion and tape hiss. Desolate, weary, slow-breathing.",
+    );
+    expect(() => styleTagsFor("cf-combat", 2)).toThrow();
+  });
+
+  it("wave-2: 13 takes on v1 prose, wave-3: 10 takes on v2 prose, full job UUIDs everywhere", () => {
     expect(GROUNDED_WAVE2_TAKES).toHaveLength(13);
-    expect(GROUNDED_WAVE2_TAKES.filter((t) => t.playbackDefault)).toHaveLength(10);
+    expect(GROUNDED_WAVE2_TAKES.every((t) => t.wave === 2 && t.promptVersion === 1)).toBe(true);
+    expect(GROUNDED_WAVE3_TAKES).toHaveLength(10);
+    expect(GROUNDED_WAVE3_TAKES.every((t) => t.wave === 3 && t.promptVersion === 2)).toBe(true);
+    expect(GROUNDED_TAKES).toHaveLength(23);
+    expect(GROUNDED_TAKES.every((t) => UUID_RE.test(t.jobId))).toBe(true);
+    expect(GROUNDED_WAVE2_TAKES.find((t) => t.seed === 101)!.jobId).toBe(
+      "e83f8c6a-3c26-463a-9ab9-804b0933fa0c",
+    );
+    expect(GROUNDED_WAVE3_TAKES.find((t) => t.seed === 111)!.jobId).toBe(
+      "d1432095-2636-47a2-8b5f-6e692930e94a",
+    );
+    expect(GROUNDED_WAVE3_TAKES.find((t) => t.seed === 121)!.jobId).toBe(
+      "185411ed-a211-4265-8a6b-d6711c48240b",
+    );
+    expect(GROUNDED_WAVE3_TAKES.find((t) => t.seed === 321)!.jobId).toBe(
+      "13c67778-1617-4b87-b735-b2b2d1a0834b",
+    );
+  });
+
+  it("wave-3 defaults replace the failed wave-2 defaults; exactly one default per scene", () => {
+    const defaults = GROUNDED_TAKES.filter((t) => t.playbackDefault);
+    expect(defaults).toHaveLength(12);
+    expect(GROUNDED_WAVE2_TAKES.filter((t) => t.playbackDefault)).toHaveLength(7);
+    expect(GROUNDED_WAVE3_TAKES.filter((t) => t.playbackDefault).map((t) => t.seed)).toEqual([
+      111, 113, 121, 311, 321,
+    ]);
+    // The three regenerated scenes flipped their wave-2 defaults off.
+    for (const seed of [101, 103, 302]) {
+      expect(GROUNDED_WAVE2_TAKES.find((t) => t.seed === seed)!.playbackDefault).toBe(false);
+    }
+    const byScene = new Map<string, number>();
+    for (const t of defaults) byScene.set(t.sceneId, (byScene.get(t.sceneId) ?? 0) + 1);
+    expect(byScene.size).toBe(12);
+    expect([...byScene.values()].every((n) => n === 1)).toBe(true);
+    expect(GROUNDED_TAKES.filter((t) => t.sceneId === "sc-ardent-ready" && t.playbackDefault).map((t) => t.seed)).toEqual([111]);
+    expect(GROUNDED_TAKES.filter((t) => t.sceneId === "sc-contracts" && t.playbackDefault).map((t) => t.seed)).toEqual([311]);
+    // New-coverage scenes: lower seed is the default.
+    expect(GROUNDED_TAKES.filter((t) => t.sceneId === "sc-patrol" && t.playbackDefault).map((t) => t.seed)).toEqual([121]);
+    expect(GROUNDED_TAKES.filter((t) => t.sceneId === "sc-lane" && t.playbackDefault).map((t) => t.seed)).toEqual([321]);
   });
 
   it("folds a playback-default take onto a scene and attaches the family", () => {
@@ -415,7 +484,7 @@ describe("wave-2 generation spec", () => {
       generation: {
         seed: 101,
         workflowId: "wf",
-        jobId: "e83f8c6a",
+        jobId: "e83f8c6a-3c26-463a-9ab9-804b0933fa0c",
         bpm: 100,
         keyscale: "G minor",
         timesignature: "4/4",
