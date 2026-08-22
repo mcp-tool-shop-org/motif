@@ -75,10 +75,35 @@ jobs:
       - name: Test
         run: pnpm vitest run
 
+      # Publish with npm, pack with pnpm — each does the half it is good at.
+      #
+      # npm has native OIDC Trusted Publishing from 11.5.1; Node 22 still ships
+      # npm 10, so upgrade it explicitly. pnpm 10.32.1 does NOT attempt OIDC —
+      # `pnpm publish` here fails ENEEDAUTH, having never tried to mint a
+      # credential.
+      #
+      # But only pnpm can rewrite the `workspace:*` interdependencies into real
+      # versions; publishing these package.json files as they sit on disk would
+      # ship manifests no consumer could install. So `pnpm pack` builds the
+      # tarball (verified: it emits `"@motif-studio/schema": "1.3.0"`, not
+      # `workspace:*`) and `npm publish <tarball>` sends it under OIDC.
       - name: Publish packages
-        # `-r` walks the workspace in dependency order and skips private
-        # packages, so apps/studio stays unpublished. pnpm rewrites the
-        # `workspace:*` interdependencies to real versions in the published
-        # manifests; publishing these with plain `npm publish` would ship
-        # manifests that no consumer could install.
-        run: pnpm -r publish --no-git-checks --access public
+        run: |
+          npm install -g npm@latest
+          echo "npm $(npm --version) — OIDC Trusted Publishing needs >= 11.5.1"
+          published=0
+          for dir in packages/*/; do
+            [ -f "${dir}package.json" ] || continue
+            name=$(node -p "require('./${dir}package.json').name")
+            private=$(node -p "require('./${dir}package.json').private === true")
+            if [ "$private" = "true" ]; then
+              echo "skip $name (private)"
+              continue
+            fi
+            echo "::group::publish $name"
+            tarball=$(cd "$dir" && pnpm pack --pack-destination "$RUNNER_TEMP" | tail -1)
+            npm publish "$tarball" --access public
+            published=$((published + 1))
+            echo "::endgroup::"
+          done
+          echo "published $published package(s)"
