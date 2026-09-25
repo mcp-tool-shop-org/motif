@@ -1,0 +1,94 @@
+summary: ""
+boundaries:
+  - name: .claude
+    globs:
+      - .claude/**
+    role: data
+  - name: .github
+    globs:
+      - .github/**
+    role: config
+  - name: asset-index
+    globs:
+      - packages/asset-index/**
+    role: code
+  - name: audio-engine
+    globs:
+      - packages/audio-engine/**
+    role: code
+  - name: automation
+    globs:
+      - packages/automation/**
+    role: code
+  - name: clip-engine
+    globs:
+      - packages/clip-engine/**
+    role: code
+  - name: examples
+    globs:
+      - examples/**
+    role: docs
+  - name: handbook
+    globs:
+      - handbook/**
+    role: docs
+  - name: instrument-rack
+    globs:
+      - packages/instrument-rack/**
+    role: code
+  - name: library
+    globs:
+      - packages/library/**
+    role: code
+  - name: music-theory
+    globs:
+      - packages/music-theory/**
+    role: code
+  - name: playback-engine
+    globs:
+      - packages/playback-engine/**
+    role: code
+  - name: review
+    globs:
+      - packages/review/**
+    role: code
+  - name: root
+    globs:
+      - "*"
+    role: config
+  - name: runtime-pack
+    globs:
+      - packages/runtime-pack/**
+    role: code
+  - name: sample-lab
+    globs:
+      - packages/sample-lab/**
+    role: code
+  - name: scene-mapper
+    globs:
+      - packages/scene-mapper/**
+    role: code
+  - name: schema
+    globs:
+      - packages/schema/**
+    role: code
+  - name: score-map
+    globs:
+      - packages/score-map/**
+    role: code
+  - name: site
+    globs:
+      - site/**
+    role: site
+  - name: studio
+    globs:
+      - apps/studio/**
+    role: code
+  - name: test-kit
+    globs:
+      - packages/test-kit/**
+    role: code
+  - name: ui
+    globs:
+      - packages/ui/**
+    role: code
