@@ -1,0 +1,408 @@
+{
+  "authored": [
+    ".claude/",
+    ".github/",
+    "examples/",
+    "handbook/",
+    "root",
+    "site/"
+  ],
+  "breaks": [
+    {
+      "doors": 0,
+      "importedBy": [
+        "asset-index",
+        "audio-engine",
+        "automation",
+        "clip-engine",
+        "instrument-rack",
+        "library",
+        "playback-engine",
+        "review",
+        "runtime-pack",
+        "sample-lab",
+        "scene-mapper",
+        "score-map",
+        "studio"
+      ],
+      "importedByTests": [],
+      "kind": "part",
+      "name": "schema",
+      "partLabel": "schema"
+    },
+    {
+      "doors": 0,
+      "importedBy": [
+        "clip-engine",
+        "playback-engine",
+        "studio"
+      ],
+      "importedByTests": [
+        "scene-mapper",
+        "score-map"
+      ],
+      "kind": "part",
+      "name": "instrument-rack",
+      "partLabel": "instrument-rack"
+    },
+    {
+      "doors": 0,
+      "importedBy": [
+        "sample-lab",
+        "scene-mapper",
+        "studio"
+      ],
+      "importedByTests": [],
+      "kind": "part",
+      "name": "score-map",
+      "partLabel": "score-map"
+    },
+    {
+      "doors": 0,
+      "importedBy": [
+        "playback-engine",
+        "studio"
+      ],
+      "importedByTests": [
+        "scene-mapper"
+      ],
+      "kind": "part",
+      "name": "clip-engine",
+      "partLabel": "clip-engine"
+    },
+    {
+      "doors": 0,
+      "importedBy": [
+        "review",
+        "runtime-pack"
+      ],
+      "importedByTests": [],
+      "kind": "part",
+      "name": "asset-index",
+      "partLabel": "asset-index"
+    },
+    {
+      "doors": 0,
+      "importedBy": [
+        "playback-engine",
+        "studio"
+      ],
+      "importedByTests": [],
+      "kind": "part",
+      "name": "audio-engine",
+      "partLabel": "audio-engine"
+    },
+    {
+      "doors": 0,
+      "importedBy": [
+        "clip-engine",
+        "studio"
+      ],
+      "importedByTests": [],
+      "kind": "part",
+      "name": "music-theory",
+      "partLabel": "music-theory"
+    },
+    {
+      "doors": 0,
+      "importedBy": [
+        "audio-engine",
+        "studio"
+      ],
+      "importedByTests": [],
+      "kind": "part",
+      "name": "scene-mapper",
+      "partLabel": "scene-mapper"
+    }
+  ],
+  "changes": {
+    "first": true
+  },
+  "changesTogether": [
+    {
+      "a": "packages/schema/src/schemas.ts",
+      "b": "packages/schema/src/types.ts",
+      "either": 9,
+      "partLabels": [
+        "schema",
+        "schema"
+      ],
+      "parts": [
+        "schema",
+        "schema"
+      ],
+      "relation": "inside",
+      "shared": 9
+    },
+    {
+      "a": "apps/studio/src/app/seed-data.ts",
+      "b": "packages/sample-lab/src/generation/index.ts",
+      "either": 8,
+      "partLabels": [
+        "studio",
+        "sample-lab"
+      ],
+      "parts": [
+        "studio",
+        "sample-lab"
+      ],
+      "relation": "none",
+      "shared": 5
+    },
+    {
+      "a": "packages/sample-lab/src/generation/index.ts",
+      "b": "packages/sample-lab/test/generation.test.ts",
+      "either": 8,
+      "partLabels": [
+        "sample-lab",
+        "sample-lab"
+      ],
+      "parts": [
+        "sample-lab",
+        "sample-lab"
+      ],
+      "relation": "inside",
+      "shared": 5
+    }
+  ],
+  "changesTogetherNote": [
+    "Confidence is low: fewer than 20 source files reach 10 revisions in the window.",
+    "Window: 180 days; a pair counts from 3 shared commits, since 0 source files reach 10 revisions; the floor rises to 10 when 25 do."
+  ],
+  "changesTogetherWithTests": 0,
+  "commit": "bed863452886f1cccdf8d9f766bf2b71c40fd18f",
+  "defaultBranch": "main",
+  "derived": "23 parts, mostly TypeScript (277 files) and JavaScript (3). Work enters through 3 doors; the busiest is Deploy site to GitHub Pages, which reaches 1 part. It publishes a package to npm, chosen at run time.",
+  "doors": [
+    {
+      "checks": [],
+      "checksCount": 0,
+      "checksMore": 0,
+      "file": ".github/workflows/pages.yml",
+      "id": ".github/workflows/pages.yml",
+      "landings": [],
+      "name": "Deploy site to GitHub Pages",
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "site",
+          "depth": 0,
+          "files": 3
+        }
+      ],
+      "runs": [
+        "site/astro.config.mjs",
+        "site/src/"
+      ],
+      "runsCount": 2,
+      "runsMore": 0,
+      "sends": [
+        "deploys the site"
+      ],
+      "stages": [],
+      "triggers": [
+        "on a push to main touching 2 paths",
+        "or by hand"
+      ]
+    },
+    {
+      "checks": [],
+      "checksCount": 0,
+      "checksMore": 0,
+      "file": ".github/workflows/ci.yml",
+      "id": ".github/workflows/ci.yml",
+      "landings": [],
+      "name": "CI",
+      "pushes": false,
+      "reach": [],
+      "runs": [],
+      "runsCount": 0,
+      "runsMore": 0,
+      "sends": [],
+      "stages": [],
+      "triggers": [
+        "on a pull request touching 9 paths",
+        "on a push to main touching 9 paths",
+        "or by hand"
+      ]
+    },
+    {
+      "checks": [],
+      "checksCount": 0,
+      "checksMore": 0,
+      "file": ".github/workflows/release.yml",
+      "id": ".github/workflows/release.yml",
+      "landings": [],
+      "name": "Release",
+      "pushes": false,
+      "reach": [],
+      "runs": [],
+      "runsCount": 0,
+      "runsMore": 0,
+      "sends": [
+        "publishes a package to npm, chosen at run time"
+      ],
+      "stages": [],
+      "triggers": [
+        "when a release is published"
+      ]
+    }
+  ],
+  "duplicates": [],
+  "duplicatesLead": null,
+  "duplicatesNote": [],
+  "edges": [
+    {
+      "from": "asset-index",
+      "fromTests": false,
+      "to": "schema"
+    },
+    {
+      "from": "audio-engine",
+      "fromTests": false,
+      "to": "scene-mapper"
+    },
+    {
+      "from": "audio-engine",
+      "fromTests": false,
+      "to": "schema"
+    },
+    {
+      "from": "clip-engine",
+      "fromTests": false,
+      "to": "instrument-rack"
+    },
+    {
+      "from": "clip-engine",
+      "fromTests": false,
+      "to": "music-theory"
+    },
+    {
+      "from": "clip-engine",
+      "fromTests": false,
+      "to": "schema"
+    },
+    {
+      "from": "instrument-rack",
+      "fromTests": false,
+      "to": "schema"
+    },
+    {
+      "from": "scene-mapper",
+      "fromTests": true,
+      "to": "clip-engine"
+    },
+    {
+      "from": "scene-mapper",
+      "fromTests": true,
+      "to": "instrument-rack"
+    },
+    {
+      "from": "scene-mapper",
+      "fromTests": false,
+      "to": "schema"
+    },
+    {
+      "from": "scene-mapper",
+      "fromTests": false,
+      "to": "score-map"
+    },
+    {
+      "from": "score-map",
+      "fromTests": true,
+      "to": "instrument-rack"
+    },
+    {
+      "from": "score-map",
+      "fromTests": false,
+      "to": "schema"
+    }
+  ],
+  "generated": [
+    {
+      "place": "apps/studio/src/app/grounded-folded.json",
+      "writers": [
+        "packages/sample-lab/src/generation/run-ingest-grounded.ts"
+      ]
+    },
+    {
+      "block": true,
+      "place": "apps/studio/src/app/library-folded.json",
+      "writers": [
+        "packages/sample-lab/src/generation/run-ingest-library.ts"
+      ]
+    }
+  ],
+  "generatedAt": "2026-09-25T02:11:05.319Z",
+  "limits": [
+    "1 import site could not be resolved.",
+    "8 reads use paths built at run time and are not named here.",
+    "2 writes go to places this repository does not track, so they are not listed as generated.",
+    "12 writes and 46 reads go to a path their caller passes, not to this repository.",
+    "Statistics confidence is low: fewer than 20 source files reach 10 revisions in the window."
+  ],
+  "mainDoor": ".github/workflows/pages.yml",
+  "partLabels": {
+    ".claude": ".claude",
+    ".github": ".github",
+    "asset-index": "asset-index",
+    "audio-engine": "audio-engine",
+    "automation": "automation",
+    "clip-engine": "clip-engine",
+    "examples": "examples",
+    "handbook": "handbook",
+    "instrument-rack": "instrument-rack",
+    "library": "library",
+    "music-theory": "music-theory",
+    "playback-engine": "playback-engine",
+    "review": "review",
+    "root": "the repository root",
+    "runtime-pack": "runtime-pack",
+    "sample-lab": "sample-lab",
+    "scene-mapper": "scene-mapper",
+    "schema": "schema",
+    "score-map": "score-map",
+    "site": "the site",
+    "studio": "studio",
+    "test-kit": "test-kit",
+    "ui": "ui"
+  },
+  "parts": 23,
+  "readers": [],
+  "repo": "mcp-tool-shop-org/motif",
+  "sequences": [],
+  "startDoor": ".github/workflows/pages.yml",
+  "startHere": [
+    ".github/workflows/pages.yml",
+    "site/src/content.config.ts"
+  ],
+  "summary": null,
+  "summaryFrom": null,
+  "testFiles": 77,
+  "testedBy": {
+    "asset-index": 13,
+    "audio-engine": 19,
+    "automation": 15,
+    "clip-engine": 30,
+    "instrument-rack": 30,
+    "library": 13,
+    "music-theory": 16,
+    "playback-engine": 25,
+    "review": 14,
+    "runtime-pack": 16,
+    "sample-lab": 15,
+    "scene-mapper": 34,
+    "schema": 61,
+    "score-map": 30,
+    "studio": 29,
+    "test-kit": 19,
+    "ui": 13
+  },
+  "unnamedWrites": 0,
+  "unread": [],
+  "unreadFiles": 0,
+  "unreadNote": [],
+  "untested": [],
+  "untestedNote": [],
+  "written": 2
+}
