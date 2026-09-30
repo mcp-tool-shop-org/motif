@@ -36,7 +36,7 @@
           "path": ".github/dependabot.yml"
         },
         {
-          "hash": "853e3319290b6d5e877971ada2c2dedbb66fd823236c55ee1c355c5455502c80",
+          "hash": "bcade4cb11a9b618bb3b901ae54701770bbbdfa84eb99b22409a7de72fe6eed6",
           "path": ".github/workflows/ci.yml"
         },
         {
@@ -109,6 +109,11 @@
             "auditPackIntegrity"
           ],
           "hash": "42eb37a6b1a7b3e61f4aac6fc196d4b157d33d750b63dbcb847b8876875ffa34",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/asset-index/src/types.ts",
+            "packages/asset-index/src/index-pack.ts"
+          ],
           "importsFiles": [
             "packages/asset-index/src/index-pack.ts",
             "packages/asset-index/src/types.ts",
@@ -121,6 +126,10 @@
             "buildPackIndex"
           ],
           "hash": "d2557c4139de7da5229a066b9d0ca1482611116a4e78444a4d6cecc3e2ec2328",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/asset-index/src/types.ts"
+          ],
           "importsFiles": [
             "packages/asset-index/src/types.ts",
             "packages/schema/src/index.ts"
@@ -129,6 +138,13 @@
         },
         {
           "hash": "496a9fe309046acbeb129f3d10540af4d411d1876d1b763f75d663c9bd4b7381",
+          "importOrder": [
+            "packages/asset-index/src/types.ts",
+            "packages/asset-index/src/index-pack.ts",
+            "packages/asset-index/src/audit.ts",
+            "packages/asset-index/src/unused.ts",
+            "packages/asset-index/src/summary.ts"
+          ],
           "importsFiles": [
             "packages/asset-index/src/audit.ts",
             "packages/asset-index/src/index-pack.ts",
@@ -147,6 +163,11 @@
             "summarizePackIntegrity"
           ],
           "hash": "32409f8926ea1e4eee4fe36a24b190a5f958ac97b5adc4b36cc9bcede770cbb4",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/asset-index/src/types.ts",
+            "packages/asset-index/src/audit.ts"
+          ],
           "importsFiles": [
             "packages/asset-index/src/audit.ts",
             "packages/asset-index/src/types.ts",
@@ -175,12 +196,18 @@
         },
         {
           "hash": "94040fd10a36b5c3b8db34f62e7618b6c654b27b9407ff818a1942140697e8dc",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/test-kit/src/index.ts",
+            "packages/asset-index/src/index.ts"
+          ],
           "importsFiles": [
             "packages/asset-index/src/index.ts",
             "packages/schema/src/index.ts",
             "packages/test-kit/src/index.ts"
           ],
-          "path": "packages/asset-index/test/index.test.ts"
+          "path": "packages/asset-index/test/index.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "07cf970893a82f70d0901499aefe264dadeb808f9129f07fc560ccd77671130e",
@@ -198,6 +225,9 @@
       "name": "asset-index",
       "origin": "authored",
       "role": "code",
+      "testRunners": [
+        "vitest"
+      ],
       "testedBy": 13,
       "unresolvedSites": 0
     },
@@ -249,6 +279,14 @@
         },
         {
           "hash": "5b5b092920ba7542c650962b45a6e1755c1ebff78d7b47f7f8c1f3451fb1b3ea",
+          "importOrder": [
+            "packages/audio-engine/src/types.ts",
+            "packages/audio-engine/src/layers.ts",
+            "packages/audio-engine/src/transitions.ts",
+            "packages/audio-engine/src/simulate.ts",
+            "packages/audio-engine/src/sample-player.ts",
+            "packages/audio-engine/src/sample-types.ts"
+          ],
           "importsFiles": [
             "packages/audio-engine/src/layers.ts",
             "packages/audio-engine/src/sample-player.ts",
@@ -267,6 +305,10 @@
             "resolveActiveLayers"
           ],
           "hash": "49a3fe2b997bbf13e47e26fdba073635fbb729e5e2346dc1a266cad1e9e37ff1",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/audio-engine/src/types.ts"
+          ],
           "importsFiles": [
             "packages/audio-engine/src/types.ts",
             "packages/schema/src/index.ts"
@@ -281,6 +323,10 @@
             "playTrimmedRegion"
           ],
           "hash": "f08b3de471e2ea441891428f643bc16abfb723001a5fd1902e05b0b43ad61112",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/audio-engine/src/sample-types.ts"
+          ],
           "importsFiles": [
             "packages/audio-engine/src/sample-types.ts",
             "packages/schema/src/index.ts"
@@ -296,6 +342,13 @@
             "simulateStateSequence"
           ],
           "hash": "fa95e63c7698193b6eb41e25b0be74bc6ce2a2b233a42efbf6c5d81d23c48504",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/scene-mapper/src/index.ts",
+            "packages/audio-engine/src/types.ts",
+            "packages/audio-engine/src/layers.ts",
+            "packages/audio-engine/src/transitions.ts"
+          ],
           "importsFiles": [
             "packages/audio-engine/src/layers.ts",
             "packages/audio-engine/src/transitions.ts",
@@ -324,20 +377,31 @@
         },
         {
           "hash": "c19698172052d94d907a394f84a04c3a99ec705a5802e24faf839fc85fdfee78",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/test-kit/src/index.ts",
+            "packages/audio-engine/src/index.ts"
+          ],
           "importsFiles": [
             "packages/audio-engine/src/index.ts",
             "packages/schema/src/index.ts",
             "packages/test-kit/src/index.ts"
           ],
-          "path": "packages/audio-engine/test/index.test.ts"
+          "path": "packages/audio-engine/test/index.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "0991eaeb6692786cc6d9bc991b174b70871da4bf6ada1cd545c3f0de2b72d7ac",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/audio-engine/src/sample-player.ts"
+          ],
           "importsFiles": [
             "packages/audio-engine/src/sample-player.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "packages/audio-engine/test/sample-player.test.ts"
+          "path": "packages/audio-engine/test/sample-player.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "9bec0b3614013967981fcdcae17987a475444124d18541009ecfba78ed17e51e",
@@ -355,6 +419,9 @@
       "name": "audio-engine",
       "origin": "authored",
       "role": "code",
+      "testRunners": [
+        "vitest"
+      ],
       "testedBy": 19,
       "unresolvedSites": 0
     },
@@ -436,6 +503,13 @@
         },
         {
           "hash": "710882b01bf7651a61dca661d3551f3260acadf1ce4ac307b83c82a2390049ae",
+          "importOrder": [
+            "packages/automation/src/lanes.ts",
+            "packages/automation/src/interpolate.ts",
+            "packages/automation/src/macros.ts",
+            "packages/automation/src/envelopes.ts",
+            "packages/automation/src/capture.ts"
+          ],
           "importsFiles": [
             "packages/automation/src/capture.ts",
             "packages/automation/src/envelopes.ts",
@@ -459,6 +533,13 @@
             "evaluateLanesAt",
             "interpolate",
             "sampleLane"
+          ],
+          "failurePaths": [
+            {
+              "in": "sampleLane",
+              "kind": "throw",
+              "line": 65
+            }
           ],
           "hash": "0026f6750728566c5b92c9287c7968095f1c57710efdd2326016744708f6168e",
           "importsFiles": [
@@ -506,14 +587,16 @@
             "packages/automation/src/interpolate.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "packages/automation/test/edge-cases.test.ts"
+          "path": "packages/automation/test/edge-cases.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "642694f2d7b04dc95382463db6dc9acc7f8d808d2415188c599c54e03b851256",
           "importsFiles": [
             "packages/automation/src/index.ts"
           ],
-          "path": "packages/automation/test/index.test.ts"
+          "path": "packages/automation/test/index.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "ce4657ec902b33007dff965151b559bae1a8dda0f63e92fcc9db0ec00d58c571",
@@ -531,6 +614,9 @@
       "name": "automation",
       "origin": "authored",
       "role": "code",
+      "testRunners": [
+        "vitest"
+      ],
       "testedBy": 15,
       "unresolvedSites": 0
     },
@@ -584,7 +670,20 @@
           "exports": [
             "resolveClipNotes"
           ],
+          "failurePaths": [
+            {
+              "in": "stop",
+              "kind": "catch",
+              "line": 71
+            }
+          ],
           "hash": "6adedf761fc2060f444f167b9c298ae7dd2a355bc294963a6c080a33b3ad1fd4",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/instrument-rack/src/index.ts",
+            "packages/clip-engine/src/scheduler.ts",
+            "packages/clip-engine/src/types.ts"
+          ],
           "importsFiles": [
             "packages/clip-engine/src/scheduler.ts",
             "packages/clip-engine/src/types.ts",
@@ -622,6 +721,10 @@
             "createTransformedVariant"
           ],
           "hash": "b920dabdf640b265b0db067dafdf19fc72630867ae7b5652905c7045ed45f183",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/music-theory/src/index.ts"
+          ],
           "importsFiles": [
             "packages/music-theory/src/index.ts",
             "packages/schema/src/index.ts"
@@ -646,6 +749,10 @@
             "ticksToSeconds"
           ],
           "hash": "c90833539481d1f5fe497892ee2b44e7cb4937fed5c2765b0952155fa87c971e",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/clip-engine/src/types.ts"
+          ],
           "importsFiles": [
             "packages/clip-engine/src/types.ts",
             "packages/schema/src/index.ts"
@@ -669,7 +776,18 @@
             "planGeneratedCuePlayback",
             "planGeneratedSectionTransitions"
           ],
+          "failurePaths": [
+            {
+              "in": "planGeneratedCuePlayback",
+              "kind": "throw",
+              "line": 55
+            }
+          ],
           "hash": "90c26dda2a5e02408c14828c34e268d0399020899a54dc02e76e56ac6c6f0213",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/clip-engine/src/cue-scheduler.ts"
+          ],
           "importsFiles": [
             "packages/clip-engine/src/cue-scheduler.ts",
             "packages/schema/src/index.ts"
@@ -678,6 +796,19 @@
         },
         {
           "hash": "c533d7e373e24c9e40359834887044bebf5ceb942c2990906f1ea569a2ec57bc",
+          "importOrder": [
+            "packages/clip-engine/src/clip-player.ts",
+            "packages/clip-engine/src/scene-clip-player.ts",
+            "packages/clip-engine/src/scheduler.ts",
+            "packages/clip-engine/src/types.ts",
+            "packages/clip-engine/src/clip-transforms.ts",
+            "packages/clip-engine/src/cue-scheduler.ts",
+            "packages/clip-engine/src/generated-playback.ts",
+            "packages/clip-engine/src/drum-patterns.ts",
+            "packages/clip-engine/src/midi.ts",
+            "packages/clip-engine/src/midi-types.ts",
+            "packages/clip-engine/src/loop-region.ts"
+          ],
           "importsFiles": [
             "packages/clip-engine/src/clip-player.ts",
             "packages/clip-engine/src/clip-transforms.ts",
@@ -720,7 +851,44 @@
             "readVLQ",
             "writeVLQ"
           ],
+          "failurePaths": [
+            {
+              "in": "readVLQ",
+              "kind": "throw",
+              "line": 21
+            },
+            {
+              "in": "readVLQ",
+              "kind": "throw",
+              "line": 28
+            },
+            {
+              "in": "writeVLQ",
+              "kind": "throw",
+              "line": 36
+            },
+            {
+              "in": "parseMidi",
+              "kind": "throw",
+              "line": 73
+            },
+            {
+              "in": "parseMidi",
+              "kind": "throw",
+              "line": 92
+            },
+            {
+              "in": "parseMidi",
+              "kind": "throw",
+              "line": 109
+            }
+          ],
           "hash": "a00935c0a1095172040ed9db6a56d121e3bfc3663eddafb5f469bd3fb663c293",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/clip-engine/src/midi-types.ts",
+            "packages/clip-engine/src/types.ts"
+          ],
           "importsFiles": [
             "packages/clip-engine/src/midi-types.ts",
             "packages/clip-engine/src/types.ts",
@@ -734,6 +902,12 @@
             "sortByOrder"
           ],
           "hash": "7d241ba5ab9b2dac60e97d178f73eacc268ebbf25da7e582fa5e172fb2d43dde",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/instrument-rack/src/index.ts",
+            "packages/clip-engine/src/clip-player.ts",
+            "packages/clip-engine/src/scheduler.ts"
+          ],
           "importsFiles": [
             "packages/clip-engine/src/clip-player.ts",
             "packages/clip-engine/src/scheduler.ts",
@@ -749,6 +923,10 @@
             "scheduleNotes"
           ],
           "hash": "a862330ae7e71a1078a34fac7f45b7fcd593d5e56d3656c6531648ec0fa38dfe",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/clip-engine/src/types.ts"
+          ],
           "importsFiles": [
             "packages/clip-engine/src/types.ts",
             "packages/schema/src/index.ts"
@@ -761,62 +939,97 @@
         },
         {
           "hash": "2051d68a64192ffbab74d847f7a03b96600cabe4f19f9f396b6b2c2edf1efd93",
+          "importOrder": [
+            "packages/clip-engine/src/clip-player.ts",
+            "packages/schema/src/index.ts",
+            "packages/instrument-rack/src/index.ts"
+          ],
           "importsFiles": [
             "packages/clip-engine/src/clip-player.ts",
             "packages/instrument-rack/src/index.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "packages/clip-engine/test/clip-player.test.ts"
+          "path": "packages/clip-engine/test/clip-player.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "3bed3a48438a31a9223ea5cc09eaa1e650f4f0946e1173f139d08d073c2067e5",
+          "importOrder": [
+            "packages/clip-engine/src/clip-transforms.ts",
+            "packages/schema/src/index.ts",
+            "packages/music-theory/src/index.ts"
+          ],
           "importsFiles": [
             "packages/clip-engine/src/clip-transforms.ts",
             "packages/music-theory/src/index.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "packages/clip-engine/test/clip-transforms.test.ts"
+          "path": "packages/clip-engine/test/clip-transforms.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "3f651dc73907cec1d5afd4e2a7dfce6683de3cc5f8b135e58faaaa3c7d058a43",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/clip-engine/src/index.ts"
+          ],
           "importsFiles": [
             "packages/clip-engine/src/index.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "packages/clip-engine/test/cue-scheduler.test.ts"
+          "path": "packages/clip-engine/test/cue-scheduler.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "d8bbdb5ef857780fbfe70a9ac827234f9655e232ccc0cb2027fd35fc5ee0b8b4",
           "importsFiles": [
             "packages/clip-engine/src/drum-patterns.ts"
           ],
-          "path": "packages/clip-engine/test/drum-patterns.test.ts"
+          "path": "packages/clip-engine/test/drum-patterns.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "0d7327bfb6cc4da3d7eda611668e1af1814fafde6c380d5bc9653070f938525a",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/clip-engine/src/generated-playback.ts"
+          ],
           "importsFiles": [
             "packages/clip-engine/src/generated-playback.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "packages/clip-engine/test/generated-playback.test.ts"
+          "path": "packages/clip-engine/test/generated-playback.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "5feff7e9f9a23d1a16c88c3e7df1dbc57e73af85dc5c21ce3b8cfff92a087151",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/clip-engine/src/loop-region.ts"
+          ],
           "importsFiles": [
             "packages/clip-engine/src/loop-region.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "packages/clip-engine/test/loop-region.test.ts"
+          "path": "packages/clip-engine/test/loop-region.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "f437706ff7468bf23c73807dfb5cc60c0ff2a4fd898ff66a2f8fd81af94600ff",
+          "importOrder": [
+            "packages/clip-engine/src/midi.ts",
+            "packages/clip-engine/src/midi-types.ts",
+            "packages/schema/src/index.ts",
+            "packages/clip-engine/src/types.ts"
+          ],
           "importsFiles": [
             "packages/clip-engine/src/midi-types.ts",
             "packages/clip-engine/src/midi.ts",
             "packages/clip-engine/src/types.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "packages/clip-engine/test/midi.test.ts"
+          "path": "packages/clip-engine/test/midi.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "e73bdc2ec9c4bbd9652856a90b89c5da9afd275e62e75b0b30d5d1f4ad844d01",
@@ -824,7 +1037,8 @@
             "packages/clip-engine/src/scene-clip-player.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "packages/clip-engine/test/scene-clip-player.test.ts"
+          "path": "packages/clip-engine/test/scene-clip-player.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "696e86353fadb988265b81c7ce953b8a0ce70ba685ae5c34507eb394ecb2c116",
@@ -832,7 +1046,8 @@
             "packages/clip-engine/src/scheduler.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "packages/clip-engine/test/scheduler.test.ts"
+          "path": "packages/clip-engine/test/scheduler.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "2f05fac36b589d09b65e6b83f2b9ca497fcf75797225ab1bf275c2642907f4a4",
@@ -850,6 +1065,9 @@
       "name": "clip-engine",
       "origin": "authored",
       "role": "code",
+      "testRunners": [
+        "vitest"
+      ],
       "testedBy": 30,
       "unresolvedSites": 0
     },
@@ -1133,6 +1351,13 @@
           "exports": [
             "pitchToDrum"
           ],
+          "failurePaths": [
+            {
+              "in": "stop",
+              "kind": "catch",
+              "line": 231
+            }
+          ],
           "hash": "7c224cfad8dac0adb11b2fbe41f822dfa9506f10bd471ef2e4016a5ab31052c1",
           "importsFiles": [
             "packages/instrument-rack/src/types.ts"
@@ -1141,6 +1366,14 @@
         },
         {
           "hash": "d3be9ffd62623a23f254906717f72e8a5279cce0618b1b01f6721916aded6979",
+          "importOrder": [
+            "packages/instrument-rack/src/rack.ts",
+            "packages/instrument-rack/src/synth-voice.ts",
+            "packages/instrument-rack/src/drum-voice.ts",
+            "packages/instrument-rack/src/sample-voice.ts",
+            "packages/instrument-rack/src/presets.ts",
+            "packages/instrument-rack/src/types.ts"
+          ],
           "importsFiles": [
             "packages/instrument-rack/src/drum-voice.ts",
             "packages/instrument-rack/src/presets.ts",
@@ -1160,6 +1393,10 @@
             "getPresetsByTag"
           ],
           "hash": "a48cf1d766ab8fbfbdd9aaa4051d451ffa2dd06a9eb4a616be46a8390874e868",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/instrument-rack/src/scifi-presets.ts"
+          ],
           "importsFiles": [
             "packages/instrument-rack/src/scifi-presets.ts",
             "packages/schema/src/index.ts"
@@ -1168,6 +1405,14 @@
         },
         {
           "hash": "101d72833e79dfbce2c4873a349741b755bc79452eaee6eaf8415ac61bb2b479",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/instrument-rack/src/types.ts",
+            "packages/instrument-rack/src/synth-voice.ts",
+            "packages/instrument-rack/src/drum-voice.ts",
+            "packages/instrument-rack/src/sample-voice.ts",
+            "packages/instrument-rack/src/presets.ts"
+          ],
           "importsFiles": [
             "packages/instrument-rack/src/drum-voice.ts",
             "packages/instrument-rack/src/presets.ts",
@@ -1179,7 +1424,18 @@
           "path": "packages/instrument-rack/src/rack.ts"
         },
         {
+          "failurePaths": [
+            {
+              "in": "stop",
+              "kind": "catch",
+              "line": 113
+            }
+          ],
           "hash": "03a82395bf96fb486972e43a0ba4ec80e7dcd7a71ff877864cac2f9580d5cb84",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/instrument-rack/src/types.ts"
+          ],
           "importsFiles": [
             "packages/instrument-rack/src/types.ts",
             "packages/schema/src/index.ts"
@@ -1194,7 +1450,18 @@
           "path": "packages/instrument-rack/src/scifi-presets.ts"
         },
         {
+          "failurePaths": [
+            {
+              "in": "stop",
+              "kind": "catch",
+              "line": 229
+            }
+          ],
           "hash": "86c142db00c20859cb6115f3700f0244453380f57d7d2365340091083583e026",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/instrument-rack/src/types.ts"
+          ],
           "importsFiles": [
             "packages/instrument-rack/src/types.ts",
             "packages/schema/src/index.ts"
@@ -1216,38 +1483,52 @@
           "importsFiles": [
             "packages/instrument-rack/src/presets.ts"
           ],
-          "path": "packages/instrument-rack/test/presets.test.ts"
+          "path": "packages/instrument-rack/test/presets.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "185efa0f30139272dd0ebd6eab7ed9e71d2456d090ffb732cf584c3ec34afea9",
+          "importOrder": [
+            "packages/instrument-rack/src/rack.ts",
+            "packages/instrument-rack/src/presets.ts"
+          ],
           "importsFiles": [
             "packages/instrument-rack/src/presets.ts",
             "packages/instrument-rack/src/rack.ts"
           ],
-          "path": "packages/instrument-rack/test/rack.test.ts"
+          "path": "packages/instrument-rack/test/rack.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "ab024f756635796c44480bde089b1dc3bcda56e1a825ead8f7bc7d7b28d02a94",
+          "importOrder": [
+            "packages/instrument-rack/src/sample-voice.ts",
+            "packages/instrument-rack/src/rack.ts",
+            "packages/schema/src/index.ts"
+          ],
           "importsFiles": [
             "packages/instrument-rack/src/rack.ts",
             "packages/instrument-rack/src/sample-voice.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "packages/instrument-rack/test/sample-voice.test.ts"
+          "path": "packages/instrument-rack/test/sample-voice.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "c1e1718c50a4c25c318486d3e69e367b4990cd22d525c13a264fa24b0761beeb",
           "importsFiles": [
             "packages/instrument-rack/src/index.ts"
           ],
-          "path": "packages/instrument-rack/test/scifi-presets.test.ts"
+          "path": "packages/instrument-rack/test/scifi-presets.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "53d6b51fc2b115ce39edc33227071ebe362b6bcf7778e105576dfe37c61311e1",
           "importsFiles": [
             "packages/instrument-rack/src/synth-voice.ts"
           ],
-          "path": "packages/instrument-rack/test/synth-voice.test.ts"
+          "path": "packages/instrument-rack/test/synth-voice.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "77ecb91d6b791e0f8ce5cd0fb79e30d5630db0a691d18bee00d7f852ff9737af",
@@ -1275,6 +1556,9 @@
       ],
       "outsideReads": 2,
       "role": "code",
+      "testRunners": [
+        "vitest"
+      ],
       "testedBy": 30,
       "unresolvedSites": 0
     },
@@ -1371,6 +1655,13 @@
         },
         {
           "hash": "04106f3fef41de8beeef2a9c319c37dac8b9f0128970e24402caabeb1836191e",
+          "importOrder": [
+            "packages/library/src/templates.ts",
+            "packages/library/src/snapshots.ts",
+            "packages/library/src/branches.ts",
+            "packages/library/src/favorites.ts",
+            "packages/library/src/compare.ts"
+          ],
           "importsFiles": [
             "packages/library/src/branches.ts",
             "packages/library/src/compare.ts",
@@ -1419,11 +1710,16 @@
         },
         {
           "hash": "efd09e2647016d69a734781b696ab7479eee9b9589de82da2d93e9550b34673b",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/library/src/index.ts"
+          ],
           "importsFiles": [
             "packages/library/src/index.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "packages/library/test/index.test.ts"
+          "path": "packages/library/test/index.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "ce4657ec902b33007dff965151b559bae1a8dda0f63e92fcc9db0ec00d58c571",
@@ -1441,6 +1737,9 @@
       "name": "library",
       "origin": "authored",
       "role": "code",
+      "testRunners": [
+        "vitest"
+      ],
       "testedBy": 13,
       "unresolvedSites": 0
     },
@@ -1502,6 +1801,10 @@
             "progressionFromDegrees"
           ],
           "hash": "c134194e570c2ff224993a8fc799342093fec87e1ff1f562461fc34f21c789ab",
+          "importOrder": [
+            "packages/music-theory/src/types.ts",
+            "packages/music-theory/src/scales.ts"
+          ],
           "importsFiles": [
             "packages/music-theory/src/scales.ts",
             "packages/music-theory/src/types.ts"
@@ -1510,6 +1813,14 @@
         },
         {
           "hash": "2c29093764a55ee7d3cce07a0861fe2fdf5cb1587d0ed4c2d9bb4b39909f4c7d",
+          "importOrder": [
+            "packages/music-theory/src/types.ts",
+            "packages/music-theory/src/scales.ts",
+            "packages/music-theory/src/chords.ts",
+            "packages/music-theory/src/motif.ts",
+            "packages/music-theory/src/variation.ts",
+            "packages/music-theory/src/intensity.ts"
+          ],
           "importsFiles": [
             "packages/music-theory/src/chords.ts",
             "packages/music-theory/src/intensity.ts",
@@ -1531,6 +1842,12 @@
             "midIntensity"
           ],
           "hash": "fe4567d11e5ca3f0f6e3ee4c14318be5434a49769eb7246b461c6e680eafc03c",
+          "importOrder": [
+            "packages/music-theory/src/types.ts",
+            "packages/music-theory/src/scales.ts",
+            "packages/music-theory/src/variation.ts",
+            "packages/music-theory/src/motif.ts"
+          ],
           "importsFiles": [
             "packages/music-theory/src/motif.ts",
             "packages/music-theory/src/scales.ts",
@@ -1551,6 +1868,10 @@
             "transposeInKey"
           ],
           "hash": "e5d64482cce7d4bc019695f0b758663143100ed27a8d8914bdbe6e5fc7dc549c",
+          "importOrder": [
+            "packages/music-theory/src/types.ts",
+            "packages/music-theory/src/scales.ts"
+          ],
           "importsFiles": [
             "packages/music-theory/src/scales.ts",
             "packages/music-theory/src/types.ts"
@@ -1592,6 +1913,10 @@
             "thinNotes"
           ],
           "hash": "6acf6b90581ecc41c1b308c84cc9081343c12c5ef6fb7ba006a36624a0cb3a18",
+          "importOrder": [
+            "packages/music-theory/src/types.ts",
+            "packages/music-theory/src/scales.ts"
+          ],
           "importsFiles": [
             "packages/music-theory/src/scales.ts",
             "packages/music-theory/src/types.ts"
@@ -1603,14 +1928,16 @@
           "importsFiles": [
             "packages/music-theory/src/scales.ts"
           ],
-          "path": "packages/music-theory/test/edge-cases.test.ts"
+          "path": "packages/music-theory/test/edge-cases.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "a73fbcbc6adcfc9ec71c639f23f0eb8f02666d43556598c666ad4176593e754b",
           "importsFiles": [
             "packages/music-theory/src/index.ts"
           ],
-          "path": "packages/music-theory/test/music-theory.test.ts"
+          "path": "packages/music-theory/test/music-theory.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "07cf970893a82f70d0901499aefe264dadeb808f9129f07fc560ccd77671130e",
@@ -1628,6 +1955,9 @@
       "name": "music-theory",
       "origin": "authored",
       "role": "code",
+      "testRunners": [
+        "vitest"
+      ],
       "testedBy": 16,
       "unresolvedSites": 0
     },
@@ -1679,6 +2009,12 @@
         },
         {
           "hash": "1e4a5edda0cd6eb4471e72c64ab8c48350b1afcebcd658f0fded30f12bd64abb",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/playback-engine/src/types.ts",
+            "packages/playback-engine/src/scene-player.ts",
+            "packages/playback-engine/src/transition-player.ts"
+          ],
           "importsFiles": [
             "packages/playback-engine/src/scene-player.ts",
             "packages/playback-engine/src/transition-player.ts",
@@ -1692,6 +2028,18 @@
             "createFxNodes",
             "disposeFxNodes"
           ],
+          "failurePaths": [
+            {
+              "in": "createFxNodes",
+              "kind": "throw",
+              "line": 445
+            },
+            {
+              "in": "disposeFxNodes",
+              "kind": "catch",
+              "line": 455
+            }
+          ],
           "hash": "493ee230830b6e750bbff1e4581ea1ef86981d46c8910814271cb279e34f5c80",
           "importsFiles": [
             "packages/playback-engine/src/mixer-types.ts"
@@ -1700,6 +2048,20 @@
         },
         {
           "hash": "f91611cd65c878c28ae805f4bb760ebb25d398b128681f75ed4be17f6090d8ec",
+          "importOrder": [
+            "packages/playback-engine/src/transport.ts",
+            "packages/playback-engine/src/loader.ts",
+            "packages/playback-engine/src/scene-player.ts",
+            "packages/playback-engine/src/transition-player.ts",
+            "packages/playback-engine/src/sequence-player.ts",
+            "packages/playback-engine/src/mixer.ts",
+            "packages/playback-engine/src/fx.ts",
+            "packages/playback-engine/src/renderer.ts",
+            "packages/playback-engine/src/mixer-types.ts",
+            "packages/playback-engine/src/types.ts",
+            "packages/playback-engine/src/cue-player.ts",
+            "packages/playback-engine/src/stem-export.ts"
+          ],
           "importsFiles": [
             "packages/playback-engine/src/cue-player.ts",
             "packages/playback-engine/src/fx.ts",
@@ -1718,7 +2080,53 @@
           "reexportsOnly": true
         },
         {
+          "failurePaths": [
+            {
+              "in": "processAsset",
+              "kind": "catch",
+              "line": 64
+            },
+            {
+              "in": "loadStingerAsset",
+              "kind": "catch",
+              "line": 100
+            },
+            {
+              "in": "loadAsset",
+              "kind": "catch",
+              "line": 127
+            },
+            {
+              "in": "loadAsset",
+              "kind": "throw",
+              "line": 131
+            },
+            {
+              "in": "loadAsset",
+              "kind": "throw",
+              "line": 135
+            },
+            {
+              "in": "loadAsset",
+              "kind": "throw",
+              "line": 141
+            },
+            {
+              "in": "loadAsset",
+              "kind": "throw",
+              "line": 154
+            },
+            {
+              "in": "loadAsset",
+              "kind": "throw",
+              "line": 161
+            }
+          ],
           "hash": "5b442c6680d922f54ce5597583975b75d432bcb02d93e391919512ead3381ad1",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/playback-engine/src/types.ts"
+          ],
           "importsFiles": [
             "packages/playback-engine/src/types.ts",
             "packages/schema/src/index.ts"
@@ -1733,7 +2141,64 @@
           "path": "packages/playback-engine/src/mixer-types.ts"
         },
         {
+          "failurePaths": [
+            {
+              "in": "disconnectStem",
+              "kind": "catch",
+              "line": 126
+            },
+            {
+              "in": "disconnectStem",
+              "kind": "catch",
+              "line": 133
+            },
+            {
+              "in": "disconnectStem",
+              "kind": "catch",
+              "line": 138
+            },
+            {
+              "in": "setStemBus",
+              "kind": "catch",
+              "line": 172
+            },
+            {
+              "in": "dispose",
+              "kind": "catch",
+              "line": 377
+            },
+            {
+              "in": "dispose",
+              "kind": "catch",
+              "line": 383
+            },
+            {
+              "in": "rebuildStemFxChain",
+              "kind": "catch",
+              "line": 398
+            },
+            {
+              "in": "rebuildStemFxChain",
+              "kind": "catch",
+              "line": 411
+            },
+            {
+              "in": "rebuildBusFxChain",
+              "kind": "catch",
+              "line": 430
+            },
+            {
+              "in": "rebuildBusFxChain",
+              "kind": "catch",
+              "line": 436
+            }
+          ],
           "hash": "3bdde9478b283aebbff06fcbc5cbcc8725faf7719b623d960f9773377bfed7d2",
+          "importOrder": [
+            "packages/playback-engine/src/mixer-types.ts",
+            "packages/playback-engine/src/fx.ts",
+            "packages/playback-engine/src/scene-player.ts"
+          ],
           "importsFiles": [
             "packages/playback-engine/src/fx.ts",
             "packages/playback-engine/src/mixer-types.ts",
@@ -1745,7 +2210,24 @@
           "exports": [
             "encodeWav"
           ],
+          "failurePaths": [
+            {
+              "in": "render",
+              "kind": "throw",
+              "line": 47
+            }
+          ],
           "hash": "c91c1307767528e7be42edf4dc95a034e8db51270c86addd3c10dbe2711d9430",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/audio-engine/src/index.ts",
+            "packages/instrument-rack/src/index.ts",
+            "packages/clip-engine/src/index.ts",
+            "packages/playback-engine/src/mixer-types.ts",
+            "packages/playback-engine/src/mixer.ts",
+            "packages/playback-engine/src/loader.ts",
+            "packages/playback-engine/src/scene-player.ts"
+          ],
           "importsFiles": [
             "packages/audio-engine/src/index.ts",
             "packages/clip-engine/src/index.ts",
@@ -1762,7 +2244,29 @@
           "exports": [
             "dbToGain"
           ],
+          "failurePaths": [
+            {
+              "in": "setMixer",
+              "kind": "catch",
+              "line": 65
+            },
+            {
+              "in": "stopAll",
+              "kind": "catch",
+              "line": 299
+            }
+          ],
           "hash": "fa2ea0d2eef61ee408ed9a6658cdb0d57c3e3ddc5c63f6bf84ea9349f6661208",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/audio-engine/src/index.ts",
+            "packages/instrument-rack/src/index.ts",
+            "packages/clip-engine/src/index.ts",
+            "packages/playback-engine/src/types.ts",
+            "packages/playback-engine/src/loader.ts",
+            "packages/playback-engine/src/mixer.ts",
+            "packages/playback-engine/src/mixer-types.ts"
+          ],
           "importsFiles": [
             "packages/audio-engine/src/index.ts",
             "packages/clip-engine/src/index.ts",
@@ -1777,6 +2281,13 @@
         },
         {
           "hash": "705438579770544f0b7e8c758b0325a4aa412d18cfc37da773ba0f0218fa641d",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/audio-engine/src/index.ts",
+            "packages/playback-engine/src/types.ts",
+            "packages/playback-engine/src/transition-player.ts",
+            "packages/playback-engine/src/scene-player.ts"
+          ],
           "importsFiles": [
             "packages/audio-engine/src/index.ts",
             "packages/playback-engine/src/scene-player.ts",
@@ -1793,7 +2304,19 @@
             "stemExportPath",
             "stemRoleToExportRole"
           ],
+          "failurePaths": [
+            {
+              "in": "buildStemExportManifest",
+              "kind": "throw",
+              "line": 67
+            }
+          ],
           "hash": "94893d1d486c17880ff32509f20fec6202b21b2f3849d3c3b300587f1da83a33",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/audio-engine/src/index.ts",
+            "packages/playback-engine/src/mixer-types.ts"
+          ],
           "importsFiles": [
             "packages/audio-engine/src/index.ts",
             "packages/playback-engine/src/mixer-types.ts",
@@ -1802,7 +2325,37 @@
           "path": "packages/playback-engine/src/stem-export.ts"
         },
         {
+          "failurePaths": [
+            {
+              "in": "cancel",
+              "kind": "catch",
+              "line": 86
+            },
+            {
+              "in": "cancel",
+              "kind": "catch",
+              "line": 94
+            },
+            {
+              "in": "cancel",
+              "kind": "catch",
+              "line": 99
+            },
+            {
+              "in": "stingerThenSwitch",
+              "kind": "catch",
+              "line": 315
+            }
+          ],
           "hash": "bacdc1b23063a81a4d53cff6d454b4dbd924c911cbb1460906b4cf0aa2955354",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/audio-engine/src/index.ts",
+            "packages/playback-engine/src/types.ts",
+            "packages/playback-engine/src/scene-player.ts",
+            "packages/playback-engine/src/loader.ts",
+            "packages/playback-engine/src/mixer.ts"
+          ],
           "importsFiles": [
             "packages/audio-engine/src/index.ts",
             "packages/playback-engine/src/loader.ts",
@@ -1814,7 +2367,76 @@
           "path": "packages/playback-engine/src/transition-player.ts"
         },
         {
+          "failurePaths": [
+            {
+              "in": "ensureContext",
+              "kind": "catch",
+              "line": 65
+            },
+            {
+              "in": "ensureContext",
+              "kind": "throw",
+              "line": 70
+            },
+            {
+              "in": "ensureResumed",
+              "kind": "catch",
+              "line": 128
+            },
+            {
+              "in": "ensureResumed",
+              "kind": "throw",
+              "line": 133
+            },
+            {
+              "in": "playScene",
+              "kind": "catch",
+              "line": 152
+            },
+            {
+              "in": "switchScene",
+              "kind": "catch",
+              "line": 173
+            },
+            {
+              "in": "playSequence",
+              "kind": "catch",
+              "line": 190
+            },
+            {
+              "in": "stopMetronome",
+              "kind": "catch",
+              "line": 299
+            },
+            {
+              "in": "playCue",
+              "kind": "catch",
+              "line": 332
+            },
+            {
+              "in": "jumpToSection",
+              "kind": "catch",
+              "line": 349
+            },
+            {
+              "in": "emit",
+              "kind": "catch",
+              "line": 582
+            }
+          ],
           "hash": "a3fee804005c4296e898de3142eba7759ea5a12cf99aaf1479da089703d93b67",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/playback-engine/src/types.ts",
+            "packages/playback-engine/src/mixer-types.ts",
+            "packages/playback-engine/src/loader.ts",
+            "packages/playback-engine/src/scene-player.ts",
+            "packages/playback-engine/src/transition-player.ts",
+            "packages/playback-engine/src/sequence-player.ts",
+            "packages/playback-engine/src/mixer.ts",
+            "packages/playback-engine/src/renderer.ts",
+            "packages/playback-engine/src/cue-player.ts"
+          ],
           "importsFiles": [
             "packages/playback-engine/src/cue-player.ts",
             "packages/playback-engine/src/loader.ts",
@@ -1835,40 +2457,70 @@
         },
         {
           "hash": "eca8119c41e4c4e02657d173ea8e1c157213ac216fe3f0528b861ece0e532a70",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/playback-engine/src/cue-player.ts",
+            "packages/playback-engine/src/scene-player.ts",
+            "packages/playback-engine/src/transition-player.ts"
+          ],
           "importsFiles": [
             "packages/playback-engine/src/cue-player.ts",
             "packages/playback-engine/src/scene-player.ts",
             "packages/playback-engine/src/transition-player.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "packages/playback-engine/test/cue-player.test.ts"
+          "path": "packages/playback-engine/test/cue-player.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "0c4a332e326d26b29be335bdacee7dd38a74bb45a1a2e00cca95211141f8e0a5",
+          "importOrder": [
+            "packages/playback-engine/src/mixer-types.ts",
+            "packages/playback-engine/src/fx.ts"
+          ],
           "importsFiles": [
             "packages/playback-engine/src/fx.ts",
             "packages/playback-engine/src/mixer-types.ts"
           ],
-          "path": "packages/playback-engine/test/fx.test.ts"
+          "path": "packages/playback-engine/test/fx.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "d24944102d0db554125d4fb0b0823dec0b320c9eb0b62023157c9b6d3884e465",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/test-kit/src/index.ts",
+            "packages/playback-engine/src/loader.ts"
+          ],
           "importsFiles": [
             "packages/playback-engine/src/loader.ts",
             "packages/schema/src/index.ts",
             "packages/test-kit/src/index.ts"
           ],
-          "path": "packages/playback-engine/test/loader.test.ts"
+          "path": "packages/playback-engine/test/loader.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "5c5bfc2993a264d82ea060cc70d76ae861c51f17e02dd8f83324060ccb517b00",
           "importsFiles": [
             "packages/playback-engine/src/transport.ts"
           ],
-          "path": "packages/playback-engine/test/metronome.test.ts"
+          "path": "packages/playback-engine/test/metronome.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "9417bd2c35cda7c413116242a260517af4d61d3a408f739f814ff33d1949ec23",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/test-kit/src/index.ts",
+            "packages/playback-engine/src/scene-player.ts",
+            "packages/playback-engine/src/loader.ts",
+            "packages/playback-engine/src/transport.ts",
+            "packages/playback-engine/src/mixer.ts",
+            "packages/playback-engine/src/fx.ts",
+            "packages/playback-engine/src/mixer-types.ts",
+            "packages/playback-engine/src/renderer.ts"
+          ],
           "importsFiles": [
             "packages/playback-engine/src/fx.ts",
             "packages/playback-engine/src/loader.ts",
@@ -1880,18 +2532,33 @@
             "packages/schema/src/index.ts",
             "packages/test-kit/src/index.ts"
           ],
-          "path": "packages/playback-engine/test/playback-engine.test.ts"
+          "path": "packages/playback-engine/test/playback-engine.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "9c989277529a358b23755ee37ac18a28ad7ae4a67fc0c13f318356fd15c86d01",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/playback-engine/src/stem-export.ts"
+          ],
           "importsFiles": [
             "packages/playback-engine/src/stem-export.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "packages/playback-engine/test/stem-export.test.ts"
+          "path": "packages/playback-engine/test/stem-export.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "0617c9e8be02a58b6471954fdfcfbd67a0bd02c45a7651fed9143209590ac79d",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/test-kit/src/index.ts",
+            "packages/playback-engine/src/types.ts",
+            "packages/playback-engine/src/transport.ts",
+            "packages/playback-engine/src/scene-player.ts",
+            "packages/playback-engine/src/loader.ts",
+            "packages/playback-engine/src/transition-player.ts"
+          ],
           "importsFiles": [
             "packages/playback-engine/src/loader.ts",
             "packages/playback-engine/src/scene-player.ts",
@@ -1901,24 +2568,33 @@
             "packages/schema/src/index.ts",
             "packages/test-kit/src/index.ts"
           ],
-          "path": "packages/playback-engine/test/transition-player.test.ts"
+          "path": "packages/playback-engine/test/transition-player.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "a385bdb7a25d959579436f3c7ddb7872b1f9426d33fa31c42316c3f7d99181b2",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/test-kit/src/index.ts",
+            "packages/playback-engine/src/types.ts",
+            "packages/playback-engine/src/transport.ts"
+          ],
           "importsFiles": [
             "packages/playback-engine/src/transport.ts",
             "packages/playback-engine/src/types.ts",
             "packages/schema/src/index.ts",
             "packages/test-kit/src/index.ts"
           ],
-          "path": "packages/playback-engine/test/transport.test.ts"
+          "path": "packages/playback-engine/test/transport.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "508c05d884fc5f5dced97addeea7db4dd648f0e3ab6fe93a1494907b8008ab51",
           "importsFiles": [
             "packages/playback-engine/src/renderer.ts"
           ],
-          "path": "packages/playback-engine/test/wav-encoder.test.ts"
+          "path": "packages/playback-engine/test/wav-encoder.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "f325db2a8fe027ff28fd47167d89911b4d85786475172500aff58de53379bc4c",
@@ -1946,6 +2622,9 @@
       ],
       "outsideReads": 28,
       "role": "code",
+      "testRunners": [
+        "vitest"
+      ],
       "testedBy": 25,
       "unresolvedSites": 0
     },
@@ -1996,6 +2675,8 @@
           "path": "packages/review/package.json"
         },
         {
+          "entry": "auditPack",
+          "entryRule": 4,
           "exports": [
             "auditPack"
           ],
@@ -2005,9 +2686,28 @@
             "packages/review/src/types.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "packages/review/src/audit.ts"
+          "path": "packages/review/src/audit.ts",
+          "sequences": [
+            {
+              "calls": [
+                {
+                  "line": 12,
+                  "name": "auditPackIntegrity",
+                  "target": {
+                    "file": "packages/asset-index/src/index.ts"
+                  }
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "auditPack"
+            }
+          ]
         },
         {
+          "entry": "reviewPack",
+          "entryRule": 4,
           "exports": [
             "reviewPack"
           ],
@@ -2023,6 +2723,62 @@
           "path": "packages/review/src/index.ts",
           "reexportsAll": [
             "packages/review/src/types.ts"
+          ],
+          "sequences": [
+            {
+              "calls": [
+                {
+                  "inner": [
+                    {
+                      "line": 26,
+                      "name": "findUnusedAssets",
+                      "target": {
+                        "file": "packages/asset-index/src/index.ts"
+                      }
+                    },
+                    {
+                      "line": 27,
+                      "name": "findUnusedStems",
+                      "target": {
+                        "file": "packages/asset-index/src/index.ts"
+                      }
+                    },
+                    {
+                      "line": 28,
+                      "name": "findUnreferencedScenes",
+                      "target": {
+                        "file": "packages/asset-index/src/index.ts"
+                      }
+                    }
+                  ],
+                  "line": 20,
+                  "name": "summarizePack",
+                  "target": {
+                    "file": "packages/review/src/summary.ts"
+                  }
+                },
+                {
+                  "inner": [
+                    {
+                      "line": 12,
+                      "name": "auditPackIntegrity",
+                      "target": {
+                        "file": "packages/asset-index/src/index.ts"
+                      }
+                    }
+                  ],
+                  "line": 21,
+                  "name": "auditPack",
+                  "target": {
+                    "file": "packages/review/src/audit.ts"
+                  }
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "reviewPack"
+            }
           ]
         },
         {
@@ -2046,6 +2802,8 @@
           "path": "packages/review/src/render-markdown.ts"
         },
         {
+          "entry": "summarizePack",
+          "entryRule": 4,
           "exports": [
             "summarizePack"
           ],
@@ -2055,7 +2813,38 @@
             "packages/review/src/types.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "packages/review/src/summary.ts"
+          "path": "packages/review/src/summary.ts",
+          "sequences": [
+            {
+              "calls": [
+                {
+                  "line": 26,
+                  "name": "findUnusedAssets",
+                  "target": {
+                    "file": "packages/asset-index/src/index.ts"
+                  }
+                },
+                {
+                  "line": 27,
+                  "name": "findUnusedStems",
+                  "target": {
+                    "file": "packages/asset-index/src/index.ts"
+                  }
+                },
+                {
+                  "line": 28,
+                  "name": "findUnreferencedScenes",
+                  "target": {
+                    "file": "packages/asset-index/src/index.ts"
+                  }
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "summarizePack"
+            }
+          ]
         },
         {
           "hash": "75496cb4738f7540a38455f31201f1ce4f9075f9c21fe7735c700d1b444e3f56",
@@ -2067,12 +2856,18 @@
         },
         {
           "hash": "52f31f545e921dd6c04ed3a2132372216e03538023c13ef755b0785425a1c692",
+          "importOrder": [
+            "packages/test-kit/src/index.ts",
+            "packages/schema/src/index.ts",
+            "packages/review/src/index.ts"
+          ],
           "importsFiles": [
             "packages/review/src/index.ts",
             "packages/schema/src/index.ts",
             "packages/test-kit/src/index.ts"
           ],
-          "path": "packages/review/test/index.test.ts"
+          "path": "packages/review/test/index.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "07cf970893a82f70d0901499aefe264dadeb808f9129f07fc560ccd77671130e",
@@ -2090,6 +2885,9 @@
       "name": "review",
       "origin": "authored",
       "role": "code",
+      "testRunners": [
+        "vitest"
+      ],
       "testedBy": 14,
       "unresolvedSites": 0
     },
@@ -2164,6 +2962,10 @@
         {
           "hash": "e0a871adaf0449870b87d56d015c1ae206a3bfe1853108136c4b61cd0b65b98f",
           "path": "SHIP_GATE.md"
+        },
+        {
+          "hash": "59ca3f6a5be96b80fee73bebf2b778211208d17cd3fb82e2134608dff0729c76",
+          "path": "codecov.yml"
         },
         {
           "hash": "2eaed4adec24adefaefa5ee059074c38dd4fe60004bd6c43bf441281a05a47d2",
@@ -2266,7 +3068,19 @@
           "exports": [
             "exportRuntimePack"
           ],
+          "failurePaths": [
+            {
+              "in": "exportRuntimePack",
+              "kind": "throw",
+              "line": 44
+            }
+          ],
           "hash": "696b3aceac1c22b79b8fe1ab9000da04c061fdb0129612627579f6e5d7bd52eb",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/asset-index/src/index.ts",
+            "packages/runtime-pack/src/types.ts"
+          ],
           "importsFiles": [
             "packages/asset-index/src/index.ts",
             "packages/runtime-pack/src/types.ts",
@@ -2276,6 +3090,14 @@
         },
         {
           "hash": "f7e47ab658b958b4675eabaf86481cb147a844048aebefe7e2ac8e86be7c21ab",
+          "importOrder": [
+            "packages/runtime-pack/src/types.ts",
+            "packages/runtime-pack/src/schemas.ts",
+            "packages/runtime-pack/src/export.ts",
+            "packages/runtime-pack/src/parse.ts",
+            "packages/runtime-pack/src/serialize.ts",
+            "packages/runtime-pack/src/validate.ts"
+          ],
           "importsFiles": [
             "packages/runtime-pack/src/export.ts",
             "packages/runtime-pack/src/parse.ts",
@@ -2314,6 +3136,12 @@
             "serializeRuntimePack"
           ],
           "hash": "3b4c7db549749e64bd733b8fcb980182c6bf95467c8b84cecd18b82489e8cebb",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/runtime-pack/src/types.ts",
+            "packages/runtime-pack/src/export.ts",
+            "packages/runtime-pack/src/parse.ts"
+          ],
           "importsFiles": [
             "packages/runtime-pack/src/export.ts",
             "packages/runtime-pack/src/parse.ts",
@@ -2342,12 +3170,18 @@
         },
         {
           "hash": "f6094e2c4d098023b336a9579f5308b561a4337338c6e8af4c60b7679a8ef325",
+          "importOrder": [
+            "packages/test-kit/src/index.ts",
+            "packages/schema/src/index.ts",
+            "packages/runtime-pack/src/index.ts"
+          ],
           "importsFiles": [
             "packages/runtime-pack/src/index.ts",
             "packages/schema/src/index.ts",
             "packages/test-kit/src/index.ts"
           ],
-          "path": "packages/runtime-pack/test/index.test.ts"
+          "path": "packages/runtime-pack/test/index.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "8e95b3e8c6d5087878ade7f7f8f3aacbf57ddd1c060fa849e42f97b6e92a8b71",
@@ -2355,7 +3189,8 @@
             "packages/runtime-pack/src/types.ts",
             "packages/runtime-pack/src/validate.ts"
           ],
-          "path": "packages/runtime-pack/test/validate.test.ts"
+          "path": "packages/runtime-pack/test/validate.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "07cf970893a82f70d0901499aefe264dadeb808f9129f07fc560ccd77671130e",
@@ -2373,6 +3208,9 @@
       "name": "runtime-pack",
       "origin": "authored",
       "role": "code",
+      "testRunners": [
+        "vitest"
+      ],
       "testedBy": 16,
       "unresolvedSites": 0
     },
@@ -2435,7 +3273,78 @@
             "runCloudGraph",
             "submitPrompt"
           ],
+          "failurePaths": [
+            {
+              "in": "submitPrompt",
+              "kind": "throw",
+              "line": 96
+            },
+            {
+              "in": "submitPrompt",
+              "kind": "throw",
+              "line": 102
+            },
+            {
+              "in": "submitPrompt",
+              "kind": "throw",
+              "line": 114
+            },
+            {
+              "in": "submitPrompt",
+              "kind": "throw",
+              "line": 121
+            },
+            {
+              "in": "submitPrompt",
+              "kind": "throw",
+              "line": 124
+            },
+            {
+              "in": "getJobStatus",
+              "kind": "throw",
+              "line": 138
+            },
+            {
+              "in": "getJobStatus",
+              "kind": "throw",
+              "line": 145
+            },
+            {
+              "in": "pollJob",
+              "kind": "throw",
+              "line": 162
+            },
+            {
+              "in": "pollJob",
+              "kind": "throw",
+              "line": 166
+            },
+            {
+              "in": "getJobDetail",
+              "kind": "throw",
+              "line": 180
+            },
+            {
+              "in": "downloadView",
+              "kind": "throw",
+              "line": 208
+            },
+            {
+              "in": "downloadView",
+              "kind": "throw",
+              "line": 212
+            },
+            {
+              "in": "downloadView",
+              "kind": "throw",
+              "line": 217
+            }
+          ],
           "hash": "18c179f80900b2b85b58ccbcf033aca041b5785a3a573fdecb49194d09dc72ef",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/sample-lab/src/generation/errors.ts"
+          ],
           "importsFiles": [
             "packages/sample-lab/src/generation/errors.ts",
             "packages/schema/src/index.ts"
@@ -2454,6 +3363,13 @@
             "decodeFlacPcm",
             "releaseFlacDecoder"
           ],
+          "failurePaths": [
+            {
+              "in": "decodeFlacPcm",
+              "kind": "throw",
+              "line": 81
+            }
+          ],
           "hash": "084e0ee645f25926222f35c2f0fa032bf57f083714ed615867a30445dd208f7e",
           "path": "packages/sample-lab/src/generation/decode.ts"
         },
@@ -2465,6 +3381,33 @@
           "exports": [
             "durationMsFromStreamInfo",
             "parseFlacStreamInfo"
+          ],
+          "failurePaths": [
+            {
+              "in": "parseFlacStreamInfo",
+              "kind": "throw",
+              "line": 19
+            },
+            {
+              "in": "parseFlacStreamInfo",
+              "kind": "throw",
+              "line": 27
+            },
+            {
+              "in": "parseFlacStreamInfo",
+              "kind": "throw",
+              "line": 32
+            },
+            {
+              "in": "parseFlacStreamInfo",
+              "kind": "throw",
+              "line": 39
+            },
+            {
+              "in": "parseFlacStreamInfo",
+              "kind": "throw",
+              "line": 59
+            }
           ],
           "hash": "c4c759da177f23d18b523a69edca973fafe9c24f634e69a45317df21dd3eaa49",
           "importsFiles": [
@@ -2481,6 +3424,26 @@
         },
         {
           "hash": "180e17101002bac4ba8562a02d6a30a5e314e0d1bcd0176f282ad732296a489f",
+          "importOrder": [
+            "packages/sample-lab/src/generation/constants.ts",
+            "packages/sample-lab/src/generation/errors.ts",
+            "packages/sample-lab/src/generation/lufs.ts",
+            "packages/sample-lab/src/generation/flac-header.ts",
+            "packages/sample-lab/src/generation/hash.ts",
+            "packages/sample-lab/src/generation/resample.ts",
+            "packages/sample-lab/src/generation/wav.ts",
+            "packages/sample-lab/src/generation/normalize.ts",
+            "packages/sample-lab/src/generation/stems.ts",
+            "packages/sample-lab/src/generation/keyscale.ts",
+            "packages/sample-lab/src/generation/scan.ts",
+            "packages/sample-lab/src/generation/ingest.ts",
+            "packages/sample-lab/src/generation/ingest-grounded.ts",
+            "packages/sample-lab/src/generation/ingest-library.ts",
+            "packages/sample-lab/src/generation/register.ts",
+            "packages/sample-lab/src/generation/populate-demo-packs.ts",
+            "packages/sample-lab/src/generation/decode.ts",
+            "packages/sample-lab/src/generation/cloud-run.ts"
+          ],
           "importsFiles": [
             "packages/sample-lab/src/generation/cloud-run.ts",
             "packages/sample-lab/src/generation/constants.ts",
@@ -2511,7 +3474,19 @@
             "ingestAllGrounded",
             "ingestGroundedTake"
           ],
+          "failurePaths": [
+            {
+              "in": "generationParamsForTake",
+              "kind": "throw",
+              "line": 49
+            }
+          ],
           "hash": "8332a995c3db12bf3ea36422b6b93f5e04994664feef58675f8c48256cf96e76",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/score-map/src/index.ts",
+            "packages/sample-lab/src/generation/ingest.ts"
+          ],
           "importsFiles": [
             "packages/sample-lab/src/generation/ingest.ts",
             "packages/schema/src/index.ts",
@@ -2533,7 +3508,45 @@
             "loadLibraryPlans",
             "selectPlaybackDefaults"
           ],
+          "failurePaths": [
+            {
+              "in": "loadLibraryPlans",
+              "kind": "throw",
+              "line": 125
+            },
+            {
+              "in": "jobIdForTake",
+              "kind": "throw",
+              "line": 146
+            },
+            {
+              "in": "jobIdForTake",
+              "kind": "throw",
+              "line": 149
+            },
+            {
+              "in": "generationParamsForLibraryTake",
+              "kind": "throw",
+              "line": 171
+            },
+            {
+              "in": "libraryTakeArtifactDir",
+              "kind": "throw",
+              "line": 250
+            },
+            {
+              "in": "ingestLibraryPack",
+              "kind": "catch",
+              "line": 341
+            }
+          ],
           "hash": "e49cd238f364320381c861164fc78f42f9a22ab2d2314a51f019d22e7006ec43",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/score-map/src/index.ts",
+            "packages/sample-lab/src/generation/errors.ts",
+            "packages/sample-lab/src/generation/ingest.ts"
+          ],
           "importsFiles": [
             "packages/sample-lab/src/generation/errors.ts",
             "packages/sample-lab/src/generation/ingest.ts",
@@ -2547,7 +3560,69 @@
             "deriveIngestResult",
             "ingestRunArtifact"
           ],
+          "failurePaths": [
+            {
+              "in": "mergeGeneration",
+              "kind": "throw",
+              "line": 95
+            },
+            {
+              "in": "toRuntimePcm",
+              "kind": "throw",
+              "line": 129
+            },
+            {
+              "in": "loadCachedIngest",
+              "kind": "catch",
+              "line": 190
+            },
+            {
+              "in": "assertNoVocalBleed",
+              "kind": "throw",
+              "line": 270
+            },
+            {
+              "in": "deriveIngestResult",
+              "kind": "throw",
+              "line": 325
+            },
+            {
+              "in": "deriveIngestResult",
+              "kind": "throw",
+              "line": 341
+            },
+            {
+              "in": "ingestRunArtifact",
+              "kind": "throw",
+              "line": 439
+            },
+            {
+              "in": "ingestRunArtifact",
+              "kind": "throw",
+              "line": 487
+            },
+            {
+              "in": "ingestRunArtifact",
+              "kind": "throw",
+              "line": 526
+            }
+          ],
           "hash": "4fec25657462b36616c9f165c9d42eb7bfb4f3e0c22352c17a524708ed69006d",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/sample-lab/src/generation/constants.ts",
+            "packages/sample-lab/src/generation/decode.ts",
+            "packages/sample-lab/src/generation/errors.ts",
+            "packages/sample-lab/src/generation/flac-header.ts",
+            "packages/sample-lab/src/generation/hash.ts",
+            "packages/sample-lab/src/generation/keyscale.ts",
+            "packages/sample-lab/src/generation/lufs.ts",
+            "packages/sample-lab/src/generation/normalize.ts",
+            "packages/sample-lab/src/generation/resample.ts",
+            "packages/sample-lab/src/generation/scan.ts",
+            "packages/sample-lab/src/generation/stems.ts",
+            "packages/sample-lab/src/generation/wav.ts"
+          ],
           "importsFiles": [
             "packages/sample-lab/src/generation/constants.ts",
             "packages/sample-lab/src/generation/decode.ts",
@@ -2578,6 +3653,13 @@
           "exports": [
             "parseIntegratedLufs"
           ],
+          "failurePaths": [
+            {
+              "in": "parseIntegratedLufs",
+              "kind": "throw",
+              "line": 10
+            }
+          ],
           "hash": "7ffa6c5c598a6f6828ae75c982035f5c494057dfc958c0866f60472b01e90ffc",
           "importsFiles": [
             "packages/sample-lab/src/generation/errors.ts"
@@ -2607,6 +3689,18 @@
             "renderMixdown",
             "renderSfx"
           ],
+          "failurePaths": [
+            {
+              "in": "toStereo",
+              "kind": "throw",
+              "line": 124
+            },
+            {
+              "in": "sumStereo",
+              "kind": "throw",
+              "line": 133
+            }
+          ],
           "hash": "06b1cd9c21448956f1a86766624503fe27668c1e77c37393165d08cfa168ca74",
           "importsFiles": [
             "packages/sample-lab/src/generation/constants.ts",
@@ -2623,6 +3717,10 @@
             "registerGeneratedCue"
           ],
           "hash": "c96a77f16c17847879cbd2fff3bad7bc587ad1e6dcf01344c55743849ff8e9be",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/sample-lab/src/generation/ingest.ts"
+          ],
           "importsFiles": [
             "packages/sample-lab/src/generation/ingest.ts",
             "packages/schema/src/index.ts"
@@ -2636,6 +3734,13 @@
             "resamplePlanar",
             "resampledSampleCount"
           ],
+          "failurePaths": [
+            {
+              "in": "resampleChannel",
+              "kind": "throw",
+              "line": 73
+            }
+          ],
           "hash": "bc0ba3ef3ae26e30b0b159a36358a6ec8aff2abc159ee7a4e7b728377f90b878",
           "importsFiles": [
             "packages/sample-lab/src/generation/constants.ts",
@@ -2645,6 +3750,10 @@
         },
         {
           "hash": "f4418f3f116ffd555765220ffbc3c9ca04c76f78b90bfbd9f47047339e9ed9fe",
+          "importOrder": [
+            "packages/score-map/src/index.ts",
+            "packages/sample-lab/src/generation/ingest-grounded.ts"
+          ],
           "importsFiles": [
             "packages/sample-lab/src/generation/ingest-grounded.ts",
             "packages/score-map/src/index.ts"
@@ -2652,7 +3761,38 @@
           "path": "packages/sample-lab/src/generation/run-ingest-grounded.ts"
         },
         {
+          "failurePaths": [
+            {
+              "in": "parseArgs",
+              "kind": "throw",
+              "line": 81
+            },
+            {
+              "in": "parseArgs",
+              "kind": "throw",
+              "line": 86
+            },
+            {
+              "in": "parseArgs",
+              "kind": "throw",
+              "line": 94
+            },
+            {
+              "in": "parseArgs",
+              "kind": "throw",
+              "line": 99
+            },
+            {
+              "in": "parseArgs",
+              "kind": "throw",
+              "line": 104
+            }
+          ],
           "hash": "7dbb9957df5e59be821f7d0676db7e765d3f4cc7c4ea2ce76ce5bc6082025502",
+          "importOrder": [
+            "packages/score-map/src/index.ts",
+            "packages/sample-lab/src/generation/ingest-library.ts"
+          ],
           "importsFiles": [
             "packages/sample-lab/src/generation/ingest-library.ts",
             "packages/score-map/src/index.ts"
@@ -2670,7 +3810,28 @@
           "exports": [
             "scanRunArtifact"
           ],
+          "failurePaths": [
+            {
+              "in": "scanRunArtifact",
+              "kind": "throw",
+              "line": 39
+            },
+            {
+              "in": "scanRunArtifact",
+              "kind": "throw",
+              "line": 58
+            },
+            {
+              "in": "scanRunArtifact",
+              "kind": "throw",
+              "line": 68
+            }
+          ],
           "hash": "1a51eeacb807e8627ac7e792160666d78a2f08414111a4674edff039eaee1ee0",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/sample-lab/src/generation/errors.ts"
+          ],
           "importsFiles": [
             "packages/sample-lab/src/generation/errors.ts",
             "packages/schema/src/index.ts"
@@ -2684,7 +3845,24 @@
             "isNearSilent",
             "rmsOf"
           ],
+          "failurePaths": [
+            {
+              "in": "assertStemSampleCountsEqual",
+              "kind": "throw",
+              "line": 39
+            },
+            {
+              "in": "assertStemDurationsMatchMix",
+              "kind": "throw",
+              "line": 56
+            }
+          ],
           "hash": "818ab81705dce8d6c0134ea124f9f2c1e9553500dafd262472932eabb96d3891",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/sample-lab/src/generation/constants.ts",
+            "packages/sample-lab/src/generation/errors.ts"
+          ],
           "importsFiles": [
             "packages/sample-lab/src/generation/constants.ts",
             "packages/sample-lab/src/generation/errors.ts",
@@ -2722,6 +3900,14 @@
         },
         {
           "hash": "038c095078cd9a8af8d7e5eacbf33cfdfa605927205078054ce880b05a4e7275",
+          "importOrder": [
+            "packages/sample-lab/src/trim.ts",
+            "packages/sample-lab/src/slice.ts",
+            "packages/sample-lab/src/kit.ts",
+            "packages/sample-lab/src/instrument.ts",
+            "packages/sample-lab/src/import.ts",
+            "packages/sample-lab/src/generation/index.ts"
+          ],
           "importsFiles": [
             "packages/sample-lab/src/generation/index.ts",
             "packages/sample-lab/src/import.ts",
@@ -2800,19 +3986,34 @@
           "importsFiles": [
             "packages/sample-lab/src/index.ts"
           ],
-          "path": "packages/sample-lab/test/cloud-run.test.ts"
+          "path": "packages/sample-lab/test/cloud-run.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "e1f564881053b31d499b5bfe1c3adb433c9ab2e2b27714fb2615bd358191601e",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/sample-lab/src/index.ts",
+            "packages/score-map/src/index.ts"
+          ],
           "importsFiles": [
             "packages/sample-lab/src/index.ts",
             "packages/schema/src/index.ts",
             "packages/score-map/src/index.ts"
           ],
-          "path": "packages/sample-lab/test/generation.test.ts"
+          "path": "packages/sample-lab/test/generation.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "89ac9fdf6a7b4b53362cb97b4da97f4e8abd76fc5a6a73e2a58b32bf0d9d7e2f",
+          "importOrder": [
+            "packages/sample-lab/src/trim.ts",
+            "packages/sample-lab/src/slice.ts",
+            "packages/sample-lab/src/kit.ts",
+            "packages/sample-lab/src/instrument.ts",
+            "packages/sample-lab/src/import.ts",
+            "packages/schema/src/index.ts"
+          ],
           "importsFiles": [
             "packages/sample-lab/src/import.ts",
             "packages/sample-lab/src/instrument.ts",
@@ -2821,7 +4022,8 @@
             "packages/sample-lab/src/trim.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "packages/sample-lab/test/index.test.ts"
+          "path": "packages/sample-lab/test/index.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "ef73ba84137a64c37bf6022d88f8621ef73bc41a1add5bd82da4b50deff53b52",
@@ -2850,6 +4052,9 @@
       "outsideReads": 7,
       "outsideWrites": 12,
       "role": "code",
+      "testRunners": [
+        "vitest"
+      ],
       "testedBy": 15,
       "unresolvedSites": 0
     },
@@ -2908,6 +4113,11 @@
             "evaluateBinding"
           ],
           "hash": "7f9e77eac00ea38e210de749d2e7a1b48dcc42ca69fe0582b78ac51d3330c302",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/scene-mapper/src/types.ts",
+            "packages/scene-mapper/src/conditions.ts"
+          ],
           "importsFiles": [
             "packages/scene-mapper/src/conditions.ts",
             "packages/scene-mapper/src/types.ts",
@@ -2920,6 +4130,10 @@
             "evaluateCondition"
           ],
           "hash": "c898b9ea7c715af66720ce82258f624ee68c4f8aae97ac4e660fd089dfa52180",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/scene-mapper/src/types.ts"
+          ],
           "importsFiles": [
             "packages/scene-mapper/src/types.ts",
             "packages/schema/src/index.ts"
@@ -2928,6 +4142,11 @@
         },
         {
           "hash": "97b5b9c96bd6147f2b1477eb20c75850614b37993c4211f16fa5395e9dc7b3c7",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/scene-mapper/src/types.ts",
+            "packages/scene-mapper/src/resolve.ts"
+          ],
           "importsFiles": [
             "packages/scene-mapper/src/resolve.ts",
             "packages/scene-mapper/src/types.ts",
@@ -2961,6 +4180,13 @@
             "buildGroundedPack"
           ],
           "hash": "3c997d0b0d0caab0bd53419fe1db52a7880d5621d45c84e0bb702083bd021c8f",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/scene-mapper/src/grounded-clips.ts",
+            "packages/scene-mapper/src/grounded-cues.ts",
+            "packages/scene-mapper/src/grounded-automation.ts",
+            "packages/score-map/src/index.ts"
+          ],
           "importsFiles": [
             "packages/scene-mapper/src/grounded-automation.ts",
             "packages/scene-mapper/src/grounded-clips.ts",
@@ -2972,6 +4198,19 @@
         },
         {
           "hash": "f9a73f13a0261d35bd6659f0bff6ae0fd7984fddc88783afb6fdcbff1df0a984",
+          "importOrder": [
+            "packages/scene-mapper/src/types.ts",
+            "packages/scene-mapper/src/conditions.ts",
+            "packages/scene-mapper/src/bindings.ts",
+            "packages/scene-mapper/src/resolve.ts",
+            "packages/scene-mapper/src/game-state.ts",
+            "packages/scene-mapper/src/stingers.ts",
+            "packages/scene-mapper/src/simulation.ts",
+            "packages/scene-mapper/src/grounded-pack.ts",
+            "packages/scene-mapper/src/grounded-clips.ts",
+            "packages/scene-mapper/src/grounded-cues.ts",
+            "packages/scene-mapper/src/grounded-automation.ts"
+          ],
           "importsFiles": [
             "packages/scene-mapper/src/bindings.ts",
             "packages/scene-mapper/src/conditions.ts",
@@ -2997,6 +4236,11 @@
             "resolveScene"
           ],
           "hash": "14050365c1599cda918b8d7d63df67fcfa4f173706e9a097b3a032db71e49a95",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/scene-mapper/src/types.ts",
+            "packages/scene-mapper/src/bindings.ts"
+          ],
           "importsFiles": [
             "packages/scene-mapper/src/bindings.ts",
             "packages/scene-mapper/src/types.ts",
@@ -3011,6 +4255,13 @@
             "validateTimeline"
           ],
           "hash": "9b284a9d3267f2e69f2ca8c47e28ae8af0725e711639419e1b95a243dcacaaee",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/scene-mapper/src/types.ts",
+            "packages/scene-mapper/src/stingers.ts",
+            "packages/scene-mapper/src/resolve.ts",
+            "packages/scene-mapper/src/game-state.ts"
+          ],
           "importsFiles": [
             "packages/scene-mapper/src/game-state.ts",
             "packages/scene-mapper/src/resolve.ts",
@@ -3026,6 +4277,10 @@
             "resolveStingers"
           ],
           "hash": "8f83f2d9ae730909e711f97d4c65a42706f89d889b37abff8003f0b525a754bc",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/scene-mapper/src/conditions.ts"
+          ],
           "importsFiles": [
             "packages/scene-mapper/src/conditions.ts",
             "packages/schema/src/index.ts"
@@ -3041,85 +4296,134 @@
         },
         {
           "hash": "5caa0e01b4c2b291a0be12f56f5ba47780b765f9b41b4dc1c78840d4a4d1e60b",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/scene-mapper/src/game-state.ts"
+          ],
           "importsFiles": [
             "packages/scene-mapper/src/game-state.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "packages/scene-mapper/test/game-state.test.ts"
+          "path": "packages/scene-mapper/test/game-state.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "4a4e49f8206ada1adeb12e5fef887d05e0d08676ef4c06ecbe76de625eff6a3d",
+          "importOrder": [
+            "packages/scene-mapper/src/index.ts",
+            "packages/automation/src/index.ts",
+            "packages/schema/src/index.ts"
+          ],
           "importsFiles": [
             "packages/automation/src/index.ts",
             "packages/scene-mapper/src/index.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "packages/scene-mapper/test/grounded-automation.test.ts"
+          "path": "packages/scene-mapper/test/grounded-automation.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "6416ec1d33f4b509079469d45d83044daeb9bf52af1a86ff603561fb4d076b56",
+          "importOrder": [
+            "packages/scene-mapper/src/index.ts",
+            "packages/instrument-rack/src/index.ts"
+          ],
           "importsFiles": [
             "packages/instrument-rack/src/index.ts",
             "packages/scene-mapper/src/index.ts"
           ],
-          "path": "packages/scene-mapper/test/grounded-clips.test.ts"
+          "path": "packages/scene-mapper/test/grounded-clips.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "426dd144c9e218ea8f4d1faac2d92c99a6da53992e933884ecca3c18abaec7ef",
+          "importOrder": [
+            "packages/scene-mapper/src/index.ts",
+            "packages/clip-engine/src/index.ts"
+          ],
           "importsFiles": [
             "packages/clip-engine/src/index.ts",
             "packages/scene-mapper/src/index.ts"
           ],
-          "path": "packages/scene-mapper/test/grounded-cues.test.ts"
+          "path": "packages/scene-mapper/test/grounded-cues.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "7a8c840cf5a3618ef5a165b67fff1c7a6f2c9aafb8c90a800016719f507edb4c",
+          "importOrder": [
+            "packages/scene-mapper/src/index.ts",
+            "packages/review/src/index.ts",
+            "packages/runtime-pack/src/index.ts"
+          ],
           "importsFiles": [
             "packages/review/src/index.ts",
             "packages/runtime-pack/src/index.ts",
             "packages/scene-mapper/src/index.ts"
           ],
-          "path": "packages/scene-mapper/test/grounded-export.test.ts"
+          "path": "packages/scene-mapper/test/grounded-export.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "4bd8fc145dc0e25c6f97b9e11d895c1e435a5a12202d60b80d8f5cabffca268f",
+          "importOrder": [
+            "packages/scene-mapper/src/index.ts",
+            "packages/instrument-rack/src/index.ts"
+          ],
           "importsFiles": [
             "packages/instrument-rack/src/index.ts",
             "packages/scene-mapper/src/index.ts"
           ],
-          "path": "packages/scene-mapper/test/grounded-instrument-resolution.test.ts"
+          "path": "packages/scene-mapper/test/grounded-instrument-resolution.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "8ec743de2454a9fee38813052a090c873ba819d0f4fbbb34bc6301bebb38df36",
           "importsFiles": [
             "packages/scene-mapper/src/index.ts"
           ],
-          "path": "packages/scene-mapper/test/grounded-pack.test.ts"
+          "path": "packages/scene-mapper/test/grounded-pack.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "df12945eb6bc4c5f76d27db7eb69c736f327321169d1f20a0bd30222cde03ebc",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/test-kit/src/index.ts",
+            "packages/scene-mapper/src/index.ts"
+          ],
           "importsFiles": [
             "packages/scene-mapper/src/index.ts",
             "packages/schema/src/index.ts",
             "packages/test-kit/src/index.ts"
           ],
-          "path": "packages/scene-mapper/test/index.test.ts"
+          "path": "packages/scene-mapper/test/index.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "11e20f72be4fa109afe894660a0a0cc22d25c84b87be18da9f95492d58edffbe",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/scene-mapper/src/simulation.ts"
+          ],
           "importsFiles": [
             "packages/scene-mapper/src/simulation.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "packages/scene-mapper/test/simulation.test.ts"
+          "path": "packages/scene-mapper/test/simulation.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "c1298debdf71fed2a82b4df23bd6cc019751bd023472e6c0a362c2c0511471da",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/scene-mapper/src/stingers.ts"
+          ],
           "importsFiles": [
             "packages/scene-mapper/src/stingers.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "packages/scene-mapper/test/stingers.test.ts"
+          "path": "packages/scene-mapper/test/stingers.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "07cf970893a82f70d0901499aefe264dadeb808f9129f07fc560ccd77671130e",
@@ -3147,6 +4451,9 @@
       ],
       "outsideReads": 2,
       "role": "code",
+      "testRunners": [
+        "vitest"
+      ],
       "testedBy": 34,
       "unresolvedSites": 0
     },
@@ -3208,6 +4515,13 @@
         },
         {
           "hash": "bbe085fe4917fea32e4df7c8fcfccda670fbc50eaef67cfdfc98fde9f8a108f6",
+          "importOrder": [
+            "packages/schema/src/types.ts",
+            "packages/schema/src/schemas.ts",
+            "packages/schema/src/parse.ts",
+            "packages/schema/src/validate.ts",
+            "packages/schema/src/errors.ts"
+          ],
           "importsFiles": [
             "packages/schema/src/errors.ts",
             "packages/schema/src/parse.ts",
@@ -3230,6 +4544,11 @@
             "safeParseSoundtrackPack"
           ],
           "hash": "6309ad4c4f3418628a9244f517fde16b1c93e814908f5057b87acb4774ba8717",
+          "importOrder": [
+            "packages/schema/src/schemas.ts",
+            "packages/schema/src/errors.ts",
+            "packages/schema/src/types.ts"
+          ],
           "importsFiles": [
             "packages/schema/src/errors.ts",
             "packages/schema/src/schemas.ts",
@@ -3253,6 +4572,11 @@
             "validateSoundtrackPack"
           ],
           "hash": "ae4d2f524223065cb4f71d390ed69c2db68c887df4d546b7fedcd1dc1fdcb4b8",
+          "importOrder": [
+            "packages/schema/src/schemas.ts",
+            "packages/schema/src/errors.ts",
+            "packages/schema/src/types.ts"
+          ],
           "importsFiles": [
             "packages/schema/src/errors.ts",
             "packages/schema/src/schemas.ts",
@@ -3265,19 +4589,26 @@
           "importsFiles": [
             "packages/schema/src/index.ts"
           ],
-          "path": "packages/schema/test/index.test.ts"
+          "path": "packages/schema/test/index.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "c8347e1eda364aecf8618b117ff4a9d6b3e646ed559e5e8234825ef993b4316d",
+          "importOrder": [
+            "packages/test-kit/src/index.ts",
+            "packages/schema/src/index.ts"
+          ],
           "importsFiles": [
             "packages/schema/src/index.ts",
             "packages/test-kit/src/index.ts"
           ],
-          "path": "packages/schema/test/schema.test.ts"
+          "path": "packages/schema/test/schema.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "9b6d3b4dba70637da275ef7b8af7a29e7df007bf4cf4c32fb795b58b02493486",
-          "path": "packages/schema/test/workspace-health.test.ts"
+          "path": "packages/schema/test/workspace-health.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "07cf970893a82f70d0901499aefe264dadeb808f9129f07fc560ccd77671130e",
@@ -3295,6 +4626,9 @@
       "name": "schema",
       "origin": "authored",
       "role": "code",
+      "testRunners": [
+        "vitest"
+      ],
       "testedBy": 61,
       "unresolvedSites": 0
     },
@@ -3360,6 +4694,33 @@
             "sharedMotifs",
             "sharedScenes"
           ],
+          "failurePaths": [
+            {
+              "in": "assertRecordMatchesFamilyLock",
+              "kind": "throw",
+              "line": 33
+            },
+            {
+              "in": "assertRecordMatchesFamilyLock",
+              "kind": "throw",
+              "line": 52
+            },
+            {
+              "in": "lockCueFamily",
+              "kind": "throw",
+              "line": 73
+            },
+            {
+              "in": "attachGeneratedCueRecord",
+              "kind": "throw",
+              "line": 89
+            },
+            {
+              "in": "attachGeneratedCueRecord",
+              "kind": "throw",
+              "line": 96
+            }
+          ],
           "hash": "d601d64839519c40b34fe400955d5e59b956839b17161cf270304990c76a80b8",
           "importsFiles": [
             "packages/schema/src/index.ts"
@@ -3399,6 +4760,13 @@
           "exports": [
             "foldGeneratedIntoPack"
           ],
+          "failurePaths": [
+            {
+              "in": "foldGeneratedIntoPack",
+              "kind": "throw",
+              "line": 40
+            }
+          ],
           "hash": "6fb2e4334d59f5ed84af24923c5a26dd9ec45ca08ac553e1199366a98d3b4425",
           "importsFiles": [
             "packages/schema/src/index.ts",
@@ -3435,6 +4803,13 @@
             "specForFamily",
             "styleTagsFor"
           ],
+          "failurePaths": [
+            {
+              "in": "styleTagsFor",
+              "kind": "throw",
+              "line": 73
+            }
+          ],
           "hash": "611055235fe1d91735fe8967734168f5e10b6bc64831cd167d564e2deb38c2d8",
           "importsFiles": [
             "packages/schema/src/index.ts"
@@ -3455,6 +4830,20 @@
         },
         {
           "hash": "4b56cdbeec6ab476d9b5d0cc0f023dd3ad939947ad5f53c3caa5fb2ce7a5a293",
+          "importOrder": [
+            "packages/score-map/src/motif.ts",
+            "packages/score-map/src/profile.ts",
+            "packages/score-map/src/cue-family.ts",
+            "packages/score-map/src/resolve.ts",
+            "packages/score-map/src/derivation.ts",
+            "packages/score-map/src/emotion-arc.ts",
+            "packages/score-map/src/grounded-profiles.ts",
+            "packages/score-map/src/grounded-families.ts",
+            "packages/score-map/src/generation-layers.ts",
+            "packages/score-map/src/grounded-generation.ts",
+            "packages/score-map/src/library-packs.ts",
+            "packages/score-map/src/fold-generated.ts"
+          ],
           "importsFiles": [
             "packages/score-map/src/cue-family.ts",
             "packages/score-map/src/derivation.ts",
@@ -3510,6 +4899,28 @@
             "libraryTakes",
             "libraryTakesForPack",
             "libraryTransitions"
+          ],
+          "failurePaths": [
+            {
+              "in": "libraryPackTier",
+              "kind": "throw",
+              "line": 161
+            },
+            {
+              "in": "tierArtifactRoot",
+              "kind": "throw",
+              "line": 551
+            },
+            {
+              "in": "libraryTakesForPack",
+              "kind": "throw",
+              "line": 646
+            },
+            {
+              "in": "libraryTakes",
+              "kind": "throw",
+              "line": 674
+            }
           ],
           "hash": "dca138772fc1bac356f7a6cca002149c3bc01024ae89c1f19db56a5d93ab328c",
           "importsFiles": [
@@ -3571,22 +4982,29 @@
             "packages/schema/src/index.ts",
             "packages/score-map/src/emotion-arc.ts"
           ],
-          "path": "packages/score-map/test/emotion-arc.test.ts"
+          "path": "packages/score-map/test/emotion-arc.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "e15fbf65d89bfcd99958d08d2d722a731c74c3b5cbe4ad1fa4b8fb4b68c74b45",
           "importsFiles": [
             "packages/score-map/src/index.ts"
           ],
-          "path": "packages/score-map/test/grounded-families.test.ts"
+          "path": "packages/score-map/test/grounded-families.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "9d2de4f5983202ffaa43dc1bb664a2928de4d10cd78a7295890fece5cbe74121",
+          "importOrder": [
+            "packages/score-map/src/index.ts",
+            "packages/instrument-rack/src/index.ts"
+          ],
           "importsFiles": [
             "packages/instrument-rack/src/index.ts",
             "packages/score-map/src/index.ts"
           ],
-          "path": "packages/score-map/test/grounded-profiles.test.ts"
+          "path": "packages/score-map/test/grounded-profiles.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "5b569c08d66b39b56f6814928ae1321e4cee9d6635c9ab3781784a4c96a1ab60",
@@ -3594,7 +5012,8 @@
             "packages/schema/src/index.ts",
             "packages/score-map/src/index.ts"
           ],
-          "path": "packages/score-map/test/index.test.ts"
+          "path": "packages/score-map/test/index.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "193805beb5ff509f7e6d507478a540218b6c9eae699513878f7cb30ad063cdcc",
@@ -3602,7 +5021,8 @@
             "packages/schema/src/index.ts",
             "packages/score-map/src/index.ts"
           ],
-          "path": "packages/score-map/test/library-packs.test.ts"
+          "path": "packages/score-map/test/library-packs.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "4a94cae76640f3cb918264c0a936a73af8815bc1c9090a1e04ac56418d6d0d94",
@@ -3630,6 +5050,9 @@
       ],
       "outsideReads": 1,
       "role": "code",
+      "testRunners": [
+        "vitest"
+      ],
       "testedBy": 30,
       "unresolvedSites": 0
     },
@@ -3666,6 +5089,7 @@
           "path": "site/src/assets/motif-mark.svg"
         },
         {
+          "constantOnly": true,
           "hash": "34b036603793e4eb4bfad87e1fd7f851a84fef6a762257a3b2dc1411983d26df",
           "path": "site/src/content.config.ts"
         },
@@ -3747,9 +5171,18 @@
         },
         {
           "hash": "391533713539035d3c92282579d43de0f137067867fdb502d7eaea3c74601d2a",
+          "importOrder": [
+            "site/src/styles/global.css",
+            "site/src/site-config.ts"
+          ],
+          "importsFiles": [
+            "site/src/site-config.ts",
+            "site/src/styles/global.css"
+          ],
           "path": "site/src/pages/index.astro"
         },
         {
+          "constantOnly": true,
           "hash": "55199461d2657cbab1333beee9b8eed8012236eea03c44d725cc2ae20f08ff44",
           "path": "site/src/site-config.ts"
         },
@@ -3781,7 +5214,10 @@
       "dynamicSpawns": 0,
       "dynamicSpawnsInTests": 0,
       "dynamicWrites": 0,
-      "entryPoints": [],
+      "entryPoints": [
+        "apps/studio/src/app/layout.tsx",
+        "apps/studio/src/app/page.tsx"
+      ],
       "externals": 0,
       "files": [
         {
@@ -3833,6 +5269,17 @@
             "Studio"
           ],
           "hash": "7f87e19488276c3009e2e8631310e6bf9eac32fa8daa4ddda39a33e89bf8328f",
+          "importOrder": [
+            "apps/studio/src/app/store.ts",
+            "apps/studio/src/app/playback-store.ts",
+            "apps/studio/src/app/components/SidebarNav.tsx",
+            "apps/studio/src/app/components/ErrorBoundary.tsx",
+            "apps/studio/src/app/components/KeyboardShortcutsOverlay.tsx",
+            "apps/studio/src/app/components/ConfirmDialog.tsx",
+            "apps/studio/src/app/autosave.ts",
+            "apps/studio/src/app/screens/index.ts",
+            "apps/studio/src/app/seed-data.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/autosave.ts",
             "apps/studio/src/app/components/ConfirmDialog.tsx",
@@ -3857,6 +5304,53 @@
             "parseProjectFile",
             "saveProjectToFile",
             "scheduleAutosave"
+          ],
+          "failurePaths": [
+            {
+              "in": "parseProjectFile",
+              "kind": "catch",
+              "line": 78
+            },
+            {
+              "in": "parseProjectFile",
+              "kind": "throw",
+              "line": 79
+            },
+            {
+              "in": "parseProjectFile",
+              "kind": "throw",
+              "line": 87
+            },
+            {
+              "in": "parseProjectFile",
+              "kind": "throw",
+              "line": 93
+            },
+            {
+              "in": "parseProjectFile",
+              "kind": "throw",
+              "line": 102
+            },
+            {
+              "in": "parseProjectFile",
+              "kind": "throw",
+              "line": 108
+            },
+            {
+              "in": "scheduleAutosave",
+              "kind": "catch",
+              "line": 132
+            },
+            {
+              "in": "loadAutosave",
+              "kind": "catch",
+              "line": 164
+            },
+            {
+              "in": "clearAutosave",
+              "kind": "catch",
+              "line": 176
+            }
           ],
           "hash": "ce7762dece860b73056e3ca0481b4be5f7eeba5f7be387f99b879cb31f110899",
           "importsFiles": [
@@ -3888,6 +5382,10 @@
             "NoteGrid"
           ],
           "hash": "dad84a2eedc8170f69825466707345f231a9f6a2f6d99835c36f1fef88ea5703",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "apps/studio/src/app/playback-store.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/playback-store.ts",
             "packages/schema/src/index.ts"
@@ -3899,6 +5397,11 @@
             "SidebarNav"
           ],
           "hash": "ccfb21c69bfff48272b23d86d8395f414876f15e1f44a1f300da4f93ac1f6d3c",
+          "importOrder": [
+            "apps/studio/src/app/store.ts",
+            "apps/studio/src/app/hooks.ts",
+            "apps/studio/src/app/seed-data.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/hooks.ts",
             "apps/studio/src/app/seed-data.ts",
@@ -3911,6 +5414,10 @@
             "StateChips"
           ],
           "hash": "dab16060b67488523b747c45ac5b953aa72f3c34d701308a472f9c6ac82eb0ea",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "apps/studio/src/app/pack-fields.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/pack-fields.ts",
             "packages/schema/src/index.ts"
@@ -3922,6 +5429,10 @@
             "StateEditor"
           ],
           "hash": "d35d6c64c64496372d3313fe5bcb2d3ba95d4eefca5497674c7b8f7806b68766",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "apps/studio/src/app/pack-fields.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/pack-fields.ts",
             "packages/schema/src/index.ts"
@@ -3942,6 +5453,13 @@
         {
           "exports": [
             "TransportStrip"
+          ],
+          "failurePaths": [
+            {
+              "in": "formatTimestamp",
+              "kind": "catch",
+              "line": 11
+            }
           ],
           "hash": "e2cc2160c43ce9721a8ade52dd64e8ce3a44c10aa8d076e6ad44504e65a34625",
           "importsFiles": [
@@ -4009,7 +5527,45 @@
             "auditionNote",
             "suspendPreviewCtx"
           ],
+          "failurePaths": [
+            {
+              "in": "playScene",
+              "kind": "catch",
+              "line": 231
+            },
+            {
+              "in": "switchScene",
+              "kind": "catch",
+              "line": 244
+            },
+            {
+              "in": "playSequence",
+              "kind": "catch",
+              "line": 257
+            },
+            {
+              "in": "renderScene",
+              "kind": "catch",
+              "line": 350
+            },
+            {
+              "in": "playCue",
+              "kind": "catch",
+              "line": 364
+            },
+            {
+              "in": "jumpToSection",
+              "kind": "catch",
+              "line": 377
+            }
+          ],
           "hash": "9836cd1bb509258842dc8ba302d7659903f8a342cfa39cf3eb8b8cb5648fd968",
+          "importOrder": [
+            "packages/playback-engine/src/index.ts",
+            "packages/schema/src/index.ts",
+            "packages/instrument-rack/src/index.ts",
+            "packages/clip-engine/src/index.ts"
+          ],
           "importsFiles": [
             "packages/clip-engine/src/index.ts",
             "packages/instrument-rack/src/index.ts",
@@ -4024,6 +5580,13 @@
             "useSequencePreview"
           ],
           "hash": "c9fb5e6d27a0b6be985d0120458bc19d36e3b4c4dd55cfa6623e0e367b2ea3fd",
+          "importOrder": [
+            "apps/studio/src/app/store.ts",
+            "apps/studio/src/app/preview-store.ts",
+            "packages/scene-mapper/src/index.ts",
+            "packages/audio-engine/src/index.ts",
+            "packages/schema/src/index.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/preview-store.ts",
             "apps/studio/src/app/store.ts",
@@ -4035,6 +5598,10 @@
         },
         {
           "hash": "1e551dcbb66f65211fe124870a8add47e744c47458d505a315e180e2ccf8a864",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "apps/studio/src/app/pack-fields.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/pack-fields.ts",
             "packages/schema/src/index.ts"
@@ -4046,6 +5613,15 @@
             "ArrangementScreen"
           ],
           "hash": "69cb8be3567bf82310cb3ed33e7f5f382236cc802c74b7d0079266a6c4f96dd5",
+          "importOrder": [
+            "apps/studio/src/app/store.ts",
+            "apps/studio/src/app/playback-store.ts",
+            "packages/instrument-rack/src/index.ts",
+            "apps/studio/src/app/components/NoteGrid.tsx",
+            "packages/schema/src/index.ts",
+            "packages/clip-engine/src/index.ts",
+            "packages/music-theory/src/index.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/components/NoteGrid.tsx",
             "apps/studio/src/app/playback-store.ts",
@@ -4095,6 +5671,15 @@
             "ClipsScreen"
           ],
           "hash": "e26a206874ddbd653693a7f93c5da1002eabbd730ca1e9a5413e3c1c50d1eb12",
+          "importOrder": [
+            "apps/studio/src/app/store.ts",
+            "apps/studio/src/app/playback-store.ts",
+            "packages/schema/src/index.ts",
+            "packages/instrument-rack/src/index.ts",
+            "apps/studio/src/app/components/NoteGrid.tsx",
+            "packages/clip-engine/src/index.ts",
+            "packages/music-theory/src/index.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/components/NoteGrid.tsx",
             "apps/studio/src/app/playback-store.ts",
@@ -4111,6 +5696,13 @@
             "CuesScreen"
           ],
           "hash": "f9c4f15b01027f550d980ff3688b44a6b25fa3598a848b36fecb1e40c1ae257a",
+          "importOrder": [
+            "apps/studio/src/app/store.ts",
+            "apps/studio/src/app/playback-store.ts",
+            "apps/studio/src/app/components/TransportStrip.tsx",
+            "packages/schema/src/index.ts",
+            "packages/clip-engine/src/index.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/components/TransportStrip.tsx",
             "apps/studio/src/app/playback-store.ts",
@@ -4124,7 +5716,32 @@
           "exports": [
             "ExportScreen"
           ],
+          "failurePaths": [
+            {
+              "in": "ExportScreen",
+              "kind": "catch",
+              "line": 47
+            },
+            {
+              "in": "ExportScreen",
+              "kind": "catch",
+              "line": 54
+            },
+            {
+              "in": "handleCopy",
+              "kind": "catch",
+              "line": 68
+            }
+          ],
           "hash": "90258e0d685f101ff11c88f8d76323359a9d940f85c9e8ce3cd4e08f4814bd41",
+          "importOrder": [
+            "apps/studio/src/app/store.ts",
+            "apps/studio/src/app/playback-store.ts",
+            "apps/studio/src/app/hooks.ts",
+            "packages/runtime-pack/src/index.ts",
+            "packages/playback-engine/src/index.ts",
+            "packages/clip-engine/src/index.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/hooks.ts",
             "apps/studio/src/app/playback-store.ts",
@@ -4151,6 +5768,15 @@
             "ManualPreview"
           ],
           "hash": "92b18e00717b660bb7e530da5d73bae635eadd9aa58c798cedcd63d027d7b0ac",
+          "importOrder": [
+            "apps/studio/src/app/store.ts",
+            "apps/studio/src/app/preview-store.ts",
+            "apps/studio/src/app/playback-store.ts",
+            "apps/studio/src/app/preview-hooks.ts",
+            "apps/studio/src/app/pack-fields.ts",
+            "apps/studio/src/app/components/StateEditor.tsx",
+            "apps/studio/src/app/components/StemMixer.tsx"
+          ],
           "importsFiles": [
             "apps/studio/src/app/components/StateEditor.tsx",
             "apps/studio/src/app/components/StemMixer.tsx",
@@ -4167,6 +5793,11 @@
             "MixerScreen"
           ],
           "hash": "8a35d466ccf0126d73a611644c12853bedc6b76be7e18c54fc2f24f6604b354d",
+          "importOrder": [
+            "apps/studio/src/app/store.ts",
+            "apps/studio/src/app/playback-store.ts",
+            "packages/playback-engine/src/index.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/playback-store.ts",
             "apps/studio/src/app/store.ts",
@@ -4179,6 +5810,14 @@
             "PerformanceScreen"
           ],
           "hash": "32bb6900d72fa9dd32e8c439b6599146da9b22daf4f4e4b147cb7af408072af5",
+          "importOrder": [
+            "apps/studio/src/app/store.ts",
+            "apps/studio/src/app/playback-store.ts",
+            "apps/studio/src/app/components/TransportStrip.tsx",
+            "packages/schema/src/index.ts",
+            "packages/clip-engine/src/index.ts",
+            "packages/music-theory/src/index.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/components/TransportStrip.tsx",
             "apps/studio/src/app/playback-store.ts",
@@ -4194,6 +5833,14 @@
             "PreviewScreen"
           ],
           "hash": "77ba7a3d8e621363697bb00c8af3c20340810697160d7bcdbad10a86fe855450",
+          "importOrder": [
+            "apps/studio/src/app/store.ts",
+            "apps/studio/src/app/preview-store.ts",
+            "apps/studio/src/app/hooks.ts",
+            "apps/studio/src/app/screens/ManualPreview.tsx",
+            "apps/studio/src/app/screens/SequencePreview.tsx",
+            "apps/studio/src/app/components/TransportStrip.tsx"
+          ],
           "importsFiles": [
             "apps/studio/src/app/components/TransportStrip.tsx",
             "apps/studio/src/app/hooks.ts",
@@ -4208,7 +5855,19 @@
           "exports": [
             "ProjectScreen"
           ],
+          "failurePaths": [
+            {
+              "in": "reader.onload",
+              "kind": "catch",
+              "line": 48
+            }
+          ],
           "hash": "bdb970caa0c2f5e92667e0c9f89f6e551c295eb365ea3d22677f6dd4a4d0bcb9",
+          "importOrder": [
+            "apps/studio/src/app/store.ts",
+            "apps/studio/src/app/hooks.ts",
+            "apps/studio/src/app/autosave.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/autosave.ts",
             "apps/studio/src/app/hooks.ts",
@@ -4264,6 +5923,15 @@
             "SequencePreview"
           ],
           "hash": "2c4ab83061e5c8646d78cb8842aa5c1f34d82d09ba38b5466e08378e68af2651",
+          "importOrder": [
+            "apps/studio/src/app/store.ts",
+            "apps/studio/src/app/preview-store.ts",
+            "apps/studio/src/app/playback-store.ts",
+            "apps/studio/src/app/preview-hooks.ts",
+            "apps/studio/src/app/pack-fields.ts",
+            "apps/studio/src/app/components/StateEditor.tsx",
+            "apps/studio/src/app/components/StateChips.tsx"
+          ],
           "importsFiles": [
             "apps/studio/src/app/components/StateChips.tsx",
             "apps/studio/src/app/components/StateEditor.tsx",
@@ -4299,6 +5967,26 @@
         },
         {
           "hash": "4c114d2bc668e01133f127b61a9877bb93d9af2e48d7ffbe7736ec8e5b5eaafa",
+          "importOrder": [
+            "apps/studio/src/app/screens/ArrangementScreen.tsx",
+            "apps/studio/src/app/screens/ProjectScreen.tsx",
+            "apps/studio/src/app/screens/AssetsScreen.tsx",
+            "apps/studio/src/app/screens/StemsScreen.tsx",
+            "apps/studio/src/app/screens/ScenesScreen.tsx",
+            "apps/studio/src/app/screens/ClipsScreen.tsx",
+            "apps/studio/src/app/screens/BindingsScreen.tsx",
+            "apps/studio/src/app/screens/TransitionsScreen.tsx",
+            "apps/studio/src/app/screens/ReviewScreen.tsx",
+            "apps/studio/src/app/screens/PreviewScreen.tsx",
+            "apps/studio/src/app/screens/PerformanceScreen.tsx",
+            "apps/studio/src/app/screens/CuesScreen.tsx",
+            "apps/studio/src/app/screens/MixerScreen.tsx",
+            "apps/studio/src/app/screens/ExportScreen.tsx",
+            "apps/studio/src/app/screens/SampleLabScreen.tsx",
+            "apps/studio/src/app/screens/ScoreMapScreen.tsx",
+            "apps/studio/src/app/screens/AutomationScreen.tsx",
+            "apps/studio/src/app/screens/LibraryScreen.tsx"
+          ],
           "importsFiles": [
             "apps/studio/src/app/screens/ArrangementScreen.tsx",
             "apps/studio/src/app/screens/AssetsScreen.tsx",
@@ -4324,6 +6012,13 @@
         },
         {
           "hash": "826b7206b959dd733c7576bdf45bd875350792921f7a25636346ff906f03c609",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/scene-mapper/src/index.ts",
+            "packages/score-map/src/index.ts",
+            "apps/studio/src/app/grounded-folded.json",
+            "apps/studio/src/app/library-folded.json"
+          ],
           "importsFiles": [
             "apps/studio/src/app/grounded-folded.json",
             "apps/studio/src/app/library-folded.json",
@@ -4345,37 +6040,56 @@
         },
         {
           "hash": "68a26a7c1eaaa249b52a35fc3b60e415b7c0a2ef58dbe723c305fbb76fbf96fa",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "apps/studio/src/app/seed-data.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/seed-data.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "apps/studio/test/asset-files.test.ts"
+          "path": "apps/studio/test/asset-files.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "cd078b833634fa5891b85adc1ccba80e515f4d41bd01db9663ec56be5c561a4d",
+          "importOrder": [
+            "apps/studio/src/app/store.ts",
+            "apps/studio/src/app/autosave.ts",
+            "packages/schema/src/index.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/autosave.ts",
             "apps/studio/src/app/store.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "apps/studio/test/autosave.test.ts"
+          "path": "apps/studio/test/autosave.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "2c06d2aa3015c008afa246a1c19e19d8e8bc86c3e27e5411a532f59e989346d6",
           "importsFiles": [
             "apps/studio/src/app/components/ErrorBoundary.tsx"
           ],
-          "path": "apps/studio/test/error-boundary.test.tsx"
+          "path": "apps/studio/test/error-boundary.test.tsx",
+          "testFramework": "vitest"
         },
         {
           "hash": "789571b87490993077f7a10f7b6c1f061bec9e337656fb085c800e097b56dfd6",
+          "importOrder": [
+            "apps/studio/src/app/Studio.tsx",
+            "apps/studio/src/app/store.ts",
+            "apps/studio/src/app/seed-data.ts",
+            "packages/schema/src/index.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/Studio.tsx",
             "apps/studio/src/app/seed-data.ts",
             "apps/studio/src/app/store.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "apps/studio/test/export.test.tsx"
+          "path": "apps/studio/test/export.test.tsx",
+          "testFramework": "vitest"
         },
         {
           "hash": "0796e066bc41f2a373ec22befe243674975200a6a9ec1ae0893bb1ef13f0824d",
@@ -4383,22 +6097,36 @@
             "apps/studio/src/app/store.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "apps/studio/test/global-bpm.test.ts"
+          "path": "apps/studio/test/global-bpm.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "c40dd225ef45c785e32eb7bbec5b519317158100525867bad429478dd41d8870",
+          "importOrder": [
+            "packages/score-map/src/index.ts",
+            "apps/studio/src/app/seed-data.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/seed-data.ts",
             "packages/score-map/src/index.ts"
           ],
-          "path": "apps/studio/test/grounded-fold.test.ts"
+          "path": "apps/studio/test/grounded-fold.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "0cd487912643fd635e7bae3e3e15049c44329d5e7fdb99bfdbd50c2348d8839b",
-          "path": "apps/studio/test/index.test.ts"
+          "path": "apps/studio/test/index.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "b4d5eed6de578606d2933e5c83c1b9420abdf285b48918b223fc252a53cb0097",
+          "importOrder": [
+            "apps/studio/src/app/Studio.tsx",
+            "apps/studio/src/app/store.ts",
+            "apps/studio/src/app/playback-store.ts",
+            "apps/studio/src/app/seed-data.ts",
+            "packages/schema/src/index.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/Studio.tsx",
             "apps/studio/src/app/playback-store.ts",
@@ -4406,19 +6134,33 @@
             "apps/studio/src/app/store.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "apps/studio/test/keyboard-shortcuts.test.tsx"
+          "path": "apps/studio/test/keyboard-shortcuts.test.tsx",
+          "testFramework": "vitest"
         },
         {
           "hash": "2c196ae9fca9cf1d7922aa5278180e889a13696179ba84a3e2a79c6056df14a7",
+          "importOrder": [
+            "packages/score-map/src/index.ts",
+            "apps/studio/src/app/seed-data.ts",
+            "apps/studio/src/app/library-folded.json"
+          ],
           "importsFiles": [
             "apps/studio/src/app/library-folded.json",
             "apps/studio/src/app/seed-data.ts",
             "packages/score-map/src/index.ts"
           ],
-          "path": "apps/studio/test/library-fold.test.ts"
+          "path": "apps/studio/test/library-fold.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "db2ce24de49bfe0dca97965f169bc6db6033dce90651f6cf72263ff523648479",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/score-map/src/index.ts",
+            "packages/scene-mapper/src/index.ts",
+            "apps/studio/src/app/pack-fields.ts",
+            "apps/studio/src/app/seed-data.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/pack-fields.ts",
             "apps/studio/src/app/seed-data.ts",
@@ -4426,10 +6168,21 @@
             "packages/schema/src/index.ts",
             "packages/score-map/src/index.ts"
           ],
-          "path": "apps/studio/test/pack-fields.test.ts"
+          "path": "apps/studio/test/pack-fields.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "b4f62ebfeda4902712658a4b1f210c7523b8de7812d54fe978177c2f29f2f7f9",
+          "importOrder": [
+            "packages/schema/src/index.ts",
+            "packages/test-kit/src/index.ts",
+            "apps/studio/src/app/store.ts",
+            "apps/studio/src/app/screens/ManualPreview.tsx",
+            "apps/studio/src/app/screens/SequencePreview.tsx",
+            "apps/studio/src/app/components/TransportStrip.tsx",
+            "apps/studio/src/app/screens/PreviewScreen.tsx",
+            "apps/studio/src/app/playback-store.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/components/TransportStrip.tsx",
             "apps/studio/src/app/playback-store.ts",
@@ -4440,20 +6193,36 @@
             "packages/schema/src/index.ts",
             "packages/test-kit/src/index.ts"
           ],
-          "path": "apps/studio/test/playback.test.tsx"
+          "path": "apps/studio/test/playback.test.tsx",
+          "testFramework": "vitest"
         },
         {
           "hash": "fd8ec353d005c988e63e3afde06070d2a9049bd050c6397c406f32efde38aa33",
+          "importOrder": [
+            "apps/studio/src/app/preview-store.ts",
+            "apps/studio/src/app/seed-data.ts",
+            "packages/score-map/src/index.ts",
+            "packages/schema/src/index.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/preview-store.ts",
             "apps/studio/src/app/seed-data.ts",
             "packages/schema/src/index.ts",
             "packages/score-map/src/index.ts"
           ],
-          "path": "apps/studio/test/preview-store.test.ts"
+          "path": "apps/studio/test/preview-store.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "d581f1a304432ef205f4ca6a48199121483a8cf78a9ac7d19d0d976fd07255c2",
+          "importOrder": [
+            "apps/studio/src/app/Studio.tsx",
+            "apps/studio/src/app/store.ts",
+            "apps/studio/src/app/preview-store.ts",
+            "apps/studio/src/app/seed-data.ts",
+            "packages/score-map/src/index.ts",
+            "packages/schema/src/index.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/Studio.tsx",
             "apps/studio/src/app/preview-store.ts",
@@ -4462,10 +6231,19 @@
             "packages/schema/src/index.ts",
             "packages/score-map/src/index.ts"
           ],
-          "path": "apps/studio/test/preview.test.tsx"
+          "path": "apps/studio/test/preview.test.tsx",
+          "testFramework": "vitest"
         },
         {
           "hash": "849f2d01716f602083b8086e5cea64a9876c49b0a34d1598f456245fad06d331",
+          "importOrder": [
+            "apps/studio/src/app/Studio.tsx",
+            "apps/studio/src/app/store.ts",
+            "apps/studio/src/app/playback-store.ts",
+            "apps/studio/src/app/seed-data.ts",
+            "apps/studio/src/app/autosave.ts",
+            "packages/schema/src/index.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/Studio.tsx",
             "apps/studio/src/app/autosave.ts",
@@ -4474,7 +6252,8 @@
             "apps/studio/src/app/store.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "apps/studio/test/save-shortcut.test.tsx"
+          "path": "apps/studio/test/save-shortcut.test.tsx",
+          "testFramework": "vitest"
         },
         {
           "hash": "9b328c4843431fa76d8de00008fc159e95f99a840211085ff3b8f25e53d14409",
@@ -4482,31 +6261,50 @@
         },
         {
           "hash": "01171d541d80434fff97da28eca6f29103f0d5f7b37efda84c33ccc606458765",
+          "importOrder": [
+            "apps/studio/src/app/store.ts",
+            "apps/studio/src/app/seed-data.ts",
+            "packages/schema/src/index.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/seed-data.ts",
             "apps/studio/src/app/store.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "apps/studio/test/store.test.ts"
+          "path": "apps/studio/test/store.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "d74a3ec8f9f86d8806504f28121a7b336114a29c447b5689984703ea4f5704ba",
+          "importOrder": [
+            "apps/studio/src/app/Studio.tsx",
+            "apps/studio/src/app/store.ts",
+            "apps/studio/src/app/seed-data.ts",
+            "packages/schema/src/index.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/Studio.tsx",
             "apps/studio/src/app/seed-data.ts",
             "apps/studio/src/app/store.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "apps/studio/test/studio.test.tsx"
+          "path": "apps/studio/test/studio.test.tsx",
+          "testFramework": "vitest"
         },
         {
           "hash": "605066b31f7455b4e17a342327228dc74350ed01f82090b4bce56c781f8f1788",
+          "importOrder": [
+            "apps/studio/src/app/store.ts",
+            "apps/studio/src/app/seed-data.ts",
+            "packages/schema/src/index.ts"
+          ],
           "importsFiles": [
             "apps/studio/src/app/seed-data.ts",
             "apps/studio/src/app/store.ts",
             "packages/schema/src/index.ts"
           ],
-          "path": "apps/studio/test/undo-redo.test.ts"
+          "path": "apps/studio/test/undo-redo.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "9c08a5bf60b190da29205790627b9c7a2dfcb85ea8d909989180ba9426bfd083",
@@ -4534,7 +6332,17 @@
       ],
       "outsideReads": 6,
       "role": "code",
+      "testRunners": [
+        "vitest"
+      ],
       "testedBy": 29,
+      "unresolvedNamed": [
+        {
+          "path": "apps/studio/next-env.d.ts",
+          "specifier": "./.next/types/routes.d.ts",
+          "why": "generated"
+        }
+      ],
       "unresolvedSites": 1
     },
     {
@@ -4712,6 +6520,13 @@
             "fixturePath",
             "loadFixture"
           ],
+          "failurePaths": [
+            {
+              "in": "fixturePath",
+              "kind": "throw",
+              "line": 12
+            }
+          ],
           "hash": "252abca237771435d0f25b404c18609326d27d974eb286d5ae6b1b166dfe56c9",
           "path": "packages/test-kit/src/index.ts"
         },
@@ -4720,7 +6535,8 @@
           "importsFiles": [
             "packages/test-kit/src/index.ts"
           ],
-          "path": "packages/test-kit/test/index.test.ts"
+          "path": "packages/test-kit/test/index.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "07cf970893a82f70d0901499aefe264dadeb808f9129f07fc560ccd77671130e",
@@ -4738,6 +6554,9 @@
       "name": "test-kit",
       "origin": "authored",
       "role": "code",
+      "testRunners": [
+        "vitest"
+      ],
       "testedBy": 19,
       "unresolvedSites": 0
     },
@@ -4788,6 +6607,7 @@
           "path": "packages/ui/package.json"
         },
         {
+          "constantOnly": true,
           "hash": "cb9d94f4693f8226180668a15271f1c377cbf2cbd7c26213fd383d23160eca41",
           "path": "packages/ui/src/index.ts"
         },
@@ -4796,7 +6616,8 @@
           "importsFiles": [
             "packages/ui/src/index.ts"
           ],
-          "path": "packages/ui/test/index.test.ts"
+          "path": "packages/ui/test/index.test.ts",
+          "testFramework": "vitest"
         },
         {
           "hash": "07cf970893a82f70d0901499aefe264dadeb808f9129f07fc560ccd77671130e",
@@ -4814,82 +6635,698 @@
       "name": "ui",
       "origin": "authored",
       "role": "code",
+      "testRunners": [
+        "vitest"
+      ],
       "testedBy": 13,
       "unresolvedSites": 0
     }
   ],
   "doors": [
     {
-      "checksCount": 0,
+      "checksCount": 2,
       "commands": [
         {
+          "dir": "",
           "job": "ci",
-          "step": "Atlas check",
-          "text": "npx --yes @dogfood-lab/atlas@1.20.0 check"
+          "programs": [
+            "npx"
+          ],
+          "step": "Atlas check"
         },
         {
+          "dir": "",
           "job": "ci",
-          "step": "Install",
-          "text": "pnpm install --frozen-lockfile"
+          "programs": [
+            "pnpm"
+          ],
+          "step": "Install"
         },
         {
+          "dir": "",
           "job": "ci",
-          "step": "Audit dependencies",
-          "text": "pnpm audit --prod --audit-level=high || true"
+          "programs": [
+            "pnpm"
+          ],
+          "step": "Audit dependencies"
         },
         {
+          "dir": "",
           "job": "ci",
-          "step": "Lint",
-          "text": "pnpm lint"
+          "programs": [
+            "pnpm"
+          ],
+          "step": "Lint"
         },
         {
+          "dir": "",
           "job": "ci",
-          "step": "Typecheck",
-          "text": "pnpm typecheck"
+          "programs": [
+            "pnpm"
+          ],
+          "step": "Typecheck"
         },
         {
+          "dir": "",
           "job": "ci",
-          "step": "Build",
-          "text": "pnpm build"
+          "programs": [
+            "pnpm"
+          ],
+          "step": "Build"
         },
         {
+          "dir": "",
           "job": "ci",
-          "step": "Test with coverage",
-          "text": "pnpm vitest run --coverage"
+          "programs": [
+            "pnpm"
+          ],
+          "step": "Test with coverage"
         },
         {
+          "dir": "",
           "job": "security-audit",
-          "step": "Install",
-          "text": "pnpm install --frozen-lockfile"
+          "programs": [
+            "pnpm"
+          ],
+          "step": "Install"
         },
         {
+          "dir": "",
           "job": "security-audit",
-          "step": "Audit all dependencies",
-          "text": "pnpm audit --audit-level=moderate"
+          "programs": [
+            "pnpm"
+          ],
+          "step": "Audit all dependencies"
         },
         {
+          "dir": "",
           "job": "security-audit",
-          "step": "Check for known vulnerabilities",
-          "text": "npx audit-ci --moderate"
+          "programs": [
+            "npx"
+          ],
+          "step": "Check for known vulnerabilities"
         }
       ],
       "elsewhere": [],
       "file": ".github/workflows/ci.yml",
+      "jobs": [
+        {
+          "basis": "declared",
+          "name": "ci",
+          "runsOn": [
+            {
+              "labels": [
+                "ubuntu-latest"
+              ],
+              "platform": {
+                "cpu": "x64",
+                "libc": "glibc",
+                "os": "linux"
+              }
+            }
+          ],
+          "setup": [
+            {
+              "ranges": [
+                {
+                  "from": "22",
+                  "range": ">=22.0.0 <23.0.0-0"
+                }
+              ],
+              "step": "2",
+              "uses": "actions/setup-node",
+              "version": "22"
+            }
+          ]
+        },
+        {
+          "basis": "declared",
+          "name": "codecov",
+          "runsOn": [
+            {
+              "labels": [
+                "ubuntu-latest"
+              ],
+              "platform": {
+                "cpu": "x64",
+                "libc": "glibc",
+                "os": "linux"
+              }
+            }
+          ]
+        },
+        {
+          "basis": "declared",
+          "name": "security-audit",
+          "runsOn": [
+            {
+              "labels": [
+                "ubuntu-latest"
+              ],
+              "platform": {
+                "cpu": "x64",
+                "libc": "glibc",
+                "os": "linux"
+              }
+            }
+          ],
+          "setup": [
+            {
+              "ranges": [
+                {
+                  "from": "22",
+                  "range": ">=22.0.0 <23.0.0-0"
+                }
+              ],
+              "step": "2",
+              "uses": "actions/setup-node",
+              "version": "22"
+            }
+          ]
+        }
+      ],
       "landings": [],
       "mentions": [],
       "name": "CI",
       "permissions": [
         "contents:read",
+        "id-token:write",
         "security-events:write"
       ],
       "pushes": false,
-      "reach": [],
-      "readers": [],
-      "runs": [],
-      "runsCount": 0,
-      "secrets": [
-        "CODECOV_TOKEN"
+      "reach": [
+        {
+          "boundary": "asset-index",
+          "depth": 0,
+          "files": 7
+        },
+        {
+          "boundary": "audio-engine",
+          "depth": 0,
+          "files": 9
+        },
+        {
+          "boundary": "automation",
+          "depth": 0,
+          "files": 8
+        },
+        {
+          "boundary": "clip-engine",
+          "depth": 0,
+          "files": 21
+        },
+        {
+          "boundary": "instrument-rack",
+          "depth": 0,
+          "files": 13
+        },
+        {
+          "boundary": "library",
+          "depth": 0,
+          "files": 7
+        },
+        {
+          "boundary": "music-theory",
+          "depth": 0,
+          "files": 9
+        },
+        {
+          "boundary": "playback-engine",
+          "depth": 0,
+          "files": 22
+        },
+        {
+          "boundary": "review",
+          "depth": 0,
+          "files": 7
+        },
+        {
+          "boundary": "runtime-pack",
+          "depth": 0,
+          "files": 9
+        },
+        {
+          "boundary": "sample-lab",
+          "depth": 0,
+          "files": 32
+        },
+        {
+          "boundary": "scene-mapper",
+          "depth": 0,
+          "files": 22
+        },
+        {
+          "boundary": "schema",
+          "depth": 0,
+          "files": 9
+        },
+        {
+          "boundary": "score-map",
+          "depth": 0,
+          "files": 19
+        },
+        {
+          "boundary": "studio",
+          "depth": 0,
+          "files": 63
+        },
+        {
+          "boundary": "test-kit",
+          "depth": 0,
+          "files": 2
+        },
+        {
+          "boundary": "ui",
+          "depth": 0,
+          "files": 2
+        }
       ],
+      "readers": [],
+      "runs": [
+        {
+          "job": "ci",
+          "matched": true,
+          "path": "apps/studio/next-env.d.ts",
+          "runKind": "checks",
+          "via": "turbo run typecheck → tsc apps/studio/tsconfig.json"
+        },
+        {
+          "job": "ci",
+          "matched": true,
+          "path": "apps/studio/next.config.js",
+          "runKind": "executes",
+          "via": "turbo run build → next build"
+        },
+        {
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "apps/studio/src/",
+          "runKind": "checks",
+          "via": "turbo run lint → eslint"
+        },
+        {
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "apps/studio/src/app/",
+          "runKind": "executes",
+          "via": "turbo run build → next build"
+        },
+        {
+          "job": "ci",
+          "matched": true,
+          "path": "apps/studio/test/asset-files.test.ts",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "ci",
+          "matched": true,
+          "path": "apps/studio/test/autosave.test.ts",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "ci",
+          "matched": true,
+          "path": "apps/studio/test/error-boundary.test.tsx",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "ci",
+          "matched": true,
+          "path": "apps/studio/test/export.test.tsx",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "ci",
+          "matched": true,
+          "path": "apps/studio/test/global-bpm.test.ts",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "ci",
+          "matched": true,
+          "path": "apps/studio/test/grounded-fold.test.ts",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "ci",
+          "matched": true,
+          "path": "apps/studio/test/index.test.ts",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "ci",
+          "matched": true,
+          "path": "apps/studio/test/keyboard-shortcuts.test.tsx",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "ci",
+          "matched": true,
+          "path": "apps/studio/test/library-fold.test.ts",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "ci",
+          "matched": true,
+          "path": "apps/studio/test/pack-fields.test.ts",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "ci",
+          "matched": true,
+          "path": "apps/studio/test/playback.test.tsx",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "ci",
+          "matched": true,
+          "path": "apps/studio/test/preview-store.test.ts",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "ci",
+          "matched": true,
+          "path": "apps/studio/test/preview.test.tsx",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "ci",
+          "matched": true,
+          "path": "apps/studio/test/save-shortcut.test.tsx",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "ci",
+          "matched": true,
+          "path": "apps/studio/test/store.test.ts",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "ci",
+          "matched": true,
+          "path": "apps/studio/test/studio.test.tsx",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "ci",
+          "matched": true,
+          "path": "apps/studio/test/undo-redo.test.ts",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/asset-index/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/asset-index/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/asset-index/test/",
+          "runKind": "executes",
+          "via": "vitest packages/asset-index/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/audio-engine/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/audio-engine/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/audio-engine/test/",
+          "runKind": "executes",
+          "via": "vitest packages/audio-engine/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/automation/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/automation/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/automation/test/",
+          "runKind": "executes",
+          "via": "vitest packages/automation/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/clip-engine/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/clip-engine/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/clip-engine/test/",
+          "runKind": "executes",
+          "via": "vitest packages/clip-engine/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/instrument-rack/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/clip-engine/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/instrument-rack/test/",
+          "runKind": "executes",
+          "via": "vitest packages/instrument-rack/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/library/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/library/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/library/test/",
+          "runKind": "executes",
+          "via": "vitest packages/library/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/music-theory/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/clip-engine/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/music-theory/test/",
+          "runKind": "executes",
+          "via": "vitest packages/music-theory/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/playback-engine/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/playback-engine/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/playback-engine/test/",
+          "runKind": "executes",
+          "via": "vitest packages/playback-engine/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/review/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/review/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/review/test/",
+          "runKind": "executes",
+          "via": "vitest packages/review/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/runtime-pack/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/runtime-pack/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/runtime-pack/test/",
+          "runKind": "executes",
+          "via": "vitest packages/runtime-pack/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/sample-lab/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/sample-lab/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/sample-lab/test/",
+          "runKind": "executes",
+          "via": "vitest packages/sample-lab/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/scene-mapper/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/playback-engine/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/scene-mapper/test/",
+          "runKind": "executes",
+          "via": "vitest packages/scene-mapper/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/schema/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/audio-engine/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/schema/test/",
+          "runKind": "executes",
+          "via": "vitest packages/schema/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/score-map/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/sample-lab/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/score-map/test/",
+          "runKind": "executes",
+          "via": "vitest packages/score-map/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/test-kit/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/test-kit/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/test-kit/test/",
+          "runKind": "executes",
+          "via": "vitest packages/test-kit/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/ui/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/ui/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "ci",
+          "matched": true,
+          "path": "packages/ui/test/",
+          "runKind": "executes",
+          "via": "vitest packages/ui/vitest.config.ts"
+        }
+      ],
+      "runsCount": 53,
+      "secrets": [],
       "sends": {
         "deploysPages": false,
         "dispatchesTo": [],
@@ -4901,6 +7338,17 @@
         "releases": false
       },
       "stages": [],
+      "tests": [
+        {
+          "config": "vitest.config.ts",
+          "coverage": true,
+          "files": 74,
+          "job": "ci",
+          "junit": true,
+          "runner": "vitest",
+          "step": "Test with coverage"
+        }
+      ],
       "triggers": [
         {
           "event": "pull_request",
@@ -4908,6 +7356,7 @@
             ".github/workflows/**",
             "apps/**",
             "atlas/**",
+            "codecov.yml",
             "package.json",
             "packages/**",
             "pnpm-lock.yaml",
@@ -4925,6 +7374,7 @@
             ".github/workflows/**",
             "apps/**",
             "atlas/**",
+            "codecov.yml",
             "package.json",
             "packages/**",
             "pnpm-lock.yaml",
@@ -4939,7 +7389,9 @@
       ],
       "uses": [
         "actions/checkout",
+        "actions/download-artifact",
         "actions/setup-node",
+        "actions/upload-artifact",
         "codecov/codecov-action",
         "pnpm/action-setup"
       ],
@@ -4949,18 +7401,74 @@
       "checksCount": 0,
       "commands": [
         {
+          "dir": "site",
           "job": "build",
-          "step": "Install site dependencies",
-          "text": "npm ci"
+          "programs": [
+            "npm"
+          ],
+          "step": "Install site dependencies"
         },
         {
+          "dir": "site",
           "job": "build",
-          "step": "Build site",
-          "text": "npm run build"
+          "programs": [
+            "npm"
+          ],
+          "step": "Build site"
         }
       ],
       "elsewhere": [],
       "file": ".github/workflows/pages.yml",
+      "jobs": [
+        {
+          "basis": "declared",
+          "name": "build",
+          "runsOn": [
+            {
+              "labels": [
+                "ubuntu-latest"
+              ],
+              "platform": {
+                "cpu": "x64",
+                "libc": "glibc",
+                "os": "linux"
+              }
+            }
+          ],
+          "setup": [
+            {
+              "ranges": [
+                {
+                  "from": "22",
+                  "range": ">=22.0.0 <23.0.0-0"
+                }
+              ],
+              "step": "1",
+              "uses": "actions/setup-node",
+              "version": "22"
+            }
+          ]
+        },
+        {
+          "basis": "declared",
+          "environment": {
+            "name": "github-pages"
+          },
+          "name": "deploy",
+          "runsOn": [
+            {
+              "labels": [
+                "ubuntu-latest"
+              ],
+              "platform": {
+                "cpu": "x64",
+                "libc": "glibc",
+                "os": "linux"
+              }
+            }
+          ]
+        }
+      ],
       "landings": [],
       "mentions": [],
       "name": "Deploy site to GitHub Pages",
@@ -4974,7 +7482,7 @@
         {
           "boundary": "site",
           "depth": 0,
-          "files": 3
+          "files": 5
         }
       ],
       "readers": [],
@@ -5032,36 +7540,87 @@
       "usesWorkflowToken": false
     },
     {
-      "checksCount": 0,
+      "checksCount": 1,
       "commands": [
         {
+          "dir": "",
           "job": "publish",
-          "step": "Install",
-          "text": "pnpm install --frozen-lockfile"
+          "programs": [
+            "pnpm"
+          ],
+          "step": "Install"
         },
         {
+          "dir": "",
           "job": "publish",
-          "step": "Typecheck",
-          "text": "pnpm typecheck"
+          "programs": [
+            "pnpm"
+          ],
+          "step": "Typecheck"
         },
         {
+          "dir": "",
           "job": "publish",
-          "step": "Build",
-          "text": "pnpm build"
+          "programs": [
+            "pnpm"
+          ],
+          "step": "Build"
         },
         {
+          "dir": "",
           "job": "publish",
-          "step": "Test",
-          "text": "pnpm vitest run"
+          "programs": [
+            "pnpm"
+          ],
+          "step": "Test"
         },
         {
+          "dir": "",
           "job": "publish",
-          "step": "Publish packages",
-          "text": "npm install -g npm@latest\necho \"npm $(npm --version) — OIDC Trusted Publishing needs >= 11.5.1\"\npublished=0\nfor dir in packages/*/; do\n  [ -f \"${dir}package.json\" ] || continue\n  name=$(node -p \"require('./${dir}package.json').name\")\n  private=$(node -p \"require('./${dir}package.json').private === true\")\n  if [ \"$private\" = \"true\" ]; then\n    echo \"skip $name (private)\"\n    continue\n  fi\n  echo \"::group::publish $name\"\n  tarball=$(cd \"$dir\" && pnpm pack --pack-destination \"$RUNNER_TEMP\" | tail -1)\n  npm publish \"$tarball\" --access public\n  published=$((published + 1))\n  echo \"::endgroup::\"\ndone\necho \"published $published package(s)\"\n"
+          "programs": [
+            "cd",
+            "echo",
+            "node",
+            "npm",
+            "pnpm",
+            "tail"
+          ],
+          "step": "Publish packages"
         }
       ],
       "elsewhere": [],
       "file": ".github/workflows/release.yml",
+      "jobs": [
+        {
+          "basis": "declared",
+          "name": "publish",
+          "runsOn": [
+            {
+              "labels": [
+                "ubuntu-latest"
+              ],
+              "platform": {
+                "cpu": "x64",
+                "libc": "glibc",
+                "os": "linux"
+              }
+            }
+          ],
+          "setup": [
+            {
+              "ranges": [
+                {
+                  "from": "22",
+                  "range": ">=22.0.0 <23.0.0-0"
+                }
+              ],
+              "step": "2",
+              "uses": "actions/setup-node",
+              "version": "22"
+            }
+          ]
+        }
+      ],
       "landings": [],
       "mentions": [
         {
@@ -5075,10 +7634,510 @@
         "id-token:write"
       ],
       "pushes": false,
-      "reach": [],
+      "reach": [
+        {
+          "boundary": "asset-index",
+          "depth": 0,
+          "files": 7
+        },
+        {
+          "boundary": "audio-engine",
+          "depth": 0,
+          "files": 9
+        },
+        {
+          "boundary": "automation",
+          "depth": 0,
+          "files": 8
+        },
+        {
+          "boundary": "clip-engine",
+          "depth": 0,
+          "files": 21
+        },
+        {
+          "boundary": "instrument-rack",
+          "depth": 0,
+          "files": 13
+        },
+        {
+          "boundary": "library",
+          "depth": 0,
+          "files": 7
+        },
+        {
+          "boundary": "music-theory",
+          "depth": 0,
+          "files": 9
+        },
+        {
+          "boundary": "playback-engine",
+          "depth": 0,
+          "files": 22
+        },
+        {
+          "boundary": "review",
+          "depth": 0,
+          "files": 7
+        },
+        {
+          "boundary": "runtime-pack",
+          "depth": 0,
+          "files": 9
+        },
+        {
+          "boundary": "sample-lab",
+          "depth": 0,
+          "files": 32
+        },
+        {
+          "boundary": "scene-mapper",
+          "depth": 0,
+          "files": 22
+        },
+        {
+          "boundary": "schema",
+          "depth": 0,
+          "files": 9
+        },
+        {
+          "boundary": "score-map",
+          "depth": 0,
+          "files": 19
+        },
+        {
+          "boundary": "studio",
+          "depth": 0,
+          "files": 63
+        },
+        {
+          "boundary": "test-kit",
+          "depth": 0,
+          "files": 2
+        },
+        {
+          "boundary": "ui",
+          "depth": 0,
+          "files": 2
+        }
+      ],
       "readers": [],
-      "runs": [],
-      "runsCount": 0,
+      "runs": [
+        {
+          "job": "publish",
+          "matched": true,
+          "path": "apps/studio/next-env.d.ts",
+          "runKind": "checks",
+          "via": "turbo run typecheck → tsc apps/studio/tsconfig.json"
+        },
+        {
+          "job": "publish",
+          "matched": true,
+          "path": "apps/studio/next.config.js",
+          "runKind": "executes",
+          "via": "turbo run build → next build"
+        },
+        {
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "apps/studio/src/app/",
+          "runKind": "executes",
+          "via": "turbo run build → next build"
+        },
+        {
+          "job": "publish",
+          "matched": true,
+          "path": "apps/studio/test/asset-files.test.ts",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "publish",
+          "matched": true,
+          "path": "apps/studio/test/autosave.test.ts",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "publish",
+          "matched": true,
+          "path": "apps/studio/test/error-boundary.test.tsx",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "publish",
+          "matched": true,
+          "path": "apps/studio/test/export.test.tsx",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "publish",
+          "matched": true,
+          "path": "apps/studio/test/global-bpm.test.ts",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "publish",
+          "matched": true,
+          "path": "apps/studio/test/grounded-fold.test.ts",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "publish",
+          "matched": true,
+          "path": "apps/studio/test/index.test.ts",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "publish",
+          "matched": true,
+          "path": "apps/studio/test/keyboard-shortcuts.test.tsx",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "publish",
+          "matched": true,
+          "path": "apps/studio/test/library-fold.test.ts",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "publish",
+          "matched": true,
+          "path": "apps/studio/test/pack-fields.test.ts",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "publish",
+          "matched": true,
+          "path": "apps/studio/test/playback.test.tsx",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "publish",
+          "matched": true,
+          "path": "apps/studio/test/preview-store.test.ts",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "publish",
+          "matched": true,
+          "path": "apps/studio/test/preview.test.tsx",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "publish",
+          "matched": true,
+          "path": "apps/studio/test/save-shortcut.test.tsx",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "publish",
+          "matched": true,
+          "path": "apps/studio/test/store.test.ts",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "publish",
+          "matched": true,
+          "path": "apps/studio/test/studio.test.tsx",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "job": "publish",
+          "matched": true,
+          "path": "apps/studio/test/undo-redo.test.ts",
+          "runKind": "executes",
+          "via": "vitest apps/studio/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/asset-index/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/asset-index/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/asset-index/test/",
+          "runKind": "executes",
+          "via": "vitest packages/asset-index/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/audio-engine/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/audio-engine/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/audio-engine/test/",
+          "runKind": "executes",
+          "via": "vitest packages/audio-engine/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/automation/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/automation/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/automation/test/",
+          "runKind": "executes",
+          "via": "vitest packages/automation/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/clip-engine/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/clip-engine/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/clip-engine/test/",
+          "runKind": "executes",
+          "via": "vitest packages/clip-engine/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/instrument-rack/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/clip-engine/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/instrument-rack/test/",
+          "runKind": "executes",
+          "via": "vitest packages/instrument-rack/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/library/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/library/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/library/test/",
+          "runKind": "executes",
+          "via": "vitest packages/library/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/music-theory/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/clip-engine/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/music-theory/test/",
+          "runKind": "executes",
+          "via": "vitest packages/music-theory/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/playback-engine/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/playback-engine/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/playback-engine/test/",
+          "runKind": "executes",
+          "via": "vitest packages/playback-engine/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/review/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/review/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/review/test/",
+          "runKind": "executes",
+          "via": "vitest packages/review/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/runtime-pack/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/runtime-pack/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/runtime-pack/test/",
+          "runKind": "executes",
+          "via": "vitest packages/runtime-pack/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/sample-lab/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/sample-lab/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/sample-lab/test/",
+          "runKind": "executes",
+          "via": "vitest packages/sample-lab/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/scene-mapper/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/playback-engine/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/scene-mapper/test/",
+          "runKind": "executes",
+          "via": "vitest packages/scene-mapper/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/schema/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/audio-engine/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/schema/test/",
+          "runKind": "executes",
+          "via": "vitest packages/schema/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/score-map/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/sample-lab/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/score-map/test/",
+          "runKind": "executes",
+          "via": "vitest packages/score-map/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/test-kit/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/test-kit/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/test-kit/test/",
+          "runKind": "executes",
+          "via": "vitest packages/test-kit/vitest.config.ts"
+        },
+        {
+          "built": true,
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/ui/src/",
+          "runKind": "executes",
+          "via": "turbo run build → tsc packages/ui/tsconfig.json"
+        },
+        {
+          "directory": true,
+          "job": "publish",
+          "matched": true,
+          "path": "packages/ui/test/",
+          "runKind": "executes",
+          "via": "vitest packages/ui/vitest.config.ts"
+        }
+      ],
+      "runsCount": 52,
       "secrets": [],
       "sends": {
         "deploysPages": false,
@@ -5088,7 +8147,83 @@
         "opensPullRequests": false,
         "packages": [
           {
-            "chosenBy": "run",
+            "dir": "packages/asset-index",
+            "name": "@motif-studio/asset-index",
+            "registry": "npm"
+          },
+          {
+            "dir": "packages/audio-engine",
+            "name": "@motif-studio/audio-engine",
+            "registry": "npm"
+          },
+          {
+            "dir": "packages/automation",
+            "name": "@motif-studio/automation",
+            "registry": "npm"
+          },
+          {
+            "dir": "packages/clip-engine",
+            "name": "@motif-studio/clip-engine",
+            "registry": "npm"
+          },
+          {
+            "dir": "packages/instrument-rack",
+            "name": "@motif-studio/instrument-rack",
+            "registry": "npm"
+          },
+          {
+            "dir": "packages/library",
+            "name": "@motif-studio/library",
+            "registry": "npm"
+          },
+          {
+            "dir": "packages/music-theory",
+            "name": "@motif-studio/music-theory",
+            "registry": "npm"
+          },
+          {
+            "dir": "packages/playback-engine",
+            "name": "@motif-studio/playback-engine",
+            "registry": "npm"
+          },
+          {
+            "dir": "packages/review",
+            "name": "@motif-studio/review",
+            "registry": "npm"
+          },
+          {
+            "dir": "packages/runtime-pack",
+            "name": "@motif-studio/runtime-pack",
+            "registry": "npm"
+          },
+          {
+            "dir": "packages/sample-lab",
+            "name": "@motif-studio/sample-lab",
+            "registry": "npm"
+          },
+          {
+            "dir": "packages/scene-mapper",
+            "name": "@motif-studio/scene-mapper",
+            "registry": "npm"
+          },
+          {
+            "dir": "packages/schema",
+            "name": "@motif-studio/schema",
+            "registry": "npm"
+          },
+          {
+            "dir": "packages/score-map",
+            "name": "@motif-studio/score-map",
+            "registry": "npm"
+          },
+          {
+            "dir": "packages/test-kit",
+            "name": "@motif-studio/test-kit",
+            "registry": "npm"
+          },
+          {
+            "dir": "packages/ui",
+            "name": "@motif-studio/ui",
             "registry": "npm"
           }
         ],
@@ -5099,6 +8234,15 @@
         "releases": false
       },
       "stages": [],
+      "tests": [
+        {
+          "config": "vitest.config.ts",
+          "files": 74,
+          "job": "publish",
+          "runner": "vitest",
+          "step": "Test"
+        }
+      ],
       "triggers": [
         {
           "event": "release",
@@ -5112,6 +8256,928 @@
         "actions/setup-node",
         "pnpm/action-setup"
       ],
+      "usesWorkflowToken": false
+    },
+    {
+      "checksCount": 0,
+      "commands": [],
+      "elsewhere": [],
+      "entry": "packages/asset-index/src/index.ts",
+      "file": "packages/asset-index/package.json",
+      "kind": "package",
+      "landings": [],
+      "mentions": [],
+      "name": "@motif-studio/asset-index",
+      "permissions": [],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "asset-index",
+          "depth": 0,
+          "files": 6
+        },
+        {
+          "boundary": "schema",
+          "depth": 2,
+          "enters": {
+            "file": "packages/schema/src/index.ts",
+            "from": "packages/asset-index/src/audit.ts"
+          },
+          "files": 6
+        }
+      ],
+      "readers": [],
+      "runs": [
+        {
+          "path": "packages/asset-index/src/index.ts",
+          "runKind": "executes"
+        }
+      ],
+      "runsCount": 1,
+      "secrets": [],
+      "sends": {
+        "deploysPages": false,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "publishes": false,
+        "publishesTo": [],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [],
+      "uses": [],
+      "usesWorkflowToken": false
+    },
+    {
+      "checksCount": 0,
+      "commands": [],
+      "elsewhere": [],
+      "entry": "packages/audio-engine/src/index.ts",
+      "file": "packages/audio-engine/package.json",
+      "kind": "package",
+      "landings": [],
+      "mentions": [],
+      "name": "@motif-studio/audio-engine",
+      "permissions": [],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "audio-engine",
+          "depth": 0,
+          "files": 7
+        },
+        {
+          "boundary": "scene-mapper",
+          "depth": 2,
+          "enters": {
+            "file": "packages/scene-mapper/src/index.ts",
+            "from": "packages/audio-engine/src/simulate.ts"
+          },
+          "files": 12
+        },
+        {
+          "boundary": "schema",
+          "depth": 2,
+          "enters": {
+            "file": "packages/schema/src/index.ts",
+            "from": "packages/audio-engine/src/layers.ts"
+          },
+          "files": 6
+        },
+        {
+          "boundary": "score-map",
+          "depth": 4,
+          "enters": {
+            "file": "packages/score-map/src/index.ts",
+            "from": "packages/scene-mapper/src/grounded-pack.ts"
+          },
+          "files": 14
+        }
+      ],
+      "readers": [],
+      "runs": [
+        {
+          "path": "packages/audio-engine/src/index.ts",
+          "runKind": "executes"
+        }
+      ],
+      "runsCount": 1,
+      "secrets": [],
+      "sends": {
+        "deploysPages": false,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "publishes": false,
+        "publishesTo": [],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [],
+      "uses": [],
+      "usesWorkflowToken": false
+    },
+    {
+      "checksCount": 0,
+      "commands": [],
+      "elsewhere": [],
+      "entry": "packages/automation/src/index.ts",
+      "file": "packages/automation/package.json",
+      "kind": "package",
+      "landings": [],
+      "mentions": [],
+      "name": "@motif-studio/automation",
+      "permissions": [],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "automation",
+          "depth": 0,
+          "files": 6
+        },
+        {
+          "boundary": "schema",
+          "depth": 2,
+          "enters": {
+            "file": "packages/schema/src/index.ts",
+            "from": "packages/automation/src/capture.ts"
+          },
+          "files": 6
+        }
+      ],
+      "readers": [],
+      "runs": [
+        {
+          "path": "packages/automation/src/index.ts",
+          "runKind": "executes"
+        }
+      ],
+      "runsCount": 1,
+      "secrets": [],
+      "sends": {
+        "deploysPages": false,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "publishes": false,
+        "publishesTo": [],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [],
+      "uses": [],
+      "usesWorkflowToken": false
+    },
+    {
+      "checksCount": 0,
+      "commands": [],
+      "elsewhere": [],
+      "entry": "packages/clip-engine/src/index.ts",
+      "file": "packages/clip-engine/package.json",
+      "kind": "package",
+      "landings": [],
+      "mentions": [],
+      "name": "@motif-studio/clip-engine",
+      "permissions": [],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "clip-engine",
+          "depth": 0,
+          "files": 12
+        },
+        {
+          "boundary": "instrument-rack",
+          "depth": 2,
+          "enters": {
+            "file": "packages/instrument-rack/src/index.ts",
+            "from": "packages/clip-engine/src/clip-player.ts"
+          },
+          "files": 8
+        },
+        {
+          "boundary": "music-theory",
+          "depth": 2,
+          "enters": {
+            "file": "packages/music-theory/src/index.ts",
+            "from": "packages/clip-engine/src/clip-transforms.ts"
+          },
+          "files": 7
+        },
+        {
+          "boundary": "schema",
+          "depth": 2,
+          "enters": {
+            "file": "packages/schema/src/index.ts",
+            "from": "packages/clip-engine/src/clip-player.ts"
+          },
+          "files": 6
+        }
+      ],
+      "readers": [],
+      "runs": [
+        {
+          "path": "packages/clip-engine/src/index.ts",
+          "runKind": "executes"
+        }
+      ],
+      "runsCount": 1,
+      "secrets": [],
+      "sends": {
+        "deploysPages": false,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "publishes": false,
+        "publishesTo": [],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [],
+      "uses": [],
+      "usesWorkflowToken": false
+    },
+    {
+      "checksCount": 0,
+      "commands": [],
+      "elsewhere": [],
+      "entry": "packages/instrument-rack/src/index.ts",
+      "file": "packages/instrument-rack/package.json",
+      "kind": "package",
+      "landings": [],
+      "mentions": [],
+      "name": "@motif-studio/instrument-rack",
+      "permissions": [],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "instrument-rack",
+          "depth": 0,
+          "files": 8
+        },
+        {
+          "boundary": "schema",
+          "depth": 2,
+          "enters": {
+            "file": "packages/schema/src/index.ts",
+            "from": "packages/instrument-rack/src/presets.ts"
+          },
+          "files": 6
+        }
+      ],
+      "readers": [],
+      "runs": [
+        {
+          "path": "packages/instrument-rack/src/index.ts",
+          "runKind": "executes"
+        }
+      ],
+      "runsCount": 1,
+      "secrets": [],
+      "sends": {
+        "deploysPages": false,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "publishes": false,
+        "publishesTo": [],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [],
+      "uses": [],
+      "usesWorkflowToken": false
+    },
+    {
+      "checksCount": 0,
+      "commands": [],
+      "elsewhere": [],
+      "entry": "packages/library/src/index.ts",
+      "file": "packages/library/package.json",
+      "kind": "package",
+      "landings": [],
+      "mentions": [],
+      "name": "@motif-studio/library",
+      "permissions": [],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "library",
+          "depth": 0,
+          "files": 6
+        },
+        {
+          "boundary": "schema",
+          "depth": 2,
+          "enters": {
+            "file": "packages/schema/src/index.ts",
+            "from": "packages/library/src/branches.ts"
+          },
+          "files": 6
+        }
+      ],
+      "readers": [],
+      "runs": [
+        {
+          "path": "packages/library/src/index.ts",
+          "runKind": "executes"
+        }
+      ],
+      "runsCount": 1,
+      "secrets": [],
+      "sends": {
+        "deploysPages": false,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "publishes": false,
+        "publishesTo": [],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [],
+      "uses": [],
+      "usesWorkflowToken": false
+    },
+    {
+      "checksCount": 0,
+      "commands": [],
+      "elsewhere": [],
+      "entry": "packages/music-theory/src/index.ts",
+      "file": "packages/music-theory/package.json",
+      "kind": "package",
+      "landings": [],
+      "mentions": [],
+      "name": "@motif-studio/music-theory",
+      "permissions": [],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "music-theory",
+          "depth": 0,
+          "files": 7
+        }
+      ],
+      "readers": [],
+      "runs": [
+        {
+          "path": "packages/music-theory/src/index.ts",
+          "runKind": "executes"
+        }
+      ],
+      "runsCount": 1,
+      "secrets": [],
+      "sends": {
+        "deploysPages": false,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "publishes": false,
+        "publishesTo": [],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [],
+      "uses": [],
+      "usesWorkflowToken": false
+    },
+    {
+      "checksCount": 0,
+      "commands": [],
+      "elsewhere": [],
+      "entry": "packages/playback-engine/src/index.ts",
+      "file": "packages/playback-engine/package.json",
+      "kind": "package",
+      "landings": [],
+      "mentions": [],
+      "name": "@motif-studio/playback-engine",
+      "permissions": [],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "playback-engine",
+          "depth": 0,
+          "files": 13
+        },
+        {
+          "boundary": "audio-engine",
+          "depth": 2,
+          "enters": {
+            "file": "packages/audio-engine/src/index.ts",
+            "from": "packages/playback-engine/src/renderer.ts"
+          },
+          "files": 7
+        },
+        {
+          "boundary": "clip-engine",
+          "depth": 2,
+          "enters": {
+            "file": "packages/clip-engine/src/index.ts",
+            "from": "packages/playback-engine/src/renderer.ts"
+          },
+          "files": 12
+        },
+        {
+          "boundary": "instrument-rack",
+          "depth": 2,
+          "enters": {
+            "file": "packages/instrument-rack/src/index.ts",
+            "from": "packages/playback-engine/src/renderer.ts"
+          },
+          "files": 8
+        },
+        {
+          "boundary": "schema",
+          "depth": 2,
+          "enters": {
+            "file": "packages/schema/src/index.ts",
+            "from": "packages/playback-engine/src/cue-player.ts"
+          },
+          "files": 6
+        },
+        {
+          "boundary": "music-theory",
+          "depth": 4,
+          "enters": {
+            "file": "packages/music-theory/src/index.ts",
+            "from": "packages/clip-engine/src/clip-transforms.ts"
+          },
+          "files": 7
+        },
+        {
+          "boundary": "scene-mapper",
+          "depth": 4,
+          "enters": {
+            "file": "packages/scene-mapper/src/index.ts",
+            "from": "packages/audio-engine/src/simulate.ts"
+          },
+          "files": 12
+        },
+        {
+          "boundary": "score-map",
+          "depth": 6,
+          "enters": {
+            "file": "packages/score-map/src/index.ts",
+            "from": "packages/scene-mapper/src/grounded-pack.ts"
+          },
+          "files": 14
+        }
+      ],
+      "readers": [],
+      "runs": [
+        {
+          "path": "packages/playback-engine/src/index.ts",
+          "runKind": "executes"
+        }
+      ],
+      "runsCount": 1,
+      "secrets": [],
+      "sends": {
+        "deploysPages": false,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "publishes": false,
+        "publishesTo": [],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [],
+      "uses": [],
+      "usesWorkflowToken": false
+    },
+    {
+      "checksCount": 0,
+      "commands": [],
+      "elsewhere": [],
+      "entry": "packages/review/src/index.ts",
+      "file": "packages/review/package.json",
+      "kind": "package",
+      "landings": [],
+      "mentions": [],
+      "name": "@motif-studio/review",
+      "permissions": [],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "review",
+          "depth": 0,
+          "files": 6
+        },
+        {
+          "boundary": "schema",
+          "depth": 1,
+          "enters": {
+            "file": "packages/schema/src/index.ts",
+            "from": "packages/review/src/index.ts"
+          },
+          "files": 6
+        },
+        {
+          "boundary": "asset-index",
+          "depth": 2,
+          "enters": {
+            "file": "packages/asset-index/src/index.ts",
+            "from": "packages/review/src/audit.ts"
+          },
+          "files": 6
+        }
+      ],
+      "readers": [],
+      "runs": [
+        {
+          "path": "packages/review/src/index.ts",
+          "runKind": "executes"
+        }
+      ],
+      "runsCount": 1,
+      "secrets": [],
+      "sends": {
+        "deploysPages": false,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "publishes": false,
+        "publishesTo": [],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [],
+      "uses": [],
+      "usesWorkflowToken": false
+    },
+    {
+      "checksCount": 0,
+      "commands": [],
+      "elsewhere": [],
+      "entry": "packages/runtime-pack/src/index.ts",
+      "file": "packages/runtime-pack/package.json",
+      "kind": "package",
+      "landings": [],
+      "mentions": [],
+      "name": "@motif-studio/runtime-pack",
+      "permissions": [],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "runtime-pack",
+          "depth": 0,
+          "files": 7
+        },
+        {
+          "boundary": "asset-index",
+          "depth": 2,
+          "enters": {
+            "file": "packages/asset-index/src/index.ts",
+            "from": "packages/runtime-pack/src/export.ts"
+          },
+          "files": 6
+        },
+        {
+          "boundary": "schema",
+          "depth": 2,
+          "enters": {
+            "file": "packages/schema/src/index.ts",
+            "from": "packages/runtime-pack/src/export.ts"
+          },
+          "files": 6
+        }
+      ],
+      "readers": [],
+      "runs": [
+        {
+          "path": "packages/runtime-pack/src/index.ts",
+          "runKind": "executes"
+        }
+      ],
+      "runsCount": 1,
+      "secrets": [],
+      "sends": {
+        "deploysPages": false,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "publishes": false,
+        "publishesTo": [],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [],
+      "uses": [],
+      "usesWorkflowToken": false
+    },
+    {
+      "checksCount": 0,
+      "commands": [],
+      "elsewhere": [],
+      "entry": "packages/sample-lab/src/index.ts",
+      "file": "packages/sample-lab/package.json",
+      "kind": "package",
+      "landings": [],
+      "mentions": [],
+      "name": "@motif-studio/sample-lab",
+      "permissions": [],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "sample-lab",
+          "depth": 0,
+          "files": 25
+        },
+        {
+          "boundary": "schema",
+          "depth": 2,
+          "enters": {
+            "file": "packages/schema/src/index.ts",
+            "from": "packages/sample-lab/src/import.ts"
+          },
+          "files": 6
+        },
+        {
+          "boundary": "score-map",
+          "depth": 3,
+          "enters": {
+            "file": "packages/score-map/src/index.ts",
+            "from": "packages/sample-lab/src/generation/ingest-grounded.ts"
+          },
+          "files": 14
+        }
+      ],
+      "readers": [],
+      "runs": [
+        {
+          "path": "packages/sample-lab/src/index.ts",
+          "runKind": "executes"
+        }
+      ],
+      "runsCount": 1,
+      "secrets": [],
+      "sends": {
+        "deploysPages": false,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "publishes": false,
+        "publishesTo": [],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [],
+      "uses": [],
+      "usesWorkflowToken": false
+    },
+    {
+      "checksCount": 0,
+      "commands": [],
+      "elsewhere": [],
+      "entry": "packages/scene-mapper/src/index.ts",
+      "file": "packages/scene-mapper/package.json",
+      "kind": "package",
+      "landings": [],
+      "mentions": [],
+      "name": "@motif-studio/scene-mapper",
+      "permissions": [],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "scene-mapper",
+          "depth": 0,
+          "files": 12
+        },
+        {
+          "boundary": "schema",
+          "depth": 2,
+          "enters": {
+            "file": "packages/schema/src/index.ts",
+            "from": "packages/scene-mapper/src/bindings.ts"
+          },
+          "files": 6
+        },
+        {
+          "boundary": "score-map",
+          "depth": 2,
+          "enters": {
+            "file": "packages/score-map/src/index.ts",
+            "from": "packages/scene-mapper/src/grounded-pack.ts"
+          },
+          "files": 14
+        }
+      ],
+      "readers": [],
+      "runs": [
+        {
+          "path": "packages/scene-mapper/src/index.ts",
+          "runKind": "executes"
+        }
+      ],
+      "runsCount": 1,
+      "secrets": [],
+      "sends": {
+        "deploysPages": false,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "publishes": false,
+        "publishesTo": [],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [],
+      "uses": [],
+      "usesWorkflowToken": false
+    },
+    {
+      "checksCount": 0,
+      "commands": [],
+      "elsewhere": [],
+      "entry": "packages/schema/src/index.ts",
+      "file": "packages/schema/package.json",
+      "kind": "package",
+      "landings": [],
+      "mentions": [],
+      "name": "@motif-studio/schema",
+      "permissions": [],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "schema",
+          "depth": 0,
+          "files": 6
+        }
+      ],
+      "readers": [],
+      "runs": [
+        {
+          "path": "packages/schema/src/index.ts",
+          "runKind": "executes"
+        }
+      ],
+      "runsCount": 1,
+      "secrets": [],
+      "sends": {
+        "deploysPages": false,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "publishes": false,
+        "publishesTo": [],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [],
+      "uses": [],
+      "usesWorkflowToken": false
+    },
+    {
+      "checksCount": 0,
+      "commands": [],
+      "elsewhere": [],
+      "entry": "packages/score-map/src/index.ts",
+      "file": "packages/score-map/package.json",
+      "kind": "package",
+      "landings": [],
+      "mentions": [],
+      "name": "@motif-studio/score-map",
+      "permissions": [],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "score-map",
+          "depth": 0,
+          "files": 14
+        },
+        {
+          "boundary": "schema",
+          "depth": 2,
+          "enters": {
+            "file": "packages/schema/src/index.ts",
+            "from": "packages/score-map/src/cue-family.ts"
+          },
+          "files": 6
+        }
+      ],
+      "readers": [],
+      "runs": [
+        {
+          "path": "packages/score-map/src/index.ts",
+          "runKind": "executes"
+        }
+      ],
+      "runsCount": 1,
+      "secrets": [],
+      "sends": {
+        "deploysPages": false,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "publishes": false,
+        "publishesTo": [],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [],
+      "uses": [],
+      "usesWorkflowToken": false
+    },
+    {
+      "checksCount": 0,
+      "commands": [],
+      "elsewhere": [],
+      "entry": "packages/test-kit/src/index.ts",
+      "file": "packages/test-kit/package.json",
+      "kind": "package",
+      "landings": [],
+      "mentions": [],
+      "name": "@motif-studio/test-kit",
+      "permissions": [],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "test-kit",
+          "depth": 0,
+          "files": 1
+        }
+      ],
+      "readers": [],
+      "runs": [
+        {
+          "path": "packages/test-kit/src/index.ts",
+          "runKind": "executes"
+        }
+      ],
+      "runsCount": 1,
+      "secrets": [],
+      "sends": {
+        "deploysPages": false,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "publishes": false,
+        "publishesTo": [],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [],
+      "uses": [],
+      "usesWorkflowToken": false
+    },
+    {
+      "checksCount": 0,
+      "commands": [],
+      "elsewhere": [],
+      "entry": "packages/ui/src/index.ts",
+      "file": "packages/ui/package.json",
+      "kind": "package",
+      "landings": [],
+      "mentions": [],
+      "name": "@motif-studio/ui",
+      "permissions": [],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "ui",
+          "depth": 0,
+          "files": 1
+        }
+      ],
+      "readers": [],
+      "runs": [
+        {
+          "path": "packages/ui/src/index.ts",
+          "runKind": "executes"
+        }
+      ],
+      "runsCount": 1,
+      "secrets": [],
+      "sends": {
+        "deploysPages": false,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "publishes": false,
+        "publishesTo": [],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [],
+      "uses": [],
       "usesWorkflowToken": false
     }
   ],
@@ -5361,9 +9427,10 @@
       "to": "test-kit"
     }
   ],
+  "engine": "1.24.0",
   "generatedFrom": {
-    "commit": "bed863452886f1cccdf8d9f766bf2b71c40fd18f",
-    "tracked": 593
+    "commit": "2b08099d4bf9339c0760bfec90594ca5ae0cf417",
+    "tracked": 594
   },
   "landings": [
     {
@@ -5410,6 +9477,21 @@
       ],
       "target": "apps/studio",
       "writers": []
+    },
+    {
+      "readers": [],
+      "target": "apps/studio/public/audio",
+      "tracked": false,
+      "writers": [
+        {
+          "by": "packages/sample-lab/src/generation/run-ingest-grounded.ts",
+          "confidence": "ast"
+        },
+        {
+          "by": "packages/sample-lab/src/generation/run-ingest-library.ts",
+          "confidence": "ast"
+        }
+      ]
     },
     {
       "readers": [],
@@ -5495,18 +9577,8 @@
     {
       "readers": [
         {
-          "by": "site/src/site-config.ts",
-          "call": "literal",
-          "confidence": "ast"
-        }
-      ],
-      "target": "handbook",
-      "writers": []
-    },
-    {
-      "readers": [
-        {
-          "by": ".github/workflows/release.yml"
+          "by": ".github/workflows/release.yml",
+          "confidence": "config"
         },
         {
           "by": "packages/schema/test/workspace-health.test.ts",
@@ -5799,5 +9871,24 @@
   "submodules": [],
   "symlinks": [],
   "testFiles": 77,
-  "unassigned": []
+  "unassigned": [],
+  "workspaces": [
+    "apps/studio",
+    "packages/asset-index",
+    "packages/audio-engine",
+    "packages/automation",
+    "packages/clip-engine",
+    "packages/instrument-rack",
+    "packages/library",
+    "packages/music-theory",
+    "packages/playback-engine",
+    "packages/review",
+    "packages/runtime-pack",
+    "packages/sample-lab",
+    "packages/scene-mapper",
+    "packages/schema",
+    "packages/score-map",
+    "packages/test-kit",
+    "packages/ui"
+  ]
 }
