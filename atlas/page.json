@@ -9,7 +9,7 @@
   ],
   "breaks": [
     {
-      "doors": 0,
+      "doors": 15,
       "importedBy": [
         "asset-index",
         "audio-engine",
@@ -31,7 +31,19 @@
       "partLabel": "schema"
     },
     {
-      "doors": 0,
+      "doors": 7,
+      "importedBy": [
+        "sample-lab",
+        "scene-mapper",
+        "studio"
+      ],
+      "importedByTests": [],
+      "kind": "part",
+      "name": "score-map",
+      "partLabel": "score-map"
+    },
+    {
+      "doors": 5,
       "importedBy": [
         "clip-engine",
         "playback-engine",
@@ -46,19 +58,40 @@
       "partLabel": "instrument-rack"
     },
     {
-      "doors": 0,
+      "doors": 5,
       "importedBy": [
-        "sample-lab",
-        "scene-mapper",
+        "review",
+        "runtime-pack"
+      ],
+      "importedByTests": [],
+      "kind": "part",
+      "name": "asset-index",
+      "partLabel": "asset-index"
+    },
+    {
+      "doors": 5,
+      "importedBy": [
+        "clip-engine",
         "studio"
       ],
       "importedByTests": [],
       "kind": "part",
-      "name": "score-map",
-      "partLabel": "score-map"
+      "name": "music-theory",
+      "partLabel": "music-theory"
     },
     {
-      "doors": 0,
+      "doors": 5,
+      "importedBy": [
+        "audio-engine",
+        "studio"
+      ],
+      "importedByTests": [],
+      "kind": "part",
+      "name": "scene-mapper",
+      "partLabel": "scene-mapper"
+    },
+    {
+      "doors": 4,
       "importedBy": [
         "playback-engine",
         "studio"
@@ -71,18 +104,7 @@
       "partLabel": "clip-engine"
     },
     {
-      "doors": 0,
-      "importedBy": [
-        "review",
-        "runtime-pack"
-      ],
-      "importedByTests": [],
-      "kind": "part",
-      "name": "asset-index",
-      "partLabel": "asset-index"
-    },
-    {
-      "doors": 0,
+      "doors": 4,
       "importedBy": [
         "playback-engine",
         "studio"
@@ -91,32 +113,98 @@
       "kind": "part",
       "name": "audio-engine",
       "partLabel": "audio-engine"
-    },
-    {
-      "doors": 0,
-      "importedBy": [
-        "clip-engine",
-        "studio"
-      ],
-      "importedByTests": [],
-      "kind": "part",
-      "name": "music-theory",
-      "partLabel": "music-theory"
-    },
-    {
-      "doors": 0,
-      "importedBy": [
-        "audio-engine",
-        "studio"
-      ],
-      "importedByTests": [],
-      "kind": "part",
-      "name": "scene-mapper",
-      "partLabel": "scene-mapper"
     }
   ],
   "changes": {
-    "first": true
+    "fileCounts": {
+      "added": 1,
+      "changed": 1,
+      "moved": 0,
+      "parts": 2,
+      "removed": 0
+    },
+    "items": [
+      {
+        "kind": "door",
+        "sentence": "CI's pull request trigger now also names `codecov.yml`.",
+        "subjects": [
+          ".github/workflows/ci.yml"
+        ]
+      },
+      {
+        "kind": "door",
+        "sentence": "CI's push trigger now also names `codecov.yml`.",
+        "subjects": [
+          ".github/workflows/ci.yml"
+        ]
+      },
+      {
+        "kind": "door",
+        "sentence": "CI now also runs apps/studio/next.config.js, apps/studio/src/app/, apps/studio/test/asset-files.test.ts and 32 more.",
+        "subjects": [
+          ".github/workflows/ci.yml",
+          "apps/studio/next.config.js",
+          "apps/studio/src/app/",
+          "apps/studio/test/asset-files.test.ts",
+          "apps/studio/test/autosave.test.ts",
+          "apps/studio/test/error-boundary.test.tsx",
+          "apps/studio/test/export.test.tsx",
+          "apps/studio/test/global-bpm.test.ts",
+          "apps/studio/test/grounded-fold.test.ts",
+          "apps/studio/test/index.test.ts",
+          "apps/studio/test/keyboard-shortcuts.test.tsx",
+          "apps/studio/test/library-fold.test.ts",
+          "apps/studio/test/pack-fields.test.ts",
+          "apps/studio/test/playback.test.tsx",
+          "apps/studio/test/preview-store.test.ts",
+          "apps/studio/test/preview.test.tsx",
+          "apps/studio/test/save-shortcut.test.tsx",
+          "apps/studio/test/store.test.ts",
+          "apps/studio/test/studio.test.tsx",
+          "apps/studio/test/undo-redo.test.ts",
+          "packages/asset-index/test/",
+          "packages/audio-engine/test/",
+          "packages/automation/test/",
+          "packages/clip-engine/test/",
+          "packages/instrument-rack/test/",
+          "packages/library/test/",
+          "packages/music-theory/test/",
+          "packages/playback-engine/test/",
+          "packages/review/test/",
+          "packages/runtime-pack/test/",
+          "packages/sample-lab/test/",
+          "packages/scene-mapper/test/",
+          "packages/schema/test/",
+          "packages/score-map/test/",
+          "packages/test-kit/test/",
+          "packages/ui/test/"
+        ]
+      },
+      {
+        "kind": "door",
+        "sentence": "And 21 more changes to doors.",
+        "subjects": []
+      },
+      {
+        "kind": "landing",
+        "sentence": "apps/studio/public/audio is now written by packages/sample-lab/src/generation/run-ingest-grounded.ts and packages/sample-lab/src/generation/run-ingest-library.ts.",
+        "subjects": [
+          "apps/studio/public/audio",
+          "packages/sample-lab/src/generation/run-ingest-grounded.ts",
+          "packages/sample-lab/src/generation/run-ingest-library.ts"
+        ]
+      },
+      {
+        "kind": "counts",
+        "sentence": "1 file added and 1 changed content, across 2 parts.",
+        "subjects": []
+      }
+    ],
+    "since": {
+      "commit": "bed863452886f1cccdf8d9f766bf2b71c40fd18f",
+      "generatedAt": "2026-09-25T02:11:05.319Z"
+    },
+    "unchanged": false
   },
   "changesTogether": [
     {
@@ -166,14 +254,343 @@
     }
   ],
   "changesTogetherNote": [
-    "Confidence is low: fewer than 20 source files reach 10 revisions in the window.",
+    "Confidence is low: fewer than 25 source files reach 10 revisions in the window.",
     "Window: 180 days; a pair counts from 3 shared commits, since 0 source files reach 10 revisions; the floor rises to 10 when 25 do."
   ],
   "changesTogetherWithTests": 0,
-  "commit": "bed863452886f1cccdf8d9f766bf2b71c40fd18f",
+  "commit": "2b08099d4bf9339c0760bfec90594ca5ae0cf417",
   "defaultBranch": "main",
-  "derived": "23 parts, mostly TypeScript (277 files) and JavaScript (3). Work enters through 3 doors; the busiest is Deploy site to GitHub Pages, which reaches 1 part. It publishes a package to npm, chosen at run time.",
+  "derived": "23 parts, mostly TypeScript (277 files), CSS (3), JavaScript (3) and Astro (1). Work enters through 19 doors; CI and Release each reach 17 parts, and CI is followed because a pull request goes through it. It publishes @motif-studio/asset-index (packages/asset-index), @motif-studio/audio-engine (packages/audio-engine), @motif-studio/automation (packages/automation), @motif-studio/clip-engine (packages/clip-engine), @motif-studio/instrument-rack (packages/instrument-rack), @motif-studio/library (packages/library), @motif-studio/music-theory (packages/music-theory), @motif-studio/playback-engine (packages/playback-engine), @motif-studio/review (packages/review), @motif-studio/runtime-pack (packages/runtime-pack), @motif-studio/sample-lab (packages/sample-lab), @motif-studio/scene-mapper (packages/scene-mapper), @motif-studio/schema (packages/schema), @motif-studio/score-map (packages/score-map), @motif-studio/test-kit (packages/test-kit) and @motif-studio/ui (packages/ui) to npm. It deploys a site to GitHub Pages. People import @motif-studio/asset-index, @motif-studio/audio-engine, @motif-studio/automation, @motif-studio/clip-engine, @motif-studio/instrument-rack, @motif-studio/library, @motif-studio/music-theory, @motif-studio/playback-engine, @motif-studio/review, @motif-studio/runtime-pack and 6 more.",
   "doors": [
+    {
+      "builds": [
+        "packages/asset-index/src/",
+        "packages/audio-engine/src/",
+        "packages/automation/src/",
+        "packages/clip-engine/src/",
+        "packages/instrument-rack/src/",
+        "packages/library/src/",
+        "packages/music-theory/src/",
+        "packages/playback-engine/src/",
+        "packages/review/src/",
+        "packages/runtime-pack/src/",
+        "packages/sample-lab/src/",
+        "packages/scene-mapper/src/",
+        "packages/schema/src/",
+        "packages/score-map/src/",
+        "packages/test-kit/src/",
+        "packages/ui/src/"
+      ],
+      "checks": [
+        "apps/studio/next-env.d.ts",
+        "apps/studio/src/"
+      ],
+      "checksCount": 2,
+      "checksMore": 0,
+      "file": ".github/workflows/ci.yml",
+      "id": ".github/workflows/ci.yml",
+      "landings": [],
+      "name": "CI",
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "asset-index",
+          "depth": 0,
+          "files": 7
+        },
+        {
+          "boundary": "audio-engine",
+          "depth": 0,
+          "files": 9
+        },
+        {
+          "boundary": "automation",
+          "depth": 0,
+          "files": 8
+        },
+        {
+          "boundary": "clip-engine",
+          "depth": 0,
+          "files": 21
+        },
+        {
+          "boundary": "instrument-rack",
+          "depth": 0,
+          "files": 13
+        },
+        {
+          "boundary": "library",
+          "depth": 0,
+          "files": 7
+        },
+        {
+          "boundary": "music-theory",
+          "depth": 0,
+          "files": 9
+        },
+        {
+          "boundary": "playback-engine",
+          "depth": 0,
+          "files": 22
+        },
+        {
+          "boundary": "review",
+          "depth": 0,
+          "files": 7
+        },
+        {
+          "boundary": "runtime-pack",
+          "depth": 0,
+          "files": 9
+        },
+        {
+          "boundary": "sample-lab",
+          "depth": 0,
+          "files": 32
+        },
+        {
+          "boundary": "scene-mapper",
+          "depth": 0,
+          "files": 22
+        },
+        {
+          "boundary": "schema",
+          "depth": 0,
+          "files": 9
+        },
+        {
+          "boundary": "score-map",
+          "depth": 0,
+          "files": 19
+        },
+        {
+          "boundary": "studio",
+          "depth": 0,
+          "files": 63
+        },
+        {
+          "boundary": "test-kit",
+          "depth": 0,
+          "files": 2
+        },
+        {
+          "boundary": "ui",
+          "depth": 0,
+          "files": 2
+        }
+      ],
+      "runs": [
+        "apps/studio/next.config.js",
+        "apps/studio/src/app/",
+        "apps/studio/test/asset-files.test.ts",
+        "apps/studio/test/autosave.test.ts",
+        "apps/studio/test/error-boundary.test.tsx",
+        "apps/studio/test/export.test.tsx",
+        "apps/studio/test/global-bpm.test.ts",
+        "apps/studio/test/grounded-fold.test.ts",
+        "apps/studio/test/index.test.ts",
+        "apps/studio/test/keyboard-shortcuts.test.tsx",
+        "apps/studio/test/library-fold.test.ts",
+        "apps/studio/test/pack-fields.test.ts",
+        "apps/studio/test/playback.test.tsx",
+        "apps/studio/test/preview-store.test.ts",
+        "apps/studio/test/preview.test.tsx",
+        "apps/studio/test/save-shortcut.test.tsx",
+        "apps/studio/test/store.test.ts",
+        "apps/studio/test/studio.test.tsx",
+        "apps/studio/test/undo-redo.test.ts",
+        "packages/asset-index/test/",
+        "packages/audio-engine/test/",
+        "packages/automation/test/",
+        "packages/clip-engine/test/",
+        "packages/instrument-rack/test/",
+        "packages/library/test/",
+        "packages/music-theory/test/",
+        "packages/playback-engine/test/",
+        "packages/review/test/",
+        "packages/runtime-pack/test/",
+        "packages/sample-lab/test/",
+        "packages/scene-mapper/test/",
+        "packages/schema/test/",
+        "packages/score-map/test/",
+        "packages/test-kit/test/",
+        "packages/ui/test/"
+      ],
+      "runsCount": 35,
+      "runsMore": 73,
+      "sends": [
+        "uploads coverage to Codecov"
+      ],
+      "stages": [],
+      "triggers": [
+        "on a pull request touching 10 paths",
+        "on a push to main touching 10 paths",
+        "or by hand"
+      ]
+    },
+    {
+      "builds": [
+        "packages/asset-index/src/",
+        "packages/audio-engine/src/",
+        "packages/automation/src/",
+        "packages/clip-engine/src/",
+        "packages/instrument-rack/src/",
+        "packages/library/src/",
+        "packages/music-theory/src/",
+        "packages/playback-engine/src/",
+        "packages/review/src/",
+        "packages/runtime-pack/src/",
+        "packages/sample-lab/src/",
+        "packages/scene-mapper/src/",
+        "packages/schema/src/",
+        "packages/score-map/src/",
+        "packages/test-kit/src/",
+        "packages/ui/src/"
+      ],
+      "checks": [
+        "apps/studio/next-env.d.ts"
+      ],
+      "checksCount": 1,
+      "checksMore": 0,
+      "file": ".github/workflows/release.yml",
+      "id": ".github/workflows/release.yml",
+      "landings": [],
+      "name": "Release",
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "asset-index",
+          "depth": 0,
+          "files": 7
+        },
+        {
+          "boundary": "audio-engine",
+          "depth": 0,
+          "files": 9
+        },
+        {
+          "boundary": "automation",
+          "depth": 0,
+          "files": 8
+        },
+        {
+          "boundary": "clip-engine",
+          "depth": 0,
+          "files": 21
+        },
+        {
+          "boundary": "instrument-rack",
+          "depth": 0,
+          "files": 13
+        },
+        {
+          "boundary": "library",
+          "depth": 0,
+          "files": 7
+        },
+        {
+          "boundary": "music-theory",
+          "depth": 0,
+          "files": 9
+        },
+        {
+          "boundary": "playback-engine",
+          "depth": 0,
+          "files": 22
+        },
+        {
+          "boundary": "review",
+          "depth": 0,
+          "files": 7
+        },
+        {
+          "boundary": "runtime-pack",
+          "depth": 0,
+          "files": 9
+        },
+        {
+          "boundary": "sample-lab",
+          "depth": 0,
+          "files": 32
+        },
+        {
+          "boundary": "scene-mapper",
+          "depth": 0,
+          "files": 22
+        },
+        {
+          "boundary": "schema",
+          "depth": 0,
+          "files": 9
+        },
+        {
+          "boundary": "score-map",
+          "depth": 0,
+          "files": 19
+        },
+        {
+          "boundary": "studio",
+          "depth": 0,
+          "files": 63
+        },
+        {
+          "boundary": "test-kit",
+          "depth": 0,
+          "files": 2
+        },
+        {
+          "boundary": "ui",
+          "depth": 0,
+          "files": 2
+        }
+      ],
+      "runs": [
+        "apps/studio/next.config.js",
+        "apps/studio/src/app/",
+        "apps/studio/test/asset-files.test.ts",
+        "apps/studio/test/autosave.test.ts",
+        "apps/studio/test/error-boundary.test.tsx",
+        "apps/studio/test/export.test.tsx",
+        "apps/studio/test/global-bpm.test.ts",
+        "apps/studio/test/grounded-fold.test.ts",
+        "apps/studio/test/index.test.ts",
+        "apps/studio/test/keyboard-shortcuts.test.tsx",
+        "apps/studio/test/library-fold.test.ts",
+        "apps/studio/test/pack-fields.test.ts",
+        "apps/studio/test/playback.test.tsx",
+        "apps/studio/test/preview-store.test.ts",
+        "apps/studio/test/preview.test.tsx",
+        "apps/studio/test/save-shortcut.test.tsx",
+        "apps/studio/test/store.test.ts",
+        "apps/studio/test/studio.test.tsx",
+        "apps/studio/test/undo-redo.test.ts",
+        "packages/asset-index/test/",
+        "packages/audio-engine/test/",
+        "packages/automation/test/",
+        "packages/clip-engine/test/",
+        "packages/instrument-rack/test/",
+        "packages/library/test/",
+        "packages/music-theory/test/",
+        "packages/playback-engine/test/",
+        "packages/review/test/",
+        "packages/runtime-pack/test/",
+        "packages/sample-lab/test/",
+        "packages/scene-mapper/test/",
+        "packages/schema/test/",
+        "packages/score-map/test/",
+        "packages/test-kit/test/",
+        "packages/ui/test/"
+      ],
+      "runsCount": 35,
+      "runsMore": 73,
+      "sends": [
+        "publishes @motif-studio/asset-index (packages/asset-index), @motif-studio/audio-engine (packages/audio-engine), @motif-studio/automation (packages/automation), @motif-studio/clip-engine (packages/clip-engine), @motif-studio/instrument-rack (packages/instrument-rack), @motif-studio/library (packages/library), @motif-studio/music-theory (packages/music-theory), @motif-studio/playback-engine (packages/playback-engine), @motif-studio/review (packages/review), @motif-studio/runtime-pack (packages/runtime-pack), @motif-studio/sample-lab (packages/sample-lab), @motif-studio/scene-mapper (packages/scene-mapper), @motif-studio/schema (packages/schema), @motif-studio/score-map (packages/score-map), @motif-studio/test-kit (packages/test-kit) and @motif-studio/ui (packages/ui) to npm"
+      ],
+      "stages": [],
+      "triggers": [
+        "when a release is published"
+      ]
+    },
     {
       "checks": [],
       "checksCount": 0,
@@ -187,7 +604,7 @@
         {
           "boundary": "site",
           "depth": 0,
-          "files": 3
+          "files": 5
         }
       ],
       "runs": [
@@ -209,43 +626,547 @@
       "checks": [],
       "checksCount": 0,
       "checksMore": 0,
-      "file": ".github/workflows/ci.yml",
-      "id": ".github/workflows/ci.yml",
+      "file": "packages/playback-engine/package.json",
+      "id": "packages/playback-engine/package.json#@motif-studio/playback-engine",
+      "kind": "package",
       "landings": [],
-      "name": "CI",
+      "name": "@motif-studio/playback-engine",
       "pushes": false,
-      "reach": [],
-      "runs": [],
-      "runsCount": 0,
+      "reach": [
+        {
+          "boundary": "playback-engine",
+          "depth": 0,
+          "files": 13
+        },
+        {
+          "boundary": "audio-engine",
+          "depth": 2,
+          "files": 7
+        },
+        {
+          "boundary": "clip-engine",
+          "depth": 2,
+          "files": 12
+        },
+        {
+          "boundary": "instrument-rack",
+          "depth": 2,
+          "files": 8
+        },
+        {
+          "boundary": "schema",
+          "depth": 2,
+          "files": 6
+        },
+        {
+          "boundary": "music-theory",
+          "depth": 4,
+          "files": 7
+        },
+        {
+          "boundary": "scene-mapper",
+          "depth": 4,
+          "files": 12
+        },
+        {
+          "boundary": "score-map",
+          "depth": 6,
+          "files": 14
+        }
+      ],
+      "runs": [
+        "packages/playback-engine/src/index.ts"
+      ],
+      "runsCount": 1,
       "runsMore": 0,
       "sends": [],
       "stages": [],
-      "triggers": [
-        "on a pull request touching 9 paths",
-        "on a push to main touching 9 paths",
-        "or by hand"
-      ]
+      "triggers": []
     },
     {
       "checks": [],
       "checksCount": 0,
       "checksMore": 0,
-      "file": ".github/workflows/release.yml",
-      "id": ".github/workflows/release.yml",
+      "file": "packages/audio-engine/package.json",
+      "id": "packages/audio-engine/package.json#@motif-studio/audio-engine",
+      "kind": "package",
       "landings": [],
-      "name": "Release",
+      "name": "@motif-studio/audio-engine",
       "pushes": false,
-      "reach": [],
-      "runs": [],
-      "runsCount": 0,
-      "runsMore": 0,
-      "sends": [
-        "publishes a package to npm, chosen at run time"
+      "reach": [
+        {
+          "boundary": "audio-engine",
+          "depth": 0,
+          "files": 7
+        },
+        {
+          "boundary": "scene-mapper",
+          "depth": 2,
+          "files": 12
+        },
+        {
+          "boundary": "schema",
+          "depth": 2,
+          "files": 6
+        },
+        {
+          "boundary": "score-map",
+          "depth": 4,
+          "files": 14
+        }
       ],
+      "runs": [
+        "packages/audio-engine/src/index.ts"
+      ],
+      "runsCount": 1,
+      "runsMore": 0,
+      "sends": [],
       "stages": [],
-      "triggers": [
-        "when a release is published"
-      ]
+      "triggers": []
+    },
+    {
+      "checks": [],
+      "checksCount": 0,
+      "checksMore": 0,
+      "file": "packages/clip-engine/package.json",
+      "id": "packages/clip-engine/package.json#@motif-studio/clip-engine",
+      "kind": "package",
+      "landings": [],
+      "name": "@motif-studio/clip-engine",
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "clip-engine",
+          "depth": 0,
+          "files": 12
+        },
+        {
+          "boundary": "instrument-rack",
+          "depth": 2,
+          "files": 8
+        },
+        {
+          "boundary": "music-theory",
+          "depth": 2,
+          "files": 7
+        },
+        {
+          "boundary": "schema",
+          "depth": 2,
+          "files": 6
+        }
+      ],
+      "runs": [
+        "packages/clip-engine/src/index.ts"
+      ],
+      "runsCount": 1,
+      "runsMore": 0,
+      "sends": [],
+      "stages": [],
+      "triggers": []
+    },
+    {
+      "checks": [],
+      "checksCount": 0,
+      "checksMore": 0,
+      "file": "packages/review/package.json",
+      "id": "packages/review/package.json#@motif-studio/review",
+      "kind": "package",
+      "landings": [],
+      "name": "@motif-studio/review",
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "review",
+          "depth": 0,
+          "files": 6
+        },
+        {
+          "boundary": "schema",
+          "depth": 1,
+          "files": 6
+        },
+        {
+          "boundary": "asset-index",
+          "depth": 2,
+          "files": 6
+        }
+      ],
+      "runs": [
+        "packages/review/src/index.ts"
+      ],
+      "runsCount": 1,
+      "runsMore": 0,
+      "sends": [],
+      "stages": [],
+      "triggers": []
+    },
+    {
+      "checks": [],
+      "checksCount": 0,
+      "checksMore": 0,
+      "file": "packages/runtime-pack/package.json",
+      "id": "packages/runtime-pack/package.json#@motif-studio/runtime-pack",
+      "kind": "package",
+      "landings": [],
+      "name": "@motif-studio/runtime-pack",
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "runtime-pack",
+          "depth": 0,
+          "files": 7
+        },
+        {
+          "boundary": "asset-index",
+          "depth": 2,
+          "files": 6
+        },
+        {
+          "boundary": "schema",
+          "depth": 2,
+          "files": 6
+        }
+      ],
+      "runs": [
+        "packages/runtime-pack/src/index.ts"
+      ],
+      "runsCount": 1,
+      "runsMore": 0,
+      "sends": [],
+      "stages": [],
+      "triggers": []
+    },
+    {
+      "checks": [],
+      "checksCount": 0,
+      "checksMore": 0,
+      "file": "packages/sample-lab/package.json",
+      "id": "packages/sample-lab/package.json#@motif-studio/sample-lab",
+      "kind": "package",
+      "landings": [],
+      "name": "@motif-studio/sample-lab",
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "sample-lab",
+          "depth": 0,
+          "files": 25
+        },
+        {
+          "boundary": "schema",
+          "depth": 2,
+          "files": 6
+        },
+        {
+          "boundary": "score-map",
+          "depth": 3,
+          "files": 14
+        }
+      ],
+      "runs": [
+        "packages/sample-lab/src/index.ts"
+      ],
+      "runsCount": 1,
+      "runsMore": 0,
+      "sends": [],
+      "stages": [],
+      "triggers": []
+    },
+    {
+      "checks": [],
+      "checksCount": 0,
+      "checksMore": 0,
+      "file": "packages/scene-mapper/package.json",
+      "id": "packages/scene-mapper/package.json#@motif-studio/scene-mapper",
+      "kind": "package",
+      "landings": [],
+      "name": "@motif-studio/scene-mapper",
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "scene-mapper",
+          "depth": 0,
+          "files": 12
+        },
+        {
+          "boundary": "schema",
+          "depth": 2,
+          "files": 6
+        },
+        {
+          "boundary": "score-map",
+          "depth": 2,
+          "files": 14
+        }
+      ],
+      "runs": [
+        "packages/scene-mapper/src/index.ts"
+      ],
+      "runsCount": 1,
+      "runsMore": 0,
+      "sends": [],
+      "stages": [],
+      "triggers": []
+    },
+    {
+      "checks": [],
+      "checksCount": 0,
+      "checksMore": 0,
+      "file": "packages/asset-index/package.json",
+      "id": "packages/asset-index/package.json#@motif-studio/asset-index",
+      "kind": "package",
+      "landings": [],
+      "name": "@motif-studio/asset-index",
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "asset-index",
+          "depth": 0,
+          "files": 6
+        },
+        {
+          "boundary": "schema",
+          "depth": 2,
+          "files": 6
+        }
+      ],
+      "runs": [
+        "packages/asset-index/src/index.ts"
+      ],
+      "runsCount": 1,
+      "runsMore": 0,
+      "sends": [],
+      "stages": [],
+      "triggers": []
+    },
+    {
+      "checks": [],
+      "checksCount": 0,
+      "checksMore": 0,
+      "file": "packages/automation/package.json",
+      "id": "packages/automation/package.json#@motif-studio/automation",
+      "kind": "package",
+      "landings": [],
+      "name": "@motif-studio/automation",
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "automation",
+          "depth": 0,
+          "files": 6
+        },
+        {
+          "boundary": "schema",
+          "depth": 2,
+          "files": 6
+        }
+      ],
+      "runs": [
+        "packages/automation/src/index.ts"
+      ],
+      "runsCount": 1,
+      "runsMore": 0,
+      "sends": [],
+      "stages": [],
+      "triggers": []
+    },
+    {
+      "checks": [],
+      "checksCount": 0,
+      "checksMore": 0,
+      "file": "packages/instrument-rack/package.json",
+      "id": "packages/instrument-rack/package.json#@motif-studio/instrument-rack",
+      "kind": "package",
+      "landings": [],
+      "name": "@motif-studio/instrument-rack",
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "instrument-rack",
+          "depth": 0,
+          "files": 8
+        },
+        {
+          "boundary": "schema",
+          "depth": 2,
+          "files": 6
+        }
+      ],
+      "runs": [
+        "packages/instrument-rack/src/index.ts"
+      ],
+      "runsCount": 1,
+      "runsMore": 0,
+      "sends": [],
+      "stages": [],
+      "triggers": []
+    },
+    {
+      "checks": [],
+      "checksCount": 0,
+      "checksMore": 0,
+      "file": "packages/library/package.json",
+      "id": "packages/library/package.json#@motif-studio/library",
+      "kind": "package",
+      "landings": [],
+      "name": "@motif-studio/library",
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "library",
+          "depth": 0,
+          "files": 6
+        },
+        {
+          "boundary": "schema",
+          "depth": 2,
+          "files": 6
+        }
+      ],
+      "runs": [
+        "packages/library/src/index.ts"
+      ],
+      "runsCount": 1,
+      "runsMore": 0,
+      "sends": [],
+      "stages": [],
+      "triggers": []
+    },
+    {
+      "checks": [],
+      "checksCount": 0,
+      "checksMore": 0,
+      "file": "packages/score-map/package.json",
+      "id": "packages/score-map/package.json#@motif-studio/score-map",
+      "kind": "package",
+      "landings": [],
+      "name": "@motif-studio/score-map",
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "score-map",
+          "depth": 0,
+          "files": 14
+        },
+        {
+          "boundary": "schema",
+          "depth": 2,
+          "files": 6
+        }
+      ],
+      "runs": [
+        "packages/score-map/src/index.ts"
+      ],
+      "runsCount": 1,
+      "runsMore": 0,
+      "sends": [],
+      "stages": [],
+      "triggers": []
+    },
+    {
+      "checks": [],
+      "checksCount": 0,
+      "checksMore": 0,
+      "file": "packages/music-theory/package.json",
+      "id": "packages/music-theory/package.json#@motif-studio/music-theory",
+      "kind": "package",
+      "landings": [],
+      "name": "@motif-studio/music-theory",
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "music-theory",
+          "depth": 0,
+          "files": 7
+        }
+      ],
+      "runs": [
+        "packages/music-theory/src/index.ts"
+      ],
+      "runsCount": 1,
+      "runsMore": 0,
+      "sends": [],
+      "stages": [],
+      "triggers": []
+    },
+    {
+      "checks": [],
+      "checksCount": 0,
+      "checksMore": 0,
+      "file": "packages/schema/package.json",
+      "id": "packages/schema/package.json#@motif-studio/schema",
+      "kind": "package",
+      "landings": [],
+      "name": "@motif-studio/schema",
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "schema",
+          "depth": 0,
+          "files": 6
+        }
+      ],
+      "runs": [
+        "packages/schema/src/index.ts"
+      ],
+      "runsCount": 1,
+      "runsMore": 0,
+      "sends": [],
+      "stages": [],
+      "triggers": []
+    },
+    {
+      "checks": [],
+      "checksCount": 0,
+      "checksMore": 0,
+      "file": "packages/test-kit/package.json",
+      "id": "packages/test-kit/package.json#@motif-studio/test-kit",
+      "kind": "package",
+      "landings": [],
+      "name": "@motif-studio/test-kit",
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "test-kit",
+          "depth": 0,
+          "files": 1
+        }
+      ],
+      "runs": [
+        "packages/test-kit/src/index.ts"
+      ],
+      "runsCount": 1,
+      "runsMore": 0,
+      "sends": [],
+      "stages": [],
+      "triggers": []
+    },
+    {
+      "checks": [],
+      "checksCount": 0,
+      "checksMore": 0,
+      "file": "packages/ui/package.json",
+      "id": "packages/ui/package.json#@motif-studio/ui",
+      "kind": "package",
+      "landings": [],
+      "name": "@motif-studio/ui",
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "ui",
+          "depth": 0,
+          "files": 1
+        }
+      ],
+      "runs": [
+        "packages/ui/src/index.ts"
+      ],
+      "runsCount": 1,
+      "runsMore": 0,
+      "sends": [],
+      "stages": [],
+      "triggers": []
     }
   ],
   "duplicates": [],
@@ -318,6 +1239,7 @@
       "to": "schema"
     }
   ],
+  "engine": "1.24.0",
   "generated": [
     {
       "place": "apps/studio/src/app/grounded-folded.json",
@@ -333,15 +1255,15 @@
       ]
     }
   ],
-  "generatedAt": "2026-09-25T02:11:05.319Z",
+  "generatedAt": "2026-09-30T20:10:43.542Z",
   "limits": [
-    "1 import site could not be resolved.",
+    "1 import could not be resolved: `apps/studio/next-env.d.ts` imports `./.next/types/routes.d.ts`, which a build generates.",
     "8 reads use paths built at run time and are not named here.",
-    "2 writes go to places this repository does not track, so they are not listed as generated.",
+    "4 writes go to places this repository does not track, so they are not listed as generated.",
     "12 writes and 46 reads go to a path their caller passes, not to this repository.",
-    "Statistics confidence is low: fewer than 20 source files reach 10 revisions in the window."
+    "Statistics confidence is low: fewer than 25 source files reach 10 revisions in the window."
   ],
-  "mainDoor": ".github/workflows/pages.yml",
+  "mainDoor": ".github/workflows/ci.yml",
   "partLabels": {
     ".claude": ".claude",
     ".github": ".github",
@@ -371,10 +1293,13 @@
   "readers": [],
   "repo": "mcp-tool-shop-org/motif",
   "sequences": [],
-  "startDoor": ".github/workflows/pages.yml",
+  "startDoor": ".github/workflows/ci.yml",
   "startHere": [
-    ".github/workflows/pages.yml",
-    "site/src/content.config.ts"
+    ".github/workflows/ci.yml",
+    "packages/asset-index/src/index.ts",
+    "packages/asset-index/src/index-pack.ts",
+    "packages/schema/src/errors.ts",
+    "packages/schema/src/types.ts"
   ],
   "summary": null,
   "summaryFrom": null,
