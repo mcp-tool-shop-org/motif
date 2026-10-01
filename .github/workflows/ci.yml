@@ -158,8 +158,9 @@ jobs:
           disable_search: true
           files: ./junit.xml
 
+  # A required check, so it runs on every pull request. PRs audit production
+  # dependencies (the shipped surface); a manual run audits everything.
   security-audit:
-    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -177,7 +178,12 @@ jobs:
       - name: Install
         run: pnpm install --frozen-lockfile
 
+      - name: Audit production dependencies
+        if: github.event_name != 'workflow_dispatch'
+        run: pnpm audit --prod --audit-level=moderate
+
       - name: Audit all dependencies
+        if: github.event_name == 'workflow_dispatch'
         run: pnpm audit --audit-level=moderate
 
       - name: Check for known vulnerabilities

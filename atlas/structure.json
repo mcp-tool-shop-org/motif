@@ -36,7 +36,7 @@
           "path": ".github/dependabot.yml"
         },
         {
-          "hash": "e5be5e6a6200c7e34da34ed71f41398a42a6cf0403f6e52b675275db55d04e3c",
+          "hash": "2524e6d550f701695be58b32bf1e20a36011d1927497f70eda16ad6f49684ec7",
           "path": ".github/workflows/ci.yml"
         },
         {
@@ -6716,6 +6716,14 @@
           "programs": [
             "pnpm"
           ],
+          "step": "Audit production dependencies"
+        },
+        {
+          "dir": "",
+          "job": "security-audit",
+          "programs": [
+            "pnpm"
+          ],
           "step": "Audit all dependencies"
         },
         {
@@ -9417,7 +9425,7 @@
   ],
   "engine": "1.24.0",
   "generatedFrom": {
-    "commit": "4cd27f9fda303a8b2e34769e165a12237233bfce",
+    "commit": "9bd1e9ab5bd015280d91a65937de00a1ecab5a4a",
     "tracked": 594
   },
   "landings": [

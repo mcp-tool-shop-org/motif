@@ -450,8 +450,8 @@
         "path": ".github/dependabot.yml"
       },
       {
-        "commits": 12,
-        "lines": 439,
+        "commits": 14,
+        "lines": 471,
         "path": ".github/workflows/ci.yml"
       },
       {
@@ -1010,8 +1010,8 @@
         "path": "apps/studio/vitest.config.ts"
       },
       {
-        "commits": 3,
-        "lines": 312,
+        "commits": 5,
+        "lines": 340,
         "path": "atlas/README.md"
       },
       {
@@ -1020,18 +1020,18 @@
         "path": "atlas/boundaries.yaml"
       },
       {
-        "commits": 3,
-        "lines": 2534,
+        "commits": 5,
+        "lines": 2700,
         "path": "atlas/page.json"
       },
       {
-        "commits": 3,
-        "lines": 3707,
+        "commits": 5,
+        "lines": 3783,
         "path": "atlas/statistics.json"
       },
       {
-        "commits": 3,
-        "lines": 15097,
+        "commits": 5,
+        "lines": 15141,
         "path": "atlas/structure.json"
       },
       {
@@ -3545,9 +3545,9 @@
     "level": "low",
     "reason": "fewer than 25 source files reach 10 revisions in the window"
   },
-  "generatedAt": "2026-10-01T02:13:13.670Z",
+  "generatedAt": "2026-10-01T02:35:55.935Z",
   "generatedFrom": {
-    "commit": "4cd27f9fda303a8b2e34769e165a12237233bfce"
+    "commit": "9bd1e9ab5bd015280d91a65937de00a1ecab5a4a"
   },
   "pairs": [
     {
@@ -3596,16 +3596,16 @@
     "floor": "fallen",
     "floorHeld": false,
     "floorTrigger": "revision-depth",
-    "headDate": "2026-09-30T17:37:46-07:00",
+    "headDate": "2026-09-30T19:32:10-07:00",
     "inScopeFiles": 599,
     "pinnedStart": null,
     "priorFloor": "fallen",
-    "qualifyingCommits": 41,
+    "qualifyingCommits": 42,
     "qualifyingMinimum": 30,
     "revisions": 5,
     "shared": 10,
     "sharedFloorUsed": 3,
-    "since": "2026-04-04T00:37:46.000Z",
+    "since": "2026-04-04T02:32:10.000Z",
     "sourceExtensions": [
       ".js",
       ".mjs",
