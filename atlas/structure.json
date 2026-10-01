@@ -36,7 +36,7 @@
           "path": ".github/dependabot.yml"
         },
         {
-          "hash": "bcade4cb11a9b618bb3b901ae54701770bbbdfa84eb99b22409a7de72fe6eed6",
+          "hash": "e5be5e6a6200c7e34da34ed71f41398a42a6cf0403f6e52b675275db55d04e3c",
           "path": ".github/workflows/ci.yml"
         },
         {
@@ -2980,7 +2980,7 @@
           "path": "package.json"
         },
         {
-          "hash": "96c207329350f44b9a18dfcd1e3a1a376e4c1d4f8dc17df8bca7e3a419a8c0cd",
+          "hash": "ce60603d9f7e2c33395d6087db9ddc7c090787d218b5c7eb5c024c5e40f1bb48",
           "path": "pnpm-lock.yaml"
         },
         {
@@ -5069,7 +5069,7 @@
           "path": "site/astro.config.mjs"
         },
         {
-          "hash": "5f4bb7401cbd770f7359683685a37bef59579a256dee6745416101a470accbcd",
+          "hash": "beeeebe640d54152f200a02dd81fad785b6dd701f08530899aebbb8f7ec4ea0b",
           "path": "site/package-lock.json"
         },
         {
@@ -7351,19 +7351,7 @@
       ],
       "triggers": [
         {
-          "event": "pull_request",
-          "paths": [
-            ".github/workflows/**",
-            "apps/**",
-            "atlas/**",
-            "codecov.yml",
-            "package.json",
-            "packages/**",
-            "pnpm-lock.yaml",
-            "pnpm-workspace.yaml",
-            "tsconfig.base.json",
-            "turbo.json"
-          ]
+          "event": "pull_request"
         },
         {
           "branches": [
@@ -9429,7 +9417,7 @@
   ],
   "engine": "1.24.0",
   "generatedFrom": {
-    "commit": "2b08099d4bf9339c0760bfec90594ca5ae0cf417",
+    "commit": "4cd27f9fda303a8b2e34769e165a12237233bfce",
     "tracked": 594
   },
   "landings": [

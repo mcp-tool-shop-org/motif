@@ -117,92 +117,29 @@
   ],
   "changes": {
     "fileCounts": {
-      "added": 1,
-      "changed": 1,
+      "added": 0,
+      "changed": 3,
       "moved": 0,
-      "parts": 2,
+      "parts": 3,
       "removed": 0
     },
     "items": [
       {
         "kind": "door",
-        "sentence": "CI's pull request trigger now also names `codecov.yml`.",
+        "sentence": "CI's pull request trigger no longer names `.github/workflows/**`, `apps/**`, `atlas/**`, `codecov.yml`, `package.json`, `packages/**`, `pnpm-lock.yaml`, `pnpm-workspace.yaml`, `tsconfig.base.json` and `turbo.json`.",
         "subjects": [
           ".github/workflows/ci.yml"
-        ]
-      },
-      {
-        "kind": "door",
-        "sentence": "CI's push trigger now also names `codecov.yml`.",
-        "subjects": [
-          ".github/workflows/ci.yml"
-        ]
-      },
-      {
-        "kind": "door",
-        "sentence": "CI now also runs apps/studio/next.config.js, apps/studio/src/app/, apps/studio/test/asset-files.test.ts and 32 more.",
-        "subjects": [
-          ".github/workflows/ci.yml",
-          "apps/studio/next.config.js",
-          "apps/studio/src/app/",
-          "apps/studio/test/asset-files.test.ts",
-          "apps/studio/test/autosave.test.ts",
-          "apps/studio/test/error-boundary.test.tsx",
-          "apps/studio/test/export.test.tsx",
-          "apps/studio/test/global-bpm.test.ts",
-          "apps/studio/test/grounded-fold.test.ts",
-          "apps/studio/test/index.test.ts",
-          "apps/studio/test/keyboard-shortcuts.test.tsx",
-          "apps/studio/test/library-fold.test.ts",
-          "apps/studio/test/pack-fields.test.ts",
-          "apps/studio/test/playback.test.tsx",
-          "apps/studio/test/preview-store.test.ts",
-          "apps/studio/test/preview.test.tsx",
-          "apps/studio/test/save-shortcut.test.tsx",
-          "apps/studio/test/store.test.ts",
-          "apps/studio/test/studio.test.tsx",
-          "apps/studio/test/undo-redo.test.ts",
-          "packages/asset-index/test/",
-          "packages/audio-engine/test/",
-          "packages/automation/test/",
-          "packages/clip-engine/test/",
-          "packages/instrument-rack/test/",
-          "packages/library/test/",
-          "packages/music-theory/test/",
-          "packages/playback-engine/test/",
-          "packages/review/test/",
-          "packages/runtime-pack/test/",
-          "packages/sample-lab/test/",
-          "packages/scene-mapper/test/",
-          "packages/schema/test/",
-          "packages/score-map/test/",
-          "packages/test-kit/test/",
-          "packages/ui/test/"
-        ]
-      },
-      {
-        "kind": "door",
-        "sentence": "And 21 more changes to doors.",
-        "subjects": []
-      },
-      {
-        "kind": "landing",
-        "sentence": "apps/studio/public/audio is now written by packages/sample-lab/src/generation/run-ingest-grounded.ts and packages/sample-lab/src/generation/run-ingest-library.ts.",
-        "subjects": [
-          "apps/studio/public/audio",
-          "packages/sample-lab/src/generation/run-ingest-grounded.ts",
-          "packages/sample-lab/src/generation/run-ingest-library.ts"
         ]
       },
       {
         "kind": "counts",
-        "sentence": "1 file added and 1 changed content, across 2 parts.",
+        "sentence": "3 files changed content, across 3 parts.",
         "subjects": []
       }
     ],
     "since": {
-      "commit": "bed863452886f1cccdf8d9f766bf2b71c40fd18f",
-      "generatedAt": "2026-09-25T02:11:05.319Z"
+      "commit": "2b08099d4bf9339c0760bfec90594ca5ae0cf417",
+      "generatedAt": "2026-09-30T20:10:43.542Z"
     },
     "unchanged": false
   },
@@ -258,7 +195,7 @@
     "Window: 180 days; a pair counts from 3 shared commits, since 0 source files reach 10 revisions; the floor rises to 10 when 25 do."
   ],
   "changesTogetherWithTests": 0,
-  "commit": "2b08099d4bf9339c0760bfec90594ca5ae0cf417",
+  "commit": "4cd27f9fda303a8b2e34769e165a12237233bfce",
   "defaultBranch": "main",
   "derived": "23 parts, mostly TypeScript (277 files), CSS (3), JavaScript (3) and Astro (1). Work enters through 19 doors; CI and Release each reach 17 parts, and CI is followed because a pull request goes through it. It publishes @motif-studio/asset-index (packages/asset-index), @motif-studio/audio-engine (packages/audio-engine), @motif-studio/automation (packages/automation), @motif-studio/clip-engine (packages/clip-engine), @motif-studio/instrument-rack (packages/instrument-rack), @motif-studio/library (packages/library), @motif-studio/music-theory (packages/music-theory), @motif-studio/playback-engine (packages/playback-engine), @motif-studio/review (packages/review), @motif-studio/runtime-pack (packages/runtime-pack), @motif-studio/sample-lab (packages/sample-lab), @motif-studio/scene-mapper (packages/scene-mapper), @motif-studio/schema (packages/schema), @motif-studio/score-map (packages/score-map), @motif-studio/test-kit (packages/test-kit) and @motif-studio/ui (packages/ui) to npm. It deploys a site to GitHub Pages. People import @motif-studio/asset-index, @motif-studio/audio-engine, @motif-studio/automation, @motif-studio/clip-engine, @motif-studio/instrument-rack, @motif-studio/library, @motif-studio/music-theory, @motif-studio/playback-engine, @motif-studio/review, @motif-studio/runtime-pack and 6 more.",
   "doors": [
@@ -423,7 +360,7 @@
       ],
       "stages": [],
       "triggers": [
-        "on a pull request touching 10 paths",
+        "on a pull request",
         "on a push to main touching 10 paths",
         "or by hand"
       ]
@@ -1255,7 +1192,7 @@
       ]
     }
   ],
-  "generatedAt": "2026-09-30T20:10:43.542Z",
+  "generatedAt": "2026-10-01T02:13:13.670Z",
   "limits": [
     "1 import could not be resolved: `apps/studio/next-env.d.ts` imports `./.next/types/routes.d.ts`, which a build generates.",
     "8 reads use paths built at run time and are not named here.",
