@@ -118,30 +118,23 @@
   "changes": {
     "fileCounts": {
       "added": 0,
-      "changed": 3,
+      "changed": 1,
       "moved": 0,
-      "parts": 3,
+      "parts": 1,
       "removed": 0
     },
     "items": [
       {
-        "kind": "door",
-        "sentence": "CI's pull request trigger no longer names `.github/workflows/**`, `apps/**`, `atlas/**`, `codecov.yml`, `package.json`, `packages/**`, `pnpm-lock.yaml`, `pnpm-workspace.yaml`, `tsconfig.base.json` and `turbo.json`.",
-        "subjects": [
-          ".github/workflows/ci.yml"
-        ]
-      },
-      {
         "kind": "counts",
-        "sentence": "3 files changed content, across 3 parts.",
+        "sentence": "Nothing structural changed since 2026-10-01; 1 file changed content.",
         "subjects": []
       }
     ],
     "since": {
-      "commit": "2b08099d4bf9339c0760bfec90594ca5ae0cf417",
-      "generatedAt": "2026-09-30T20:10:43.542Z"
+      "commit": "4cd27f9fda303a8b2e34769e165a12237233bfce",
+      "generatedAt": "2026-10-01T02:13:13.670Z"
     },
-    "unchanged": false
+    "unchanged": true
   },
   "changesTogether": [
     {
@@ -195,7 +188,7 @@
     "Window: 180 days; a pair counts from 3 shared commits, since 0 source files reach 10 revisions; the floor rises to 10 when 25 do."
   ],
   "changesTogetherWithTests": 0,
-  "commit": "4cd27f9fda303a8b2e34769e165a12237233bfce",
+  "commit": "9bd1e9ab5bd015280d91a65937de00a1ecab5a4a",
   "defaultBranch": "main",
   "derived": "23 parts, mostly TypeScript (277 files), CSS (3), JavaScript (3) and Astro (1). Work enters through 19 doors; CI and Release each reach 17 parts, and CI is followed because a pull request goes through it. It publishes @motif-studio/asset-index (packages/asset-index), @motif-studio/audio-engine (packages/audio-engine), @motif-studio/automation (packages/automation), @motif-studio/clip-engine (packages/clip-engine), @motif-studio/instrument-rack (packages/instrument-rack), @motif-studio/library (packages/library), @motif-studio/music-theory (packages/music-theory), @motif-studio/playback-engine (packages/playback-engine), @motif-studio/review (packages/review), @motif-studio/runtime-pack (packages/runtime-pack), @motif-studio/sample-lab (packages/sample-lab), @motif-studio/scene-mapper (packages/scene-mapper), @motif-studio/schema (packages/schema), @motif-studio/score-map (packages/score-map), @motif-studio/test-kit (packages/test-kit) and @motif-studio/ui (packages/ui) to npm. It deploys a site to GitHub Pages. People import @motif-studio/asset-index, @motif-studio/audio-engine, @motif-studio/automation, @motif-studio/clip-engine, @motif-studio/instrument-rack, @motif-studio/library, @motif-studio/music-theory, @motif-studio/playback-engine, @motif-studio/review, @motif-studio/runtime-pack and 6 more.",
   "doors": [
@@ -1192,7 +1185,7 @@
       ]
     }
   ],
-  "generatedAt": "2026-10-01T02:13:13.670Z",
+  "generatedAt": "2026-10-01T02:35:55.935Z",
   "limits": [
     "1 import could not be resolved: `apps/studio/next-env.d.ts` imports `./.next/types/routes.d.ts`, which a build generates.",
     "8 reads use paths built at run time and are not named here.",
