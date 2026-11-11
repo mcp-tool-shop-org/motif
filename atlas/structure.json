@@ -36,15 +36,15 @@
           "path": ".github/dependabot.yml"
         },
         {
-          "hash": "2524e6d550f701695be58b32bf1e20a36011d1927497f70eda16ad6f49684ec7",
+          "hash": "973301e4e1dd070932c702de56e6bba47b8a46403cd5d46a53fc823e62db5276",
           "path": ".github/workflows/ci.yml"
         },
         {
-          "hash": "93dc62c74dfddae3a1dc3291b236a3e266cc0f9963100f2967357b3f3833b310",
+          "hash": "85cd3bce34eed249cdfb2a6426dcd2e31070e0e607faef144aed74d039dc3cec",
           "path": ".github/workflows/pages.yml"
         },
         {
-          "hash": "72216df36ff05d7ebf52c570ce574be43c5991315d09db6ad3779a91a6dc9958",
+          "hash": "e031627564029ee59daa892ff67f63b16275dbb5aa10ffe0c088ad670315f5a6",
           "path": ".github/workflows/release.yml"
         }
       ],
@@ -9423,9 +9423,9 @@
       "to": "test-kit"
     }
   ],
-  "engine": "1.24.0",
+  "engine": "1.26.0",
   "generatedFrom": {
-    "commit": "9bd1e9ab5bd015280d91a65937de00a1ecab5a4a",
+    "commit": "92dd855683bba148d10f177eab0ce5bd072650aa",
     "tracked": 594
   },
   "landings": [

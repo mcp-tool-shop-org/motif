@@ -118,7 +118,7 @@
   "changes": {
     "fileCounts": {
       "added": 0,
-      "changed": 1,
+      "changed": 3,
       "moved": 0,
       "parts": 1,
       "removed": 0
@@ -126,13 +126,13 @@
     "items": [
       {
         "kind": "counts",
-        "sentence": "Nothing structural changed since 2026-10-01; 1 file changed content.",
+        "sentence": "Nothing structural changed since 2026-10-01; 3 files changed content.",
         "subjects": []
       }
     ],
     "since": {
-      "commit": "4cd27f9fda303a8b2e34769e165a12237233bfce",
-      "generatedAt": "2026-10-01T02:13:13.670Z"
+      "commit": "9bd1e9ab5bd015280d91a65937de00a1ecab5a4a",
+      "generatedAt": "2026-10-01T02:35:55.935Z"
     },
     "unchanged": true
   },
@@ -140,7 +140,7 @@
     {
       "a": "packages/schema/src/schemas.ts",
       "b": "packages/schema/src/types.ts",
-      "either": 9,
+      "either": 5,
       "partLabels": [
         "schema",
         "schema"
@@ -150,12 +150,12 @@
         "schema"
       ],
       "relation": "inside",
-      "shared": 9
+      "shared": 5
     },
     {
       "a": "apps/studio/src/app/seed-data.ts",
       "b": "packages/sample-lab/src/generation/index.ts",
-      "either": 8,
+      "either": 7,
       "partLabels": [
         "studio",
         "sample-lab"
@@ -184,11 +184,11 @@
     }
   ],
   "changesTogetherNote": [
-    "Confidence is low: fewer than 25 source files reach 10 revisions in the window.",
-    "Window: 180 days; a pair counts from 3 shared commits, since 0 source files reach 10 revisions; the floor rises to 10 when 25 do."
+    "Confidence is low: fewer than 30 qualifying commits in the window, and fewer than 25 source files reach 10 revisions.",
+    "Window: 180 days; a pair counts from 3 shared commits, since the window holds fewer than 30 qualifying commits."
   ],
   "changesTogetherWithTests": 0,
-  "commit": "9bd1e9ab5bd015280d91a65937de00a1ecab5a4a",
+  "commit": "92dd855683bba148d10f177eab0ce5bd072650aa",
   "defaultBranch": "main",
   "derived": "23 parts, mostly TypeScript (277 files), CSS (3), JavaScript (3) and Astro (1). Work enters through 19 doors; CI and Release each reach 17 parts, and CI is followed because a pull request goes through it. It publishes @motif-studio/asset-index (packages/asset-index), @motif-studio/audio-engine (packages/audio-engine), @motif-studio/automation (packages/automation), @motif-studio/clip-engine (packages/clip-engine), @motif-studio/instrument-rack (packages/instrument-rack), @motif-studio/library (packages/library), @motif-studio/music-theory (packages/music-theory), @motif-studio/playback-engine (packages/playback-engine), @motif-studio/review (packages/review), @motif-studio/runtime-pack (packages/runtime-pack), @motif-studio/sample-lab (packages/sample-lab), @motif-studio/scene-mapper (packages/scene-mapper), @motif-studio/schema (packages/schema), @motif-studio/score-map (packages/score-map), @motif-studio/test-kit (packages/test-kit) and @motif-studio/ui (packages/ui) to npm. It deploys a site to GitHub Pages. People import @motif-studio/asset-index, @motif-studio/audio-engine, @motif-studio/automation, @motif-studio/clip-engine, @motif-studio/instrument-rack, @motif-studio/library, @motif-studio/music-theory, @motif-studio/playback-engine, @motif-studio/review, @motif-studio/runtime-pack and 6 more.",
   "doors": [
@@ -1169,7 +1169,7 @@
       "to": "schema"
     }
   ],
-  "engine": "1.24.0",
+  "engine": "1.26.0",
   "generated": [
     {
       "place": "apps/studio/src/app/grounded-folded.json",
@@ -1185,13 +1185,13 @@
       ]
     }
   ],
-  "generatedAt": "2026-10-01T02:35:55.935Z",
+  "generatedAt": "2026-11-11T22:25:21.369Z",
   "limits": [
     "1 import could not be resolved: `apps/studio/next-env.d.ts` imports `./.next/types/routes.d.ts`, which a build generates.",
     "8 reads use paths built at run time and are not named here.",
     "4 writes go to places this repository does not track, so they are not listed as generated.",
     "12 writes and 46 reads go to a path their caller passes, not to this repository.",
-    "Statistics confidence is low: fewer than 25 source files reach 10 revisions in the window."
+    "Statistics confidence is low: fewer than 30 qualifying commits in the window, and fewer than 25 source files reach 10 revisions."
   ],
   "mainDoor": ".github/workflows/ci.yml",
   "partLabels": {
@@ -1253,6 +1253,7 @@
     "test-kit": 19,
     "ui": 13
   },
+  "testedCodeParts": 17,
   "unnamedWrites": 0,
   "unread": [],
   "unreadFiles": 0,
