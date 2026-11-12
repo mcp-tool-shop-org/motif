@@ -109,7 +109,7 @@
       "confidence": "low",
       "highWater": null,
       "name": "clip-engine",
-      "qualifyingSourceCommits": 2,
+      "qualifyingSourceCommits": 1,
       "rebaseline": null
     },
     {
@@ -163,7 +163,7 @@
       "confidence": "low",
       "highWater": null,
       "name": "instrument-rack",
-      "qualifyingSourceCommits": 2,
+      "qualifyingSourceCommits": 1,
       "rebaseline": null
     },
     {
@@ -216,7 +216,7 @@
       "confidence": "low",
       "highWater": null,
       "name": "playback-engine",
-      "qualifyingSourceCommits": 4,
+      "qualifyingSourceCommits": 2,
       "rebaseline": null
     },
     {
@@ -270,7 +270,7 @@
       "confidence": "low",
       "highWater": null,
       "name": "runtime-pack",
-      "qualifyingSourceCommits": 3,
+      "qualifyingSourceCommits": 0,
       "rebaseline": null
     },
     {
@@ -283,7 +283,7 @@
         "importsAndCoChanges": [],
         "importsOnly": []
       },
-      "cohesion": 0.5,
+      "cohesion": 0.466667,
       "cohesionDropped": false,
       "confidence": "low",
       "highWater": null,
@@ -307,7 +307,7 @@
       "confidence": "low",
       "highWater": null,
       "name": "scene-mapper",
-      "qualifyingSourceCommits": 8,
+      "qualifyingSourceCommits": 2,
       "rebaseline": null
     },
     {
@@ -337,7 +337,7 @@
       "confidence": "low",
       "highWater": null,
       "name": "schema",
-      "qualifyingSourceCommits": 9,
+      "qualifyingSourceCommits": 5,
       "rebaseline": null
     },
     {
@@ -357,7 +357,7 @@
       "confidence": "low",
       "highWater": null,
       "name": "score-map",
-      "qualifyingSourceCommits": 8,
+      "qualifyingSourceCommits": 6,
       "rebaseline": null
     },
     {
@@ -391,7 +391,7 @@
       "confidence": "low",
       "highWater": null,
       "name": "studio",
-      "qualifyingSourceCommits": 7,
+      "qualifyingSourceCommits": 6,
       "rebaseline": null
     },
     {
@@ -440,329 +440,99 @@
     "definition": "commits is how many commits in the window touch the file, including merges and commits dropped from coupling. lines is added plus deleted in those commits.",
     "files": [
       {
-        "commits": 1,
-        "lines": 19,
-        "path": ".claude/launch.json"
-      },
-      {
-        "commits": 2,
-        "lines": 33,
-        "path": ".github/dependabot.yml"
-      },
-      {
-        "commits": 14,
-        "lines": 471,
+        "commits": 16,
+        "lines": 357,
         "path": ".github/workflows/ci.yml"
       },
       {
         "commits": 2,
-        "lines": 58,
+        "lines": 10,
         "path": ".github/workflows/pages.yml"
       },
       {
-        "commits": 4,
-        "lines": 200,
+        "commits": 5,
+        "lines": 202,
         "path": ".github/workflows/release.yml"
       },
       {
-        "commits": 2,
-        "lines": 66,
-        "path": ".github/workflows/security.yml"
-      },
-      {
-        "commits": 6,
-        "lines": 35,
+        "commits": 5,
+        "lines": 24,
         "path": ".gitignore"
       },
       {
-        "commits": 2,
-        "lines": 7,
+        "commits": 1,
+        "lines": 1,
         "path": ".prettierignore"
       },
       {
-        "commits": 1,
-        "lines": 7,
-        "path": ".prettierrc"
-      },
-      {
-        "commits": 7,
-        "lines": 212,
+        "commits": 5,
+        "lines": 49,
         "path": "CHANGELOG.md"
       },
       {
-        "commits": 1,
-        "lines": 21,
-        "path": "LICENSE"
-      },
-      {
-        "commits": 5,
-        "lines": 484,
+        "commits": 2,
+        "lines": 272,
         "path": "README.es.md"
       },
       {
-        "commits": 5,
-        "lines": 552,
+        "commits": 2,
+        "lines": 328,
         "path": "README.fr.md"
       },
       {
-        "commits": 5,
-        "lines": 644,
+        "commits": 2,
+        "lines": 344,
         "path": "README.hi.md"
       },
       {
-        "commits": 5,
-        "lines": 566,
+        "commits": 2,
+        "lines": 316,
         "path": "README.it.md"
       },
       {
-        "commits": 5,
-        "lines": 510,
+        "commits": 2,
+        "lines": 284,
         "path": "README.ja.md"
       },
       {
-        "commits": 5,
-        "lines": 274,
+        "commits": 2,
+        "lines": 88,
         "path": "README.md"
       },
       {
-        "commits": 5,
-        "lines": 544,
+        "commits": 2,
+        "lines": 292,
         "path": "README.pt-BR.md"
       },
       {
-        "commits": 5,
-        "lines": 528,
+        "commits": 2,
+        "lines": 284,
         "path": "README.zh.md"
       },
       {
-        "commits": 3,
-        "lines": 57,
-        "path": "SCORECARD.md"
-      },
-      {
         "commits": 2,
-        "lines": 38,
-        "path": "SECURITY.md"
-      },
-      {
-        "commits": 2,
-        "lines": 84,
-        "path": "SHIP_GATE.md"
-      },
-      {
-        "commits": 2,
-        "lines": 52,
-        "path": "apps/docs/README.es.md"
-      },
-      {
-        "commits": 2,
-        "lines": 52,
-        "path": "apps/docs/README.fr.md"
-      },
-      {
-        "commits": 2,
-        "lines": 52,
-        "path": "apps/docs/README.hi.md"
-      },
-      {
-        "commits": 2,
-        "lines": 52,
-        "path": "apps/docs/README.it.md"
-      },
-      {
-        "commits": 2,
-        "lines": 52,
-        "path": "apps/docs/README.ja.md"
-      },
-      {
-        "commits": 2,
-        "lines": 52,
-        "path": "apps/docs/README.md"
-      },
-      {
-        "commits": 2,
-        "lines": 52,
-        "path": "apps/docs/README.pt-BR.md"
-      },
-      {
-        "commits": 2,
-        "lines": 52,
-        "path": "apps/docs/README.zh.md"
-      },
-      {
-        "commits": 2,
-        "lines": 6,
-        "path": "apps/docs/astro.config.mjs"
-      },
-      {
-        "commits": 2,
-        "lines": 40,
-        "path": "apps/docs/package.json"
-      },
-      {
-        "commits": 2,
-        "lines": 428,
-        "path": "apps/docs/src/layouts/DocsLayout.astro"
-      },
-      {
-        "commits": 2,
-        "lines": 214,
-        "path": "apps/docs/src/pages/core-concepts.astro"
-      },
-      {
-        "commits": 2,
-        "lines": 128,
-        "path": "apps/docs/src/pages/examples.astro"
-      },
-      {
-        "commits": 2,
-        "lines": 124,
-        "path": "apps/docs/src/pages/getting-started.astro"
-      },
-      {
-        "commits": 2,
-        "lines": 98,
-        "path": "apps/docs/src/pages/index.astro"
-      },
-      {
-        "commits": 2,
-        "lines": 230,
-        "path": "apps/docs/src/pages/workflow.astro"
-      },
-      {
-        "commits": 2,
-        "lines": 24,
-        "path": "apps/docs/tsconfig.json"
-      },
-      {
-        "commits": 2,
-        "lines": 65,
-        "path": "apps/studio/README.es.md"
-      },
-      {
-        "commits": 2,
-        "lines": 65,
-        "path": "apps/studio/README.fr.md"
-      },
-      {
-        "commits": 2,
-        "lines": 65,
-        "path": "apps/studio/README.hi.md"
-      },
-      {
-        "commits": 2,
-        "lines": 65,
-        "path": "apps/studio/README.it.md"
-      },
-      {
-        "commits": 2,
-        "lines": 65,
-        "path": "apps/studio/README.ja.md"
-      },
-      {
-        "commits": 2,
-        "lines": 65,
-        "path": "apps/studio/README.md"
-      },
-      {
-        "commits": 2,
-        "lines": 65,
-        "path": "apps/studio/README.pt-BR.md"
-      },
-      {
-        "commits": 2,
-        "lines": 65,
-        "path": "apps/studio/README.zh.md"
-      },
-      {
-        "commits": 1,
-        "lines": 6,
-        "path": "apps/studio/next-env.d.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 6,
-        "path": "apps/studio/next.config.js"
-      },
-      {
-        "commits": 6,
-        "lines": 75,
+        "lines": 4,
         "path": "apps/studio/package.json"
       },
       {
         "commits": 2,
-        "lines": 273,
-        "path": "apps/studio/src/app/Studio.tsx"
-      },
-      {
-        "commits": 3,
-        "lines": 221,
-        "path": "apps/studio/src/app/autosave.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 105,
-        "path": "apps/studio/src/app/components/ConfirmDialog.tsx"
-      },
-      {
-        "commits": 2,
-        "lines": 110,
-        "path": "apps/studio/src/app/components/ErrorBoundary.tsx"
-      },
-      {
-        "commits": 1,
-        "lines": 85,
-        "path": "apps/studio/src/app/components/KeyboardShortcutsOverlay.tsx"
-      },
-      {
-        "commits": 2,
-        "lines": 161,
-        "path": "apps/studio/src/app/components/NoteGrid.tsx"
-      },
-      {
-        "commits": 1,
-        "lines": 111,
-        "path": "apps/studio/src/app/components/SidebarNav.tsx"
-      },
-      {
-        "commits": 4,
-        "lines": 48,
+        "lines": 18,
         "path": "apps/studio/src/app/components/StateChips.tsx"
       },
       {
-        "commits": 5,
-        "lines": 359,
+        "commits": 2,
+        "lines": 246,
         "path": "apps/studio/src/app/components/StateEditor.tsx"
       },
       {
-        "commits": 1,
-        "lines": 64,
-        "path": "apps/studio/src/app/components/StemMixer.tsx"
-      },
-      {
-        "commits": 1,
-        "lines": 175,
-        "path": "apps/studio/src/app/components/TransportStrip.tsx"
-      },
-      {
-        "commits": 3,
-        "lines": 1676,
+        "commits": 2,
+        "lines": 34,
         "path": "apps/studio/src/app/globals.css"
       },
       {
         "commits": 1,
         "lines": 3189,
         "path": "apps/studio/src/app/grounded-wave2-folded.json"
-      },
-      {
-        "commits": 2,
-        "lines": 15,
-        "path": "apps/studio/src/app/hooks.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 15,
-        "path": "apps/studio/src/app/layout.tsx"
       },
       {
         "commits": 4,
@@ -775,139 +545,24 @@
         "path": "apps/studio/src/app/pack-fields.ts"
       },
       {
-        "commits": 1,
-        "lines": 5,
-        "path": "apps/studio/src/app/page.tsx"
-      },
-      {
-        "commits": 3,
-        "lines": 476,
-        "path": "apps/studio/src/app/playback-store.ts"
-      },
-      {
         "commits": 2,
-        "lines": 82,
-        "path": "apps/studio/src/app/preview-hooks.ts"
-      },
-      {
-        "commits": 4,
-        "lines": 205,
+        "lines": 104,
         "path": "apps/studio/src/app/preview-store.ts"
       },
       {
-        "commits": 3,
-        "lines": 664,
-        "path": "apps/studio/src/app/screens/ArrangementScreen.tsx"
-      },
-      {
-        "commits": 3,
-        "lines": 289,
-        "path": "apps/studio/src/app/screens/AssetsScreen.tsx"
-      },
-      {
-        "commits": 3,
-        "lines": 684,
-        "path": "apps/studio/src/app/screens/AutomationScreen.tsx"
-      },
-      {
         "commits": 2,
-        "lines": 277,
-        "path": "apps/studio/src/app/screens/BindingsScreen.tsx"
-      },
-      {
-        "commits": 3,
-        "lines": 650,
-        "path": "apps/studio/src/app/screens/ClipsScreen.tsx"
-      },
-      {
-        "commits": 3,
-        "lines": 482,
-        "path": "apps/studio/src/app/screens/CuesScreen.tsx"
-      },
-      {
-        "commits": 3,
-        "lines": 386,
-        "path": "apps/studio/src/app/screens/ExportScreen.tsx"
-      },
-      {
-        "commits": 3,
-        "lines": 770,
-        "path": "apps/studio/src/app/screens/LibraryScreen.tsx"
-      },
-      {
-        "commits": 3,
-        "lines": 224,
+        "lines": 40,
         "path": "apps/studio/src/app/screens/ManualPreview.tsx"
       },
       {
         "commits": 2,
-        "lines": 326,
-        "path": "apps/studio/src/app/screens/MixerScreen.tsx"
-      },
-      {
-        "commits": 2,
-        "lines": 260,
-        "path": "apps/studio/src/app/screens/PerformanceScreen.tsx"
-      },
-      {
-        "commits": 1,
-        "lines": 53,
-        "path": "apps/studio/src/app/screens/PreviewScreen.tsx"
-      },
-      {
-        "commits": 2,
-        "lines": 277,
-        "path": "apps/studio/src/app/screens/ProjectScreen.tsx"
-      },
-      {
-        "commits": 2,
-        "lines": 134,
-        "path": "apps/studio/src/app/screens/ReviewScreen.tsx"
-      },
-      {
-        "commits": 2,
-        "lines": 440,
-        "path": "apps/studio/src/app/screens/SampleLabScreen.tsx"
-      },
-      {
-        "commits": 3,
-        "lines": 517,
-        "path": "apps/studio/src/app/screens/ScenesScreen.tsx"
-      },
-      {
-        "commits": 3,
-        "lines": 708,
-        "path": "apps/studio/src/app/screens/ScoreMapScreen.tsx"
-      },
-      {
-        "commits": 3,
-        "lines": 245,
+        "lines": 24,
         "path": "apps/studio/src/app/screens/SequencePreview.tsx"
       },
       {
-        "commits": 3,
-        "lines": 276,
-        "path": "apps/studio/src/app/screens/StemsScreen.tsx"
-      },
-      {
-        "commits": 2,
-        "lines": 296,
-        "path": "apps/studio/src/app/screens/TransitionsScreen.tsx"
-      },
-      {
-        "commits": 1,
-        "lines": 18,
-        "path": "apps/studio/src/app/screens/index.ts"
-      },
-      {
-        "commits": 9,
-        "lines": 1321,
+        "commits": 6,
+        "lines": 268,
         "path": "apps/studio/src/app/seed-data.ts"
-      },
-      {
-        "commits": 3,
-        "lines": 1168,
-        "path": "apps/studio/src/app/store.ts"
       },
       {
         "commits": 2,
@@ -916,38 +571,8 @@
       },
       {
         "commits": 2,
-        "lines": 180,
-        "path": "apps/studio/test/autosave.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 76,
-        "path": "apps/studio/test/error-boundary.test.tsx"
-      },
-      {
-        "commits": 2,
-        "lines": 252,
-        "path": "apps/studio/test/export.test.tsx"
-      },
-      {
-        "commits": 2,
-        "lines": 100,
-        "path": "apps/studio/test/global-bpm.test.ts"
-      },
-      {
-        "commits": 2,
         "lines": 164,
         "path": "apps/studio/test/grounded-fold.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 7,
-        "path": "apps/studio/test/index.test.ts"
-      },
-      {
-        "commits": 3,
-        "lines": 154,
-        "path": "apps/studio/test/keyboard-shortcuts.test.tsx"
       },
       {
         "commits": 4,
@@ -961,57 +586,22 @@
       },
       {
         "commits": 2,
-        "lines": 182,
-        "path": "apps/studio/test/playback.test.tsx"
-      },
-      {
-        "commits": 4,
-        "lines": 213,
+        "lines": 102,
         "path": "apps/studio/test/preview-store.test.ts"
       },
       {
-        "commits": 4,
-        "lines": 429,
-        "path": "apps/studio/test/preview.test.tsx"
-      },
-      {
         "commits": 2,
-        "lines": 80,
-        "path": "apps/studio/test/save-shortcut.test.tsx"
+        "lines": 192,
+        "path": "apps/studio/test/preview.test.tsx"
       },
       {
         "commits": 1,
         "lines": 1,
-        "path": "apps/studio/test/setup.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 685,
-        "path": "apps/studio/test/store.test.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 176,
-        "path": "apps/studio/test/studio.test.tsx"
-      },
-      {
-        "commits": 2,
-        "lines": 154,
-        "path": "apps/studio/test/undo-redo.test.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 36,
         "path": "apps/studio/tsconfig.json"
       },
       {
-        "commits": 1,
-        "lines": 17,
-        "path": "apps/studio/vitest.config.ts"
-      },
-      {
-        "commits": 5,
-        "lines": 340,
+        "commits": 8,
+        "lines": 370,
         "path": "atlas/README.md"
       },
       {
@@ -1020,18 +610,18 @@
         "path": "atlas/boundaries.yaml"
       },
       {
-        "commits": 5,
-        "lines": 2700,
+        "commits": 8,
+        "lines": 2773,
         "path": "atlas/page.json"
       },
       {
-        "commits": 5,
-        "lines": 3783,
+        "commits": 8,
+        "lines": 6974,
         "path": "atlas/statistics.json"
       },
       {
-        "commits": 5,
-        "lines": 15141,
+        "commits": 8,
+        "lines": 15175,
         "path": "atlas/structure.json"
       },
       {
@@ -1040,244 +630,19 @@
         "path": "codecov.yml"
       },
       {
-        "commits": 1,
-        "lines": 18,
-        "path": "eslint.config.js"
-      },
-      {
-        "commits": 1,
-        "lines": 31,
-        "path": "examples/README.md"
-      },
-      {
-        "commits": 1,
-        "lines": 25,
-        "path": "examples/minimal/README.md"
-      },
-      {
-        "commits": 1,
-        "lines": 48,
-        "path": "examples/minimal/pack.json"
-      },
-      {
-        "commits": 1,
-        "lines": 46,
-        "path": "examples/starter-adventure/README.md"
-      },
-      {
-        "commits": 1,
-        "lines": 266,
-        "path": "examples/starter-adventure/pack.json"
-      },
-      {
         "commits": 2,
         "lines": 5022,
         "path": "grounded-folded.json}"
       },
       {
-        "commits": 3,
-        "lines": 68,
+        "commits": 2,
+        "lines": 4,
         "path": "handbook/README.md"
       },
       {
-        "commits": 1,
-        "lines": 43,
-        "path": "handbook/src/01-vision.md"
-      },
-      {
-        "commits": 1,
-        "lines": 21,
-        "path": "handbook/src/02-product-boundaries.md"
-      },
-      {
-        "commits": 1,
-        "lines": 47,
-        "path": "handbook/src/03-core-concepts.md"
-      },
-      {
-        "commits": 1,
-        "lines": 59,
-        "path": "handbook/src/04-design-principles.md"
-      },
-      {
         "commits": 2,
-        "lines": 95,
-        "path": "handbook/src/05-repository-overview.md"
-      },
-      {
-        "commits": 2,
-        "lines": 35,
-        "path": "handbook/src/06-apps.md"
-      },
-      {
-        "commits": 2,
-        "lines": 49,
-        "path": "handbook/src/07-core-packages.md"
-      },
-      {
-        "commits": 2,
-        "lines": 162,
-        "path": "handbook/src/08-musical-packages.md"
-      },
-      {
-        "commits": 2,
-        "lines": 176,
-        "path": "handbook/src/09-architectural-flow.md"
-      },
-      {
-        "commits": 2,
-        "lines": 58,
-        "path": "handbook/src/10-soundtrackpack-overview.md"
-      },
-      {
-        "commits": 1,
-        "lines": 53,
-        "path": "handbook/src/11-asset-model.md"
-      },
-      {
-        "commits": 1,
-        "lines": 68,
-        "path": "handbook/src/12-stems-scenes-clips.md"
-      },
-      {
-        "commits": 1,
-        "lines": 76,
-        "path": "handbook/src/13-bindings-transitions.md"
-      },
-      {
-        "commits": 2,
-        "lines": 50,
-        "path": "handbook/src/14-clip-composition.md"
-      },
-      {
-        "commits": 1,
-        "lines": 25,
-        "path": "handbook/src/15-cue-structure.md"
-      },
-      {
-        "commits": 1,
-        "lines": 24,
-        "path": "handbook/src/16-sample-workflow.md"
-      },
-      {
-        "commits": 1,
-        "lines": 46,
-        "path": "handbook/src/17-world-scoring.md"
-      },
-      {
-        "commits": 1,
-        "lines": 37,
-        "path": "handbook/src/18-automation-orchestration.md"
-      },
-      {
-        "commits": 1,
-        "lines": 47,
-        "path": "handbook/src/19-library-recall.md"
-      },
-      {
-        "commits": 2,
-        "lines": 44,
-        "path": "handbook/src/20-runtime-pack-contract.md"
-      },
-      {
-        "commits": 3,
-        "lines": 169,
+        "lines": 104,
         "path": "handbook/src/21-studio-overview.md"
-      },
-      {
-        "commits": 2,
-        "lines": 12,
-        "path": "handbook/src/22-project-screen.md"
-      },
-      {
-        "commits": 1,
-        "lines": 20,
-        "path": "handbook/src/23-assets-screen.md"
-      },
-      {
-        "commits": 1,
-        "lines": 21,
-        "path": "handbook/src/24-sample-lab.md"
-      },
-      {
-        "commits": 1,
-        "lines": 28,
-        "path": "handbook/src/25-stems-scenes.md"
-      },
-      {
-        "commits": 1,
-        "lines": 21,
-        "path": "handbook/src/26-clips-screen.md"
-      },
-      {
-        "commits": 1,
-        "lines": 20,
-        "path": "handbook/src/27-score-map-screen.md"
-      },
-      {
-        "commits": 1,
-        "lines": 21,
-        "path": "handbook/src/28-automation-screen.md"
-      },
-      {
-        "commits": 1,
-        "lines": 21,
-        "path": "handbook/src/29-library-screen.md"
-      },
-      {
-        "commits": 1,
-        "lines": 96,
-        "path": "handbook/src/30-building-a-cue.md"
-      },
-      {
-        "commits": 1,
-        "lines": 112,
-        "path": "handbook/src/31-custom-samples.md"
-      },
-      {
-        "commits": 1,
-        "lines": 107,
-        "path": "handbook/src/32-world-scoring-workflow.md"
-      },
-      {
-        "commits": 1,
-        "lines": 124,
-        "path": "handbook/src/33-automation-capture.md"
-      },
-      {
-        "commits": 1,
-        "lines": 134,
-        "path": "handbook/src/34-library-branching-reuse.md"
-      },
-      {
-        "commits": 2,
-        "lines": 50,
-        "path": "handbook/src/35-testing-strategy.md"
-      },
-      {
-        "commits": 1,
-        "lines": 54,
-        "path": "handbook/src/36-build-lint-ci.md"
-      },
-      {
-        "commits": 2,
-        "lines": 49,
-        "path": "handbook/src/37-evolving-data-model.md"
-      },
-      {
-        "commits": 1,
-        "lines": 100,
-        "path": "handbook/src/38-rendering-runtime-export.md"
-      },
-      {
-        "commits": 1,
-        "lines": 164,
-        "path": "handbook/src/39-roadmap.md"
-      },
-      {
-        "commits": 1,
-        "lines": 97,
-        "path": "handbook/src/40-glossary.md"
       },
       {
         "commits": 2,
@@ -1295,364 +660,24 @@
         "path": "ingest-grounded.ts}"
       },
       {
-        "commits": 1,
-        "lines": 0,
-        "path": "logo.png"
-      },
-      {
-        "commits": 1,
-        "lines": 51,
-        "path": "package.json"
-      },
-      {
         "commits": 2,
-        "lines": 60,
-        "path": "packages/asset-index/README.es.md"
-      },
-      {
-        "commits": 2,
-        "lines": 60,
-        "path": "packages/asset-index/README.fr.md"
-      },
-      {
-        "commits": 2,
-        "lines": 60,
-        "path": "packages/asset-index/README.hi.md"
-      },
-      {
-        "commits": 2,
-        "lines": 60,
-        "path": "packages/asset-index/README.it.md"
-      },
-      {
-        "commits": 2,
-        "lines": 63,
-        "path": "packages/asset-index/README.ja.md"
-      },
-      {
-        "commits": 2,
-        "lines": 60,
-        "path": "packages/asset-index/README.md"
-      },
-      {
-        "commits": 2,
-        "lines": 60,
-        "path": "packages/asset-index/README.pt-BR.md"
-      },
-      {
-        "commits": 2,
-        "lines": 60,
-        "path": "packages/asset-index/README.zh.md"
-      },
-      {
-        "commits": 5,
-        "lines": 54,
+        "lines": 4,
         "path": "packages/asset-index/package.json"
       },
       {
         "commits": 2,
-        "lines": 272,
-        "path": "packages/asset-index/src/audit.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 54,
-        "path": "packages/asset-index/src/index-pack.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 8,
-        "path": "packages/asset-index/src/index.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 34,
-        "path": "packages/asset-index/src/summary.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 66,
-        "path": "packages/asset-index/src/types.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 42,
-        "path": "packages/asset-index/src/unused.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 263,
-        "path": "packages/asset-index/test/index.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 9,
-        "path": "packages/asset-index/tsconfig.json"
-      },
-      {
-        "commits": 1,
-        "lines": 7,
-        "path": "packages/asset-index/vitest.config.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 55,
-        "path": "packages/audio-engine/README.es.md"
-      },
-      {
-        "commits": 2,
-        "lines": 55,
-        "path": "packages/audio-engine/README.fr.md"
-      },
-      {
-        "commits": 2,
-        "lines": 55,
-        "path": "packages/audio-engine/README.hi.md"
-      },
-      {
-        "commits": 2,
-        "lines": 55,
-        "path": "packages/audio-engine/README.it.md"
-      },
-      {
-        "commits": 2,
-        "lines": 55,
-        "path": "packages/audio-engine/README.ja.md"
-      },
-      {
-        "commits": 2,
-        "lines": 55,
-        "path": "packages/audio-engine/README.md"
-      },
-      {
-        "commits": 2,
-        "lines": 55,
-        "path": "packages/audio-engine/README.pt-BR.md"
-      },
-      {
-        "commits": 2,
-        "lines": 55,
-        "path": "packages/audio-engine/README.zh.md"
-      },
-      {
-        "commits": 5,
-        "lines": 57,
+        "lines": 4,
         "path": "packages/audio-engine/package.json"
       },
       {
         "commits": 2,
-        "lines": 14,
-        "path": "packages/audio-engine/src/index.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 57,
-        "path": "packages/audio-engine/src/layers.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 137,
-        "path": "packages/audio-engine/src/sample-player.ts"
-      },
-      {
-        "commits": 1,
         "lines": 4,
-        "path": "packages/audio-engine/src/sample-types.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 88,
-        "path": "packages/audio-engine/src/simulate.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 26,
-        "path": "packages/audio-engine/src/transitions.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 39,
-        "path": "packages/audio-engine/src/types.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 273,
-        "path": "packages/audio-engine/test/index.test.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 275,
-        "path": "packages/audio-engine/test/sample-player.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 11,
-        "path": "packages/audio-engine/tsconfig.json"
-      },
-      {
-        "commits": 1,
-        "lines": 7,
-        "path": "packages/audio-engine/vitest.config.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 68,
-        "path": "packages/automation/README.es.md"
-      },
-      {
-        "commits": 2,
-        "lines": 68,
-        "path": "packages/automation/README.fr.md"
-      },
-      {
-        "commits": 2,
-        "lines": 68,
-        "path": "packages/automation/README.hi.md"
-      },
-      {
-        "commits": 2,
-        "lines": 68,
-        "path": "packages/automation/README.it.md"
-      },
-      {
-        "commits": 2,
-        "lines": 68,
-        "path": "packages/automation/README.ja.md"
-      },
-      {
-        "commits": 2,
-        "lines": 68,
-        "path": "packages/automation/README.md"
-      },
-      {
-        "commits": 2,
-        "lines": 68,
-        "path": "packages/automation/README.pt-BR.md"
-      },
-      {
-        "commits": 2,
-        "lines": 68,
-        "path": "packages/automation/README.zh.md"
-      },
-      {
-        "commits": 5,
-        "lines": 51,
         "path": "packages/automation/package.json"
       },
       {
         "commits": 2,
-        "lines": 94,
-        "path": "packages/automation/src/capture.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 89,
-        "path": "packages/automation/src/envelopes.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 8,
-        "path": "packages/automation/src/index.ts"
-      },
-      {
-        "commits": 3,
-        "lines": 96,
-        "path": "packages/automation/src/interpolate.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 91,
-        "path": "packages/automation/src/lanes.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 81,
-        "path": "packages/automation/src/macros.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 105,
-        "path": "packages/automation/test/edge-cases.test.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 549,
-        "path": "packages/automation/test/index.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 10,
-        "path": "packages/automation/tsconfig.json"
-      },
-      {
-        "commits": 1,
-        "lines": 2,
-        "path": "packages/automation/vitest.config.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 73,
-        "path": "packages/clip-engine/README.es.md"
-      },
-      {
-        "commits": 2,
-        "lines": 73,
-        "path": "packages/clip-engine/README.fr.md"
-      },
-      {
-        "commits": 2,
-        "lines": 73,
-        "path": "packages/clip-engine/README.hi.md"
-      },
-      {
-        "commits": 2,
-        "lines": 73,
-        "path": "packages/clip-engine/README.it.md"
-      },
-      {
-        "commits": 2,
-        "lines": 73,
-        "path": "packages/clip-engine/README.ja.md"
-      },
-      {
-        "commits": 2,
-        "lines": 73,
-        "path": "packages/clip-engine/README.md"
-      },
-      {
-        "commits": 2,
-        "lines": 73,
-        "path": "packages/clip-engine/README.pt-BR.md"
-      },
-      {
-        "commits": 2,
-        "lines": 73,
-        "path": "packages/clip-engine/README.zh.md"
-      },
-      {
-        "commits": 5,
-        "lines": 60,
+        "lines": 4,
         "path": "packages/clip-engine/package.json"
-      },
-      {
-        "commits": 2,
-        "lines": 139,
-        "path": "packages/clip-engine/src/clip-player.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 211,
-        "path": "packages/clip-engine/src/clip-transforms.ts"
-      },
-      {
-        "commits": 3,
-        "lines": 250,
-        "path": "packages/clip-engine/src/cue-scheduler.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 227,
-        "path": "packages/clip-engine/src/drum-patterns.ts"
       },
       {
         "commits": 1,
@@ -1660,59 +685,9 @@
         "path": "packages/clip-engine/src/generated-playback.ts"
       },
       {
-        "commits": 4,
-        "lines": 93,
+        "commits": 1,
+        "lines": 11,
         "path": "packages/clip-engine/src/index.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 124,
-        "path": "packages/clip-engine/src/loop-region.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 42,
-        "path": "packages/clip-engine/src/midi-types.ts"
-      },
-      {
-        "commits": 3,
-        "lines": 428,
-        "path": "packages/clip-engine/src/midi.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 212,
-        "path": "packages/clip-engine/src/scene-clip-player.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 78,
-        "path": "packages/clip-engine/src/scheduler.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 19,
-        "path": "packages/clip-engine/src/types.ts"
-      },
-      {
-        "commits": 3,
-        "lines": 367,
-        "path": "packages/clip-engine/test/clip-player.test.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 217,
-        "path": "packages/clip-engine/test/clip-transforms.test.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 249,
-        "path": "packages/clip-engine/test/cue-scheduler.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 129,
-        "path": "packages/clip-engine/test/drum-patterns.test.ts"
       },
       {
         "commits": 1,
@@ -1720,454 +695,54 @@
         "path": "packages/clip-engine/test/generated-playback.test.ts"
       },
       {
-        "commits": 1,
-        "lines": 183,
-        "path": "packages/clip-engine/test/loop-region.test.ts"
-      },
-      {
-        "commits": 3,
-        "lines": 616,
-        "path": "packages/clip-engine/test/midi.test.ts"
-      },
-      {
         "commits": 2,
-        "lines": 87,
-        "path": "packages/clip-engine/test/scene-clip-player.test.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 121,
-        "path": "packages/clip-engine/test/scheduler.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 15,
-        "path": "packages/clip-engine/tsconfig.json"
-      },
-      {
-        "commits": 1,
-        "lines": 7,
-        "path": "packages/clip-engine/vitest.config.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 50,
-        "path": "packages/instrument-rack/README.es.md"
-      },
-      {
-        "commits": 2,
-        "lines": 50,
-        "path": "packages/instrument-rack/README.fr.md"
-      },
-      {
-        "commits": 2,
-        "lines": 50,
-        "path": "packages/instrument-rack/README.hi.md"
-      },
-      {
-        "commits": 2,
-        "lines": 50,
-        "path": "packages/instrument-rack/README.it.md"
-      },
-      {
-        "commits": 2,
-        "lines": 50,
-        "path": "packages/instrument-rack/README.ja.md"
-      },
-      {
-        "commits": 2,
-        "lines": 50,
-        "path": "packages/instrument-rack/README.md"
-      },
-      {
-        "commits": 2,
-        "lines": 50,
-        "path": "packages/instrument-rack/README.pt-BR.md"
-      },
-      {
-        "commits": 2,
-        "lines": 50,
-        "path": "packages/instrument-rack/README.zh.md"
-      },
-      {
-        "commits": 5,
-        "lines": 54,
+        "lines": 4,
         "path": "packages/instrument-rack/package.json"
       },
       {
-        "commits": 1,
-        "lines": 236,
-        "path": "packages/instrument-rack/src/drum-voice.ts"
-      },
-      {
-        "commits": 3,
-        "lines": 24,
-        "path": "packages/instrument-rack/src/index.ts"
-      },
-      {
-        "commits": 3,
-        "lines": 346,
-        "path": "packages/instrument-rack/src/presets.ts"
-      },
-      {
-        "commits": 4,
-        "lines": 136,
+        "commits": 2,
+        "lines": 22,
         "path": "packages/instrument-rack/src/rack.ts"
       },
       {
         "commits": 2,
-        "lines": 169,
-        "path": "packages/instrument-rack/src/sample-voice.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 411,
-        "path": "packages/instrument-rack/src/scifi-presets.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 241,
-        "path": "packages/instrument-rack/src/synth-voice.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 76,
-        "path": "packages/instrument-rack/src/types.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 42,
-        "path": "packages/instrument-rack/test/presets.test.ts"
-      },
-      {
-        "commits": 3,
-        "lines": 180,
+        "lines": 30,
         "path": "packages/instrument-rack/test/rack.test.ts"
       },
       {
         "commits": 2,
-        "lines": 329,
-        "path": "packages/instrument-rack/test/sample-voice.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 157,
-        "path": "packages/instrument-rack/test/scifi-presets.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 310,
-        "path": "packages/instrument-rack/test/synth-voice.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 13,
-        "path": "packages/instrument-rack/tsconfig.json"
-      },
-      {
-        "commits": 1,
-        "lines": 7,
-        "path": "packages/instrument-rack/vitest.config.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 63,
-        "path": "packages/library/README.es.md"
-      },
-      {
-        "commits": 2,
-        "lines": 63,
-        "path": "packages/library/README.fr.md"
-      },
-      {
-        "commits": 2,
-        "lines": 63,
-        "path": "packages/library/README.hi.md"
-      },
-      {
-        "commits": 2,
-        "lines": 63,
-        "path": "packages/library/README.it.md"
-      },
-      {
-        "commits": 2,
-        "lines": 63,
-        "path": "packages/library/README.ja.md"
-      },
-      {
-        "commits": 2,
-        "lines": 63,
-        "path": "packages/library/README.md"
-      },
-      {
-        "commits": 2,
-        "lines": 63,
-        "path": "packages/library/README.pt-BR.md"
-      },
-      {
-        "commits": 2,
-        "lines": 63,
-        "path": "packages/library/README.zh.md"
-      },
-      {
-        "commits": 5,
-        "lines": 51,
+        "lines": 4,
         "path": "packages/library/package.json"
       },
       {
         "commits": 2,
-        "lines": 89,
-        "path": "packages/library/src/branches.ts"
-      },
-      {
-        "commits": 3,
-        "lines": 113,
-        "path": "packages/library/src/compare.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 96,
-        "path": "packages/library/src/favorites.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 8,
-        "path": "packages/library/src/index.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 68,
-        "path": "packages/library/src/snapshots.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 63,
-        "path": "packages/library/src/templates.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 510,
-        "path": "packages/library/test/index.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 10,
-        "path": "packages/library/tsconfig.json"
-      },
-      {
-        "commits": 1,
-        "lines": 2,
-        "path": "packages/library/vitest.config.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 74,
-        "path": "packages/music-theory/README.es.md"
-      },
-      {
-        "commits": 2,
-        "lines": 74,
-        "path": "packages/music-theory/README.fr.md"
-      },
-      {
-        "commits": 2,
-        "lines": 74,
-        "path": "packages/music-theory/README.hi.md"
-      },
-      {
-        "commits": 2,
-        "lines": 74,
-        "path": "packages/music-theory/README.it.md"
-      },
-      {
-        "commits": 2,
-        "lines": 74,
-        "path": "packages/music-theory/README.ja.md"
-      },
-      {
-        "commits": 2,
-        "lines": 74,
-        "path": "packages/music-theory/README.md"
-      },
-      {
-        "commits": 2,
-        "lines": 74,
-        "path": "packages/music-theory/README.pt-BR.md"
-      },
-      {
-        "commits": 2,
-        "lines": 74,
-        "path": "packages/music-theory/README.zh.md"
-      },
-      {
-        "commits": 5,
-        "lines": 50,
+        "lines": 4,
         "path": "packages/music-theory/package.json"
       },
       {
-        "commits": 1,
-        "lines": 161,
-        "path": "packages/music-theory/src/chords.ts"
-      },
-      {
         "commits": 2,
-        "lines": 82,
-        "path": "packages/music-theory/src/index.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 110,
-        "path": "packages/music-theory/src/intensity.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 92,
-        "path": "packages/music-theory/src/motif.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 133,
-        "path": "packages/music-theory/src/scales.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 62,
-        "path": "packages/music-theory/src/types.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 93,
-        "path": "packages/music-theory/src/variation.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 73,
-        "path": "packages/music-theory/test/edge-cases.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 467,
-        "path": "packages/music-theory/test/music-theory.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 9,
-        "path": "packages/music-theory/tsconfig.json"
-      },
-      {
-        "commits": 1,
-        "lines": 7,
-        "path": "packages/music-theory/vitest.config.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 72,
-        "path": "packages/playback-engine/README.es.md"
-      },
-      {
-        "commits": 2,
-        "lines": 72,
-        "path": "packages/playback-engine/README.fr.md"
-      },
-      {
-        "commits": 2,
-        "lines": 72,
-        "path": "packages/playback-engine/README.hi.md"
-      },
-      {
-        "commits": 2,
-        "lines": 72,
-        "path": "packages/playback-engine/README.it.md"
-      },
-      {
-        "commits": 2,
-        "lines": 72,
-        "path": "packages/playback-engine/README.ja.md"
-      },
-      {
-        "commits": 2,
-        "lines": 72,
-        "path": "packages/playback-engine/README.md"
-      },
-      {
-        "commits": 2,
-        "lines": 72,
-        "path": "packages/playback-engine/README.pt-BR.md"
-      },
-      {
-        "commits": 2,
-        "lines": 72,
-        "path": "packages/playback-engine/README.zh.md"
-      },
-      {
-        "commits": 5,
-        "lines": 66,
+        "lines": 4,
         "path": "packages/playback-engine/package.json"
       },
       {
-        "commits": 4,
-        "lines": 306,
+        "commits": 2,
+        "lines": 38,
         "path": "packages/playback-engine/src/cue-player.ts"
       },
       {
-        "commits": 2,
-        "lines": 478,
-        "path": "packages/playback-engine/src/fx.ts"
-      },
-      {
-        "commits": 3,
-        "lines": 72,
-        "path": "packages/playback-engine/src/index.ts"
-      },
-      {
-        "commits": 3,
-        "lines": 239,
-        "path": "packages/playback-engine/src/loader.ts"
-      },
-      {
-        "commits": 3,
-        "lines": 251,
-        "path": "packages/playback-engine/src/mixer-types.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 459,
-        "path": "packages/playback-engine/src/mixer.ts"
-      },
-      {
-        "commits": 3,
-        "lines": 339,
-        "path": "packages/playback-engine/src/renderer.ts"
-      },
-      {
-        "commits": 4,
-        "lines": 478,
+        "commits": 1,
+        "lines": 47,
         "path": "packages/playback-engine/src/scene-player.ts"
       },
       {
         "commits": 2,
-        "lines": 131,
-        "path": "packages/playback-engine/src/sequence-player.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 129,
-        "path": "packages/playback-engine/src/stem-export.ts"
-      },
-      {
-        "commits": 5,
-        "lines": 661,
+        "lines": 302,
         "path": "packages/playback-engine/src/transition-player.ts"
       },
       {
-        "commits": 5,
-        "lines": 614,
-        "path": "packages/playback-engine/src/transport.ts"
-      },
-      {
         "commits": 2,
-        "lines": 72,
-        "path": "packages/playback-engine/src/types.ts"
+        "lines": 36,
+        "path": "packages/playback-engine/src/transport.ts"
       },
       {
         "commits": 2,
@@ -2175,303 +750,28 @@
         "path": "packages/playback-engine/test/cue-player.test.ts"
       },
       {
-        "commits": 1,
-        "lines": 602,
-        "path": "packages/playback-engine/test/fx.test.ts"
-      },
-      {
         "commits": 2,
-        "lines": 403,
-        "path": "packages/playback-engine/test/loader.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 209,
-        "path": "packages/playback-engine/test/metronome.test.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 1533,
-        "path": "packages/playback-engine/test/playback-engine.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 211,
-        "path": "packages/playback-engine/test/stem-export.test.ts"
-      },
-      {
-        "commits": 4,
-        "lines": 929,
+        "lines": 336,
         "path": "packages/playback-engine/test/transition-player.test.ts"
       },
       {
         "commits": 2,
-        "lines": 514,
-        "path": "packages/playback-engine/test/transport.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 198,
-        "path": "packages/playback-engine/test/wav-encoder.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 16,
-        "path": "packages/playback-engine/tsconfig.json"
-      },
-      {
-        "commits": 1,
-        "lines": 7,
-        "path": "packages/playback-engine/vitest.config.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 35,
-        "path": "packages/review/README.es.md"
-      },
-      {
-        "commits": 2,
-        "lines": 35,
-        "path": "packages/review/README.fr.md"
-      },
-      {
-        "commits": 2,
-        "lines": 35,
-        "path": "packages/review/README.hi.md"
-      },
-      {
-        "commits": 2,
-        "lines": 35,
-        "path": "packages/review/README.it.md"
-      },
-      {
-        "commits": 2,
-        "lines": 35,
-        "path": "packages/review/README.ja.md"
-      },
-      {
-        "commits": 2,
-        "lines": 35,
-        "path": "packages/review/README.md"
-      },
-      {
-        "commits": 2,
-        "lines": 35,
-        "path": "packages/review/README.pt-BR.md"
-      },
-      {
-        "commits": 2,
-        "lines": 35,
-        "path": "packages/review/README.zh.md"
-      },
-      {
-        "commits": 5,
-        "lines": 57,
+        "lines": 4,
         "path": "packages/review/package.json"
       },
       {
         "commits": 2,
-        "lines": 197,
-        "path": "packages/review/src/audit.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 27,
-        "path": "packages/review/src/index.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 15,
-        "path": "packages/review/src/render-json.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 88,
-        "path": "packages/review/src/render-markdown.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 56,
-        "path": "packages/review/src/summary.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 55,
-        "path": "packages/review/src/types.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 88,
-        "path": "packages/review/test/__snapshots__/index.test.ts.snap"
-      },
-      {
-        "commits": 2,
-        "lines": 388,
-        "path": "packages/review/test/index.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 9,
-        "path": "packages/review/tsconfig.json"
-      },
-      {
-        "commits": 1,
-        "lines": 7,
-        "path": "packages/review/vitest.config.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 104,
-        "path": "packages/runtime-pack/CONTRACT.md"
-      },
-      {
-        "commits": 2,
-        "lines": 31,
-        "path": "packages/runtime-pack/README.es.md"
-      },
-      {
-        "commits": 2,
-        "lines": 31,
-        "path": "packages/runtime-pack/README.fr.md"
-      },
-      {
-        "commits": 2,
-        "lines": 31,
-        "path": "packages/runtime-pack/README.hi.md"
-      },
-      {
-        "commits": 2,
-        "lines": 31,
-        "path": "packages/runtime-pack/README.it.md"
-      },
-      {
-        "commits": 2,
-        "lines": 31,
-        "path": "packages/runtime-pack/README.ja.md"
-      },
-      {
-        "commits": 2,
-        "lines": 31,
-        "path": "packages/runtime-pack/README.md"
-      },
-      {
-        "commits": 2,
-        "lines": 31,
-        "path": "packages/runtime-pack/README.pt-BR.md"
-      },
-      {
-        "commits": 2,
-        "lines": 31,
-        "path": "packages/runtime-pack/README.zh.md"
-      },
-      {
-        "commits": 5,
-        "lines": 58,
+        "lines": 4,
         "path": "packages/runtime-pack/package.json"
       },
       {
         "commits": 3,
-        "lines": 155,
-        "path": "packages/runtime-pack/src/export.ts"
-      },
-      {
-        "commits": 3,
-        "lines": 18,
-        "path": "packages/runtime-pack/src/index.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 62,
-        "path": "packages/runtime-pack/src/parse.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 250,
-        "path": "packages/runtime-pack/src/schemas.ts"
-      },
-      {
-        "commits": 4,
-        "lines": 66,
-        "path": "packages/runtime-pack/src/serialize.ts"
-      },
-      {
-        "commits": 3,
-        "lines": 128,
-        "path": "packages/runtime-pack/src/types.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 199,
-        "path": "packages/runtime-pack/src/validate.ts"
-      },
-      {
-        "commits": 3,
-        "lines": 974,
-        "path": "packages/runtime-pack/test/__snapshots__/index.test.ts.snap"
-      },
-      {
-        "commits": 3,
-        "lines": 441,
-        "path": "packages/runtime-pack/test/index.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 149,
-        "path": "packages/runtime-pack/test/validate.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 9,
-        "path": "packages/runtime-pack/tsconfig.json"
-      },
-      {
-        "commits": 1,
-        "lines": 7,
-        "path": "packages/runtime-pack/vitest.config.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 65,
-        "path": "packages/sample-lab/README.es.md"
-      },
-      {
-        "commits": 2,
-        "lines": 65,
-        "path": "packages/sample-lab/README.fr.md"
-      },
-      {
-        "commits": 2,
-        "lines": 65,
-        "path": "packages/sample-lab/README.hi.md"
-      },
-      {
-        "commits": 2,
-        "lines": 65,
-        "path": "packages/sample-lab/README.it.md"
-      },
-      {
-        "commits": 2,
-        "lines": 66,
-        "path": "packages/sample-lab/README.ja.md"
-      },
-      {
-        "commits": 5,
-        "lines": 153,
+        "lines": 88,
         "path": "packages/sample-lab/README.md"
       },
       {
-        "commits": 2,
-        "lines": 65,
-        "path": "packages/sample-lab/README.pt-BR.md"
-      },
-      {
-        "commits": 2,
-        "lines": 65,
-        "path": "packages/sample-lab/README.zh.md"
-      },
-      {
-        "commits": 10,
-        "lines": 68,
+        "commits": 7,
+        "lines": 21,
         "path": "packages/sample-lab/package.json"
       },
       {
@@ -2595,34 +895,9 @@
         "path": "packages/sample-lab/src/generation/wav.ts"
       },
       {
-        "commits": 2,
-        "lines": 68,
-        "path": "packages/sample-lab/src/import.ts"
-      },
-      {
-        "commits": 3,
-        "lines": 9,
+        "commits": 1,
+        "lines": 1,
         "path": "packages/sample-lab/src/index.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 41,
-        "path": "packages/sample-lab/src/instrument.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 67,
-        "path": "packages/sample-lab/src/kit.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 50,
-        "path": "packages/sample-lab/src/slice.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 49,
-        "path": "packages/sample-lab/src/trim.ts"
       },
       {
         "commits": 1,
@@ -2635,154 +910,19 @@
         "path": "packages/sample-lab/test/generation.test.ts"
       },
       {
-        "commits": 3,
-        "lines": 389,
-        "path": "packages/sample-lab/test/index.test.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 12,
+        "commits": 1,
+        "lines": 2,
         "path": "packages/sample-lab/tsconfig.json"
       },
       {
-        "commits": 1,
-        "lines": 7,
-        "path": "packages/sample-lab/vitest.config.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 91,
-        "path": "packages/scene-mapper/PROTOCOL.md"
-      },
-      {
         "commits": 2,
-        "lines": 31,
-        "path": "packages/scene-mapper/README.es.md"
-      },
-      {
-        "commits": 2,
-        "lines": 31,
-        "path": "packages/scene-mapper/README.fr.md"
-      },
-      {
-        "commits": 2,
-        "lines": 31,
-        "path": "packages/scene-mapper/README.hi.md"
-      },
-      {
-        "commits": 2,
-        "lines": 31,
-        "path": "packages/scene-mapper/README.it.md"
-      },
-      {
-        "commits": 2,
-        "lines": 31,
-        "path": "packages/scene-mapper/README.ja.md"
-      },
-      {
-        "commits": 2,
-        "lines": 31,
-        "path": "packages/scene-mapper/README.md"
-      },
-      {
-        "commits": 2,
-        "lines": 31,
-        "path": "packages/scene-mapper/README.pt-BR.md"
-      },
-      {
-        "commits": 2,
-        "lines": 31,
-        "path": "packages/scene-mapper/README.zh.md"
-      },
-      {
-        "commits": 8,
-        "lines": 62,
+        "lines": 4,
         "path": "packages/scene-mapper/package.json"
       },
       {
         "commits": 2,
-        "lines": 29,
-        "path": "packages/scene-mapper/src/bindings.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 121,
-        "path": "packages/scene-mapper/src/conditions.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 174,
-        "path": "packages/scene-mapper/src/game-state.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 303,
-        "path": "packages/scene-mapper/src/grounded-automation.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 636,
-        "path": "packages/scene-mapper/src/grounded-clips.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 251,
-        "path": "packages/scene-mapper/src/grounded-cues.ts"
-      },
-      {
-        "commits": 4,
-        "lines": 647,
+        "lines": 38,
         "path": "packages/scene-mapper/src/grounded-pack.ts"
-      },
-      {
-        "commits": 7,
-        "lines": 42,
-        "path": "packages/scene-mapper/src/index.ts"
-      },
-      {
-        "commits": 3,
-        "lines": 96,
-        "path": "packages/scene-mapper/src/resolve.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 307,
-        "path": "packages/scene-mapper/src/simulation.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 136,
-        "path": "packages/scene-mapper/src/stingers.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 36,
-        "path": "packages/scene-mapper/src/types.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 422,
-        "path": "packages/scene-mapper/test/game-state.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 258,
-        "path": "packages/scene-mapper/test/grounded-automation.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 288,
-        "path": "packages/scene-mapper/test/grounded-clips.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 205,
-        "path": "packages/scene-mapper/test/grounded-cues.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 111,
-        "path": "packages/scene-mapper/test/grounded-export.test.ts"
       },
       {
         "commits": 2,
@@ -2790,194 +930,44 @@
         "path": "packages/scene-mapper/test/grounded-instrument-resolution.test.ts"
       },
       {
-        "commits": 2,
-        "lines": 505,
-        "path": "packages/scene-mapper/test/grounded-pack.test.ts"
-      },
-      {
-        "commits": 3,
-        "lines": 523,
-        "path": "packages/scene-mapper/test/index.test.ts"
-      },
-      {
         "commits": 1,
-        "lines": 232,
-        "path": "packages/scene-mapper/test/simulation.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 278,
-        "path": "packages/scene-mapper/test/stingers.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 9,
-        "path": "packages/scene-mapper/tsconfig.json"
-      },
-      {
-        "commits": 1,
-        "lines": 7,
-        "path": "packages/scene-mapper/vitest.config.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 77,
-        "path": "packages/schema/README.es.md"
-      },
-      {
-        "commits": 2,
-        "lines": 77,
-        "path": "packages/schema/README.fr.md"
-      },
-      {
-        "commits": 2,
-        "lines": 77,
-        "path": "packages/schema/README.hi.md"
-      },
-      {
-        "commits": 2,
-        "lines": 77,
-        "path": "packages/schema/README.it.md"
-      },
-      {
-        "commits": 2,
-        "lines": 77,
-        "path": "packages/schema/README.ja.md"
-      },
-      {
-        "commits": 3,
-        "lines": 78,
+        "lines": 1,
         "path": "packages/schema/README.md"
       },
       {
         "commits": 2,
-        "lines": 77,
-        "path": "packages/schema/README.pt-BR.md"
-      },
-      {
-        "commits": 2,
-        "lines": 77,
-        "path": "packages/schema/README.zh.md"
-      },
-      {
-        "commits": 5,
-        "lines": 52,
+        "lines": 4,
         "path": "packages/schema/package.json"
       },
       {
-        "commits": 1,
-        "lines": 19,
-        "path": "packages/schema/src/errors.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 8,
-        "path": "packages/schema/src/index.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 25,
-        "path": "packages/schema/src/parse.ts"
-      },
-      {
-        "commits": 12,
-        "lines": 843,
+        "commits": 6,
+        "lines": 96,
         "path": "packages/schema/src/schemas.ts"
       },
       {
-        "commits": 13,
-        "lines": 1000,
+        "commits": 6,
+        "lines": 176,
         "path": "packages/schema/src/types.ts"
       },
       {
-        "commits": 1,
-        "lines": 15,
-        "path": "packages/schema/src/validate.ts"
-      },
-      {
         "commits": 2,
-        "lines": 32,
-        "path": "packages/schema/test/index.test.ts"
-      },
-      {
-        "commits": 5,
-        "lines": 540,
+        "lines": 62,
         "path": "packages/schema/test/schema.test.ts"
       },
       {
-        "commits": 2,
-        "lines": 105,
-        "path": "packages/schema/test/workspace-health.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 9,
-        "path": "packages/schema/tsconfig.json"
-      },
-      {
-        "commits": 1,
-        "lines": 7,
-        "path": "packages/schema/vitest.config.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 71,
-        "path": "packages/score-map/README.es.md"
-      },
-      {
-        "commits": 2,
-        "lines": 71,
-        "path": "packages/score-map/README.fr.md"
-      },
-      {
-        "commits": 2,
-        "lines": 71,
-        "path": "packages/score-map/README.hi.md"
-      },
-      {
-        "commits": 2,
-        "lines": 71,
-        "path": "packages/score-map/README.it.md"
-      },
-      {
-        "commits": 2,
-        "lines": 71,
-        "path": "packages/score-map/README.ja.md"
-      },
-      {
-        "commits": 5,
-        "lines": 99,
+        "commits": 3,
+        "lines": 28,
         "path": "packages/score-map/README.md"
       },
       {
         "commits": 2,
-        "lines": 71,
-        "path": "packages/score-map/README.pt-BR.md"
-      },
-      {
-        "commits": 2,
-        "lines": 71,
-        "path": "packages/score-map/README.zh.md"
-      },
-      {
-        "commits": 6,
-        "lines": 56,
+        "lines": 8,
         "path": "packages/score-map/package.json"
       },
       {
-        "commits": 4,
-        "lines": 178,
-        "path": "packages/score-map/src/cue-family.ts"
-      },
-      {
         "commits": 2,
-        "lines": 86,
-        "path": "packages/score-map/src/derivation.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 139,
-        "path": "packages/score-map/src/emotion-arc.ts"
+        "lines": 131,
+        "path": "packages/score-map/src/cue-family.ts"
       },
       {
         "commits": 1,
@@ -2990,8 +980,8 @@
         "path": "packages/score-map/src/generation-layers.ts"
       },
       {
-        "commits": 2,
-        "lines": 176,
+        "commits": 1,
+        "lines": 7,
         "path": "packages/score-map/src/grounded-families.ts"
       },
       {
@@ -3000,13 +990,8 @@
         "path": "packages/score-map/src/grounded-generation.ts"
       },
       {
-        "commits": 1,
-        "lines": 194,
-        "path": "packages/score-map/src/grounded-profiles.ts"
-      },
-      {
-        "commits": 8,
-        "lines": 17,
+        "commits": 4,
+        "lines": 6,
         "path": "packages/score-map/src/index.ts"
       },
       {
@@ -3021,37 +1006,12 @@
       },
       {
         "commits": 2,
-        "lines": 59,
-        "path": "packages/score-map/src/motif.ts"
-      },
-      {
-        "commits": 3,
-        "lines": 58,
-        "path": "packages/score-map/src/profile.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 93,
-        "path": "packages/score-map/src/resolve.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 251,
-        "path": "packages/score-map/test/emotion-arc.test.ts"
-      },
-      {
-        "commits": 3,
-        "lines": 207,
+        "lines": 16,
         "path": "packages/score-map/test/grounded-families.test.ts"
       },
       {
-        "commits": 1,
-        "lines": 343,
-        "path": "packages/score-map/test/grounded-profiles.test.ts"
-      },
-      {
-        "commits": 7,
-        "lines": 813,
+        "commits": 5,
+        "lines": 360,
         "path": "packages/score-map/test/index.test.ts"
       },
       {
@@ -3060,324 +1020,34 @@
         "path": "packages/score-map/test/library-packs.test.ts"
       },
       {
-        "commits": 3,
-        "lines": 14,
+        "commits": 2,
+        "lines": 4,
         "path": "packages/score-map/tsconfig.json"
       },
       {
-        "commits": 1,
-        "lines": 7,
-        "path": "packages/score-map/vitest.config.ts"
-      },
-      {
         "commits": 2,
-        "lines": 52,
-        "path": "packages/test-kit/README.es.md"
-      },
-      {
-        "commits": 2,
-        "lines": 52,
-        "path": "packages/test-kit/README.fr.md"
-      },
-      {
-        "commits": 2,
-        "lines": 52,
-        "path": "packages/test-kit/README.hi.md"
-      },
-      {
-        "commits": 2,
-        "lines": 52,
-        "path": "packages/test-kit/README.it.md"
-      },
-      {
-        "commits": 2,
-        "lines": 52,
-        "path": "packages/test-kit/README.ja.md"
-      },
-      {
-        "commits": 2,
-        "lines": 52,
-        "path": "packages/test-kit/README.md"
-      },
-      {
-        "commits": 2,
-        "lines": 52,
-        "path": "packages/test-kit/README.pt-BR.md"
-      },
-      {
-        "commits": 2,
-        "lines": 52,
-        "path": "packages/test-kit/README.zh.md"
-      },
-      {
-        "commits": 1,
-        "lines": 63,
-        "path": "packages/test-kit/fixtures/integrity-duplicate-ids.json"
-      },
-      {
-        "commits": 1,
-        "lines": 42,
-        "path": "packages/test-kit/fixtures/integrity-missing-asset-ref.json"
-      },
-      {
-        "commits": 1,
-        "lines": 41,
-        "path": "packages/test-kit/fixtures/integrity-missing-scene-ref.json"
-      },
-      {
-        "commits": 1,
-        "lines": 35,
-        "path": "packages/test-kit/fixtures/integrity-missing-stem-ref.json"
-      },
-      {
-        "commits": 1,
-        "lines": 42,
-        "path": "packages/test-kit/fixtures/integrity-self-reference-pack.json"
-      },
-      {
-        "commits": 1,
-        "lines": 48,
-        "path": "packages/test-kit/fixtures/integrity-unused-entities.json"
-      },
-      {
-        "commits": 1,
-        "lines": 71,
-        "path": "packages/test-kit/fixtures/integrity-valid-pack.json"
-      },
-      {
-        "commits": 1,
-        "lines": 53,
-        "path": "packages/test-kit/fixtures/invalid-pack-bad-asset-duration.json"
-      },
-      {
-        "commits": 1,
-        "lines": 58,
-        "path": "packages/test-kit/fixtures/invalid-pack-bad-transition.json"
-      },
-      {
-        "commits": 1,
-        "lines": 44,
-        "path": "packages/test-kit/fixtures/invalid-pack-empty-scene-layers.json"
-      },
-      {
-        "commits": 1,
-        "lines": 7,
-        "path": "packages/test-kit/fixtures/invalid-pack-missing-meta.json"
-      },
-      {
-        "commits": 1,
-        "lines": 48,
-        "path": "packages/test-kit/fixtures/minimal-pack.json"
-      },
-      {
-        "commits": 1,
-        "lines": 47,
-        "path": "packages/test-kit/fixtures/resolution-basic-pack.json"
-      },
-      {
-        "commits": 1,
-        "lines": 39,
-        "path": "packages/test-kit/fixtures/resolution-includes-pack.json"
-      },
-      {
-        "commits": 1,
-        "lines": 32,
-        "path": "packages/test-kit/fixtures/resolution-missing-scene-winner.json"
-      },
-      {
-        "commits": 1,
-        "lines": 50,
-        "path": "packages/test-kit/fixtures/resolution-numeric-ops-pack.json"
-      },
-      {
-        "commits": 1,
-        "lines": 62,
-        "path": "packages/test-kit/fixtures/resolution-priority-pack.json"
-      },
-      {
-        "commits": 1,
-        "lines": 47,
-        "path": "packages/test-kit/fixtures/resolution-tiebreak-pack.json"
-      },
-      {
-        "commits": 1,
-        "lines": 166,
-        "path": "packages/test-kit/fixtures/review-immediate-only-pack.json"
-      },
-      {
-        "commits": 1,
-        "lines": 50,
-        "path": "packages/test-kit/fixtures/review-missing-baseline-pack.json"
-      },
-      {
-        "commits": 1,
-        "lines": 101,
-        "path": "packages/test-kit/fixtures/review-no-bindings-pack.json"
-      },
-      {
-        "commits": 1,
-        "lines": 54,
-        "path": "packages/test-kit/fixtures/runtime-invalid-bad-transition.json"
-      },
-      {
-        "commits": 1,
-        "lines": 34,
-        "path": "packages/test-kit/fixtures/runtime-invalid-empty-layers.json"
-      },
-      {
-        "commits": 1,
-        "lines": 7,
-        "path": "packages/test-kit/fixtures/runtime-invalid-missing-meta.json"
-      },
-      {
-        "commits": 1,
-        "lines": 80,
-        "path": "packages/test-kit/fixtures/simulation-basic-pack.json"
-      },
-      {
-        "commits": 1,
-        "lines": 5,
-        "path": "packages/test-kit/fixtures/simulation-basic-sequence.json"
-      },
-      {
-        "commits": 1,
-        "lines": 132,
-        "path": "packages/test-kit/fixtures/simulation-combat-escalation-pack.json"
-      },
-      {
-        "commits": 1,
-        "lines": 7,
-        "path": "packages/test-kit/fixtures/simulation-escalation-sequence.json"
-      },
-      {
-        "commits": 1,
-        "lines": 35,
-        "path": "packages/test-kit/fixtures/simulation-missing-stem-pack.json"
-      },
-      {
-        "commits": 1,
-        "lines": 47,
-        "path": "packages/test-kit/fixtures/simulation-missing-transition-pack.json"
-      },
-      {
-        "commits": 1,
-        "lines": 266,
-        "path": "packages/test-kit/fixtures/starter-pack.json"
-      },
-      {
-        "commits": 5,
-        "lines": 46,
+        "lines": 4,
         "path": "packages/test-kit/package.json"
       },
       {
         "commits": 2,
-        "lines": 57,
-        "path": "packages/test-kit/src/index.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 25,
-        "path": "packages/test-kit/test/index.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 9,
-        "path": "packages/test-kit/tsconfig.json"
-      },
-      {
-        "commits": 1,
-        "lines": 7,
-        "path": "packages/test-kit/vitest.config.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 28,
-        "path": "packages/ui/README.es.md"
-      },
-      {
-        "commits": 2,
-        "lines": 28,
-        "path": "packages/ui/README.fr.md"
-      },
-      {
-        "commits": 2,
-        "lines": 28,
-        "path": "packages/ui/README.hi.md"
-      },
-      {
-        "commits": 2,
-        "lines": 28,
-        "path": "packages/ui/README.it.md"
-      },
-      {
-        "commits": 2,
-        "lines": 28,
-        "path": "packages/ui/README.ja.md"
-      },
-      {
-        "commits": 2,
-        "lines": 28,
-        "path": "packages/ui/README.md"
-      },
-      {
-        "commits": 2,
-        "lines": 28,
-        "path": "packages/ui/README.pt-BR.md"
-      },
-      {
-        "commits": 2,
-        "lines": 28,
-        "path": "packages/ui/README.zh.md"
-      },
-      {
-        "commits": 5,
-        "lines": 46,
+        "lines": 4,
         "path": "packages/ui/package.json"
       },
       {
-        "commits": 2,
-        "lines": 6,
-        "path": "packages/ui/src/index.ts"
-      },
-      {
-        "commits": 2,
-        "lines": 12,
-        "path": "packages/ui/test/index.test.ts"
-      },
-      {
-        "commits": 1,
-        "lines": 9,
-        "path": "packages/ui/tsconfig.json"
-      },
-      {
-        "commits": 1,
-        "lines": 7,
-        "path": "packages/ui/vitest.config.ts"
-      },
-      {
-        "commits": 11,
-        "lines": 11292,
+        "commits": 4,
+        "lines": 1313,
         "path": "pnpm-lock.yaml"
       },
       {
-        "commits": 2,
-        "lines": 5,
-        "path": "pnpm-workspace.yaml"
-      },
-      {
-        "commits": 2,
-        "lines": 35,
+        "commits": 1,
+        "lines": 4,
         "path": "site/astro.config.mjs"
       },
       {
-        "commits": 3,
-        "lines": 8250,
+        "commits": 2,
+        "lines": 708,
         "path": "site/package-lock.json"
-      },
-      {
-        "commits": 1,
-        "lines": 18,
-        "path": "site/package.json"
       },
       {
         "commits": 1,
@@ -3395,89 +1065,34 @@
         "path": "site/src/assets/motif-mark.svg"
       },
       {
-        "commits": 1,
-        "lines": 4,
-        "path": "site/src/content.config.ts"
-      },
-      {
-        "commits": 5,
-        "lines": 130,
+        "commits": 3,
+        "lines": 48,
         "path": "site/src/content/docs/handbook/architecture/index.md"
       },
       {
-        "commits": 5,
-        "lines": 272,
+        "commits": 3,
+        "lines": 30,
         "path": "site/src/content/docs/handbook/getting-started/beginners.md"
       },
       {
-        "commits": 5,
-        "lines": 116,
+        "commits": 3,
+        "lines": 6,
         "path": "site/src/content/docs/handbook/getting-started/index.md"
       },
       {
         "commits": 2,
-        "lines": 324,
-        "path": "site/src/content/docs/handbook/getting-started/reference.md"
-      },
-      {
-        "commits": 3,
-        "lines": 33,
+        "lines": 4,
         "path": "site/src/content/docs/handbook/index.md"
       },
       {
-        "commits": 1,
-        "lines": 44,
-        "path": "site/src/content/docs/handbook/product/boundaries.md"
-      },
-      {
-        "commits": 1,
-        "lines": 49,
-        "path": "site/src/content/docs/handbook/product/core-thesis.md"
-      },
-      {
-        "commits": 1,
-        "lines": 64,
-        "path": "site/src/content/docs/handbook/product/design-principles.md"
-      },
-      {
-        "commits": 1,
-        "lines": 46,
-        "path": "site/src/content/docs/handbook/product/index.md"
-      },
-      {
-        "commits": 1,
-        "lines": 88,
-        "path": "site/src/content/docs/handbook/strategy/glossary.md"
-      },
-      {
-        "commits": 2,
-        "lines": 61,
-        "path": "site/src/content/docs/handbook/strategy/rendering-export.md"
-      },
-      {
-        "commits": 6,
-        "lines": 276,
+        "commits": 4,
+        "lines": 222,
         "path": "site/src/content/docs/handbook/strategy/roadmap.md"
       },
       {
-        "commits": 4,
-        "lines": 157,
+        "commits": 3,
+        "lines": 98,
         "path": "site/src/content/docs/handbook/studio/index.md"
-      },
-      {
-        "commits": 1,
-        "lines": 44,
-        "path": "site/src/content/docs/handbook/workflows/automation-capture.md"
-      },
-      {
-        "commits": 1,
-        "lines": 84,
-        "path": "site/src/content/docs/handbook/workflows/building-a-cue.md"
-      },
-      {
-        "commits": 1,
-        "lines": 54,
-        "path": "site/src/content/docs/handbook/workflows/custom-samples.md"
       },
       {
         "commits": 4,
@@ -3485,84 +1100,86 @@
         "path": "site/src/content/docs/handbook/workflows/generated-cues.md"
       },
       {
-        "commits": 1,
-        "lines": 42,
-        "path": "site/src/content/docs/handbook/workflows/library-branching.md"
-      },
-      {
-        "commits": 1,
-        "lines": 44,
-        "path": "site/src/content/docs/handbook/workflows/world-scoring.md"
-      },
-      {
-        "commits": 1,
-        "lines": 33,
-        "path": "site/src/pages/index.astro"
-      },
-      {
-        "commits": 6,
-        "lines": 140,
+        "commits": 3,
+        "lines": 22,
         "path": "site/src/site-config.ts"
       },
       {
-        "commits": 2,
-        "lines": 17,
+        "commits": 1,
+        "lines": 14,
         "path": "site/src/styles/global.css"
       },
       {
-        "commits": 1,
-        "lines": 7,
-        "path": "site/src/styles/starlight-custom.css"
-      },
-      {
-        "commits": 1,
-        "lines": 5,
-        "path": "site/tsconfig.json"
-      },
-      {
-        "commits": 1,
-        "lines": 20,
-        "path": "tsconfig.base.json"
-      },
-      {
         "commits": 2,
-        "lines": 23,
-        "path": "tsconfig.json"
-      },
-      {
-        "commits": 1,
-        "lines": 20,
-        "path": "turbo.json"
-      },
-      {
-        "commits": 3,
-        "lines": 51,
+        "lines": 36,
         "path": "vitest.config.ts"
       }
     ]
   },
   "confidence": {
     "level": "low",
-    "reason": "fewer than 25 source files reach 10 revisions in the window"
+    "reason": "fewer than 30 qualifying commits in the window, and fewer than 25 source files reach 10 revisions"
   },
-  "generatedAt": "2026-10-01T02:35:55.935Z",
+  "generatedAt": "2026-11-12T00:41:53.450Z",
   "generatedFrom": {
-    "commit": "9bd1e9ab5bd015280d91a65937de00a1ecab5a4a"
+    "commit": "02d048bd02bbedf365e8d4e0954dba5ceb320ce7"
   },
   "pairs": [
     {
       "a": "apps/studio/src/app/seed-data.ts",
       "b": "packages/sample-lab/package.json",
-      "either": 8,
+      "either": 7,
       "shared": 4,
-      "strength": 0.5
+      "strength": 0.571429
     },
     {
       "a": "apps/studio/src/app/seed-data.ts",
       "b": "packages/sample-lab/src/generation/index.ts",
-      "either": 8,
+      "either": 7,
       "shared": 5,
-      "strength": 0.625
+      "strength": 0.714286
+    },
+    {
+      "a": "atlas/README.md",
+      "b": "atlas/page.json",
+      "either": 5,
+      "shared": 5,
+      "strength": 1
+    },
+    {
+      "a": "atlas/README.md",
+      "b": "atlas/statistics.json",
+      "either": 5,
+      "shared": 5,
+      "strength": 1
+    },
+    {
+      "a": "atlas/README.md",
+      "b": "atlas/structure.json",
+      "either": 5,
+      "shared": 5,
+      "strength": 1
+    },
+    {
+      "a": "atlas/page.json",
+      "b": "atlas/statistics.json",
+      "either": 5,
+      "shared": 5,
+      "strength": 1
+    },
+    {
+      "a": "atlas/page.json",
+      "b": "atlas/structure.json",
+      "either": 5,
+      "shared": 5,
+      "strength": 1
+    },
+    {
+      "a": "atlas/statistics.json",
+      "b": "atlas/structure.json",
+      "either": 5,
+      "shared": 5,
+      "strength": 1
     },
     {
       "a": "packages/sample-lab/package.json",
@@ -3581,8 +1198,8 @@
     {
       "a": "packages/schema/src/schemas.ts",
       "b": "packages/schema/src/types.ts",
-      "either": 9,
-      "shared": 9,
+      "either": 5,
+      "shared": 5,
       "strength": 1
     }
   ],
@@ -3595,17 +1212,17 @@
     "fallenShared": 3,
     "floor": "fallen",
     "floorHeld": false,
-    "floorTrigger": "revision-depth",
-    "headDate": "2026-09-30T19:32:10-07:00",
-    "inScopeFiles": 599,
+    "floorTrigger": "both",
+    "headDate": "2026-11-11T17:25:29-05:00",
+    "inScopeFiles": 607,
     "pinnedStart": null,
     "priorFloor": "fallen",
-    "qualifyingCommits": 42,
+    "qualifyingCommits": 27,
     "qualifyingMinimum": 30,
     "revisions": 5,
     "shared": 10,
     "sharedFloorUsed": 3,
-    "since": "2026-04-04T02:32:10.000Z",
+    "since": "2026-05-15T22:25:29.000Z",
     "sourceExtensions": [
       ".js",
       ".mjs",
