@@ -2976,11 +2976,11 @@
           "path": "logo.png"
         },
         {
-          "hash": "a03c8985ec5621560e0505ab71d5e2c239b5156cedd8bdc5d6def793707cd118",
+          "hash": "b5c238633fc3aea07f90bebc30a28b683631e11baa2e169145e17f5c016d168c",
           "path": "package.json"
         },
         {
-          "hash": "ce60603d9f7e2c33395d6087db9ddc7c090787d218b5c7eb5c024c5e40f1bb48",
+          "hash": "2a8f981802073284704761ae2c2c5443b53a0772f816c5d5530e8de62cd05be3",
           "path": "pnpm-lock.yaml"
         },
         {
@@ -4500,7 +4500,7 @@
           "path": "packages/schema/README.zh.md"
         },
         {
-          "hash": "afaf85b1c35a11daf08ca73d37f781151e5da6a40375eea7e295f258f7fcff07",
+          "hash": "e8817311b8bd8b83d530717f2833fda76afe3fa910d5e48be09556dfc9de0e34",
           "path": "packages/schema/package.json"
         },
         {
@@ -5261,7 +5261,7 @@
           "path": "apps/studio/next.config.js"
         },
         {
-          "hash": "d24319415fadec7ef952a68802fed57903a597806ef59f849497dac32b16f4a2",
+          "hash": "5ebdca11713dca8b6d8346e28e2ffea06489fafc7948d0e6ec225fe2b4516059",
           "path": "apps/studio/package.json"
         },
         {
@@ -9425,7 +9425,7 @@
   ],
   "engine": "1.26.0",
   "generatedFrom": {
-    "commit": "92dd855683bba148d10f177eab0ce5bd072650aa",
+    "commit": "02d048bd02bbedf365e8d4e0954dba5ceb320ce7",
     "tracked": 594
   },
   "landings": [
