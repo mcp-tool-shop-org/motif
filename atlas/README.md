@@ -1,14 +1,14 @@
 # motif: how it works
 
-Mapped at 2026-10-01 from commit 9bd1e9a by Atlas 1.24.0.
+Mapped at 2026-11-12 from commit 92dd855 by Atlas 1.26.0.
 
 ## What this is
 
 23 parts, mostly TypeScript (277 files), CSS (3), JavaScript (3) and Astro (1). Work enters through 19 doors; CI and Release each reach 17 parts, and CI is followed because a pull request goes through it. It publishes @motif-studio/asset-index (packages/asset-index), @motif-studio/audio-engine (packages/audio-engine), @motif-studio/automation (packages/automation), @motif-studio/clip-engine (packages/clip-engine), @motif-studio/instrument-rack (packages/instrument-rack), @motif-studio/library (packages/library), @motif-studio/music-theory (packages/music-theory), @motif-studio/playback-engine (packages/playback-engine), @motif-studio/review (packages/review), @motif-studio/runtime-pack (packages/runtime-pack), @motif-studio/sample-lab (packages/sample-lab), @motif-studio/scene-mapper (packages/scene-mapper), @motif-studio/schema (packages/schema), @motif-studio/score-map (packages/score-map), @motif-studio/test-kit (packages/test-kit) and @motif-studio/ui (packages/ui) to npm. It deploys a site to GitHub Pages. People import @motif-studio/asset-index, @motif-studio/audio-engine, @motif-studio/automation, @motif-studio/clip-engine, @motif-studio/instrument-rack, @motif-studio/library, @motif-studio/music-theory, @motif-studio/playback-engine, @motif-studio/review, @motif-studio/runtime-pack and 6 more.
 
-## What changed since 2026-10-01 (4cd27f9)
+## What changed since 2026-10-01 (9bd1e9a)
 
-Nothing structural changed since 2026-10-01; 1 file changed content.
+Nothing structural changed since 2026-10-01; 8 files changed content.
 
 ## What comes in
 
@@ -92,13 +92,13 @@ CI writes nothing this map can see.
 
 ## What tends to change together
 
-- **packages/schema/src/schemas.ts** and **packages/schema/src/types.ts** changed together in 9 of 9 commits, inside the schema part.
-- **apps/studio/src/app/seed-data.ts** and **packages/sample-lab/src/generation/index.ts** changed together in 5 of 8 commits, though neither part imports the other.
+- **packages/schema/src/schemas.ts** and **packages/schema/src/types.ts** changed together in 5 of 5 commits, inside the schema part.
+- **apps/studio/src/app/seed-data.ts** and **packages/sample-lab/src/generation/index.ts** changed together in 5 of 7 commits, though neither part imports the other.
 - **packages/sample-lab/src/generation/index.ts** and **packages/sample-lab/test/generation.test.ts** changed together in 5 of 8 commits, inside the sample-lab part.
 
-Confidence is low: fewer than 25 source files reach 10 revisions in the window.
+Confidence is low: fewer than 30 qualifying commits in the window, and fewer than 25 source files reach 10 revisions.
 
-Window: 180 days; a pair counts from 3 shared commits, since 0 source files reach 10 revisions; the floor rises to 10 when 25 do.
+Window: 180 days; a pair counts from 3 shared commits, since the window holds fewer than 30 qualifying commits.
 
 ## What no test touches
 
@@ -129,10 +129,10 @@ Read those in order to follow one pull request end to end.
 
 ## What this map cannot see
 
-- 1 import could not be resolved: `apps/studio/next-env.d.ts` imports `./.next/types/routes.d.ts`, which a build generates.
+- 2 imports could not be resolved: `apps/studio/next-env.d.ts` imports `./.next/types/root-params.d.ts`, which a build generates; `apps/studio/next-env.d.ts` imports `./.next/types/routes.d.ts`, which a build generates.
 - 8 reads use paths built at run time and are not named here.
 - 4 writes go to places this repository does not track, so they are not listed as generated.
 - 12 writes and 46 reads go to a path their caller passes, not to this repository.
-- Statistics confidence is low: fewer than 25 source files reach 10 revisions in the window.
+- Statistics confidence is low: fewer than 30 qualifying commits in the window, and fewer than 25 source files reach 10 revisions.
 
 Regenerate with `npx --yes @dogfood-lab/atlas map`.
